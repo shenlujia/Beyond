@@ -7,13 +7,15 @@
 //
 
 #import "Test.h"
+#import "ListTest.h"
 #import "Sort.h"
 
 @implementation Test
 
 + (void)run
 {
-    [Sort run];
+    //    [Sort run];
+    [ListTest run];
 }
 
 @end

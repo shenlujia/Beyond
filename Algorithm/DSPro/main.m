@@ -6,10 +6,11 @@
 //  Copyright © 2019 SLJ. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "Test.h"
+#import <Cocoa/Cocoa.h>
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char *argv[])
+{
     [Test run];
     return 0;
 }
