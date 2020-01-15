@@ -9,11 +9,23 @@
 /* Begin PBXBuildFile section */
 		571F4C6523059F4700EF9E4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6423059F4700EF9E4D /* main.m */; };
 		571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6D23059FA800EF9E4D /* Class001-020.mm */; };
-		577DE1B923CD95C1008960CA /* LC0086.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577DE1B823CD95C1008960CA /* LC0086.mm */; };
-		577DE1BC23CD9623008960CA /* ListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577DE1BB23CD9623008960CA /* ListTest.mm */; };
-		577DE1BF23CD99AF008960CA /* ListNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577DE1BE23CD99AF008960CA /* ListNode.mm */; };
-		577DE1C223CDA341008960CA /* LC0083.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577DE1C123CDA341008960CA /* LC0083.mm */; };
-		57F2D7E723C6C89D00824CDB /* Heap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F2D7E623C6C89D00824CDB /* Heap.mm */; };
+		577D172F23CF613A008960CA /* Heap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D170E23CF613A008960CA /* Heap.mm */; };
+		577D173023CF613A008960CA /* ListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171223CF613A008960CA /* ListTest.mm */; };
+		577D173123CF613A008960CA /* LC0142.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171523CF613A008960CA /* LC0142.mm */; };
+		577D173223CF613A008960CA /* LC0002.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171623CF613A008960CA /* LC0002.mm */; };
+		577D173323CF613A008960CA /* ListNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171923CF613A008960CA /* ListNode.mm */; };
+		577D173423CF613A008960CA /* LC0021.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171A23CF613A008960CA /* LC0021.mm */; };
+		577D173523CF613A008960CA /* LC0203.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171B23CF613A008960CA /* LC0203.mm */; };
+		577D173623CF613A008960CA /* LC0083.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171C23CF613A008960CA /* LC0083.mm */; };
+		577D173723CF613A008960CA /* LC0237.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171D23CF613A008960CA /* LC0237.mm */; };
+		577D173823CF613A008960CA /* LC0141.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171F23CF613A008960CA /* LC0141.mm */; };
+		577D173923CF613A008960CA /* LC0086.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172223CF613A008960CA /* LC0086.mm */; };
+		577D173A23CF613A008960CA /* LC0206.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172323CF613A008960CA /* LC0206.mm */; };
+		577D173B23CF613A008960CA /* LC0082.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172423CF613A008960CA /* LC0082.mm */; };
+		577D173C23CF613A008960CA /* LC0092.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172523CF613A008960CA /* LC0092.mm */; };
+		577D173D23CF613A008960CA /* LC0061.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172723CF613A008960CA /* LC0061.mm */; };
+		577D173E23CF613A008960CA /* LC0328.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172823CF613A008960CA /* LC0328.mm */; };
+		577D174123CF6167008960CA /* LC0146.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D174023CF6167008960CA /* LC0146.mm */; };
 		57F2D7EB23C70BBD00824CDB /* Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F2D7EA23C70BBD00824CDB /* Sort.m */; };
 		57F2EF3723C74DD600824CDB /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F2EF3623C74DD600824CDB /* Test.m */; };
 /* End PBXBuildFile section */
@@ -24,16 +36,40 @@
 		571F4C6423059F4700EF9E4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		571F4C6D23059FA800EF9E4D /* Class001-020.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "Class001-020.mm"; sourceTree = "<group>"; };
 		571F4C702305A56500EF9E4D /* Class001-020.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Class001-020.h"; sourceTree = "<group>"; };
-		577DE1B723CD95C1008960CA /* LC0086.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0086.h; sourceTree = "<group>"; };
-		577DE1B823CD95C1008960CA /* LC0086.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0086.mm; sourceTree = "<group>"; };
-		577DE1BA23CD9623008960CA /* ListTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTest.h; sourceTree = "<group>"; };
-		577DE1BB23CD9623008960CA /* ListTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ListTest.mm; sourceTree = "<group>"; };
-		577DE1BD23CD99AF008960CA /* ListNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListNode.h; sourceTree = "<group>"; };
-		577DE1BE23CD99AF008960CA /* ListNode.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ListNode.mm; sourceTree = "<group>"; };
-		577DE1C023CDA341008960CA /* LC0083.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0083.h; sourceTree = "<group>"; };
-		577DE1C123CDA341008960CA /* LC0083.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0083.mm; sourceTree = "<group>"; };
-		57F2D7E523C6C89D00824CDB /* Heap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
-		57F2D7E623C6C89D00824CDB /* Heap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Heap.mm; sourceTree = "<group>"; };
+		577D170E23CF613A008960CA /* Heap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Heap.mm; sourceTree = "<group>"; };
+		577D171023CF613A008960CA /* LC0141.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0141.h; sourceTree = "<group>"; };
+		577D171123CF613A008960CA /* LC0083.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0083.h; sourceTree = "<group>"; };
+		577D171223CF613A008960CA /* ListTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ListTest.mm; sourceTree = "<group>"; };
+		577D171323CF613A008960CA /* LC0237.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0237.h; sourceTree = "<group>"; };
+		577D171423CF613A008960CA /* LC0142.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0142.h; sourceTree = "<group>"; };
+		577D171523CF613A008960CA /* LC0142.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0142.mm; sourceTree = "<group>"; };
+		577D171623CF613A008960CA /* LC0002.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0002.mm; sourceTree = "<group>"; };
+		577D171723CF613A008960CA /* LC0206.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0206.h; sourceTree = "<group>"; };
+		577D171823CF613A008960CA /* LC0002.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0002.h; sourceTree = "<group>"; };
+		577D171923CF613A008960CA /* ListNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ListNode.mm; sourceTree = "<group>"; };
+		577D171A23CF613A008960CA /* LC0021.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0021.mm; sourceTree = "<group>"; };
+		577D171B23CF613A008960CA /* LC0203.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0203.mm; sourceTree = "<group>"; };
+		577D171C23CF613A008960CA /* LC0083.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0083.mm; sourceTree = "<group>"; };
+		577D171D23CF613A008960CA /* LC0237.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0237.mm; sourceTree = "<group>"; };
+		577D171E23CF613A008960CA /* ListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNode.h; sourceTree = "<group>"; };
+		577D171F23CF613A008960CA /* LC0141.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0141.mm; sourceTree = "<group>"; };
+		577D172023CF613A008960CA /* ListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTest.h; sourceTree = "<group>"; };
+		577D172123CF613A008960CA /* LC0203.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0203.h; sourceTree = "<group>"; };
+		577D172223CF613A008960CA /* LC0086.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0086.mm; sourceTree = "<group>"; };
+		577D172323CF613A008960CA /* LC0206.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0206.mm; sourceTree = "<group>"; };
+		577D172423CF613A008960CA /* LC0082.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0082.mm; sourceTree = "<group>"; };
+		577D172523CF613A008960CA /* LC0092.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0092.mm; sourceTree = "<group>"; };
+		577D172623CF613A008960CA /* LC0328.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0328.h; sourceTree = "<group>"; };
+		577D172723CF613A008960CA /* LC0061.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0061.mm; sourceTree = "<group>"; };
+		577D172823CF613A008960CA /* LC0328.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0328.mm; sourceTree = "<group>"; };
+		577D172923CF613A008960CA /* LC0092.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0092.h; sourceTree = "<group>"; };
+		577D172A23CF613A008960CA /* LC0021.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0021.h; sourceTree = "<group>"; };
+		577D172B23CF613A008960CA /* LC0082.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0082.h; sourceTree = "<group>"; };
+		577D172C23CF613A008960CA /* LC0061.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0061.h; sourceTree = "<group>"; };
+		577D172D23CF613A008960CA /* LC0086.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0086.h; sourceTree = "<group>"; };
+		577D172E23CF613A008960CA /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
+		577D173F23CF6167008960CA /* LC0146.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0146.h; sourceTree = "<group>"; };
+		577D174023CF6167008960CA /* LC0146.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0146.mm; sourceTree = "<group>"; };
 		57F2D7E923C70BBD00824CDB /* Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sort.h; sourceTree = "<group>"; };
 		57F2D7EA23C70BBD00824CDB /* Sort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sort.m; sourceTree = "<group>"; };
 		57F2EF3523C74DD600824CDB /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
@@ -54,6 +90,7 @@
 		571F4C4F23059F4500EF9E4D = {
 			isa = PBXGroup;
 			children = (
+				577D170C23CF613A008960CA /* LC */,
 				57F2EF3423C74DA100824CDB /* Classes */,
 				571F4C5A23059F4500EF9E4D /* DSPro */,
 				571F4C5923059F4500EF9E4D /* Products */,
@@ -93,29 +130,61 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		577DE1B323CD9594008960CA /* List */ = {
+		577D170C23CF613A008960CA /* LC */ = {
 			isa = PBXGroup;
 			children = (
-				577DE1C023CDA341008960CA /* LC0083.h */,
-				577DE1C123CDA341008960CA /* LC0083.mm */,
-				577DE1B723CD95C1008960CA /* LC0086.h */,
-				577DE1B823CD95C1008960CA /* LC0086.mm */,
-				577DE1BD23CD99AF008960CA /* ListNode.h */,
-				577DE1BE23CD99AF008960CA /* ListNode.mm */,
-				577DE1BA23CD9623008960CA /* ListTest.h */,
-				577DE1BB23CD9623008960CA /* ListTest.mm */,
+				577D170D23CF613A008960CA /* Design */,
+				577D172E23CF613A008960CA /* Heap.h */,
+				577D170E23CF613A008960CA /* Heap.mm */,
+				577D170F23CF613A008960CA /* List */,
 			);
-			path = List;
+			path = LC;
 			sourceTree = "<group>";
 		};
-		57F2D7E423C6C88300824CDB /* DataStructure */ = {
+		577D170D23CF613A008960CA /* Design */ = {
 			isa = PBXGroup;
 			children = (
-				577DE1B323CD9594008960CA /* List */,
-				57F2D7E523C6C89D00824CDB /* Heap.h */,
-				57F2D7E623C6C89D00824CDB /* Heap.mm */,
+				577D173F23CF6167008960CA /* LC0146.h */,
+				577D174023CF6167008960CA /* LC0146.mm */,
 			);
-			path = DataStructure;
+			path = Design;
+			sourceTree = "<group>";
+		};
+		577D170F23CF613A008960CA /* List */ = {
+			isa = PBXGroup;
+			children = (
+				577D171823CF613A008960CA /* LC0002.h */,
+				577D171623CF613A008960CA /* LC0002.mm */,
+				577D172A23CF613A008960CA /* LC0021.h */,
+				577D171A23CF613A008960CA /* LC0021.mm */,
+				577D172C23CF613A008960CA /* LC0061.h */,
+				577D172723CF613A008960CA /* LC0061.mm */,
+				577D172B23CF613A008960CA /* LC0082.h */,
+				577D172423CF613A008960CA /* LC0082.mm */,
+				577D171123CF613A008960CA /* LC0083.h */,
+				577D171C23CF613A008960CA /* LC0083.mm */,
+				577D172D23CF613A008960CA /* LC0086.h */,
+				577D172223CF613A008960CA /* LC0086.mm */,
+				577D172923CF613A008960CA /* LC0092.h */,
+				577D172523CF613A008960CA /* LC0092.mm */,
+				577D171023CF613A008960CA /* LC0141.h */,
+				577D171F23CF613A008960CA /* LC0141.mm */,
+				577D171423CF613A008960CA /* LC0142.h */,
+				577D171523CF613A008960CA /* LC0142.mm */,
+				577D172123CF613A008960CA /* LC0203.h */,
+				577D171B23CF613A008960CA /* LC0203.mm */,
+				577D171723CF613A008960CA /* LC0206.h */,
+				577D172323CF613A008960CA /* LC0206.mm */,
+				577D171323CF613A008960CA /* LC0237.h */,
+				577D171D23CF613A008960CA /* LC0237.mm */,
+				577D172623CF613A008960CA /* LC0328.h */,
+				577D172823CF613A008960CA /* LC0328.mm */,
+				577D171E23CF613A008960CA /* ListNode.h */,
+				577D171923CF613A008960CA /* ListNode.mm */,
+				577D172023CF613A008960CA /* ListTest.h */,
+				577D171223CF613A008960CA /* ListTest.mm */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		57F2D7E823C70BB200824CDB /* Sort */ = {
@@ -132,7 +201,6 @@
 			children = (
 				571F4C6C23059F6800EF9E4D /* 100 */,
 				571F4C712305A8A800EF9E4D /* Common */,
-				57F2D7E423C6C88300824CDB /* DataStructure */,
 				57F2D7E823C70BB200824CDB /* Sort */,
 				57F2EF3523C74DD600824CDB /* Test.h */,
 				57F2EF3623C74DD600824CDB /* Test.m */,
@@ -207,15 +275,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				577D173323CF613A008960CA /* ListNode.mm in Sources */,
+				577D173123CF613A008960CA /* LC0142.mm in Sources */,
+				577D173823CF613A008960CA /* LC0141.mm in Sources */,
+				577D173523CF613A008960CA /* LC0203.mm in Sources */,
 				57F2EF3723C74DD600824CDB /* Test.m in Sources */,
-				577DE1BC23CD9623008960CA /* ListTest.mm in Sources */,
+				577D173E23CF613A008960CA /* LC0328.mm in Sources */,
+				577D173223CF613A008960CA /* LC0002.mm in Sources */,
+				577D172F23CF613A008960CA /* Heap.mm in Sources */,
+				577D173C23CF613A008960CA /* LC0092.mm in Sources */,
 				57F2D7EB23C70BBD00824CDB /* Sort.m in Sources */,
-				577DE1B923CD95C1008960CA /* LC0086.mm in Sources */,
-				57F2D7E723C6C89D00824CDB /* Heap.mm in Sources */,
+				577D173A23CF613A008960CA /* LC0206.mm in Sources */,
+				577D173D23CF613A008960CA /* LC0061.mm in Sources */,
+				577D174123CF6167008960CA /* LC0146.mm in Sources */,
+				577D173623CF613A008960CA /* LC0083.mm in Sources */,
+				577D173023CF613A008960CA /* ListTest.mm in Sources */,
+				577D173B23CF613A008960CA /* LC0082.mm in Sources */,
+				577D173923CF613A008960CA /* LC0086.mm in Sources */,
+				577D173723CF613A008960CA /* LC0237.mm in Sources */,
+				577D173423CF613A008960CA /* LC0021.mm in Sources */,
 				571F4C6523059F4700EF9E4D /* main.m in Sources */,
 				571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */,
-				577DE1C223CDA341008960CA /* LC0083.mm in Sources */,
-				577DE1BF23CD99AF008960CA /* ListNode.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
