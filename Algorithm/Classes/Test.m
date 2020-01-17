@@ -7,6 +7,7 @@
 //
 
 #import "Test.h"
+#import "DesignTest.h"
 #import "ListTest.h"
 #import "Sort.h"
 
@@ -14,8 +15,9 @@
 
 + (void)run
 {
+    [DesignTest run];
     //    [Sort run];
-    [ListTest run];
+    //    [ListTest run];
 }
 
 @end
