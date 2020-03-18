@@ -1,21 +1,20 @@
 //
-//  DesignTest.m
+//  BinaryTreeTest.m
 //  DSPro
 //
-//  Created by SLJ on 2020/1/16.
+//  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "DesignTest.h"
+#import "BinaryTreeTest.h"
+#import "TreeNode.h"
 #import <vector>
 
-using namespace std;
-
-@implementation DesignTest
+@implementation BinaryTreeTest
 
 + (void)run
 {
-    vector<int> v = {146, 155, 232, 460, 622, 641, 706};
+    vector<int> v = {251};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

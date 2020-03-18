@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		571F4C6523059F4700EF9E4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6423059F4700EF9E4D /* main.m */; };
 		571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6D23059FA800EF9E4D /* Class001-020.mm */; };
+		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
 		577D172F23CF613A008960CA /* Heap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D170E23CF613A008960CA /* Heap.mm */; };
@@ -28,6 +29,10 @@
 		577D173D23CF613A008960CA /* LC0061.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172723CF613A008960CA /* LC0061.mm */; };
 		577D173E23CF613A008960CA /* LC0328.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D172823CF613A008960CA /* LC0328.mm */; };
 		577D174123CF6167008960CA /* LC0146_LRUCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D174023CF6167008960CA /* LC0146_LRUCache.mm */; };
+		5781A7DE2421C0C600D2479F /* BinaryTreeTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781A7DD2421C0C600D2479F /* BinaryTreeTest.mm */; };
+		5781A7E12421C0CE00D2479F /* LC0251.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781A7DF2421C0CD00D2479F /* LC0251.mm */; };
+		5781B4002421C18500D2479F /* TreeNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B3FF2421C18500D2479F /* TreeNode.mm */; };
+		5781B4032421CF9000D2479F /* LC0235.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B4022421CF8F00D2479F /* LC0235.mm */; };
 		57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57C8C96223D07DA0005B649B /* DesignTest.mm */; };
 		57C8C96623D08B09005B649B /* LC0460_LFUCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57C8C96523D08B09005B649B /* LC0460_LFUCache.mm */; };
 		57C8C96923D17D16005B649B /* LC0155_MinStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57C8C96823D17D16005B649B /* LC0155_MinStack.mm */; };
@@ -42,6 +47,8 @@
 		571F4C6423059F4700EF9E4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		571F4C6D23059FA800EF9E4D /* Class001-020.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "Class001-020.mm"; sourceTree = "<group>"; };
 		571F4C702305A56500EF9E4D /* Class001-020.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Class001-020.h"; sourceTree = "<group>"; };
+		576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0232_MyQueue.h; sourceTree = "<group>"; };
+		576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0232_MyQueue.mm; sourceTree = "<group>"; };
 		576F9A9223D192F3000C159A /* LC0641_MyCircularDeque.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0641_MyCircularDeque.h; sourceTree = "<group>"; };
 		576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0641_MyCircularDeque.mm; sourceTree = "<group>"; };
 		576F9A9523D195C0000C159A /* LC0706_MyHashMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0706_MyHashMap.h; sourceTree = "<group>"; };
@@ -80,6 +87,14 @@
 		577D172E23CF613A008960CA /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
 		577D173F23CF6167008960CA /* LC0146_LRUCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0146_LRUCache.h; sourceTree = "<group>"; };
 		577D174023CF6167008960CA /* LC0146_LRUCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0146_LRUCache.mm; sourceTree = "<group>"; };
+		5781A7DC2421C0C600D2479F /* BinaryTreeTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryTreeTest.h; sourceTree = "<group>"; };
+		5781A7DD2421C0C600D2479F /* BinaryTreeTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BinaryTreeTest.mm; sourceTree = "<group>"; };
+		5781A7DF2421C0CD00D2479F /* LC0251.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0251.mm; sourceTree = "<group>"; };
+		5781A7E02421C0CE00D2479F /* LC0251.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0251.h; sourceTree = "<group>"; };
+		5781B3FE2421C18500D2479F /* TreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
+		5781B3FF2421C18500D2479F /* TreeNode.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TreeNode.mm; sourceTree = "<group>"; };
+		5781B4012421CF8F00D2479F /* LC0235.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0235.h; sourceTree = "<group>"; };
+		5781B4022421CF8F00D2479F /* LC0235.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0235.mm; sourceTree = "<group>"; };
 		57C8C96123D07DA0005B649B /* DesignTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignTest.h; sourceTree = "<group>"; };
 		57C8C96223D07DA0005B649B /* DesignTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DesignTest.mm; sourceTree = "<group>"; };
 		57C8C96423D08B09005B649B /* LC0460_LFUCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0460_LFUCache.h; sourceTree = "<group>"; };
@@ -151,6 +166,7 @@
 		577D170C23CF613A008960CA /* LC */ = {
 			isa = PBXGroup;
 			children = (
+				5781A7DB2421C08200D2479F /* BinaryTree */,
 				577D170D23CF613A008960CA /* Design */,
 				577D172E23CF613A008960CA /* Heap.h */,
 				577D170E23CF613A008960CA /* Heap.mm */,
@@ -168,6 +184,8 @@
 				577D174023CF6167008960CA /* LC0146_LRUCache.mm */,
 				57C8C96723D17D16005B649B /* LC0155_MinStack.h */,
 				57C8C96823D17D16005B649B /* LC0155_MinStack.mm */,
+				576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */,
+				576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */,
 				57C8C96423D08B09005B649B /* LC0460_LFUCache.h */,
 				57C8C96523D08B09005B649B /* LC0460_LFUCache.mm */,
 				57C8C96A23D1825A005B649B /* LC0622_MyCircularQueue.h */,
@@ -215,6 +233,21 @@
 				577D171223CF613A008960CA /* ListTest.mm */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		5781A7DB2421C08200D2479F /* BinaryTree */ = {
+			isa = PBXGroup;
+			children = (
+				5781B4012421CF8F00D2479F /* LC0235.h */,
+				5781B4022421CF8F00D2479F /* LC0235.mm */,
+				5781A7E02421C0CE00D2479F /* LC0251.h */,
+				5781A7DF2421C0CD00D2479F /* LC0251.mm */,
+				5781A7DC2421C0C600D2479F /* BinaryTreeTest.h */,
+				5781A7DD2421C0C600D2479F /* BinaryTreeTest.mm */,
+				5781B3FE2421C18500D2479F /* TreeNode.h */,
+				5781B3FF2421C18500D2479F /* TreeNode.mm */,
+			);
+			path = BinaryTree;
 			sourceTree = "<group>";
 		};
 		57F2D7E823C70BB200824CDB /* Sort */ = {
@@ -306,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				577D173323CF613A008960CA /* ListNode.mm in Sources */,
+				5781A7DE2421C0C600D2479F /* BinaryTreeTest.mm in Sources */,
 				577D173123CF613A008960CA /* LC0142.mm in Sources */,
 				577D173823CF613A008960CA /* LC0141.mm in Sources */,
 				577D173523CF613A008960CA /* LC0203.mm in Sources */,
@@ -314,18 +348,22 @@
 				576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */,
 				576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */,
 				577D173223CF613A008960CA /* LC0002.mm in Sources */,
+				5781B4032421CF9000D2479F /* LC0235.mm in Sources */,
 				577D172F23CF613A008960CA /* Heap.mm in Sources */,
 				577D173C23CF613A008960CA /* LC0092.mm in Sources */,
 				57C8C96C23D1825A005B649B /* LC0622_MyCircularQueue.mm in Sources */,
 				57F2D7EB23C70BBD00824CDB /* Sort.m in Sources */,
 				577D173A23CF613A008960CA /* LC0206.mm in Sources */,
 				577D173D23CF613A008960CA /* LC0061.mm in Sources */,
+				5781A7E12421C0CE00D2479F /* LC0251.mm in Sources */,
+				576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */,
 				577D174123CF6167008960CA /* LC0146_LRUCache.mm in Sources */,
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
 				577D173623CF613A008960CA /* LC0083.mm in Sources */,
 				577D173023CF613A008960CA /* ListTest.mm in Sources */,
 				577D173B23CF613A008960CA /* LC0082.mm in Sources */,
 				577D173923CF613A008960CA /* LC0086.mm in Sources */,
+				5781B4002421C18500D2479F /* TreeNode.mm in Sources */,
 				577D173723CF613A008960CA /* LC0237.mm in Sources */,
 				577D173423CF613A008960CA /* LC0021.mm in Sources */,
 				571F4C6523059F4700EF9E4D /* main.m in Sources */,

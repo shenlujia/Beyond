@@ -7,6 +7,7 @@
 //
 
 #import "Test.h"
+#import "BinaryTreeTest.h"
 #import "DesignTest.h"
 #import "ListTest.h"
 #import "Sort.h"
@@ -16,6 +17,7 @@
 + (void)run
 {
     [DesignTest run];
+    [BinaryTreeTest run];
     //    [Sort run];
     //    [ListTest run];
 }
