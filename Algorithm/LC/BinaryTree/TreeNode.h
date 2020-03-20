@@ -24,10 +24,10 @@ class TreeNode
     // 从 [3,5,1,6,2,0,8,null,null,7,4] 创建
     static TreeNode *createNodeWithArrayString(NSString *arrayString);
 
-    TreeNode *findNodeWithValue(int val);
+    // 输出: [3,5,1,6,2,0,8,null,null,7,4]
+    void print();
 
-    //    // 输出: 1->2->4->3->5
-    //    void print();
+    TreeNode *findNodeWithValue(int val);
 };
 
 #endif /* TreeNode_h */

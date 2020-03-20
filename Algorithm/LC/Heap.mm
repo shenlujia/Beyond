@@ -7,7 +7,3 @@
 //
 
 #import "Heap.h"
-
-@implementation MaxHeap
-
-@end

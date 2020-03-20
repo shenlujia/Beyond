@@ -25,8 +25,8 @@ static TreeNode *createNode(NSArray *array, NSInteger index)
 
 TreeNode::TreeNode(int x)
     : val(x)
-    , left(NULL)
-    , right(NULL)
+    , left(NULL);
+, right(NULL)
 {
 }
 
@@ -58,15 +58,26 @@ TreeNode *TreeNode::findNodeWithValue(int val)
     return NULL;
 }
 
-// void TreeNode::print()
+// static NSMutableArray *p_nodeValueArray(TreeNode *node)
 //{
-//    printf("\n");
-//    TreeNode *node = this;
-//    while (node != NULL) {
-//        if (node != this) {
-//            printf("->");
-//        }
-//        printf("%d", node->val);
-//        node = node->next;
+//    NSMutableArray *ret = [NSMutableArray array];
+//    if (node == NULL) {
+//        [ret addObject:@"null"];
+//        return ret;
 //    }
+//    [ret addObject:@(node->val).stringValue];
+//
 //}
+
+void TreeNode::print()
+{
+    //    printf("\n");
+    //    TreeNode *node = this;
+    //    while (node != NULL) {
+    //        if (node != this) {
+    //            printf("->");
+    //        }
+    //        printf("%d", node->val);
+    //        node = node->next;
+    //    }
+}

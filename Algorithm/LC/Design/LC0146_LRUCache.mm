@@ -10,6 +10,8 @@
 #import <list>
 #import <unordered_map>
 
+using namespace std;
+
 /*
 LRU缓存机制
 
@@ -40,8 +42,8 @@ cache.get(4);       // 返回  4
 class LRUCache
 {
   public:
-    std::list<std::pair<int, int>> m_list;
-    std::unordered_map<int, std::list<std::pair<int, int>>::iterator> m_map;
+    list<pair<int, int>> m_list;
+    unordered_map<int, list<pair<int, int>>::iterator> m_map;
     int capacity;
     int size;
 
@@ -57,7 +59,7 @@ class LRUCache
             return -1;
         }
         auto it = m_map[key];
-        std::pair<int, int> p = *it;
+        pair<int, int> p = *it;
 
         m_list.erase(it);
         m_list.insert(m_list.begin(), p);
@@ -68,7 +70,7 @@ class LRUCache
 
     void put(int key, int value)
     {
-        std::pair<int, int> p(key, value);
+        pair<int, int> p(key, value);
         if (m_map.find(key) == m_map.end()) {
             if (this->size == this->capacity) {
                 auto old = m_list.back();

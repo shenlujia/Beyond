@@ -1,20 +1,19 @@
 //
-//  BinaryTreeTest.m
+//  DPTest.m
 //  DSPro
 //
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "BinaryTreeTest.h"
-#import "TreeNode.h"
+#import "DPTest.h"
 #import <vector>
 
-@implementation BinaryTreeTest
+@implementation DPTest
 
 + (void)run
 {
-    vector<int> v = {235, 251, 700, 701, 1038};
+    std::vector<int> v = {1143};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

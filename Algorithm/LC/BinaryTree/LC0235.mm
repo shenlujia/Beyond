@@ -33,15 +33,19 @@ static TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
     if (root == NULL || root == p || root == q) {
         return root;
     }
-    if (p->val < root->val && q->val > root->val) {
-        return root;
+    if (p->val < root->val) {
+        if (q->val > root->val) {
+            return root;
+        } else {
+            return lowestCommonAncestor(root->left, p, q);
+        }
+    } else {
+        if (q->val < root->val) {
+            return root;
+        } else {
+            return lowestCommonAncestor(root->right, p, q);
+        }
     }
-    TreeNode *left = lowestCommonAncestor(root->left, p, q);
-    TreeNode *right = lowestCommonAncestor(root->right, p, q);
-    if (left != NULL && right != NULL) {
-        return root;
-    }
-    return left != NULL ? left : right;
 }
 
 + (void)run
