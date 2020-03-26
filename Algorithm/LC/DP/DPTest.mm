@@ -7,14 +7,15 @@
 //
 
 #import "DPTest.h"
+#import <stdlib.h>
 #import <vector>
 
 @implementation DPTest
 
 + (void)run
 {
-    std::vector<int> v = {1143};
-
+    std::vector<int> v = {72, 121, 122, 516, 1143};
+    std::sort(v.begin(), v.end());
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
         NSString *name = [NSString stringWithFormat:@"%04d", value];

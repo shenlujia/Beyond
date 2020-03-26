@@ -11,15 +11,21 @@
 #import "DPTest.h"
 #import "DesignTest.h"
 #import "DoublePointerTest.h"
+#import "GreedTest.h"
 #import "ListTest.h"
 #import "MergeIntervalTest.h"
 #import "OtherTest.h"
+#import "QueueTest.h"
 #import "Sort.h"
+#import "StackTest.h"
 
 @implementation Test
 
 + (void)run
 {
+    [GreedTest run];
+    [StackTest run];
+    [QueueTest run];
     [DoublePointerTest run];
     [DPTest run];
     [OtherTest run];
@@ -27,7 +33,7 @@
     [BinaryTreeTest run];
     [MergeIntervalTest run];
     //    [Sort run];
-    //    [ListTest run];
+    [ListTest run];
 }
 
 @end

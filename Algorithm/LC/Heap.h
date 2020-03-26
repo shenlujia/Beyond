@@ -21,7 +21,7 @@ class MaxHeap
     // 堆的大小
     int size()
     {
-        return data.size();
+        return (int)data.size();
     }
     // 堆是否为空
     bool isEmpty()

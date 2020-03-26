@@ -1,19 +1,21 @@
 //
-//  DoublePointerTest.m
+//  GreedTest.m
 //  DSPro
 //
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "DoublePointerTest.h"
+#import "GreedTest.h"
 #import <vector>
 
-@implementation DoublePointerTest
+using namespace std;
+
+@implementation GreedTest
 
 + (void)run
 {
-    std::vector<int> v = {3, 11, 18, 30};
+    vector<int> v = {1338};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

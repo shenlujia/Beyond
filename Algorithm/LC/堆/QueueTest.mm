@@ -1,19 +1,21 @@
 //
-//  DoublePointerTest.m
+//  QueueTest.m
 //  DSPro
 //
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "DoublePointerTest.h"
+#import "QueueTest.h"
 #import <vector>
 
-@implementation DoublePointerTest
+using namespace std;
+
+@implementation QueueTest
 
 + (void)run
 {
-    std::vector<int> v = {3, 11, 18, 30};
+    vector<int> v = {1054};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

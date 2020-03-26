@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <vector>
 
 using namespace std;
 
@@ -24,10 +25,17 @@ class TreeNode
     // 从 [3,5,1,6,2,0,8,null,null,7,4] 创建
     static TreeNode *createNodeWithArrayString(NSString *arrayString);
 
-    // 输出: [3,5,1,6,2,0,8,null,null,7,4]
-    void print();
-
     TreeNode *findNodeWithValue(int val);
+
+    vector<int> preOrder1();
+    vector<int> preOrder2();
+    vector<int> inOrder1();
+    vector<int> inOrder2();
+    vector<int> postOrder1();
+    vector<int> postOrder2();
+
+    vector<int> dfs();
+    vector<int> bfs();
 };
 
 #endif /* TreeNode_h */
