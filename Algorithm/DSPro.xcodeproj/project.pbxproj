@@ -13,6 +13,11 @@
 		572FDE1E2428B665002929A6 /* LC0121.mm in Sources */ = {isa = PBXBuildFile; fileRef = 572FDE1C2428B665002929A6 /* LC0121.mm */; };
 		572FDE212428BAE9002929A6 /* LC0122.mm in Sources */ = {isa = PBXBuildFile; fileRef = 572FDE202428BAE9002929A6 /* LC0122.mm */; };
 		572FF6642428E8AE002929A6 /* LC0072.mm in Sources */ = {isa = PBXBuildFile; fileRef = 572FF6622428E8AE002929A6 /* LC0072.mm */; };
+		57356444242DEE08007251AD /* LC0123.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57356440242DEE07007251AD /* LC0123.mm */; };
+		57356445242DEE08007251AD /* LC0188.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57356441242DEE08007251AD /* LC0188.mm */; };
+		5735644B242DF7E9007251AD /* LC0037.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57356447242DF7E9007251AD /* LC0037.mm */; };
+		5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735644A242DF7E9007251AD /* BacktrackTest.mm */; };
+		5735644F242E01A0007251AD /* LC0010.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735644E242E01A0007251AD /* LC0010.mm */; };
 		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
@@ -80,6 +85,16 @@
 		572FDE202428BAE9002929A6 /* LC0122.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0122.mm; sourceTree = "<group>"; };
 		572FF6622428E8AE002929A6 /* LC0072.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0072.mm; sourceTree = "<group>"; };
 		572FF6632428E8AE002929A6 /* LC0072.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0072.h; sourceTree = "<group>"; };
+		57356440242DEE07007251AD /* LC0123.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0123.mm; sourceTree = "<group>"; };
+		57356441242DEE08007251AD /* LC0188.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0188.mm; sourceTree = "<group>"; };
+		57356442242DEE08007251AD /* LC0123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0123.h; sourceTree = "<group>"; };
+		57356443242DEE08007251AD /* LC0188.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0188.h; sourceTree = "<group>"; };
+		57356447242DF7E9007251AD /* LC0037.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0037.mm; sourceTree = "<group>"; };
+		57356448242DF7E9007251AD /* LC0037.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0037.h; sourceTree = "<group>"; };
+		57356449242DF7E9007251AD /* BacktrackTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BacktrackTest.h; sourceTree = "<group>"; };
+		5735644A242DF7E9007251AD /* BacktrackTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BacktrackTest.mm; sourceTree = "<group>"; };
+		5735644D242E019F007251AD /* LC0010.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0010.h; sourceTree = "<group>"; };
+		5735644E242E01A0007251AD /* LC0010.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0010.mm; sourceTree = "<group>"; };
 		576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0232_MyQueue.h; sourceTree = "<group>"; };
 		576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0232_MyQueue.mm; sourceTree = "<group>"; };
 		576F9A9223D192F3000C159A /* LC0641_MyCircularDeque.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0641_MyCircularDeque.h; sourceTree = "<group>"; };
@@ -238,9 +253,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		57356446242DF74E007251AD /* 回溯 */ = {
+			isa = PBXGroup;
+			children = (
+				57356449242DF7E9007251AD /* BacktrackTest.h */,
+				5735644A242DF7E9007251AD /* BacktrackTest.mm */,
+				57356448242DF7E9007251AD /* LC0037.h */,
+				57356447242DF7E9007251AD /* LC0037.mm */,
+			);
+			path = "回溯";
+			sourceTree = "<group>";
+		};
 		577D170C23CF613A008960CA /* LC */ = {
 			isa = PBXGroup;
 			children = (
+				57356446242DF74E007251AD /* 回溯 */,
 				57E6774924262E5300ABD968 /* 贪心 */,
 				57E677392425D07500ABD968 /* 栈 */,
 				57E6772F2425BFC700ABD968 /* 堆 */,
@@ -365,6 +392,8 @@
 		579F2E1F24249713009AB751 /* DP */ = {
 			isa = PBXGroup;
 			children = (
+				5735644D242E019F007251AD /* LC0010.h */,
+				5735644E242E01A0007251AD /* LC0010.mm */,
 				579F2E2024249713009AB751 /* DPTest.h */,
 				579F2E2324249713009AB751 /* DPTest.mm */,
 				572FF6632428E8AE002929A6 /* LC0072.h */,
@@ -373,6 +402,10 @@
 				572FDE1C2428B665002929A6 /* LC0121.mm */,
 				572FDE1F2428BAE9002929A6 /* LC0122.h */,
 				572FDE202428BAE9002929A6 /* LC0122.mm */,
+				57356442242DEE08007251AD /* LC0123.h */,
+				57356440242DEE07007251AD /* LC0123.mm */,
+				57356443242DEE08007251AD /* LC0188.h */,
+				57356441242DEE08007251AD /* LC0188.mm */,
 				572FDE0C2428A649002929A6 /* LC0516.h */,
 				572FDE0D2428A649002929A6 /* LC0516.mm */,
 				579F2E2224249713009AB751 /* LC1143.h */,
@@ -523,6 +556,7 @@
 				5781A7DE2421C0C600D2479F /* BinaryTreeTest.mm in Sources */,
 				577D173123CF613A008960CA /* LC0142.mm in Sources */,
 				577D173823CF613A008960CA /* LC0141.mm in Sources */,
+				57356444242DEE08007251AD /* LC0123.mm in Sources */,
 				5781B40A2421EC6800D2479F /* OtherTest.mm in Sources */,
 				579F2E2524249713009AB751 /* DPTest.mm in Sources */,
 				5781C0662422721700D2479F /* MergeIntervalTest.mm in Sources */,
@@ -551,7 +585,9 @@
 				579F2E2F2424B880009AB751 /* LC1038.mm in Sources */,
 				57E677522426478600ABD968 /* LC0030.mm in Sources */,
 				579F2E2424249713009AB751 /* LC1143.mm in Sources */,
+				5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */,
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
+				5735644B242DF7E9007251AD /* LC0037.mm in Sources */,
 				577D173623CF613A008960CA /* LC0083.mm in Sources */,
 				577D173023CF613A008960CA /* ListTest.mm in Sources */,
 				577D173B23CF613A008960CA /* LC0082.mm in Sources */,
@@ -575,7 +611,9 @@
 				57E677352425BFC700ABD968 /* LC1054.mm in Sources */,
 				57C8C96923D17D16005B649B /* LC0155_MinStack.mm in Sources */,
 				572FDE0E2428A649002929A6 /* LC0516.mm in Sources */,
+				5735644F242E01A0007251AD /* LC0010.mm in Sources */,
 				57E6774F24262E5300ABD968 /* GreedTest.mm in Sources */,
+				57356445242DEE08007251AD /* LC0188.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

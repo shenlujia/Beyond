@@ -1,21 +1,22 @@
 //
-//  DPTest.m
+//  BacktrackTest.m
 //  DSPro
 //
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "DPTest.h"
-#import <stdlib.h>
+#import "BacktrackTest.h"
 #import <vector>
 
-@implementation DPTest
+using namespace std;
+
+@implementation BacktrackTest
 
 + (void)run
 {
-    std::vector<int> v = {10, 72, 121, 122, 123, 188, 516, 1143};
-    std::sort(v.begin(), v.end());
+    vector<int> v = {37};
+
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
         NSString *name = [NSString stringWithFormat:@"%04d", value];

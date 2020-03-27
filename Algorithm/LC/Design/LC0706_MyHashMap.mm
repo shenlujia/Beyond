@@ -58,22 +58,22 @@ class MyHashMap
 
     void put(int key, int value)
     {
-        auto &l = m_data[hash(key)];
-        for (auto &p : l) {
+        auto &list = m_data[hash(key)];
+        for (auto &p : list) {
             if (p.first == key) {
                 p.second = value;
                 return;
             }
         }
 
-        l.emplace_back(pair<int, int>(key, value));
+        list.push_back(pair<int, int>(key, value));
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     int get(int key)
     {
-        auto &l = m_data[hash(key)];
-        for (auto &p : l) {
+        auto &list = m_data[hash(key)];
+        for (auto &p : list) {
             if (p.first == key) {
                 return p.second;
             }
@@ -84,11 +84,11 @@ class MyHashMap
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     void remove(int key)
     {
-        auto &l = m_data[hash(key)];
-        for (auto i = l.begin(); i != l.end(); ++i) {
+        auto &list = m_data[hash(key)];
+        for (auto i = list.begin(); i != list.end(); ++i) {
             auto &p = *i;
             if (p.first == key) {
-                l.erase(i);
+                list.erase(i);
                 return;
             }
         }

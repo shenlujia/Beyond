@@ -40,6 +40,12 @@
     vector<int> b = root->bfs();
     vector<int> b_1 = {6, 2, 8, 1, 4, 7, 9, 3, 5};
     NSParameterAssert(d == d_1 && b == b_1);
+
+    {
+        TreeNode *root = TreeNode::createNodeWithArrayString(@"[3,9,20,null,null,15,7]");
+        vector<vector<int>> ret = {{3}, {9, 20}, {15, 7}};
+        NSParameterAssert(root->levelOrder() == ret);
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Test.h"
+#import "BacktrackTest.h"
 #import "BinaryTreeTest.h"
 #import "DPTest.h"
 #import "DesignTest.h"
@@ -23,6 +24,7 @@
 
 + (void)run
 {
+    [BacktrackTest run];
     [GreedTest run];
     [StackTest run];
     [QueueTest run];

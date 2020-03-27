@@ -33,9 +33,13 @@ class TreeNode
     vector<int> inOrder2();
     vector<int> postOrder1();
     vector<int> postOrder2();
+    vector<vector<int>> levelOrder();
 
     vector<int> dfs();
     vector<int> bfs();
+
+    int maxDepth(); // 最大深度
+    void mirror();  // 镜像
 };
 
 #endif /* TreeNode_h */
