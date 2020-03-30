@@ -18,6 +18,7 @@
 		5735644B242DF7E9007251AD /* LC0037.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57356447242DF7E9007251AD /* LC0037.mm */; };
 		5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735644A242DF7E9007251AD /* BacktrackTest.mm */; };
 		5735644F242E01A0007251AD /* LC0010.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735644E242E01A0007251AD /* LC0010.mm */; };
+		573570D42431E924007251AD /* LC0078.mm in Sources */ = {isa = PBXBuildFile; fileRef = 573570D32431E924007251AD /* LC0078.mm */; };
 		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
@@ -42,7 +43,6 @@
 		5781A7E12421C0CE00D2479F /* LC0251.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781A7DF2421C0CD00D2479F /* LC0251.mm */; };
 		5781B4002421C18500D2479F /* TreeNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B3FF2421C18500D2479F /* TreeNode.mm */; };
 		5781B4032421CF9000D2479F /* LC0235.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B4022421CF8F00D2479F /* LC0235.mm */; };
-		5781B4092421EC6800D2479F /* LC0078.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B4052421EC6800D2479F /* LC0078.mm */; };
 		5781B40A2421EC6800D2479F /* OtherTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781B4072421EC6800D2479F /* OtherTest.mm */; };
 		5781C0652422721700D2479F /* LC0986.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781C0612422721700D2479F /* LC0986.mm */; };
 		5781C0662422721700D2479F /* MergeIntervalTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5781C0642422721700D2479F /* MergeIntervalTest.mm */; };
@@ -95,6 +95,8 @@
 		5735644A242DF7E9007251AD /* BacktrackTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BacktrackTest.mm; sourceTree = "<group>"; };
 		5735644D242E019F007251AD /* LC0010.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0010.h; sourceTree = "<group>"; };
 		5735644E242E01A0007251AD /* LC0010.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0010.mm; sourceTree = "<group>"; };
+		573570D22431E923007251AD /* LC0078.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0078.h; sourceTree = "<group>"; };
+		573570D32431E924007251AD /* LC0078.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0078.mm; sourceTree = "<group>"; };
 		576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0232_MyQueue.h; sourceTree = "<group>"; };
 		576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0232_MyQueue.mm; sourceTree = "<group>"; };
 		576F9A9223D192F3000C159A /* LC0641_MyCircularDeque.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0641_MyCircularDeque.h; sourceTree = "<group>"; };
@@ -143,8 +145,6 @@
 		5781B3FF2421C18500D2479F /* TreeNode.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TreeNode.mm; sourceTree = "<group>"; };
 		5781B4012421CF8F00D2479F /* LC0235.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0235.h; sourceTree = "<group>"; };
 		5781B4022421CF8F00D2479F /* LC0235.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0235.mm; sourceTree = "<group>"; };
-		5781B4052421EC6800D2479F /* LC0078.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0078.mm; sourceTree = "<group>"; };
-		5781B4062421EC6800D2479F /* LC0078.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0078.h; sourceTree = "<group>"; };
 		5781B4072421EC6800D2479F /* OtherTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OtherTest.mm; sourceTree = "<group>"; };
 		5781B4082421EC6800D2479F /* OtherTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTest.h; sourceTree = "<group>"; };
 		5781C0612422721700D2479F /* LC0986.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0986.mm; sourceTree = "<group>"; };
@@ -260,6 +260,8 @@
 				5735644A242DF7E9007251AD /* BacktrackTest.mm */,
 				57356448242DF7E9007251AD /* LC0037.h */,
 				57356447242DF7E9007251AD /* LC0037.mm */,
+				573570D22431E923007251AD /* LC0078.h */,
+				573570D32431E924007251AD /* LC0078.mm */,
 			);
 			path = "回溯";
 			sourceTree = "<group>";
@@ -370,8 +372,6 @@
 		5781B4042421EC6800D2479F /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				5781B4062421EC6800D2479F /* LC0078.h */,
-				5781B4052421EC6800D2479F /* LC0078.mm */,
 				5781B4082421EC6800D2479F /* OtherTest.h */,
 				5781B4072421EC6800D2479F /* OtherTest.mm */,
 			);
@@ -586,6 +586,7 @@
 				57E677522426478600ABD968 /* LC0030.mm in Sources */,
 				579F2E2424249713009AB751 /* LC1143.mm in Sources */,
 				5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */,
+				573570D42431E924007251AD /* LC0078.mm in Sources */,
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
 				5735644B242DF7E9007251AD /* LC0037.mm in Sources */,
 				577D173623CF613A008960CA /* LC0083.mm in Sources */,
@@ -594,7 +595,6 @@
 				579F2E2C2424B209009AB751 /* DoublePointerTest.mm in Sources */,
 				57E677382425C42E00ABD968 /* LC0687.mm in Sources */,
 				577D173923CF613A008960CA /* LC0086.mm in Sources */,
-				5781B4092421EC6800D2479F /* LC0078.mm in Sources */,
 				5781B4002421C18500D2479F /* TreeNode.mm in Sources */,
 				5781CC8E242340D000D2479F /* LC0700.mm in Sources */,
 				57E677422425D19400ABD968 /* LC0032.mm in Sources */,

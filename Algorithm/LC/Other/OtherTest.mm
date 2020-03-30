@@ -13,7 +13,7 @@
 
 + (void)run
 {
-    std::vector<int> v = {78};
+    std::vector<int> v = {};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

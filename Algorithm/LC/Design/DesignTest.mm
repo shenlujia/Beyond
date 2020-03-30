@@ -31,22 +31,3 @@ using namespace std;
 }
 
 @end
-
-// 背包 beibao
-// void dfs(int cur, vector<int> cur_res, int index) {
-//    if (cur == 0) {
-//        for (int i = 0; i < cur_res.size(); ++ i) {
-//            cout << cur_res[i] << " ";
-//        }
-//        cout << endl;
-//        return;
-//    }
-//    if (cur < 0) return;
-//    for (int i = index; i < w.size(); ++ i) {
-//        if (cur - w[i] >= 0) {
-//            vector<int> nxt(cur_res);
-//            nxt.push_back(w[i]);
-//            dfs(cur - w[i], nxt, i);
-//        }
-//    }
-//}

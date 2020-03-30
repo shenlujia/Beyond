@@ -66,38 +66,37 @@ using namespace std;
 
 static bool isMatch(string s, string p)
 {
-    int ns = (int)s.length();
-    int np = (int)p.length();
+    int len1 = (int)s.length();
+    int len2 = (int)p.length();
 
     if (p.empty()) {
         return s.empty();
     }
 
-    vector<vector<int>> dp(ns + 1, vector<int>(np + 1, 0));
+    vector<vector<bool>> dp(len1 + 1, vector<bool>(len2 + 1, false));
     dp[0][0] = 1;
-    for (int i = 1; i <= np; i++) {
-        if (i - 2 >= 0 && p[i - 1] == '*' && p[i - 2]) {
-            dp[0][i] = dp[0][i - 2];
+    for (int j = 2; j <= len2; ++j) {
+        if (p[j - 1] == '*') {
+            dp[0][j] = dp[0][j - 2];
         }
     }
 
-    for (int i = 1; i <= ns; i++) {
-        for (int j = 1; j <= np; j++) {
-            if (p[j - 1] == s[i - 1] || p[j - 1] == '.')
+    for (int i = 1; i <= len1; ++i) {
+        for (int j = 1; j <= len2; ++j) {
+            if (p[j - 1] == s[i - 1] || p[j - 1] == '.') {
                 dp[i][j] = dp[i - 1][j - 1];
+                continue;
+            }
             if (p[j - 1] == '*') {
-                bool zero, one;
                 if (j - 2 >= 0) {
-                    zero = dp[i][j - 2];
-                    one = (p[j - 2] == s[i - 1] || p[j - 2] == '.') && dp[i - 1][j];
-                    if (zero > 0 || one > 0) {
-                        dp[i][j] = 1;
-                    }
+                    bool zero = dp[i][j - 2];                                             // 后第二位不使用
+                    bool one = (p[j - 2] == s[i - 1] || p[j - 2] == '.') && dp[i - 1][j]; // 后第二位使用一次以上
+                    dp[i][j] = zero || one;
                 }
             }
         }
     }
-    return dp[ns][np] > 0;
+    return dp[len1][len2];
 }
 
 static bool isMatch_2(string s, string p)
@@ -107,22 +106,24 @@ static bool isMatch_2(string s, string p)
 
 static bool isMatch_2_helper(string &s, string &p, int i, int j)
 {
-    int ns = (int)s.size();
-    int np = (int)p.size();
-    if (np == j) {
-        if (ns == i)
+    int len1 = (int)s.size();
+    int len2 = (int)p.size();
+    if (len2 == j) {
+        if (len1 == i) {
             return true;
+        }
         return false;
     }
-    bool one = false, zero = false;
-    if (j + 1 < np && p[j + 1] == '*') {         // 遇到*时
+    bool one = false;
+    bool zero = false;
+    if (j + 1 < len2 && p[j + 1] == '*') {       // 遇到*时
         zero = isMatch_2_helper(s, p, i, j + 2); // 使用0次
-        if (!zero && (i < ns) && (p[j] == s[i] || p[j] == '.')) {
+        if (!zero && (i < len1) && (p[j] == s[i] || p[j] == '.')) {
             one = isMatch_2_helper(s, p, i + 1, j); // 使用多次
         }
         return zero || one;
     } else {
-        if ((i < ns) && (p[j] == s[i] || p[j] == '.')) {
+        if ((i < len1) && (p[j] == s[i] || p[j] == '.')) {
             return isMatch_2_helper(s, p, i + 1, j + 1); // 当前字符正常匹配
         } else {
             return false; // 不匹配
@@ -148,18 +149,24 @@ static bool isMatch_god(string s, string p)
 
 + (void)run
 {
+    NSParameterAssert(isMatch("", ".*") == true);
+    NSParameterAssert(isMatch("", ".*b*") == true);
     NSParameterAssert(isMatch("aa", "a") == false);
     NSParameterAssert(isMatch("aa", "a*") == true);
     NSParameterAssert(isMatch("ab", ".*") == true);
     NSParameterAssert(isMatch("aab", "c*a*b") == true);
     NSParameterAssert(isMatch("mississippi", "mis*is*p*.") == false);
 
+    NSParameterAssert(isMatch_2("", ".*") == true);
+    NSParameterAssert(isMatch_2("", ".*b*") == true);
     NSParameterAssert(isMatch_2("aa", "a") == false);
     NSParameterAssert(isMatch_2("aa", "a*") == true);
     NSParameterAssert(isMatch_2("ab", ".*") == true);
     NSParameterAssert(isMatch_2("aab", "c*a*b") == true);
     NSParameterAssert(isMatch_2("mississippi", "mis*is*p*.") == false);
 
+    NSParameterAssert(isMatch_god("", ".*") == true);
+    NSParameterAssert(isMatch_god("", ".*b*") == true);
     NSParameterAssert(isMatch_god("aa", "a") == false);
     NSParameterAssert(isMatch_god("aa", "a*") == true);
     NSParameterAssert(isMatch_god("ab", ".*") == true);

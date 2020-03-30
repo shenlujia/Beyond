@@ -212,8 +212,8 @@ static void postOrder_2(TreeNode *root, vector<int> &ret)
 
 TreeNode::TreeNode(int x)
     : val(x)
-    , left(NULL);
-, right(NULL)
+    , left(NULL)
+    , right(NULL)
 {
 }
 
