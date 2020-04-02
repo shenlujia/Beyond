@@ -25,6 +25,10 @@
 		5735A2D62432C980007251AD /* MonotonicQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735A2D52432C980007251AD /* MonotonicQueue.mm */; };
 		5735A2D92432CDD6007251AD /* PriorityQueueTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735A2D82432CDD6007251AD /* PriorityQueueTest.mm */; };
 		5735E2872434B29E007251AD /* BinarySearchTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735E2862434B29E007251AD /* BinarySearchTest.mm */; };
+		574F8BD324358C9400AA7057 /* LC0077.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD224358C9400AA7057 /* LC0077.mm */; };
+		574F8BD6243592B800AA7057 /* LC0046.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD4243592B800AA7057 /* LC0046.mm */; };
+		574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD82435D1B800AA7057 /* LC0055.mm */; };
+		574F8BDC2435E22A00AA7057 /* LC0045.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BDB2435E22A00AA7057 /* LC0045.mm */; };
 		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
@@ -114,6 +118,14 @@
 		5735A2D82432CDD6007251AD /* PriorityQueueTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PriorityQueueTest.mm; sourceTree = "<group>"; };
 		5735E2852434B29E007251AD /* BinarySearchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTest.h; sourceTree = "<group>"; };
 		5735E2862434B29E007251AD /* BinarySearchTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BinarySearchTest.mm; sourceTree = "<group>"; };
+		574F8BD124358C9400AA7057 /* LC0077.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0077.h; sourceTree = "<group>"; };
+		574F8BD224358C9400AA7057 /* LC0077.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0077.mm; sourceTree = "<group>"; };
+		574F8BD4243592B800AA7057 /* LC0046.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0046.mm; sourceTree = "<group>"; };
+		574F8BD5243592B800AA7057 /* LC0046.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0046.h; sourceTree = "<group>"; };
+		574F8BD72435D1B800AA7057 /* LC0055.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0055.h; sourceTree = "<group>"; };
+		574F8BD82435D1B800AA7057 /* LC0055.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0055.mm; sourceTree = "<group>"; };
+		574F8BDA2435E22A00AA7057 /* LC0045.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0045.h; sourceTree = "<group>"; };
+		574F8BDB2435E22A00AA7057 /* LC0045.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0045.mm; sourceTree = "<group>"; };
 		576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0232_MyQueue.h; sourceTree = "<group>"; };
 		576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0232_MyQueue.mm; sourceTree = "<group>"; };
 		576F9A9223D192F3000C159A /* LC0641_MyCircularDeque.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0641_MyCircularDeque.h; sourceTree = "<group>"; };
@@ -275,6 +287,10 @@
 				5735644A242DF7E9007251AD /* BacktrackTest.mm */,
 				57356448242DF7E9007251AD /* LC0037.h */,
 				57356447242DF7E9007251AD /* LC0037.mm */,
+				574F8BD5243592B800AA7057 /* LC0046.h */,
+				574F8BD4243592B800AA7057 /* LC0046.mm */,
+				574F8BD124358C9400AA7057 /* LC0077.h */,
+				574F8BD224358C9400AA7057 /* LC0077.mm */,
 				573570D22431E923007251AD /* LC0078.h */,
 				573570D32431E924007251AD /* LC0078.mm */,
 			);
@@ -497,8 +513,12 @@
 		57E6774924262E5300ABD968 /* 贪心 */ = {
 			isa = PBXGroup;
 			children = (
+				574F8BDA2435E22A00AA7057 /* LC0045.h */,
+				574F8BDB2435E22A00AA7057 /* LC0045.mm */,
 				57E6774A24262E5300ABD968 /* GreedTest.h */,
 				57E6774D24262E5300ABD968 /* GreedTest.mm */,
+				574F8BD72435D1B800AA7057 /* LC0055.h */,
+				574F8BD82435D1B800AA7057 /* LC0055.mm */,
 				57E6774C24262E5300ABD968 /* LC1338.h */,
 				57E6774B24262E5300ABD968 /* LC1338.mm */,
 			);
@@ -615,6 +635,7 @@
 				5781B4032421CF9000D2479F /* LC0235.mm in Sources */,
 				577D172F23CF613A008960CA /* Heap.mm in Sources */,
 				577D173C23CF613A008960CA /* LC0092.mm in Sources */,
+				574F8BD6243592B800AA7057 /* LC0046.mm in Sources */,
 				57C8C96C23D1825A005B649B /* LC0622_MyCircularQueue.mm in Sources */,
 				57F2D7EB23C70BBD00824CDB /* Sort.m in Sources */,
 				577D173A23CF613A008960CA /* LC0206.mm in Sources */,
@@ -624,6 +645,7 @@
 				576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */,
 				577D174123CF6167008960CA /* LC0146_LRUCache.mm in Sources */,
 				57E6774E24262E5300ABD968 /* LC1338.mm in Sources */,
+				574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */,
 				579F2E2F2424B880009AB751 /* LC1038.mm in Sources */,
 				57E677522426478600ABD968 /* LC0030.mm in Sources */,
 				579F2E2424249713009AB751 /* LC1143.mm in Sources */,
@@ -632,6 +654,7 @@
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
 				5735644B242DF7E9007251AD /* LC0037.mm in Sources */,
 				577D173623CF613A008960CA /* LC0083.mm in Sources */,
+				574F8BDC2435E22A00AA7057 /* LC0045.mm in Sources */,
 				577D173023CF613A008960CA /* ListTest.mm in Sources */,
 				577D173B23CF613A008960CA /* LC0082.mm in Sources */,
 				579F2E2C2424B209009AB751 /* DoublePointerTest.mm in Sources */,
@@ -659,6 +682,7 @@
 				572FDE0E2428A649002929A6 /* LC0516.mm in Sources */,
 				5735644F242E01A0007251AD /* LC0010.mm in Sources */,
 				57E6774F24262E5300ABD968 /* GreedTest.mm in Sources */,
+				574F8BD324358C9400AA7057 /* LC0077.mm in Sources */,
 				57356445242DEE08007251AD /* LC0188.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

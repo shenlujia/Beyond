@@ -35,32 +35,60 @@ using namespace std;
  输入: nums = [4,5,6,7,0,1,2], target = 3
  输出: -1
  */
-static int search(vector<int> &nums, int target)
+int search(vector<int>& nums, int target)
+{
+    int left = 0;
+    int right = (int)nums.size() - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        }
+        if (nums[mid] > nums[left]) {
+            //说明左半部分是单调递增的7 8 9 0 1
+            if (target >= nums[left] && target < nums[mid]) {//7 8
+                right = mid - 1;
+            }else{//0 1
+                left = mid + 1;
+            }
+        }else if (nums[mid] < nums[left]) {
+            //说明右半部分是单调递增的7 8 9 0 1 2 3 4 5
+            if (target > nums[mid] && target <= nums[right]) { //2 3 4 5
+                left = mid + 1;
+            }else{//7 8 9 0
+                right = mid - 1;
+            }
+        }else{
+            //[3,1] target = 1 nums[mid] = 3 不是我们需要的，且left = mid = 0，所以left也不是，所以过滤left->left++
+            left++;
+        }
+    }
+    return -1;
+}
+
+static int search_easy(vector<int> &nums, int target)
 {
     int len = (int)nums.size();
     if (len == 0) {
         return -1;
     }
-    int max_index = index_of_max_in_nums(nums);
-    if (nums[len - 1] > target) {
-        if (max_index == len - 1) {
-            max_index = -1;
-        }
-        return index_of_value_in_nums(nums, max_index + 1, len - 1, target);
+    int start = find_original_start(nums);
+    if (start == 0) {
+        return index_of_value(nums, 0, len - 1, target);
+    }
+    if (nums[0] <= target) {
+        return index_of_value(nums, 0, start - 1, target);
     } else {
-        return index_of_value_in_nums(nums, 0, max_index, target);
+        return index_of_value(nums, start, len - 1, target);
     }
 }
 
-static int index_of_value_in_nums(vector<int> &nums, int left, int right, int target)
+static int index_of_value(vector<int> &nums, int left, int right, int target)
 {
     int len = (int)nums.size();
     if (len == 0) {
         return -1;
     }
-    left = max(left, 0);
-    left = min(left, len - 1);
-    right = min(right, len - 1);
 
     while (left <= right) { // 注意
         int mid = (right + left) / 2;
@@ -75,13 +103,13 @@ static int index_of_value_in_nums(vector<int> &nums, int left, int right, int ta
     return -1;
 }
 
-static int find_rotate_index(vector<int> &nums)
+static int find_original_start(vector<int> &nums)
 {
     int len = (int)nums.size();
-    if (len <= 1) {
-        return 0;
+    if (len == 0) {
+        return -1;
     }
-    if (nums[0] < nums[len - 1]) {
+    if (nums[0] <= nums[len - 1]) {
         return 0;
     }
 
@@ -89,16 +117,13 @@ static int find_rotate_index(vector<int> &nums)
     int right = len - 1;
     while (left <= right) {
         int mid = (left + right) / 2;
-        if (mid == left) {
-            return nums[mid] > nums[mid + 1] ? mid : (mid + 1);
-        }
-        if (mid == right) {
-            return nums[mid] > nums[mid - 1] ? mid : (mid - 1);
+        if (nums[mid] > nums[mid + 1]) {
+            return mid + 1;
         }
         if (nums[left] < nums[mid]) {
             left = mid;
         }
-        if (nums[right] < nums[mid]) {
+        if (nums[right] > nums[mid]) {
             right = mid;
         }
     }
@@ -112,22 +137,30 @@ static int find_rotate_index(vector<int> &nums)
         vector<int> input1 = {6, 7};
         vector<int> input2 = {4, 5, 6, 7};
         vector<int> input3 = {4, 5, 6, 7, 0, 1, 2};
-        NSParameterAssert(index_of_max_in_nums(input0) == 0);
-        NSParameterAssert(index_of_max_in_nums(input1) == 1);
-        NSParameterAssert(index_of_max_in_nums(input2) == 3);
-        NSParameterAssert(index_of_max_in_nums(input3) == 3);
+        NSParameterAssert(find_original_start(input0) == 0);
+        NSParameterAssert(find_original_start(input1) == 0);
+        NSParameterAssert(find_original_start(input2) == 0);
+        NSParameterAssert(find_original_start(input3) == 4);
+    }
+    {
+        vector<int> input = {3, 1};
+        NSParameterAssert(search(input, 3) == 0);
+        NSParameterAssert(search_easy(input, 3) == 0);
     }
     {
         vector<int> input = {1, 3};
         NSParameterAssert(search(input, 1) == 0);
+        NSParameterAssert(search_easy(input, 1) == 0);
     }
     {
         vector<int> input = {4, 5, 6, 7, 0, 1, 2};
         NSParameterAssert(search(input, 0) == 4);
+        NSParameterAssert(search_easy(input, 0) == 4);
     }
     {
         vector<int> input = {4, 5, 6, 7, 0, 1, 2};
         NSParameterAssert(search(input, 3) == -1);
+        NSParameterAssert(search_easy(input, 3) == -1);
     }
 }
 

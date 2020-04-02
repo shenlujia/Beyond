@@ -15,7 +15,7 @@ using namespace std;
 
 + (void)run
 {
-    vector<int> v = {1338};
+    vector<int> v = {45, 55, 1338};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
