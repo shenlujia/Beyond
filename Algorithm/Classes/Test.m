@@ -8,6 +8,7 @@
 
 #import "Test.h"
 #import "BacktrackTest.h"
+#import "BinarySearchTest.h"
 #import "BinaryTreeTest.h"
 #import "DPTest.h"
 #import "DesignTest.h"
@@ -16,6 +17,7 @@
 #import "ListTest.h"
 #import "MergeIntervalTest.h"
 #import "OtherTest.h"
+#import "PriorityQueueTest.h"
 #import "QueueTest.h"
 #import "Sort.h"
 #import "StackTest.h"
@@ -24,6 +26,8 @@
 
 + (void)run
 {
+    [BinarySearchTest run];
+    [PriorityQueueTest run];
     [BacktrackTest run];
     [GreedTest run];
     [StackTest run];
