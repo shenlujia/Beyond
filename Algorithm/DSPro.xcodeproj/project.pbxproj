@@ -32,6 +32,7 @@
 		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
+		577879C024362621006FB5E6 /* LC0076.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577879BE24362621006FB5E6 /* LC0076.mm */; };
 		577D172F23CF613A008960CA /* Heap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D170E23CF613A008960CA /* Heap.mm */; };
 		577D173023CF613A008960CA /* ListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171223CF613A008960CA /* ListTest.mm */; };
 		577D173123CF613A008960CA /* LC0142.mm in Sources */ = {isa = PBXBuildFile; fileRef = 577D171523CF613A008960CA /* LC0142.mm */; };
@@ -132,6 +133,8 @@
 		576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0641_MyCircularDeque.mm; sourceTree = "<group>"; };
 		576F9A9523D195C0000C159A /* LC0706_MyHashMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0706_MyHashMap.h; sourceTree = "<group>"; };
 		576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0706_MyHashMap.mm; sourceTree = "<group>"; };
+		577879BE24362621006FB5E6 /* LC0076.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0076.mm; sourceTree = "<group>"; };
+		577879BF24362621006FB5E6 /* LC0076.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0076.h; sourceTree = "<group>"; };
 		577D170E23CF613A008960CA /* Heap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Heap.mm; sourceTree = "<group>"; };
 		577D171023CF613A008960CA /* LC0141.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0141.h; sourceTree = "<group>"; };
 		577D171123CF613A008960CA /* LC0083.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0083.h; sourceTree = "<group>"; };
@@ -474,16 +477,18 @@
 		579F2E262424B209009AB751 /* 双指针 */ = {
 			isa = PBXGroup;
 			children = (
-				57E677502426478600ABD968 /* LC0030.h */,
-				57E677512426478600ABD968 /* LC0030.mm */,
-				57E67747242624BF00ABD968 /* LC0011.h */,
-				57E67746242624BF00ABD968 /* LC0011.mm */,
-				57E6774424261BC300ABD968 /* LC0018.h */,
-				57E6774324261BC300ABD968 /* LC0018.mm */,
 				579F2E282424B209009AB751 /* DoublePointerTest.h */,
 				579F2E292424B209009AB751 /* DoublePointerTest.mm */,
 				579F2E2A2424B209009AB751 /* LC0003.h */,
 				579F2E272424B209009AB751 /* LC0003.mm */,
+				57E67747242624BF00ABD968 /* LC0011.h */,
+				57E67746242624BF00ABD968 /* LC0011.mm */,
+				57E6774424261BC300ABD968 /* LC0018.h */,
+				57E6774324261BC300ABD968 /* LC0018.mm */,
+				57E677502426478600ABD968 /* LC0030.h */,
+				57E677512426478600ABD968 /* LC0030.mm */,
+				577879BF24362621006FB5E6 /* LC0076.h */,
+				577879BE24362621006FB5E6 /* LC0076.mm */,
 			);
 			path = "双指针";
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 				57E6773F2425D07500ABD968 /* StackTest.mm in Sources */,
 				576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */,
 				572FDE1E2428B665002929A6 /* LC0121.mm in Sources */,
+				577879C024362621006FB5E6 /* LC0076.mm in Sources */,
 				572FDE212428BAE9002929A6 /* LC0122.mm in Sources */,
 				576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */,
 				577D173223CF613A008960CA /* LC0002.mm in Sources */,

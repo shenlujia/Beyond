@@ -13,7 +13,7 @@
 
 + (void)run
 {
-    std::vector<int> v = {3, 11, 18, 30};
+    std::vector<int> v = {3, 11, 18, 30, 76};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

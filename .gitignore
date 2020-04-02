@@ -1,5 +1,7 @@
 */*/project.xcworkspace/xcshareddata/
 */*/project.xcworkspace/xcuserdata/
+*/*/*.xcodeproj/xcuserdata/
 .clang-format
 .gitignore
 flutter_app_demo
+Algorithm/DSPro.xcodeproj/xcuserdata
