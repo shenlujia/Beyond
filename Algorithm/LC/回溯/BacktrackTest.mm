@@ -16,7 +16,7 @@ using namespace std;
 
 + (void)run
 {
-    vector<int> v = {37, 46, 77, 78};
+    vector<int> v = {37, 46, 47, 77, 78};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

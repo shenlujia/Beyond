@@ -7,13 +7,33 @@
 //
 
 #import "DesignTest.h"
+#import "WeakImpl.h"
 #import <algorithm>
 #import <iostream>
+#import <objc/runtime.h>
 #import <vector>
 
 using namespace std;
 
 @implementation DesignTest
+
+- (void)once
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self otherOnce];
+    });
+    NSLog(@"遇到第一只熊猫宝宝...");
+}
+
+- (void)otherOnce
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self once];
+    });
+    NSLog(@"遇到第二只熊猫宝宝...");
+}
 
 + (void)run
 {
@@ -28,6 +48,8 @@ using namespace std;
         [c performSelector:@selector(run)];
         printf("\n\n");
     }
+
+    [WeakImpl run];
 }
 
 @end

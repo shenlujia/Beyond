@@ -9,11 +9,25 @@
 #import "DoublePointerTest.h"
 #import <vector>
 
+/*
+ 滑动窗口套路：
+ int left = 0, right = 0;
+ while (right < s.size()) {
+     window.add(s[right]);
+     right++;
+
+     while (valid) {
+         window.remove(s[left]);
+         left++;
+     }
+ }
+ */
+
 @implementation DoublePointerTest
 
 + (void)run
 {
-    std::vector<int> v = {3, 11, 18, 30, 76};
+    std::vector<int> v = {3, 11, 16, 18, 30, 76};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
