@@ -11,8 +11,9 @@
 @interface EntryDataModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) ActionBlock setup;
-@property (nonatomic, copy) ActionBlock callback;
+@property (nonatomic, copy) ActionBlock set;
+@property (nonatomic, copy) ActionBlock tap;
+@property (nonatomic, assign) SEL action;
 
 @end
 
@@ -53,12 +54,21 @@
     [self reloadData];
 }
 
-- (void)test:(NSString *)title setup:(ActionBlock)setup callback:(ActionBlock)callback
+- (void)test:(NSString *)title set:(ActionBlock)set tap:(ActionBlock)tap
 {
     EntryDataModel *model = [[EntryDataModel alloc] init];
     model.title = title;
-    model.setup = setup;
-    model.callback = callback;
+    model.set = set;
+    model.tap = tap;
+    [self.models addObject:model];
+}
+
+- (void)test:(NSString *)title set:(ActionBlock)set action:(SEL)action
+{
+    EntryDataModel *model = [[EntryDataModel alloc] init];
+    model.title = title;
+    model.set = set;
+    model.action = action;
     [self.models addObject:model];
 }
 
@@ -78,25 +88,29 @@
         [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:15];
         button.tag = idx;
-        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        if (model.action) {
+            [button addTarget:self action:model.action forControlEvents:UIControlEventTouchUpInside];
+        }
+        [button addTarget:self action:@selector(p_base_buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         CGRect frame = CGRectMake(10, 10, self.view.bounds.size.width, 50);
         frame.size.width -= 2 * frame.origin.x;
         frame.origin.y += idx * (frame.size.height + 10);
         button.frame = frame;
-        if (model.setup) {
-            model.setup(button);
+        if (model.set) {
+            model.set(button);
         }
     }
+
     self.buttons = buttons;
     CGRect frame = [self.buttons.lastObject frame];
     self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(frame));
 }
 
-- (void)buttonAction:(UIButton *)button
+- (void)p_base_buttonAction:(UIButton *)button
 {
     EntryDataModel *model = self.models[button.tag];
-    if (model.callback) {
-        model.callback(button);
+    if (model.tap) {
+        model.tap(button);
     }
 }
 

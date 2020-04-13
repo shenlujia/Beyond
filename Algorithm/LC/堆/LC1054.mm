@@ -50,9 +50,11 @@ static vector<int> rearrangeBarcodes(vector<int> &barcodes)
         }
     }
 
-    priority_queue<pair<int, int>> pq;
+    priority_queue<pair<int, int>> pq;                                                   // 默认大根堆
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq2; // 小根堆
     for (auto entry : hash_map) {
         pq.push(make_pair(entry.second, entry.first));
+        pq2.push(make_pair(entry.second, entry.first));
     }
 
     vector<int> ret;
@@ -82,9 +84,16 @@ static vector<int> rearrangeBarcodes(vector<int> &barcodes)
 
 + (void)run
 {
-    vector<int> codes = {1, 1, 1, 2, 2, 2};
-    vector<int> ret = rearrangeBarcodes(codes);
-    NSParameterAssert(ret[0] == 2);
+    {
+        vector<int> codes = {1, 1, 1, 2, 2, 2, 2};
+        vector<int> ret = rearrangeBarcodes(codes);
+        NSParameterAssert(ret[0] == 2);
+    }
+    {
+        vector<int> codes = {1, 1, 1, 2, 2, 2};
+        vector<int> ret = rearrangeBarcodes(codes);
+        NSParameterAssert(ret[0] == 2);
+    }
 }
 
 @end

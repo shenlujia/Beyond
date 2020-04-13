@@ -14,7 +14,7 @@
 
 + (void)run
 {
-    vector<int> v = {235, 251, 687, 700, 701, 1038};
+    vector<int> v = {124, 235, 251, 687, 700, 701, 1038};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

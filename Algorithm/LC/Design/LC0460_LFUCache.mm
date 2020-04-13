@@ -66,7 +66,6 @@ class LFUCache
         if (valueFreqMap.count(key) == 0) {
             return -1;
         }
-
         pair<int, int> &pre_pair = valueFreqMap[key];
         list<int> &pre_list = freqListMap[pre_pair.second];
         pre_list.erase(iterMap[key]);
@@ -75,14 +74,11 @@ class LFUCache
         list<int> &cur_list = freqListMap[pre_pair.second];
         cur_list.emplace_back(key);
         iterMap[key] = --cur_list.end();
-
         if (freqListMap[minFreq].size() == 0) {
             ++minFreq;
         }
-
         return pre_pair.first;
     }
-
     void put(int key, int value)
     {
         if (capacity <= 0) {
@@ -93,7 +89,6 @@ class LFUCache
             valueFreqMap[key].first = value;
             return;
         }
-
         std::pair<int, int> p(value, 1);
         if (this->size == this->capacity) {
             list<int> &min_list = freqListMap[minFreq];
@@ -104,7 +99,6 @@ class LFUCache
         } else {
             ++this->size;
         }
-
         minFreq = p.second;
         valueFreqMap[key] = p;
         freqListMap[p.second].push_back(key);

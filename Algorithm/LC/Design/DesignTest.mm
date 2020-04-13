@@ -38,7 +38,6 @@ using namespace std;
 + (void)run
 {
     vector<int> v = {146, 155, 232, 460, 622, 641, 706};
-
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
         NSString *name = [NSString stringWithFormat:@"%04d", value];

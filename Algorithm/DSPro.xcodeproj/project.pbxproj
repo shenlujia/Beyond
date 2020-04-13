@@ -29,6 +29,7 @@
 		574F8BD6243592B800AA7057 /* LC0046.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD4243592B800AA7057 /* LC0046.mm */; };
 		574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD82435D1B800AA7057 /* LC0055.mm */; };
 		574F8BDC2435E22A00AA7057 /* LC0045.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BDB2435E22A00AA7057 /* LC0045.mm */; };
+		575B8707243E16E00063BD98 /* LC0124.mm in Sources */ = {isa = PBXBuildFile; fileRef = 575B8705243E16E00063BD98 /* LC0124.mm */; };
 		576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */; };
 		576F9A9423D192F3000C159A /* LC0641_MyCircularDeque.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9323D192F3000C159A /* LC0641_MyCircularDeque.mm */; };
 		576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 576F9A9623D195C0000C159A /* LC0706_MyHashMap.mm */; };
@@ -130,6 +131,8 @@
 		574F8BD82435D1B800AA7057 /* LC0055.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0055.mm; sourceTree = "<group>"; };
 		574F8BDA2435E22A00AA7057 /* LC0045.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0045.h; sourceTree = "<group>"; };
 		574F8BDB2435E22A00AA7057 /* LC0045.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0045.mm; sourceTree = "<group>"; };
+		575B8705243E16E00063BD98 /* LC0124.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0124.mm; sourceTree = "<group>"; };
+		575B8706243E16E00063BD98 /* LC0124.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0124.h; sourceTree = "<group>"; };
 		576AF2F7240E43F300F2CCFD /* LC0232_MyQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0232_MyQueue.h; sourceTree = "<group>"; };
 		576AF2F8240E43F300F2CCFD /* LC0232_MyQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0232_MyQueue.mm; sourceTree = "<group>"; };
 		576F9A9223D192F3000C159A /* LC0641_MyCircularDeque.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC0641_MyCircularDeque.h; sourceTree = "<group>"; };
@@ -417,6 +420,8 @@
 			children = (
 				5781A7DC2421C0C600D2479F /* BinaryTreeTest.h */,
 				5781A7DD2421C0C600D2479F /* BinaryTreeTest.mm */,
+				575B8706243E16E00063BD98 /* LC0124.h */,
+				575B8705243E16E00063BD98 /* LC0124.mm */,
 				5781B4012421CF8F00D2479F /* LC0235.h */,
 				5781B4022421CF8F00D2479F /* LC0235.mm */,
 				5781A7E02421C0CE00D2479F /* LC0251.h */,
@@ -692,6 +697,7 @@
 				57E6774524261BC300ABD968 /* LC0018.mm in Sources */,
 				57C8C96623D08B09005B649B /* LC0460_LFUCache.mm in Sources */,
 				5735A2D32432C885007251AD /* QueueTest.mm in Sources */,
+				575B8707243E16E00063BD98 /* LC0124.mm in Sources */,
 				57E677352425BFC700ABD968 /* LC1054.mm in Sources */,
 				5735A2D92432CDD6007251AD /* PriorityQueueTest.mm in Sources */,
 				57C8C96923D17D16005B649B /* LC0155_MinStack.mm in Sources */,

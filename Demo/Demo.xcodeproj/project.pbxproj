@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
+		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
 		57FD50A8243DA263002E481E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A7243DA263002E481E /* Assets.xcassets */; };
 		57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A9243DA263002E481E /* LaunchScreen.storyboard */; };
 		57FD50BA243DA3F0002E481E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B6243DA3EF002E481E /* ViewController.m */; };
@@ -14,10 +16,14 @@
 		57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B8243DA3EF002E481E /* AppDelegate.m */; };
 		57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C1243DA46B002E481E /* ControllerLifeCycleController.m */; };
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
-		57FD50C8243DB174002E481E /* AssociatedObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.m */; };
+		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5774B18C243FFEA900C7A59E /* BlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockController.h; sourceTree = "<group>"; };
+		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
+		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
+		5774CB1E2441789F00C7A59E /* ExerciseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseController.m; sourceTree = "<group>"; };
 		57FD5098243DA25F002E481E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FD50AA243DA263002E481E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,7 +38,7 @@
 		57FD50C3243DA7CB002E481E /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		57FD50C4243DA7CB002E481E /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		57FD50C6243DB174002E481E /* AssociatedObjectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssociatedObjectController.h; sourceTree = "<group>"; };
-		57FD50C7243DB174002E481E /* AssociatedObjectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssociatedObjectController.m; sourceTree = "<group>"; };
+		57FD50C7243DB174002E481E /* AssociatedObjectController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AssociatedObjectController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5774B18B243FFE9E00C7A59E /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				5774B18C243FFEA900C7A59E /* BlockController.h */,
+				5774B18D243FFEA900C7A59E /* BlockController.m */,
+			);
+			path = Block;
+			sourceTree = "<group>";
+		};
+		5774CB1C2441788600C7A59E /* 题目 */ = {
+			isa = PBXGroup;
+			children = (
+				5774CB1D2441789F00C7A59E /* ExerciseController.h */,
+				5774CB1E2441789F00C7A59E /* ExerciseController.m */,
+			);
+			path = "题目";
+			sourceTree = "<group>";
+		};
 		57FD508F243DA25F002E481E = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +115,8 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5774CB1C2441788600C7A59E /* 题目 */,
+				5774B18B243FFE9E00C7A59E /* Block */,
 				57FD50BE243DA447002E481E /* Controller生命周期 */,
 				57FD50BF243DA447002E481E /* 关联对象 */,
 			);
@@ -110,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				57FD50C6243DB174002E481E /* AssociatedObjectController.h */,
-				57FD50C7243DB174002E481E /* AssociatedObjectController.m */,
+				57FD50C7243DB174002E481E /* AssociatedObjectController.mm */,
 			);
 			path = "关联对象";
 			sourceTree = "<group>";
@@ -186,8 +212,10 @@
 			files = (
 				57FD50BB243DA3F0002E481E /* main.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
-				57FD50C8243DB174002E481E /* AssociatedObjectController.m in Sources */,
+				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
+				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
+				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
 			);

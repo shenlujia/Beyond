@@ -12,6 +12,8 @@ typedef void (^ActionBlock)(UIButton *button);
 
 @interface BaseViewController : UIViewController
 
-- (void)test:(NSString *)title setup:(ActionBlock)setup callback:(ActionBlock)callback;
+- (void)test:(NSString *)title set:(ActionBlock)setup tap:(ActionBlock)tap;
+
+- (void)test:(NSString *)title set:(ActionBlock)setup action:(SEL)action;
 
 @end
