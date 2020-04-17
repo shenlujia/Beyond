@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572339372447F92C009DD534 /* GCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572339362447F92C009DD534 /* GCDController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
 		57FD50A8243DA263002E481E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A7243DA263002E481E /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572339352447F92C009DD534 /* GCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDController.h; sourceTree = "<group>"; };
+		572339362447F92C009DD534 /* GCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDController.m; sourceTree = "<group>"; };
 		5774B18C243FFEA900C7A59E /* BlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockController.h; sourceTree = "<group>"; };
 		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
 		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
@@ -70,6 +73,15 @@
 			path = "题目";
 			sourceTree = "<group>";
 		};
+		577D43532447F8530043C1A3 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				572339352447F92C009DD534 /* GCDController.h */,
+				572339362447F92C009DD534 /* GCDController.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		57FD508F243DA25F002E481E = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +127,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				577D43532447F8530043C1A3 /* GCD */,
 				5774CB1C2441788600C7A59E /* 题目 */,
 				5774B18B243FFE9E00C7A59E /* Block */,
 				57FD50BE243DA447002E481E /* Controller生命周期 */,
@@ -214,6 +227,7 @@
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
+				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,

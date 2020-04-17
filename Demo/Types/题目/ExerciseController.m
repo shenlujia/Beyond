@@ -7,6 +7,8 @@
 //
 
 #import "ExerciseController.h"
+#import <objc/message.h>
+#import <objc/runtime.h>
 
 @interface Father : NSObject
 
@@ -199,6 +201,25 @@
                    }
                    NSLog(@"thread: %@", t);
                });
+           }];
+
+    [self test:@"SEL"
+           set:nil
+           tap:^(UIButton *button) {
+               const char *name = [NSString stringWithFormat:@"%@%@", @"viewWillLayoutSubview", @"s"].UTF8String;
+               SEL sel = sel_registerName(name);
+               const char *out_name = sel_getName(sel);
+               assert(strcmp(name, out_name) == 0);
+               assert([UIViewController instancesRespondToSelector:sel] == YES);           // OK
+               assert([UIViewController instancesRespondToSelector:(SEL)name] == NO);      // ？
+               assert([UIViewController instancesRespondToSelector:(SEL)out_name] == YES); // WTF？？？
+               assert([UIViewController instanceMethodForSelector:(SEL)name] == _objc_msgForward);
+
+               NSLog(@"======");
+               NSLog(@"%p %p", &name, name);
+               NSLog(@"%p %p", &sel, sel);
+               NSLog(@"%p %p", &out_name, out_name);
+               NSLog(@"\n");
            }];
 }
 

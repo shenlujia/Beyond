@@ -20,6 +20,13 @@
 
     __weak typeof(self) weak_self = self;
 
+    [self test:@"GCD"
+           set:nil
+           tap:^(UIButton *button) {
+               UIViewController *c = [[NSClassFromString(@"GCDController") alloc] init];
+               [weak_self.navigationController pushViewController:c animated:YES];
+           }];
+
     [self test:@"一些题目"
            set:nil
            tap:^(UIButton *button) {
