@@ -172,12 +172,26 @@
         NSNumber *number3 = @(0x3F);
         NSNumber *numberFFFF = @(0xFFFFFFFFFFEFE);
         NSNumber *maxNum = @(MAXFLOAT);
+        float f1 = 5;
+        float f2 = 5.1;
+        double d1 = 6;
+        double d2 = 6.1;
+        NSNumber *f1_n = @(f1);
+        NSNumber *f2_n = @(f2);
+        NSNumber *d1_n = @(d1);
+        NSNumber *d2_n = @(d2);
 
         NSLog(@"number1 pointer is %p class is %@", number1, number1.class);
         NSLog(@"number2 pointer is %p class is %@", number2, number2.class);
         NSLog(@"number3 pointer is %p class is %@", number3, number3.class);
         NSLog(@"numberffff pointer is %p class is %@", numberFFFF, numberFFFF.class);
         NSLog(@"maxNum pointer is %p class is %@", maxNum, maxNum.class);
+        printf("\n");
+
+        NSLog(@"f1_n  %p  %p  %@", &f1_n, f1_n, [f1_n class]);
+        NSLog(@"f2_n  %p  %p  %@", &f2_n, f2_n, [f2_n class]);
+        NSLog(@"d1_n  %p  %p  %@", &d1_n, d1_n, [d1_n class]);
+        NSLog(@"d2_n  %p  %p  %@", &d2_n, d2_n, [d2_n class]);
         printf("\n");
     }
 

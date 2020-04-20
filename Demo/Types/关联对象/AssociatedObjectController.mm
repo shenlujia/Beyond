@@ -16,11 +16,13 @@ class TestDeallocCpp1Class
 {
   public:
     string name;
+    NSObject *test_oc;
     TestDeallocCpp1Class()
     {
         static int index = 0;
         NSString *s = @(index++).stringValue;
         name = string(s.UTF8String);
+        test_oc = [[NSClassFromString(@"Test1Base") alloc] init];
     }
     ~TestDeallocCpp1Class()
     {
@@ -137,8 +139,8 @@ class TestDeallocCpp1Class
            set:nil
            tap:^(UIButton *button) {
                Test1Derived *main = [[Test1Derived alloc] init];
-               main.cpp_obj1.name = "cpp_obj1";
-               main.cpp_obj2.name = "cpp_obj2";
+               //               main.cpp_obj1.name = "cpp_obj1";
+               //               main.cpp_obj2.name = "cpp_obj2";
                main.base1 = [UIViewController new];
                main.base2 = [UIView new];
                main.obj1 = [UIStackView new];
