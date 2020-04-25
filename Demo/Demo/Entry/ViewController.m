@@ -20,6 +20,13 @@
 
     __weak typeof(self) weak_self = self;
 
+    [self test:@"UIAppearance"
+           set:nil
+           tap:^(UIButton *button) {
+               UIViewController *c = [[NSClassFromString(@"AppearanceController") alloc] init];
+               [weak_self.navigationController pushViewController:c animated:YES];
+           }];
+
     [self test:@"UIControl"
            set:nil
            tap:^(UIButton *button) {
@@ -67,17 +74,6 @@
            tap:^(UIButton *button) {
                UIViewController *c = [[NSClassFromString(@"AssociatedObjectController") alloc] init];
                [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"使dispatch_once不执行"
-           set:nil
-           tap:^(UIButton *button) {
-               static dispatch_once_t onceToken = ~0l;
-               dispatch_once(&onceToken, ^{
-                   // 不会调用
-                   NSParameterAssert(0);
-                   NSLog(@"onceToken设为-1后 内部判定已经执行过不会再调用");
-               });
            }];
 }
 

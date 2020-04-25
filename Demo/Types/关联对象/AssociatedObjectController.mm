@@ -19,7 +19,7 @@ class TestDeallocCpp1Class
     NSObject *test_oc;
     TestDeallocCpp1Class()
     {
-        static int index = 0;
+        static int index = 100;
         NSString *s = @(index++).stringValue;
         name = string(s.UTF8String);
         test_oc = [[NSClassFromString(@"Test1Base") alloc] init];
@@ -29,6 +29,9 @@ class TestDeallocCpp1Class
         printf("~TestDeallocCpp1Class: %s\n", name.c_str());
     }
 };
+
+static TestDeallocCpp1Class p_cpp_obj1;
+TestDeallocCpp1Class p_cpp_obj2;
 
 @class Test1Prop;
 
@@ -43,8 +46,7 @@ class TestDeallocCpp1Class
 
 - (void)dealloc
 {
-    NSLog(@"~Test1Base");
-    printf("\n");
+    printf("~Test1Base\n");
 }
 
 @end
@@ -76,8 +78,8 @@ class TestDeallocCpp1Class
 
 - (void)dealloc
 {
-    [self.main_assign print];
     NSLog(@"~Test1Prop: %@", self.name);
+    [self.main_assign print];
     printf("\n");
 }
 
@@ -87,8 +89,8 @@ class TestDeallocCpp1Class
 
 - (void)dealloc
 {
-    [self print];
     NSLog(@"~Test1Derived");
+    [self print];
     printf("\n");
 }
 
@@ -127,6 +129,11 @@ class TestDeallocCpp1Class
 @end
 
 @implementation AssociatedObjectController
+
++ (void)load
+{
+    NSLog(@"AssociatedObjectController load");
+}
 
 - (void)viewDidLoad
 {

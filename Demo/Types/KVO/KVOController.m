@@ -55,7 +55,7 @@
     [self.obj addObserver:self forKeyPath:@"nake_a" options:NSKeyValueObservingOptionNew context:nil];
     [self.obj addObserver:self forKeyPath:@"nake_b" options:NSKeyValueObservingOptionNew context:nil];
     //    [self.obj addObserver:self forKeyPath:@"_nake_b" options:NSKeyValueObservingOptionNew context:nil]; // 打开就崩溃
-    [self.obj addObserver:self forKeyPath:@"not_exist" options:NSKeyValueObservingOptionNew context:nil]; // 注释了就不会崩溃
+    //    [self.obj addObserver:self forKeyPath:@"not_exist" options:NSKeyValueObservingOptionNew context:nil]; // 注释了就不会崩溃
 
     NSLog(@"====== set ======");
     self.obj.prop_s = @"set1";

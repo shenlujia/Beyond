@@ -18,6 +18,17 @@
 {
     [super viewDidLoad];
 
+    [self test:@"使dispatch_once不执行"
+           set:nil
+           tap:^(UIButton *button) {
+               static dispatch_once_t onceToken = ~0l;
+               dispatch_once(&onceToken, ^{
+                   // 不会调用
+                   NSParameterAssert(0);
+                   NSLog(@"onceToken设为-1后 内部判定已经执行过不会再调用");
+               });
+           }];
+
     [self test:@"sync 快手"
            set:nil
            tap:^(UIButton *button) {
@@ -47,11 +58,19 @@
                    NSLog(@"sync end");
                });
 
+               // 为了优化 sync一般只在当前线程处理block
                dispatch_sync(queue1, ^{
                    NSLog(@"queue1 sync thread: %@", [NSThread currentThread]);
                });
                dispatch_sync(queue2, ^{
                    NSLog(@"queue2 sync thread: %@", [NSThread currentThread]);
+               });
+
+               dispatch_async(queue1, ^{
+                   // 主线程的block无论何时都在主线程处理
+                   dispatch_sync(dispatch_get_main_queue(), ^{
+                       NSLog(@"YEAH queue1 sync thread: %@", [NSThread currentThread]);
+                   });
                });
            }];
 
