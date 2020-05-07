@@ -142,36 +142,34 @@ TestDeallocCpp1Class p_cpp_obj2;
     NSLog(@"Main所有属性: %@", [self allProperties:[Test1Derived class]]);
     NSLog(@"Main所有方法: %@", [self allMethods:[Test1Derived class]]);
 
-    [self test:@"test"
-           set:nil
-           tap:^(UIButton *button) {
-               Test1Derived *main = [[Test1Derived alloc] init];
-               //               main.cpp_obj1.name = "cpp_obj1";
-               //               main.cpp_obj2.name = "cpp_obj2";
-               main.base1 = [UIViewController new];
-               main.base2 = [UIView new];
-               main.obj1 = [UIStackView new];
-               main.obj2 = [UIViewController new];
-               main.obj3 = [UIColor new];
-               main.intValue = 888;
+    [self test:@"test" tap:^(UIButton *button) {
+        Test1Derived *main = [[Test1Derived alloc] init];
+        //               main.cpp_obj1.name = "cpp_obj1";
+        //               main.cpp_obj2.name = "cpp_obj2";
+        main.base1 = [UIViewController new];
+        main.base2 = [UIView new];
+        main.obj1 = [UIStackView new];
+        main.obj2 = [UIViewController new];
+        main.obj3 = [UIColor new];
+        main.intValue = 888;
 
-               Test1Prop *prop1 = [[Test1Prop alloc] init];
-               prop1.name = @"prop1";
-               prop1.main_weak = main;
-               prop1.main_assign = main;
-               main.prop1 = prop1;
-               Test1Prop *prop2 = [[Test1Prop alloc] init];
-               prop2.name = @"prop2";
-               prop2.main_weak = main;
-               prop2.main_assign = main;
-               main.prop2 = prop2;
+        Test1Prop *prop1 = [[Test1Prop alloc] init];
+        prop1.name = @"prop1";
+        prop1.main_weak = main;
+        prop1.main_assign = main;
+        main.prop1 = prop1;
+        Test1Prop *prop2 = [[Test1Prop alloc] init];
+        prop2.name = @"prop2";
+        prop2.main_weak = main;
+        prop2.main_assign = main;
+        main.prop2 = prop2;
 
-               Test1Prop *associatedObject = [[Test1Prop alloc] init];
-               associatedObject.name = @"associated";
-               associatedObject.main_weak = main;
-               associatedObject.main_assign = main;
-               objc_setAssociatedObject(main, @selector(title), associatedObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-           }];
+        Test1Prop *associatedObject = [[Test1Prop alloc] init];
+        associatedObject.name = @"associated";
+        associatedObject.main_weak = main;
+        associatedObject.main_assign = main;
+        objc_setAssociatedObject(main, @selector(title), associatedObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }];
 }
 
 - (NSArray *)allProperties:(Class)cls

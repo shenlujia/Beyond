@@ -54,6 +54,33 @@
     [self reloadData];
 }
 
+- (void)test_c:(NSString *)c
+{
+    [self test_c:c title:nil];
+}
+
+- (void)test_c:(NSString *)c title:(NSString *)title
+{
+    Class clazz = NSClassFromString(c);
+    if (!clazz) {
+        return;
+    }
+    if (title.length == 0) {
+        title = [c stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
+    }
+    WEAKSELF;
+    ActionBlock block = ^(UIButton *button) {
+        UIViewController *to = [[clazz alloc] init];
+        [weak_self.navigationController pushViewController:to animated:YES];
+    };
+    [self p_test:title set:nil tap:block action:NULL];
+}
+
+- (void)test:(NSString *)title tap:(ActionBlock)tap
+{
+    [self p_test:title set:nil tap:tap action:NULL];
+}
+
 - (void)test:(NSString *)title set:(ActionBlock)set tap:(ActionBlock)tap
 {
     [self p_test:title set:set tap:tap action:NULL];

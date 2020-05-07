@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		572339372447F92C009DD534 /* GCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572339362447F92C009DD534 /* GCDController.m */; };
+		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
 		57D44F67244D9DF100871A34 /* KVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F66244D9DF100871A34 /* KVOController.m */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		572339352447F92C009DD534 /* GCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDController.h; sourceTree = "<group>"; };
 		572339362447F92C009DD534 /* GCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDController.m; sourceTree = "<group>"; };
+		5756D9C72463B38500CA3991 /* AnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationController.h; sourceTree = "<group>"; };
+		5756D9C82463B38500CA3991 /* AnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationController.m; sourceTree = "<group>"; };
 		5774B18C243FFEA900C7A59E /* BlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockController.h; sourceTree = "<group>"; };
 		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
 		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
@@ -64,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5756D9C62463B36D00CA3991 /* 动画 */ = {
+			isa = PBXGroup;
+			children = (
+				5756D9C72463B38500CA3991 /* AnimationController.h */,
+				5756D9C82463B38500CA3991 /* AnimationController.m */,
+			);
+			path = "动画";
+			sourceTree = "<group>";
+		};
 		5774B18B243FFE9E00C7A59E /* Block */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,14 +175,15 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				57D4683E24502B8D00871A34 /* UIAppearance */,
-				57D44F68244DA91400871A34 /* UIControl */,
-				57D44F64244D9DE500871A34 /* KVO */,
-				577D43532447F8530043C1A3 /* GCD */,
+				5756D9C62463B36D00CA3991 /* 动画 */,
+				57FD50BF243DA447002E481E /* 关联对象 */,
 				5774CB1C2441788600C7A59E /* 题目 */,
 				5774B18B243FFE9E00C7A59E /* Block */,
 				57FD50BE243DA447002E481E /* Controller生命周期 */,
-				57FD50BF243DA447002E481E /* 关联对象 */,
+				577D43532447F8530043C1A3 /* GCD */,
+				57D44F64244D9DE500871A34 /* KVO */,
+				57D4683E24502B8D00871A34 /* UIAppearance */,
+				57D44F68244DA91400871A34 /* UIControl */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -274,6 +287,7 @@
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
+				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

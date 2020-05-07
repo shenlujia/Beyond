@@ -10,25 +10,39 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 
-@interface Father : NSObject
 
-@end
 
 @implementation Father
 
-- (Class) class
+- (void)dealloc
+{
+    NSLog(@"~dealloc");
+}
+
+- (Class)class
 {
     return [Father class];
 }
 
-    @end
++ (Father *)createObject
+{
+    NSLog(@"alloc createObject");
+    return [[Father alloc] init];
+}
 
-    @interface Son : Father
++ (Father *)newObject
+{
+    NSLog(@"alloc newObject");
+    return [[Father alloc] init];
+}
 
-                     @end
+@end
 
-                     @implementation Son -
-                     (id)init
+    
+
+@implementation Son
+
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -45,24 +59,12 @@
 
 @end
 
-    @interface Student : NSObject @property(nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *age;
-@end
-
-@interface Sark : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) double fNum;
-@property (nonatomic, strong) Student *myStudent;
-@property (nonatomic, strong) NSNumber *age;
-
-- (void)speak;
-@end
-
 @implementation Student
 
 @end
 
 @implementation Sark
+
 - (instancetype)init
 {
     if (self = [super init]) {
@@ -70,6 +72,7 @@
     }
     return self;
 }
+
 - (void)speak
 {
     NSLog(@"Instance address is %p", self); //  此处如果输出 Instance address is 0x280589860
@@ -79,10 +82,12 @@
     NSLog(@"myStudent address is %p", &_myStudent);
     NSLog(@"age address is %p", &_age);
 }
+
 - (void)showYourName
 {
     NSLog(@"My name is %@", self.name);
 }
+
 @end
 
 @interface ExerciseController ()
@@ -97,6 +102,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    WEAKSELF;
 
     {
         NSLog(@"ViewController = %@ , 地址 = %p", self, &self);
@@ -194,47 +201,71 @@
         NSLog(@"d2_n  %p  %p  %@", &d2_n, d2_n, [d2_n class]);
         printf("\n");
     }
+    
+    [self test:@"performSelector内存泄漏" tap:^(UIButton *button) {
+        @autoreleasepool {
+            NSLog(@"performSelector createObject");
+            [Father performSelector:@selector(createObject)];
+            __unused Father *temp = [Father performSelector:@selector(createObject)];
+        }
+        printf("\n");
+        @autoreleasepool {
+            
+            NSLog(@"performSelector new");
+            [Father performSelector:@selector(new)];
+            __unused Father *temp = [Father performSelector:@selector(new)];
+        }
+        printf("\n");
+        @autoreleasepool {
+            NSLog(@"performSelector newObject");
+            [Father performSelector:@selector(newObject)];
+            __unused Father *temp = [Father performSelector:@selector(newObject)];
+        }
+        printf("\n");
+    }];
 
     self.queue = [[NSOperationQueue alloc] init];
     self.queue.maxConcurrentOperationCount = 1;
     self.gcd_queue = dispatch_queue_create("gcd", NULL);
-    [self test:@"队列线程"
-           set:nil
-           tap:^(UIButton *button) {
-               [self.queue addOperationWithBlock:^{
-                   NSThread *t = [NSThread currentThread];
-                   if (t.name.length == 0) {
-                       t.name = @"ns_queue";
-                   }
-                   NSLog(@"thread: %@", t);
-               }];
-               dispatch_async(self.gcd_queue, ^{
-                   NSThread *t = [NSThread currentThread];
-                   if (t.name.length == 0) {
-                       t.name = @"gcd_queue";
-                   }
-                   NSLog(@"thread: %@", t);
-               });
-           }];
+    [self test:@"队列线程" tap:^(UIButton *button) {
+        [self.queue addOperationWithBlock:^{
+            NSThread *t = [NSThread currentThread];
+            if (t.name.length == 0) {
+                t.name = @"ns_queue";
+            }
+            NSLog(@"thread: %@", t);
+        }];
+        dispatch_async(self.gcd_queue, ^{
+            NSThread *t = [NSThread currentThread];
+            if (t.name.length == 0) {
+                t.name = @"gcd_queue";
+            }
+            NSLog(@"thread: %@", t);
+        });
+    }];
 
-    [self test:@"SEL"
-           set:nil
-           tap:^(UIButton *button) {
-               const char *name = [NSString stringWithFormat:@"%@%@", @"viewWillLayoutSubview", @"s"].UTF8String;
-               SEL sel = sel_registerName(name);
-               const char *out_name = sel_getName(sel);
-               assert(strcmp(name, out_name) == 0);
-               assert([UIViewController instancesRespondToSelector:sel] == YES);           // OK
-               assert([UIViewController instancesRespondToSelector:(SEL)name] == NO);      // ？
-               assert([UIViewController instancesRespondToSelector:(SEL)out_name] == YES); // WTF？？？
-               assert([UIViewController instanceMethodForSelector:(SEL)name] == _objc_msgForward);
+    [self test:@"SEL" tap:^(UIButton *button) {
+        __strong typeof (weak_self) strong_self = weak_self;
+        
+        const char *name = [NSString stringWithFormat:@"%@%@", @"viewWillLayoutSubview", @"s"].UTF8String;
+        SEL sel = sel_registerName(name);
+        const char *out_name = sel_getName(sel);
+        SEL sel2 = sel_registerName(out_name);
+        const char *out_name2 = sel_getName(sel2);
+        assert(strcmp(name, out_name) == 0);
+        assert([UIViewController instancesRespondToSelector:sel] == YES);           // OK
+        assert([UIViewController instancesRespondToSelector:(SEL)name] == NO);      // ？
+        assert([UIViewController instancesRespondToSelector:(SEL)out_name] == YES); // WTF？？？
+        assert([UIViewController instanceMethodForSelector:(SEL)name] == _objc_msgForward);
 
-               NSLog(@"======");
-               NSLog(@"%p %p", &name, name);
-               NSLog(@"%p %p", &sel, sel);
-               NSLog(@"%p %p", &out_name, out_name);
-               NSLog(@"\n");
-           }];
+        NSLog(@"====== %p", strong_self);
+        NSLog(@"%p %p", &name, name);
+        NSLog(@"%p %p", &sel, sel);
+        NSLog(@"%p %p", &out_name, out_name);
+        NSLog(@"%p %p", &sel2, sel2);
+        NSLog(@"%p %p", &out_name2, out_name2);
+        NSLog(@"\n");
+    }];
 }
 
 @end

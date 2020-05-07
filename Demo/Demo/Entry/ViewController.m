@@ -17,64 +17,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    __weak typeof(self) weak_self = self;
-
-    [self test:@"UIAppearance"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"AppearanceController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"UIControl"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"ControlController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"KVO"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"KVOController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"GCD"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"GCDController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"一些题目"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"ExerciseController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"Block"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"BlockController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"Controller生命周期"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"ControllerLifeCycleParentController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
-
-    [self test:@"关联对象"
-           set:nil
-           tap:^(UIButton *button) {
-               UIViewController *c = [[NSClassFromString(@"AssociatedObjectController") alloc] init];
-               [weak_self.navigationController pushViewController:c animated:YES];
-           }];
+    
+    [self test_c:@"AnimationController"];
+    
+    [self test_c:@"AppearanceController" title:@"UIAppearance"];
+    
+    [self test_c:@"ControlController" title:@"UIControl"];
+    
+    [self test_c:@"KVOController"];
+    
+    [self test_c:@"GCDController"];
+    
+    [self test_c:@"ExerciseController" title:@"一些题目"];
+    
+    [self test_c:@"BlockController"];
+    
+    [self test_c:@"ControllerLifeCycleParentController" title:@"Controller生命周期"];
+    
+    [self test_c:@"AssociatedObjectController" title:@"关联对象"];
 }
 
 @end
