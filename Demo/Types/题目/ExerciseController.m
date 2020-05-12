@@ -9,7 +9,7 @@
 #import "ExerciseController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
-
+#import <dlfcn.h>
 
 
 @implementation Father
@@ -94,6 +94,15 @@
 
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) dispatch_queue_t gcd_queue;
+
+@end
+
+@implementation NSObject (loadMoreThanOnce)
+
++ (void)load
+{
+    NSLog(@"WTF NSObject category load");
+}
 
 @end
 
@@ -266,6 +275,21 @@
         NSLog(@"%p %p", &out_name2, out_name2);
         NSLog(@"\n");
     }];
+
+    //    // 模拟栈溢出
+    //    uint8_t buf[1];
+    //    for (int i = 0; i < 200; i++) {
+    //        NSLog(@"%d", i);
+    //        buf[i] = 0;
+    //    }
+    //    NSLog(@"aha0");
+        
+    //    // 模拟load多次调用
+    void *libHandleIMD = dlopen("/System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI", RTLD_LAZY);
+    NSLog(@"libHandleIMD is %p", libHandleIMD);
+    if (!libHandleIMD) {
+        printf("error is %s\n", dlerror());
+    }
 }
 
 @end
