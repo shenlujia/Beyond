@@ -10,6 +10,8 @@
 
 @interface Father : NSObject
 
+@property (nonatomic, copy) NSString *from;
+
 @end
 
 @interface Son : Father

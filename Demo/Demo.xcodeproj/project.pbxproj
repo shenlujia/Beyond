@@ -14,6 +14,7 @@
 		57D44F67244D9DF100871A34 /* KVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F66244D9DF100871A34 /* KVOController.m */; };
 		57D44F6B244DA92200871A34 /* ControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F6A244DA92200871A34 /* ControlController.m */; };
 		57D4684124502B9A00871A34 /* AppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4684024502B9A00871A34 /* AppearanceController.m */; };
+		57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */; };
 		57FD50A8243DA263002E481E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A7243DA263002E481E /* Assets.xcassets */; };
 		57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A9243DA263002E481E /* LaunchScreen.storyboard */; };
 		57FD50BA243DA3F0002E481E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B6243DA3EF002E481E /* ViewController.m */; };
@@ -39,6 +40,9 @@
 		57D44F6A244DA92200871A34 /* ControlController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControlController.m; sourceTree = "<group>"; };
 		57D4683F24502B9A00871A34 /* AppearanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppearanceController.h; sourceTree = "<group>"; };
 		57D4684024502B9A00871A34 /* AppearanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppearanceController.m; sourceTree = "<group>"; };
+		57F89437246E37DB007AEFC6 /* MacroHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroHeader.h; sourceTree = "<group>"; };
+		57F89438246E3A6B007AEFC6 /* NSObject+MethodSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MethodSwizzle.h"; sourceTree = "<group>"; };
+		57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MethodSwizzle.m"; sourceTree = "<group>"; };
 		57FD5098243DA25F002E481E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FD50AA243DA263002E481E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,9 +134,20 @@
 			path = UIAppearance;
 			sourceTree = "<group>";
 		};
+		57F89436246E37CE007AEFC6 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
+				57F89438246E3A6B007AEFC6 /* NSObject+MethodSwizzle.h */,
+				57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		57FD508F243DA25F002E481E = {
 			isa = PBXGroup;
 			children = (
+				57F89436246E37CE007AEFC6 /* Utility */,
 				57FD50BD243DA447002E481E /* Types */,
 				57FD509A243DA25F002E481E /* Demo */,
 				57FD5099243DA25F002E481E /* Products */,
@@ -282,6 +297,7 @@
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				57D44F6B244DA92200871A34 /* ControlController.m in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
+				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
@@ -423,7 +439,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KEKFQFC5E3;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -443,7 +459,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KEKFQFC5E3;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

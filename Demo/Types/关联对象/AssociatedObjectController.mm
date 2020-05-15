@@ -9,6 +9,7 @@
 #import "AssociatedObjectController.h"
 #import <objc/runtime.h>
 #import <string>
+#include <mutex>
 
 using namespace std;
 
@@ -28,7 +29,28 @@ class TestDeallocCpp1Class
     {
         printf("~TestDeallocCpp1Class: %s\n", name.c_str());
     }
+    static TestDeallocCpp1Class &shared1()
+    {
+        static TestDeallocCpp1Class a;
+        a.name = "shared1";
+        return a;
+    }
+    static TestDeallocCpp1Class &shared2()
+    {
+
+        static std::recursive_mutex mutex_ss;
+        static TestDeallocCpp1Class *b = new TestDeallocCpp1Class();
+        b->name = "shared2";
+        return *b;
+    }
+    static TestDeallocCpp1Class &k1;
+    static TestDeallocCpp1Class k2;
 };
+
+
+TestDeallocCpp1Class &TestDeallocCpp1Class::k1 = *new TestDeallocCpp1Class();
+TestDeallocCpp1Class TestDeallocCpp1Class::k2;
+
 
 static TestDeallocCpp1Class p_cpp_obj1;
 TestDeallocCpp1Class p_cpp_obj2;
@@ -141,6 +163,11 @@ TestDeallocCpp1Class p_cpp_obj2;
 
     NSLog(@"Main所有属性: %@", [self allProperties:[Test1Derived class]]);
     NSLog(@"Main所有方法: %@", [self allMethods:[Test1Derived class]]);
+    
+    TestDeallocCpp1Class::k1.name = "k1";
+    TestDeallocCpp1Class::k2.name = "k2";
+    TestDeallocCpp1Class::shared1();
+    TestDeallocCpp1Class::shared2();
 
     [self test:@"test" tap:^(UIButton *button) {
         Test1Derived *main = [[Test1Derived alloc] init];

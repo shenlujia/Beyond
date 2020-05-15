@@ -10,13 +10,13 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
-
+#import "NSObject+MethodSwizzle.h"
 
 @implementation Father
 
 - (void)dealloc
 {
-    NSLog(@"~dealloc");
+    NSLog(@"~dealloc %@", self.from);
 }
 
 - (Class)class
@@ -26,14 +26,41 @@
 
 + (Father *)createObject
 {
-    NSLog(@"alloc createObject");
-    return [[Father alloc] init];
+    NSLog(@"-> createObject");
+    Father *ret = [[super alloc] init];
+    ret.from = @"createObject";
+    return ret;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    self.from = @"init";
+    return self;
+}
+
++ (Father *)new
+{
+    NSLog(@"-> new");
+    Father *ret = [[super alloc] init];
+    ret.from = @"new";
+    return ret;
 }
 
 + (Father *)newObject
 {
-    NSLog(@"alloc newObject");
-    return [[Father alloc] init];
+    NSLog(@"-> newObject");
+    Father *ret = [[super alloc] init];
+    ret.from = @"newObject";
+    return ret;
+}
+
++ (Father *)initObject
+{
+    NSLog(@"-> initObject");
+    Father *ret = [[super alloc] init];
+    ret.from = @"initObject";
+    return ret;
 }
 
 @end
@@ -211,24 +238,55 @@
         printf("\n");
     }
     
-    [self test:@"performSelector内存泄漏" tap:^(UIButton *button) {
+    [self test:@"performSelector、NSInvocation内存泄漏" tap:^(UIButton *button) {
+        // ARC对于以new,copy,mutableCopy和alloc以及 以这四个单词开头的所有函数，默认认为函数返回值直接持有对象
         @autoreleasepool {
             NSLog(@"performSelector createObject");
             [Father performSelector:@selector(createObject)];
             __unused Father *temp = [Father performSelector:@selector(createObject)];
+            
+            SEL selector = @selector(createObject);
+            NSMethodSignature *signature = [Father methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            invocation.selector = selector;
+            invocation.target = [Father class];
+            [invocation invoke];
         }
         printf("\n");
         @autoreleasepool {
-            
             NSLog(@"performSelector new");
             [Father performSelector:@selector(new)];
             __unused Father *temp = [Father performSelector:@selector(new)];
         }
         printf("\n");
         @autoreleasepool {
+            NSLog(@"performSelector init");
+            SEL selctor = @selector(init);
+            Father *obj = [Father alloc];
+            [obj performSelector:selctor];
+        }
+        printf("\n");
+        @autoreleasepool {
+            NSLog(@"performSelector initObject");
+            [Father performSelector:@selector(initObject)];
+            __unused Father *temp = [Father performSelector:@selector(initObject)];
+        }
+        printf("\n");
+        @autoreleasepool {
             NSLog(@"performSelector newObject");
             [Father performSelector:@selector(newObject)];
             __unused Father *temp = [Father performSelector:@selector(newObject)];
+            [Father performSelector:@selector(newObject) withObject:nil afterDelay:0];
+            [Father performSelector:@selector(newObject) withObject:nil afterDelay:1];
+            
+            SEL selector = @selector(newObject);
+            NSMethodSignature *signature = [Father methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            invocation.selector = selector;
+            invocation.target = [Father class];
+            [invocation invoke];
+            id ret;
+            [invocation getReturnValue:&ret];
         }
         printf("\n");
     }];
