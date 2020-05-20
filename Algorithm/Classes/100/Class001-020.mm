@@ -102,36 +102,6 @@ class Solution
         return 2;
     }
 
-    string longestPalindrome(string s)
-    {
-        int length = (int)s.length();
-        if (length <= 1) {
-            return s;
-        }
-        int start = 0, end = 0;
-        for (int i = 0; i < length; i++) {
-            int len1 = _longestPalindrome_lengthFromCenter(s, i, i);     // 一个元素为中心
-            int len2 = _longestPalindrome_lengthFromCenter(s, i, i + 1); // 两个元素为中心
-            int len = max(len1, len2);
-            if (len > end - start) {
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
-            }
-        }
-        return s.substr(start, end - start + 1);
-    }
-
-    int _longestPalindrome_lengthFromCenter(string &s, int left, int right)
-    {
-        int L = left;
-        int R = right;
-        while (L >= 0 && R < s.length() && s[L] == s[R]) {
-            L--;
-            R++;
-        }
-        return R - L - 1;
-    }
-
     string convert(string s, int numRows)
     {
         if (s.empty() || numRows <= 1 || numRows >= s.length()) {
@@ -320,20 +290,6 @@ class Solution
         vector<int> num2;
         num2.push_back(2);
         NSParameterAssert(s.findMedianSortedArrays(num1, num2) == 2);
-    }
-    {
-        /*
-         给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
-         示例 1：
-         输入: "babad"
-         输出: "bab"
-         注意: "aba" 也是一个有效答案。
-         示例 2：
-         输入: "cbbd"
-         输出: "bb"
-         */
-        NSParameterAssert(s.longestPalindrome("babad") == "aba");
-        NSParameterAssert(s.longestPalindrome("cbbd") == "bb");
     }
     {
         /*

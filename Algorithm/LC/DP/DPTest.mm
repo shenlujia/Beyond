@@ -60,7 +60,7 @@ static void beibao_dp(vector<int> &all, vector<vector<bool>> &choice, int cur, v
 
 + (void)run
 {
-    vector<int> v = {10, 72, 121, 122, 123, 188, 516, 1143};
+    vector<int> v = {5, 10,53,62,63,64, 72,91, 120, 121, 122, 123, 188, 516, 523, 576,646,1024,1025,1027,1039,1048,1049, 1143, 1277};
     sort(v.begin(), v.end());
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
