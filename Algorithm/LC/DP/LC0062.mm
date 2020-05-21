@@ -1,19 +1,9 @@
 //
-//  LC0062.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0062.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0062
+LC_CLASS_BEGIN(0062)
 
 /*
  不同路径
@@ -66,4 +56,4 @@ static int uniquePaths(int m, int n)
     }
 }
 
-@end
+LC_CLASS_END

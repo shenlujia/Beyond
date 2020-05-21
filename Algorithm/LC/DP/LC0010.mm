@@ -1,19 +1,9 @@
 //
-//  LC0010.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0010.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0010
+LC_CLASS_BEGIN(0010)
 
 /*
  正则表达式匹配
@@ -174,4 +164,4 @@ static bool isMatch_god(string s, string p)
     NSParameterAssert(isMatch_god("mississippi", "mis*is*p*.") == false);
 }
 
-@end
+LC_CLASS_END

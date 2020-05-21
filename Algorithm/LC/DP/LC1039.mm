@@ -1,21 +1,9 @@
 //
-//  LC1039.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1039.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-
-using namespace std;
-
-@implementation LC1039
+LC_CLASS_BEGIN(1039)
 
 /*
  多边形三角剖分的最低得分
@@ -76,4 +64,4 @@ static int minScoreTriangulation(vector<int>& A)
     }
 }
 
-@end
+LC_CLASS_END

@@ -1,0 +1,35 @@
+//
+//  prefix_header.pch
+//  DSPro
+//
+//  Created by SLJ on 2020/5/21.
+//  Copyright © 2020 SLJ. All rights reserved.
+//
+
+#ifndef prefix_header_h
+#define prefix_header_h
+
+
+#import <math.h>
+#import <map>
+#import <set>
+#import <string>
+#import <unordered_map>
+#import <vector>
+
+
+using namespace std;
+
+
+#import <Foundation/Foundation.h>
+
+
+#define LC_CLASS_BEGIN(name) \
+@interface LC##name : NSObject @end \
+@implementation LC##name
+
+
+#define LC_CLASS_END @end
+
+
+#endif /* prefix_header_h */

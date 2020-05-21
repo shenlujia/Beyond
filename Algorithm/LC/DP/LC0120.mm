@@ -1,19 +1,9 @@
 //
-//  LC0120.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0120.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0120
+LC_CLASS_BEGIN(0120)
 
 /*
  三角形最小路径和
@@ -66,4 +56,4 @@ static int minimumTotal(vector<vector<int>>& triangle)
     }
 }
 
-@end
+LC_CLASS_END

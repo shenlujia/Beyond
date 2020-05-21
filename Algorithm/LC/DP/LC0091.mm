@@ -1,18 +1,9 @@
 //
-//  LC0091.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0091.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0091
+LC_CLASS_BEGIN(0091)
 
 /*
  解码方法
@@ -92,4 +83,4 @@ static int numDecodings(string s)
     }
 }
 
-@end
+LC_CLASS_END

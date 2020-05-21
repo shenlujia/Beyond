@@ -1,18 +1,9 @@
 //
-//  LC0072.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0072.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0072
+LC_CLASS_BEGIN(0072)
 
 /*
  编辑距离
@@ -97,4 +88,4 @@ static int minDistance(string word1, string word2)
     }
 }
 
-@end
+LC_CLASS_END

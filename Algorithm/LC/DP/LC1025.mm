@@ -1,19 +1,9 @@
 //
-//  LC1025.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1025.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-
-using namespace std;
-
-@implementation LC1025
+LC_CLASS_BEGIN(1025)
 
 /*
  除数博弈
@@ -69,4 +59,4 @@ static bool divisorGame(int N)
     }
 }
 
-@end
+LC_CLASS_END

@@ -1,23 +1,9 @@
 //
-//  LC1048.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1048.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-#import <math.h>
-#import <numeric>
-
-using namespace std;
-
-@implementation LC1048
+LC_CLASS_BEGIN(1048)
 
 /*
  最长字符串链
@@ -100,4 +86,4 @@ static bool cmp(string& a,string& b)
     }
 }
 
-@end
+LC_CLASS_END

@@ -1,21 +1,9 @@
 //
-//  LC1277.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1277.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-
-using namespace std;
-
-@implementation LC1277
+LC_CLASS_BEGIN(1277)
 
 /*
  统计全为 1 的正方形子矩阵
@@ -87,4 +75,4 @@ static int countSquares(vector<vector<int>>& matrix)
     }
 }
 
-@end
+LC_CLASS_END

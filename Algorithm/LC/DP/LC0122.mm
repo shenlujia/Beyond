@@ -1,18 +1,9 @@
 //
-//  LC0122.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0122.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0122
+LC_CLASS_BEGIN(0122)
 
 /*
  买卖股票的最佳时机 II
@@ -91,4 +82,4 @@ static int maxProfit_greed(vector<int> &prices)
     }
 }
 
-@end
+LC_CLASS_END

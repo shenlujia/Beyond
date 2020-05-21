@@ -1,18 +1,9 @@
 //
-//  LC0188.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0188.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0188
+LC_CLASS_BEGIN(0188)
 
 /*
  买卖股票的最佳时机 IV
@@ -57,4 +48,4 @@ static int maxProfit(int k, vector<int> &prices)
     }
 }
 
-@end
+LC_CLASS_END

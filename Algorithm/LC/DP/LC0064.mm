@@ -1,19 +1,9 @@
 //
-//  LC0064.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0064.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0064
+LC_CLASS_BEGIN(0064)
 
 /*
  最小路径和
@@ -66,4 +56,4 @@ static int minPathSum(vector<vector<int>>& grid)
     }
 }
 
-@end
+LC_CLASS_END

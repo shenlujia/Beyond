@@ -1,21 +1,9 @@
 //
-//  LC1024.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1024.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-
-using namespace std;
-
-@implementation LC1024
+LC_CLASS_BEGIN(1024)
 
 /*
  视频拼接
@@ -91,4 +79,4 @@ static int videoStitching(vector<vector<int>>& clips, int T)
     
 }
 
-@end
+LC_CLASS_END

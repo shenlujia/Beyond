@@ -1,18 +1,9 @@
 //
-//  LC1143.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1143.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC1143
+LC_CLASS_BEGIN(1143)
 
 /*
  最长公共子序列
@@ -23,15 +14,11 @@ using namespace std;
 
  若这两个字符串没有公共子序列，则返回 0。
 
-
-
  示例 1:
-
  输入：text1 = "abcde", text2 = "ace"
  输出：3
  解释：最长公共子序列是 "ace"，它的长度为 3。
  示例 2:
-
  输入：text1 = "abc", text2 = "abc"
  输出：3
  解释：最长公共子序列是 "abc"，它的长度为 3。
@@ -71,4 +58,4 @@ static int longestCommonSubsequence(string text1, string text2)
     NSParameterAssert(longestCommonSubsequence("abcdef", "cde") == 3);
 }
 
-@end
+LC_CLASS_END

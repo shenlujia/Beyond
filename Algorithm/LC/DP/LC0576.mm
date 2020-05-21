@@ -1,19 +1,9 @@
 //
-//  LC0576.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0576.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0576
+LC_CLASS_BEGIN(0576)
 
 /*
  出界的路径数
@@ -76,4 +66,4 @@ static int findPaths(int m, int n, int N, int i, int j)
     }
 }
 
-@end
+LC_CLASS_END

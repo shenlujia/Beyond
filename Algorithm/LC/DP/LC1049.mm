@@ -1,23 +1,11 @@
 //
-//  LC1049.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1049.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-#import <math.h>
 #import <numeric>
 
-using namespace std;
-
-@implementation LC1049
+LC_CLASS_BEGIN(1049)
 
 /*
  最后一块石头的重量 II
@@ -70,4 +58,4 @@ static int lastStoneWeightII(vector<int>& stones)
     }
 }
 
-@end
+LC_CLASS_END

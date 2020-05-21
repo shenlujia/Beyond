@@ -1,21 +1,9 @@
 //
-//  LC1027.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC1027.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-
-using namespace std;
-
-@implementation LC1027
+LC_CLASS_BEGIN(1027)
 
 /*
  最长等差数列
@@ -81,4 +69,4 @@ static int longestArithSeqLength(vector<int>& A)
     }
 }
 
-@end
+LC_CLASS_END

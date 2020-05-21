@@ -1,19 +1,9 @@
 //
-//  LC0053.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0053.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0053
+LC_CLASS_BEGIN(0053)
 
 /*
  最大子序和
@@ -55,4 +45,4 @@ static int maxSubArray(vector<int>& nums)
     }
 }
 
-@end
+LC_CLASS_END

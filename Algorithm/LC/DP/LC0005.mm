@@ -1,21 +1,9 @@
 //
-//  LC0005.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0005.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-#import <map>
-#import <set>
-
-using namespace std;
-
-@implementation LC0005
+LC_CLASS_BEGIN(0005)
 
 /*
  最长回文子串
@@ -85,4 +73,4 @@ static string longestPalindrome(string s)
     }
 }
 
-@end
+LC_CLASS_END

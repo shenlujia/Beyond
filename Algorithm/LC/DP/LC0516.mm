@@ -1,18 +1,9 @@
 //
-//  LC0516.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0516.h"
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0516
+LC_CLASS_BEGIN(0516)
 
 /*
  最长回文子序列
@@ -66,4 +57,4 @@ static int longestPalindromeSubseq(string s)
     NSParameterAssert(longestPalindromeSubseq("bbbab") == 4);
 }
 
-@end
+LC_CLASS_END

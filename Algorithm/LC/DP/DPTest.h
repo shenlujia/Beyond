@@ -12,4 +12,4 @@
 
 + (void)run;
 
-@end
+LC_CLASS_END

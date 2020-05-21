@@ -1,23 +1,9 @@
 //
-//  LC0646.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import <math.h>
-#import <string>
-#import <vector>
-#import <Foundation/Foundation.h>
-
-using namespace std;
-
-@interface LC0646 : NSObject
-
-@end
-
-@implementation LC0646
+LC_CLASS_BEGIN(0646)
 
 /*
  最长数对链
@@ -70,4 +56,4 @@ static bool cmp(const vector<int> &a, const vector<int> &b)
     }
 }
 
-@end
+LC_CLASS_END

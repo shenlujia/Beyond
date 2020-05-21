@@ -1,7 +1,4 @@
 //
-//  DPTest.m
-//  DSPro
-//
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
@@ -9,9 +6,6 @@
 #import "DPTest.h"
 #import <iostream>
 #import <stdlib.h>
-#import <vector>
-
-using namespace std;
 
 // 2020 背包
 static void beibao_dfs(vector<int> &all, int cur, vector<int> &cur_result, int index)
@@ -60,7 +54,14 @@ static void beibao_dp(vector<int> &all, vector<vector<bool>> &choice, int cur, v
 
 + (void)run
 {
-    vector<int> v = {5, 10,53,62,63,64, 72,91, 120, 121, 122, 123, 188, 516, 523, 576,646,1024,1025,1027,1039,1048,1049, 1143, 1277};
+    vector<int> v0 = {5, 10, 53, 62, 63, 64, 72, 91};
+    vector<int> v1 = {120, 121, 122, 123, 139, 188, 516, 523, 576, 646, 647, 650};
+    vector<int> v2 = {1024, 1025, 1027, 1039, 1048, 1049, 1143, 1277, 1326};
+    
+    vector<int> v;
+    v.insert(v.end(), v0.begin(), v0.end());
+    v.insert(v.end(), v1.begin(), v1.end());
+    v.insert(v.end(), v2.begin(), v2.end());
     sort(v.begin(), v.end());
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];
@@ -101,4 +102,4 @@ static void beibao_dp(vector<int> &all, vector<vector<bool>> &choice, int cur, v
     }
 }
 
-@end
+LC_CLASS_END

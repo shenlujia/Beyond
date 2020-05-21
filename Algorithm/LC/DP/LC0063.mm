@@ -1,19 +1,9 @@
 //
-//  LC0063.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0063.h"
-#import <math.h>
-#import <string>
-#import <vector>
-
-using namespace std;
-
-@implementation LC0063
+LC_CLASS_BEGIN(0063)
 
 /*
  不同路径 II
@@ -81,4 +71,4 @@ static int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)
     }
 }
 
-@end
+LC_CLASS_END

@@ -1,19 +1,9 @@
 //
-//  LC0523.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0523.h"
-#import <string>
-#import <vector>
-#import <unordered_map>
-
-using namespace std;
-
-@implementation LC0523
+LC_CLASS_BEGIN(0523)
 
 /*
  连续的子数组和
@@ -83,4 +73,4 @@ static bool checkSubarraySum(vector<int>& nums, int k)
     }
 }
 
-@end
+LC_CLASS_END
