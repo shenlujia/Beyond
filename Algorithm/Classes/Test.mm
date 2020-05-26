@@ -21,11 +21,13 @@
 #import "QueueTest.h"
 #import "Sort.h"
 #import "StackTest.h"
+#import "ArrayTest.h"
 
 @implementation Test
 
 + (void)run
 {
+    [ArrayTest run];
     [BinarySearchTest run];
     [PriorityQueueTest run];
     [BacktrackTest run];

@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570C7738247BBB7800F0B708 /* LC0059.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C7734247BBB7800F0B708 /* LC0059.mm */; };
+		570C7739247BBB7800F0B708 /* LC0054.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C7735247BBB7800F0B708 /* LC0054.mm */; };
+		570C773A247BBB7800F0B708 /* ArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C7736247BBB7800F0B708 /* ArrayTest.mm */; };
+		570C773B247BBB7800F0B708 /* LC0885.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C7737247BBB7800F0B708 /* LC0885.mm */; };
+		570C82C1247CA1D000F0B708 /* LC0198.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82C0247CA1D000F0B708 /* LC0198.mm */; };
+		570C82C3247CA51600F0B708 /* LC1139.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82C2247CA51600F0B708 /* LC1139.mm */; };
+		570C82C5247CAE4E00F0B708 /* LC0213.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82C4247CAE4E00F0B708 /* LC0213.mm */; };
+		570C82C7247CB2A200F0B708 /* LC0740.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82C6247CB2A200F0B708 /* LC0740.mm */; };
+		570C82C9247CBC8200F0B708 /* LC0343.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82C8247CBC8200F0B708 /* LC0343.mm */; };
+		571B371B2477B8EA001B4C6E /* LC0152.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371A2477B8EA001B4C6E /* LC0152.mm */; };
+		571B371D2477C1E8001B4C6E /* LC0688.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371C2477C1E8001B4C6E /* LC0688.mm */; };
+		571B371F2477D02B001B4C6E /* LC0698.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371E2477D02B001B4C6E /* LC0698.mm */; };
+		571B37212477E4F1001B4C6E /* LC0746.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B37202477E4F1001B4C6E /* LC0746.mm */; };
+		571B37232477E7D7001B4C6E /* LC0221.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B37222477E7D7001B4C6E /* LC0221.mm */; };
+		571B37252477ECE2001B4C6E /* LC0712.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B37242477ECE2001B4C6E /* LC0712.mm */; };
+		571B37272477F36B001B4C6E /* LC0714.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B37262477F36B001B4C6E /* LC0714.mm */; };
+		571B37292477F913001B4C6E /* LC0718.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B37282477F913001B4C6E /* LC0718.mm */; };
 		571F4C6523059F4700EF9E4D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6423059F4700EF9E4D /* main.mm */; };
 		571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571F4C6D23059FA800EF9E4D /* Class001-020.mm */; };
 		572FDE0E2428A649002929A6 /* LC0516.mm in Sources */ = {isa = PBXBuildFile; fileRef = 572FDE0D2428A649002929A6 /* LC0516.mm */; };
@@ -90,7 +107,7 @@
 		57F5908F2475412F0029A954 /* LC0647.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F5908E2475412F0029A954 /* LC0647.mm */; };
 		57F59091247579630029A954 /* LC0650.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F59090247579630029A954 /* LC0650.mm */; };
 		57F59C872476705D0029A954 /* LC0139.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F59C862476705D0029A954 /* LC0139.mm */; };
-		57F59C8924767EE70029A954 /* LC1326.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F59C8824767EE70029A954 /* LC1326.mm */; };
+		57F59C8924767EE70029A954 /* LC0673.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F59C8824767EE70029A954 /* LC0673.mm */; };
 		57F8ACD2246EDCA3007AEFC6 /* LC0523.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F8ACD0246EDCA3007AEFC6 /* LC0523.mm */; };
 		57F8ACD5246EE412007AEFC6 /* LC0005.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F8ACD3246EE412007AEFC6 /* LC0005.mm */; };
 		57F8ACD8246FDDA8007AEFC6 /* LC1277.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F8ACD6246FDDA8007AEFC6 /* LC1277.mm */; };
@@ -108,6 +125,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		570C7733247BBB7800F0B708 /* ArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayTest.h; sourceTree = "<group>"; };
+		570C7734247BBB7800F0B708 /* LC0059.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0059.mm; sourceTree = "<group>"; };
+		570C7735247BBB7800F0B708 /* LC0054.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0054.mm; sourceTree = "<group>"; };
+		570C7736247BBB7800F0B708 /* ArrayTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrayTest.mm; sourceTree = "<group>"; };
+		570C7737247BBB7800F0B708 /* LC0885.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0885.mm; sourceTree = "<group>"; };
+		570C82C0247CA1D000F0B708 /* LC0198.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0198.mm; sourceTree = "<group>"; };
+		570C82C2247CA51600F0B708 /* LC1139.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC1139.mm; sourceTree = "<group>"; };
+		570C82C4247CAE4E00F0B708 /* LC0213.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0213.mm; sourceTree = "<group>"; };
+		570C82C6247CB2A200F0B708 /* LC0740.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0740.mm; sourceTree = "<group>"; };
+		570C82C8247CBC8200F0B708 /* LC0343.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0343.mm; sourceTree = "<group>"; };
+		571B371A2477B8EA001B4C6E /* LC0152.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0152.mm; sourceTree = "<group>"; };
+		571B371C2477C1E8001B4C6E /* LC0688.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0688.mm; sourceTree = "<group>"; };
+		571B371E2477D02B001B4C6E /* LC0698.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0698.mm; sourceTree = "<group>"; };
+		571B37202477E4F1001B4C6E /* LC0746.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0746.mm; sourceTree = "<group>"; };
+		571B37222477E7D7001B4C6E /* LC0221.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0221.mm; sourceTree = "<group>"; };
+		571B37242477ECE2001B4C6E /* LC0712.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0712.mm; sourceTree = "<group>"; };
+		571B37262477F36B001B4C6E /* LC0714.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0714.mm; sourceTree = "<group>"; };
+		571B37282477F913001B4C6E /* LC0718.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0718.mm; sourceTree = "<group>"; };
 		571F4C5823059F4500EF9E4D /* DSPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		571F4C6323059F4700EF9E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571F4C6423059F4700EF9E4D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -261,7 +296,7 @@
 		57F5908E2475412F0029A954 /* LC0647.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0647.mm; sourceTree = "<group>"; };
 		57F59090247579630029A954 /* LC0650.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0650.mm; sourceTree = "<group>"; };
 		57F59C862476705D0029A954 /* LC0139.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0139.mm; sourceTree = "<group>"; };
-		57F59C8824767EE70029A954 /* LC1326.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC1326.mm; sourceTree = "<group>"; };
+		57F59C8824767EE70029A954 /* LC0673.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0673.mm; sourceTree = "<group>"; };
 		57F59C8A24767F570029A954 /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		57F8ACD0246EDCA3007AEFC6 /* LC0523.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0523.mm; sourceTree = "<group>"; };
 		57F8ACD3246EE412007AEFC6 /* LC0005.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0005.mm; sourceTree = "<group>"; };
@@ -290,6 +325,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570C7732247BBB7800F0B708 /* 数组 */ = {
+			isa = PBXGroup;
+			children = (
+				570C7733247BBB7800F0B708 /* ArrayTest.h */,
+				570C7736247BBB7800F0B708 /* ArrayTest.mm */,
+				570C7735247BBB7800F0B708 /* LC0054.mm */,
+				570C7734247BBB7800F0B708 /* LC0059.mm */,
+				570C7737247BBB7800F0B708 /* LC0885.mm */,
+			);
+			path = "数组";
+			sourceTree = "<group>";
+		};
 		571F4C4F23059F4500EF9E4D = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +418,7 @@
 		577D170C23CF613A008960CA /* LC */ = {
 			isa = PBXGroup;
 			children = (
+				570C7732247BBB7800F0B708 /* 数组 */,
 				5735E2842434B29E007251AD /* 二分查找 */,
 				5735A2CD2432C885007251AD /* 队列 */,
 				57356446242DF74E007251AD /* 回溯 */,
@@ -504,37 +552,50 @@
 		579F2E1F24249713009AB751 /* DP */ = {
 			isa = PBXGroup;
 			children = (
-				57F59C8824767EE70029A954 /* LC1326.mm */,
-				57F59C862476705D0029A954 /* LC0139.mm */,
-				57F59090247579630029A954 /* LC0650.mm */,
-				57F5908E2475412F0029A954 /* LC0647.mm */,
-				57F5908B24753D880029A954 /* LC0646.mm */,
-				57F590882474D91D0029A954 /* LC0120.mm */,
-				57F590862474D3140029A954 /* LC0091.mm */,
-				57F8F7702473D433007AEFC6 /* LC1048.mm */,
-				57F8F76D2473C4F8007AEFC6 /* LC1049.mm */,
-				57F8F7692473BB31007AEFC6 /* LC0064.mm */,
-				57F8F76724738B68007AEFC6 /* LC0063.mm */,
-				57F8F7632473879E007AEFC6 /* LC0062.mm */,
-				57F8F76024737314007AEFC6 /* LC1039.mm */,
-				57F8EB6A2472D5F0007AEFC6 /* LC0576.mm */,
-				57F8EB6624727A55007AEFC6 /* LC0053.mm */,
-				57F8B8F024722E04007AEFC6 /* LC1027.mm */,
-				57F8B8EC247220A0007AEFC6 /* LC1025.mm */,
-				57F8ACDA2470C213007AEFC6 /* LC1024.mm */,
-				57F8ACD6246FDDA8007AEFC6 /* LC1277.mm */,
-				57F8ACD3246EE412007AEFC6 /* LC0005.mm */,
-				57F8ACD0246EDCA3007AEFC6 /* LC0523.mm */,
-				5735644E242E01A0007251AD /* LC0010.mm */,
+				570C82C8247CBC8200F0B708 /* LC0343.mm */,
+				570C82C6247CB2A200F0B708 /* LC0740.mm */,
+				570C82C4247CAE4E00F0B708 /* LC0213.mm */,
+				570C82C2247CA51600F0B708 /* LC1139.mm */,
+				570C82C0247CA1D000F0B708 /* LC0198.mm */,
+				571B37282477F913001B4C6E /* LC0718.mm */,
+				571B37262477F36B001B4C6E /* LC0714.mm */,
+				571B37242477ECE2001B4C6E /* LC0712.mm */,
 				579F2E2024249713009AB751 /* DPTest.h */,
 				579F2E2324249713009AB751 /* DPTest.mm */,
+				57F8ACD3246EE412007AEFC6 /* LC0005.mm */,
+				5735644E242E01A0007251AD /* LC0010.mm */,
+				57F8EB6624727A55007AEFC6 /* LC0053.mm */,
+				57F8F7632473879E007AEFC6 /* LC0062.mm */,
+				57F8F76724738B68007AEFC6 /* LC0063.mm */,
+				57F8F7692473BB31007AEFC6 /* LC0064.mm */,
 				572FF6622428E8AE002929A6 /* LC0072.mm */,
+				57F590862474D3140029A954 /* LC0091.mm */,
+				57F590882474D91D0029A954 /* LC0120.mm */,
 				572FDE1C2428B665002929A6 /* LC0121.mm */,
 				572FDE202428BAE9002929A6 /* LC0122.mm */,
 				57356440242DEE07007251AD /* LC0123.mm */,
+				57F59C862476705D0029A954 /* LC0139.mm */,
+				571B371A2477B8EA001B4C6E /* LC0152.mm */,
 				57356441242DEE08007251AD /* LC0188.mm */,
+				571B37222477E7D7001B4C6E /* LC0221.mm */,
 				572FDE0D2428A649002929A6 /* LC0516.mm */,
+				57F8ACD0246EDCA3007AEFC6 /* LC0523.mm */,
+				57F8EB6A2472D5F0007AEFC6 /* LC0576.mm */,
+				57F5908B24753D880029A954 /* LC0646.mm */,
+				57F5908E2475412F0029A954 /* LC0647.mm */,
+				57F59090247579630029A954 /* LC0650.mm */,
+				57F59C8824767EE70029A954 /* LC0673.mm */,
+				571B371C2477C1E8001B4C6E /* LC0688.mm */,
+				571B371E2477D02B001B4C6E /* LC0698.mm */,
+				571B37202477E4F1001B4C6E /* LC0746.mm */,
+				57F8ACDA2470C213007AEFC6 /* LC1024.mm */,
+				57F8B8EC247220A0007AEFC6 /* LC1025.mm */,
+				57F8B8F024722E04007AEFC6 /* LC1027.mm */,
+				57F8F76024737314007AEFC6 /* LC1039.mm */,
+				57F8F7702473D433007AEFC6 /* LC1048.mm */,
+				57F8F76D2473C4F8007AEFC6 /* LC1049.mm */,
 				579F2E2124249713009AB751 /* LC1143.mm */,
+				57F8ACD6246FDDA8007AEFC6 /* LC1277.mm */,
 			);
 			path = DP;
 			sourceTree = "<group>";
@@ -685,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				577D173323CF613A008960CA /* ListNode.mm in Sources */,
+				571B37212477E4F1001B4C6E /* LC0746.mm in Sources */,
 				57F8ACD8246FDDA8007AEFC6 /* LC1277.mm in Sources */,
 				5781A7DE2421C0C600D2479F /* BinaryTreeTest.mm in Sources */,
 				577D173123CF613A008960CA /* LC0142.mm in Sources */,
@@ -693,11 +755,13 @@
 				57356444242DEE08007251AD /* LC0123.mm in Sources */,
 				5781B40A2421EC6800D2479F /* OtherTest.mm in Sources */,
 				579F2E2524249713009AB751 /* DPTest.mm in Sources */,
+				571B37252477ECE2001B4C6E /* LC0712.mm in Sources */,
 				5781C0662422721700D2479F /* MergeIntervalTest.mm in Sources */,
 				577D173523CF613A008960CA /* LC0203.mm in Sources */,
 				57F2EF3723C74DD600824CDB /* Test.mm in Sources */,
-				57F59C8924767EE70029A954 /* LC1326.mm in Sources */,
+				57F59C8924767EE70029A954 /* LC0673.mm in Sources */,
 				577D173E23CF613A008960CA /* LC0328.mm in Sources */,
+				570C82C1247CA1D000F0B708 /* LC0198.mm in Sources */,
 				572FF6642428E8AE002929A6 /* LC0072.mm in Sources */,
 				579345AC2439FB8E008DC7FE /* LC0016.mm in Sources */,
 				57E6773F2425D07500ABD968 /* StackTest.mm in Sources */,
@@ -707,6 +771,7 @@
 				577879C024362621006FB5E6 /* LC0076.mm in Sources */,
 				572FDE212428BAE9002929A6 /* LC0122.mm in Sources */,
 				576F9A9723D195C0000C159A /* LC0706_MyHashMap.mm in Sources */,
+				570C7739247BBB7800F0B708 /* LC0054.mm in Sources */,
 				57F5908D24753D880029A954 /* LC0646.mm in Sources */,
 				577D173223CF613A008960CA /* LC0002.mm in Sources */,
 				5781B4032421CF9000D2479F /* LC0235.mm in Sources */,
@@ -719,6 +784,7 @@
 				57F2D7EB23C70BBD00824CDB /* Sort.mm in Sources */,
 				579345AF243A1A78008DC7FE /* LC0047.mm in Sources */,
 				577D173A23CF613A008960CA /* LC0206.mm in Sources */,
+				570C773A247BBB7800F0B708 /* ArrayTest.mm in Sources */,
 				5735A2D22432C885007251AD /* LC0239.mm in Sources */,
 				577D173D23CF613A008960CA /* LC0061.mm in Sources */,
 				5781A7E12421C0CE00D2479F /* LC0251.mm in Sources */,
@@ -728,10 +794,14 @@
 				574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */,
 				579F2E2F2424B880009AB751 /* LC1038.mm in Sources */,
 				57E677522426478600ABD968 /* LC0030.mm in Sources */,
+				571B37272477F36B001B4C6E /* LC0714.mm in Sources */,
+				571B37232477E7D7001B4C6E /* LC0221.mm in Sources */,
 				57F59091247579630029A954 /* LC0650.mm in Sources */,
+				570C773B247BBB7800F0B708 /* LC0885.mm in Sources */,
 				579F2E2424249713009AB751 /* LC1143.mm in Sources */,
 				57F8F76824738B68007AEFC6 /* LC0063.mm in Sources */,
 				5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */,
+				571B371F2477D02B001B4C6E /* LC0698.mm in Sources */,
 				57F8ACD2246EDCA3007AEFC6 /* LC0523.mm in Sources */,
 				573570D42431E924007251AD /* LC0078.mm in Sources */,
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
@@ -742,16 +812,20 @@
 				577D173023CF613A008960CA /* ListTest.mm in Sources */,
 				57D4117B2449F97400871A34 /* LC0111.mm in Sources */,
 				577D173B23CF613A008960CA /* LC0082.mm in Sources */,
+				570C82C7247CB2A200F0B708 /* LC0740.mm in Sources */,
 				579F2E2C2424B209009AB751 /* DoublePointerTest.mm in Sources */,
 				57F8B8EE247220A0007AEFC6 /* LC1025.mm in Sources */,
 				57E677382425C42E00ABD968 /* LC0687.mm in Sources */,
+				571B371B2477B8EA001B4C6E /* LC0152.mm in Sources */,
 				577D173923CF613A008960CA /* LC0086.mm in Sources */,
 				5735A2D62432C980007251AD /* MonotonicQueue.mm in Sources */,
 				5781B4002421C18500D2479F /* TreeNode.mm in Sources */,
 				5781CC8E242340D000D2479F /* LC0700.mm in Sources */,
 				57E677422425D19400ABD968 /* LC0032.mm in Sources */,
+				570C82C5247CAE4E00F0B708 /* LC0213.mm in Sources */,
 				577D173723CF613A008960CA /* LC0237.mm in Sources */,
 				57F8B8F124722E04007AEFC6 /* LC1027.mm in Sources */,
+				570C82C3247CA51600F0B708 /* LC1139.mm in Sources */,
 				577D173423CF613A008960CA /* LC0021.mm in Sources */,
 				57F5908F2475412F0029A954 /* LC0647.mm in Sources */,
 				5781C0652422721700D2479F /* LC0986.mm in Sources */,
@@ -761,13 +835,16 @@
 				571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */,
 				57F8EB6B2472D5F0007AEFC6 /* LC0576.mm in Sources */,
 				57F8F76E2473C4F8007AEFC6 /* LC1049.mm in Sources */,
+				571B371D2477C1E8001B4C6E /* LC0688.mm in Sources */,
 				579F2E2B2424B209009AB751 /* LC0003.mm in Sources */,
 				57F8F76224737315007AEFC6 /* LC1039.mm in Sources */,
 				57E67748242624BF00ABD968 /* LC0011.mm in Sources */,
 				5735E2872434B29E007251AD /* BinarySearchTest.mm in Sources */,
 				5781CC8B24233E7200D2479F /* LC0701.mm in Sources */,
 				57F59C872476705D0029A954 /* LC0139.mm in Sources */,
+				570C7738247BBB7800F0B708 /* LC0059.mm in Sources */,
 				57E6774524261BC300ABD968 /* LC0018.mm in Sources */,
+				570C82C9247CBC8200F0B708 /* LC0343.mm in Sources */,
 				57C8C96623D08B09005B649B /* LC0460_LFUCache.mm in Sources */,
 				5735A2D32432C885007251AD /* QueueTest.mm in Sources */,
 				575B8707243E16E00063BD98 /* LC0124.mm in Sources */,
@@ -781,6 +858,7 @@
 				57E6774F24262E5300ABD968 /* GreedTest.mm in Sources */,
 				574F8BD324358C9400AA7057 /* LC0077.mm in Sources */,
 				57F8ACDB2470C213007AEFC6 /* LC1024.mm in Sources */,
+				571B37292477F913001B4C6E /* LC0718.mm in Sources */,
 				57356445242DEE08007251AD /* LC0188.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
