@@ -24,6 +24,9 @@
 		570C82D5247D33FE00F0B708 /* LC0790.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82D4247D33FE00F0B708 /* LC0790.mm */; };
 		570C82D7247D470900F0B708 /* LC0264.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82D6247D470900F0B708 /* LC0264.mm */; };
 		570C82D9247E003900F0B708 /* LC0309.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82D8247E003900F0B708 /* LC0309.mm */; };
+		570C82DB247E116600F0B708 /* LC0300.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82DA247E116600F0B708 /* LC0300.mm */; };
+		570C82DD247E141000F0B708 /* LC0813.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82DC247E141000F0B708 /* LC0813.mm */; };
+		570C82DF247E434E00F0B708 /* LC1186.mm in Sources */ = {isa = PBXBuildFile; fileRef = 570C82DE247E434E00F0B708 /* LC1186.mm */; };
 		571B371B2477B8EA001B4C6E /* LC0152.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371A2477B8EA001B4C6E /* LC0152.mm */; };
 		571B371D2477C1E8001B4C6E /* LC0688.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371C2477C1E8001B4C6E /* LC0688.mm */; };
 		571B371F2477D02B001B4C6E /* LC0698.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B371E2477D02B001B4C6E /* LC0698.mm */; };
@@ -151,6 +154,9 @@
 		570C82D4247D33FE00F0B708 /* LC0790.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0790.mm; sourceTree = "<group>"; };
 		570C82D6247D470900F0B708 /* LC0264.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0264.mm; sourceTree = "<group>"; };
 		570C82D8247E003900F0B708 /* LC0309.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0309.mm; sourceTree = "<group>"; };
+		570C82DA247E116600F0B708 /* LC0300.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0300.mm; sourceTree = "<group>"; };
+		570C82DC247E141000F0B708 /* LC0813.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0813.mm; sourceTree = "<group>"; };
+		570C82DE247E434E00F0B708 /* LC1186.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC1186.mm; sourceTree = "<group>"; };
 		571B371A2477B8EA001B4C6E /* LC0152.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0152.mm; sourceTree = "<group>"; };
 		571B371C2477C1E8001B4C6E /* LC0688.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0688.mm; sourceTree = "<group>"; };
 		571B371E2477D02B001B4C6E /* LC0698.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0698.mm; sourceTree = "<group>"; };
@@ -568,6 +574,9 @@
 		579F2E1F24249713009AB751 /* DP */ = {
 			isa = PBXGroup;
 			children = (
+				570C82DE247E434E00F0B708 /* LC1186.mm */,
+				570C82DC247E141000F0B708 /* LC0813.mm */,
+				570C82DA247E116600F0B708 /* LC0300.mm */,
 				570C82D8247E003900F0B708 /* LC0309.mm */,
 				570C82D6247D470900F0B708 /* LC0264.mm */,
 				570C82D4247D33FE00F0B708 /* LC0790.mm */,
@@ -803,6 +812,7 @@
 				5781B4032421CF9000D2479F /* LC0235.mm in Sources */,
 				577D172F23CF613A008960CA /* Heap.mm in Sources */,
 				577D173C23CF613A008960CA /* LC0092.mm in Sources */,
+				570C82DF247E434E00F0B708 /* LC1186.mm in Sources */,
 				57F590872474D3150029A954 /* LC0091.mm in Sources */,
 				574F8BD6243592B800AA7057 /* LC0046.mm in Sources */,
 				57F8F7712473D434007AEFC6 /* LC1048.mm in Sources */,
@@ -846,6 +856,7 @@
 				57F8B8EE247220A0007AEFC6 /* LC1025.mm in Sources */,
 				57E677382425C42E00ABD968 /* LC0687.mm in Sources */,
 				571B371B2477B8EA001B4C6E /* LC0152.mm in Sources */,
+				570C82DD247E141000F0B708 /* LC0813.mm in Sources */,
 				577D173923CF613A008960CA /* LC0086.mm in Sources */,
 				5735A2D62432C980007251AD /* MonotonicQueue.mm in Sources */,
 				5781B4002421C18500D2479F /* TreeNode.mm in Sources */,
@@ -888,6 +899,7 @@
 				5735644F242E01A0007251AD /* LC0010.mm in Sources */,
 				57F5908A2474D91E0029A954 /* LC0120.mm in Sources */,
 				57E6774F24262E5300ABD968 /* GreedTest.mm in Sources */,
+				570C82DB247E116600F0B708 /* LC0300.mm in Sources */,
 				574F8BD324358C9400AA7057 /* LC0077.mm in Sources */,
 				57F8ACDB2470C213007AEFC6 /* LC1024.mm in Sources */,
 				571B37292477F913001B4C6E /* LC0718.mm in Sources */,

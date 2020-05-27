@@ -6,6 +6,7 @@
 LC_CLASS_BEGIN(0309)
 
 /*
+ 最佳买卖股票时机含冷冻期
  给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。
  设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
  你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
@@ -59,13 +60,13 @@ static int maxProfit_2(vector<int>& prices)
     B[0] = C[0] = -prices[0];
     for (int i = 1; i < len; ++i) {
         //变为A状态有两种，A-A和C-A
-        A[i] = max(A[i-1], C[i-1]);
+        A[i] = max(A[i - 1], C[i - 1]);
         //变为B状态有两种，B-B和A-B（-prices）
-        B[i] = max(A[i-1] - prices[i], B[i-1]);
+        B[i] = max(A[i - 1] - prices[i], B[i - 1]);
         //变为C只有一种，即B-C（+prices）
-        C[i] = B[i-1] + prices[i];
+        C[i] = B[i - 1] + prices[i];
     }
-    return max(A[len-1],C[len-1]);
+    return max(A[len - 1], C[len - 1]);
 }
 
 + (void)run
