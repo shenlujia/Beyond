@@ -20,23 +20,24 @@ LC_CLASS_BEGIN(0343)
 static int integerBreak(int n)
 {
     vector<int> dp(n + 1, 0);
+    dp[0] = 1;
     dp[1] = 1;
     dp[2] = 1;
-    dp[3] = 2;
-    dp[4] = 4;
-    if (n <= 4) {
-        return dp[n];
-    }
-    
-    for (int i = 5; i <= n; ++i) {
-        dp[i] = max(dp[i - 2] * 2, dp[i - 3] * 3);
-        dp[i] = max(dp[i], dp[i - 4] * 4);
+    for(int i = 3; i <= n; ++i) {
+        for(int j = 1; j < i; j++){
+            int t1 = max(dp[j] * (i - j), j * dp[i - j]);
+            int t2 = max(dp[j] * dp[i - j], j * (i - j));
+            dp[i] = max(dp[i], max(t1, t2));
+        }
     }
     return dp[n];
 }
 
 + (void)run
 {
+    {
+        NSCParameterAssert(integerBreak(20) == 1458);
+    }
     {
         NSCParameterAssert(integerBreak(2) == 1);
     }
