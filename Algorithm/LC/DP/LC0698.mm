@@ -20,35 +20,39 @@ LC_CLASS_BEGIN(0698)
 
 static bool canPartitionKSubsets(vector<int>& nums, int k)
 {
-    // 应该是回溯 todo...
-    int target = 0;
-    for(auto x:nums) target += x;
-    if(target%k) return false;
+    int target = accumulate(nums.begin(), nums.end(), 0);
+    if (target % k) {
+        return false;
+    }
     target /= k;
     
-    sort(nums.begin(),nums.end(),greater<int>());
-    
-    int n = (int)nums.size();
-    vector<int> path;
-    
-    function<bool(int)> dfs = [&] (int u) {
-        if(u==n) return true;
-        if(nums[u] > target) return false;
-        
-        for(int i = 0 ; i < path.size() ; i++) {
-            if(path[i] + nums[u] > target) continue;
-            path[i]+=nums[u];
-            if(dfs(u+1)) return true;
-            path[i]-=nums[u];
+    sort(nums.begin(), nums.end(), greater<int>());
+    vector<int> targets(k, target);
+    return dfs(nums, 0, k, targets);
+}
+
+static bool dfs(vector<int>& nums, int index, int k, vector<int> &targets)
+{
+    if (index == nums.size()) {
+        for (int i = 0; i < k; ++i) {
+            if (targets[i] > 0) {
+                return false;
+            }
         }
-        if(path.size() == k) return false;
-        
-        path.push_back(nums[u]);
-        if(dfs(u+1)) return true;
-        path.pop_back();
-        return false;
-    };
-    return dfs(0);
+        return true;
+    }
+    
+    int value = nums[index];
+    for (int i = 0; i < k; ++i) {
+        if (targets[i] >= value) {
+            targets[i] -= value;
+            if (dfs(nums, index + 1, k, targets)) {
+                return true;
+            }
+            targets[i] += value;
+        }
+    }
+    return false;
 }
 
 + (void)run

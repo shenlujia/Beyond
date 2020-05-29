@@ -1,30 +1,19 @@
 //
-//  LC0111.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0111.h"
 #import "TreeNode.h"
-#import <queue>
 
-@implementation LC0111
-//
+LC_CLASS_BEGIN(0111)
+
 /*
  二叉树的最小深度
-
  给定一个二叉树，找出其最小深度。
-
  最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
-
  说明: 叶子节点是指没有子节点的节点。
-
  示例:
-
  给定二叉树 [3,9,20,null,null,15,7],
-
      3
     / \
    9  20
@@ -68,4 +57,4 @@ static int minDepth(TreeNode *root)
     }
 }
 
-@end
+LC_CLASS_END

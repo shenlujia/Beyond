@@ -10,9 +10,14 @@
 #define prefix_header_h
 
 
+#import <iostream>
 #import <math.h>
 #import <map>
+#import <numeric>
+#import <queue>
 #import <set>
+#import <stdlib.h>
+#import <stack>
 #import <string>
 #import <unordered_map>
 #import <vector>

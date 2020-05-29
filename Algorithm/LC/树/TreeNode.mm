@@ -1,14 +1,9 @@
 //
-//  TreeNode.m
-//  DSPro
-//
 //  Created by SLJ on 2020/3/18.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
 #import "TreeNode.h"
-#import <queue>
-#import <stack>
 
 static TreeNode *createNode(NSArray *array, NSInteger index)
 {

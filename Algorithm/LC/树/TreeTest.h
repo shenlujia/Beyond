@@ -1,5 +1,5 @@
 //
-//  BinaryTreeTest.h
+//  TreeTest.h
 //  DSPro
 //
 //  Created by SLJ on 2020/3/18.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BinaryTreeTest : NSObject
+@interface TreeTest : NSObject
 
 + (void)run;
 
-@end
+LC_CLASS_END

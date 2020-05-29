@@ -9,7 +9,7 @@
 #import "Test.h"
 #import "BacktrackTest.h"
 #import "BinarySearchTest.h"
-#import "BinaryTreeTest.h"
+#import "TreeTest.h"
 #import "DPTest.h"
 #import "DesignTest.h"
 #import "DoublePointerTest.h"
@@ -38,7 +38,7 @@
     [DPTest run];
     [OtherTest run];
     [DesignTest run];
-    [BinaryTreeTest run];
+    [TreeTest run];
     [MergeIntervalTest run];
     //    [Sort run];
     [ListTest run];
