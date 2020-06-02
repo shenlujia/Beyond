@@ -53,6 +53,10 @@
 		5735A2D62432C980007251AD /* MonotonicQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735A2D52432C980007251AD /* MonotonicQueue.mm */; };
 		5735A2D92432CDD6007251AD /* PriorityQueueTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735A2D82432CDD6007251AD /* PriorityQueueTest.mm */; };
 		5735E2872434B29E007251AD /* BinarySearchTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5735E2862434B29E007251AD /* BinarySearchTest.mm */; };
+		57373B55248649E500E14261 /* LC1325.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57373B52248649E500E14261 /* LC1325.mm */; };
+		57373B56248649E500E14261 /* LC0105.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57373B53248649E500E14261 /* LC0105.mm */; };
+		57373B57248649E500E14261 /* LC0106.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57373B54248649E500E14261 /* LC0106.mm */; };
+		5737E7BF248484C400E14261 /* LC0669.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5737E7BE248484C400E14261 /* LC0669.mm */; };
 		574F8BD324358C9400AA7057 /* LC0077.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD224358C9400AA7057 /* LC0077.mm */; };
 		574F8BD6243592B800AA7057 /* LC0046.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD4243592B800AA7057 /* LC0046.mm */; };
 		574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */ = {isa = PBXBuildFile; fileRef = 574F8BD82435D1B800AA7057 /* LC0055.mm */; };
@@ -117,6 +121,7 @@
 		57F36A292480F5BF001A7D80 /* LC0687.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A1E2480F5BF001A7D80 /* LC0687.mm */; };
 		57F36A2A2480F5BF001A7D80 /* TreeNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A1F2480F5BF001A7D80 /* TreeNode.mm */; };
 		57F36A2B2480F5BF001A7D80 /* LC0701.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A202480F5BF001A7D80 /* LC0701.mm */; };
+		57F36A2D248127DD001A7D80 /* LC0236.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A2C248127DC001A7D80 /* LC0236.mm */; };
 		57F590872474D3150029A954 /* LC0091.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F590862474D3140029A954 /* LC0091.mm */; };
 		57F5908A2474D91E0029A954 /* LC0120.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F590882474D91D0029A954 /* LC0120.mm */; };
 		57F5908D24753D880029A954 /* LC0646.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F5908B24753D880029A954 /* LC0646.mm */; };
@@ -200,6 +205,10 @@
 		5735A2D82432CDD6007251AD /* PriorityQueueTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PriorityQueueTest.mm; sourceTree = "<group>"; };
 		5735E2852434B29E007251AD /* BinarySearchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySearchTest.h; sourceTree = "<group>"; };
 		5735E2862434B29E007251AD /* BinarySearchTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BinarySearchTest.mm; sourceTree = "<group>"; };
+		57373B52248649E500E14261 /* LC1325.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC1325.mm; sourceTree = "<group>"; };
+		57373B53248649E500E14261 /* LC0105.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0105.mm; sourceTree = "<group>"; };
+		57373B54248649E500E14261 /* LC0106.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0106.mm; sourceTree = "<group>"; };
+		5737E7BE248484C400E14261 /* LC0669.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0669.mm; sourceTree = "<group>"; };
 		574F8BD124358C9400AA7057 /* LC0077.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LC0077.h; sourceTree = "<group>"; };
 		574F8BD224358C9400AA7057 /* LC0077.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0077.mm; sourceTree = "<group>"; };
 		574F8BD4243592B800AA7057 /* LC0046.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0046.mm; sourceTree = "<group>"; };
@@ -314,6 +323,7 @@
 		57F36A1E2480F5BF001A7D80 /* LC0687.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0687.mm; sourceTree = "<group>"; };
 		57F36A1F2480F5BF001A7D80 /* TreeNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TreeNode.mm; sourceTree = "<group>"; };
 		57F36A202480F5BF001A7D80 /* LC0701.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0701.mm; sourceTree = "<group>"; };
+		57F36A2C248127DC001A7D80 /* LC0236.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0236.mm; sourceTree = "<group>"; };
 		57F590862474D3140029A954 /* LC0091.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0091.mm; sourceTree = "<group>"; };
 		57F590882474D91D0029A954 /* LC0120.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0120.mm; sourceTree = "<group>"; };
 		57F5908B24753D880029A954 /* LC0646.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0646.mm; sourceTree = "<group>"; };
@@ -693,6 +703,11 @@
 		57F36A132480F5BF001A7D80 /* 树 */ = {
 			isa = PBXGroup;
 			children = (
+				57373B53248649E500E14261 /* LC0105.mm */,
+				57373B54248649E500E14261 /* LC0106.mm */,
+				57373B52248649E500E14261 /* LC1325.mm */,
+				57F36A2C248127DC001A7D80 /* LC0236.mm */,
+				5737E7BE248484C400E14261 /* LC0669.mm */,
 				57F36A1B2480F5BF001A7D80 /* LC0101.mm */,
 				57F36A1C2480F5BF001A7D80 /* LC0111.mm */,
 				57F36A192480F5BF001A7D80 /* LC0124.mm */,
@@ -825,9 +840,11 @@
 				579345AF243A1A78008DC7FE /* LC0047.mm in Sources */,
 				577D173A23CF613A008960CA /* LC0206.mm in Sources */,
 				570C773A247BBB7800F0B708 /* ArrayTest.mm in Sources */,
+				5737E7BF248484C400E14261 /* LC0669.mm in Sources */,
 				5735A2D22432C885007251AD /* LC0239.mm in Sources */,
 				577D173D23CF613A008960CA /* LC0061.mm in Sources */,
 				576AF2F9240E43F300F2CCFD /* LC0232_MyQueue.mm in Sources */,
+				57373B56248649E500E14261 /* LC0105.mm in Sources */,
 				577D174123CF6167008960CA /* LC0146_LRUCache.mm in Sources */,
 				57E6774E24262E5300ABD968 /* LC1338.mm in Sources */,
 				574F8BD92435D1B800AA7057 /* LC0055.mm in Sources */,
@@ -844,6 +861,7 @@
 				5735644C242DF7E9007251AD /* BacktrackTest.mm in Sources */,
 				571B371F2477D02B001B4C6E /* LC0698.mm in Sources */,
 				57F8ACD2246EDCA3007AEFC6 /* LC0523.mm in Sources */,
+				57F36A2D248127DD001A7D80 /* LC0236.mm in Sources */,
 				573570D42431E924007251AD /* LC0078.mm in Sources */,
 				57C8C96323D07DA0005B649B /* DesignTest.mm in Sources */,
 				5735644B242DF7E9007251AD /* LC0037.mm in Sources */,
@@ -874,6 +892,7 @@
 				571F4C6523059F4700EF9E4D /* main.mm in Sources */,
 				571F4C6F23059FA800EF9E4D /* Class001-020.mm in Sources */,
 				57F8EB6B2472D5F0007AEFC6 /* LC0576.mm in Sources */,
+				57373B55248649E500E14261 /* LC1325.mm in Sources */,
 				57F8F76E2473C4F8007AEFC6 /* LC1049.mm in Sources */,
 				570C82CF247CFFF200F0B708 /* LC1218.mm in Sources */,
 				571B371D2477C1E8001B4C6E /* LC0688.mm in Sources */,
@@ -892,6 +911,7 @@
 				57E677352425BFC700ABD968 /* LC1054.mm in Sources */,
 				57F8F76B2473BB31007AEFC6 /* LC0064.mm in Sources */,
 				5735A2D92432CDD6007251AD /* PriorityQueueTest.mm in Sources */,
+				57373B57248649E500E14261 /* LC0106.mm in Sources */,
 				57C8C96923D17D16005B649B /* LC0155_MinStack.mm in Sources */,
 				572FDE0E2428A649002929A6 /* LC0516.mm in Sources */,
 				57E245F0247FDC89001FE375 /* LC0877.mm in Sources */,

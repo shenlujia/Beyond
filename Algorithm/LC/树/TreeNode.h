@@ -3,11 +3,6 @@
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <vector>
-
-using namespace std;
-
 #ifndef TreeNode_h
 #define TreeNode_h
 
@@ -37,6 +32,8 @@ class TreeNode
 
     int maxDepth(); // 最大深度
     void mirror();  // 镜像
+    
+    static bool equal(TreeNode *a, TreeNode *b);
 };
 
 #endif /* TreeNode_h */

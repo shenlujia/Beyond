@@ -4,6 +4,7 @@
 //
 
 #import "TreeNode.h"
+#import <list>
 
 static TreeNode *createNode(NSArray *array, NSInteger index)
 {
@@ -327,4 +328,15 @@ void TreeNode::mirror()
     if (this->right) {
         this->right->mirror();
     }
+}
+
+bool TreeNode::equal(TreeNode *a, TreeNode *b)
+{
+    if (a == NULL && b == NULL) {
+        return true;
+    }
+    if (a == NULL || b == NULL) {
+        return false;
+    }
+    return equal(a->left, b->left) && equal(a->right, b->right);
 }
