@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A97082D8F30051BF3CB25C31 /* libPods-Mix-Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F02CA4D51D015FF7C0A80DD /* libPods-Mix-Mobile.a */; };
 		B2D61E6A21E6080B00C2A96E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D61E6921E6080B00C2A96E /* AppDelegate.m */; };
 		B2D61E6D21E6080B00C2A96E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B2D61E6C21E6080B00C2A96E /* ViewController.mm */; };
 		B2D61E7021E6080B00C2A96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D61E6E21E6080B00C2A96E /* Main.storyboard */; };
@@ -27,9 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1014E1B668FE2F704459F82D /* Pods-Mix-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mix-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mix-Mobile/Pods-Mix-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		4F02CA4D51D015FF7C0A80DD /* libPods-Mix-Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mix-Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52723FE1A049058A1932E38E /* Pods-Mix-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mix-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mix-Mobile/Pods-Mix-Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		B2D61E6521E6080B00C2A96E /* Mix-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mix-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D61E6821E6080B00C2A96E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2D61E6921E6080B00C2A96E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -346,7 +343,6 @@
 				B2D61E8221E6088300C2A96E /* libbz2.tbd in Frameworks */,
 				B2D6205921E616C800C2A96E /* libpathkit.a in Frameworks */,
 				B2D61E8021E6087C00C2A96E /* libz.tbd in Frameworks */,
-				A97082D8F30051BF3CB25C31 /* libPods-Mix-Mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,8 +352,6 @@
 		85E5144B18E663E4BBFCE462 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1014E1B668FE2F704459F82D /* Pods-Mix-Mobile.debug.xcconfig */,
-				52723FE1A049058A1932E38E /* Pods-Mix-Mobile.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -917,7 +911,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2D61E7B21E6080C00C2A96E /* Build configuration list for PBXNativeTarget "Mix-Mobile" */;
 			buildPhases = (
-				179A0DBDEE6E1C9B1C01925E /* [CP] Check Pods Manifest.lock */,
 				B2D61E6121E6080B00C2A96E /* Sources */,
 				B2D61E6221E6080B00C2A96E /* Frameworks */,
 				B2D61E6321E6080B00C2A96E /* Resources */,
@@ -976,27 +969,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		179A0DBDEE6E1C9B1C01925E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Mix-Mobile-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B2D61E6121E6080B00C2A96E /* Sources */ = {
@@ -1143,7 +1115,6 @@
 		};
 		B2D61E7C21E6080C00C2A96E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1014E1B668FE2F704459F82D /* Pods-Mix-Mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1182,7 +1153,6 @@
 		};
 		B2D61E7D21E6080C00C2A96E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52723FE1A049058A1932E38E /* Pods-Mix-Mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
