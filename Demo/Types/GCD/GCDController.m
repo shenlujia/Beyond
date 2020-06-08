@@ -140,6 +140,38 @@
             NSLog(@"sync end");
         });
     }];
+    
+    [self test:@"group" tap:^(UIButton *button) {
+        dispatch_group_t group = dispatch_group_create();
+        NSLog(@"group create");
+        for (int i = 1; i < 8; ++i) {
+            dispatch_group_enter(group);
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSLog(@"group task %@ start", @(i));
+                sleep(i);
+                NSLog(@"group task %@ finish", @(i));
+                dispatch_group_leave(group);
+            });
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            NSLog(@"group notify");
+        });
+    }];
+    
+    [self test:@"semephore顺序执行" tap:^(UIButton *button) {
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        NSLog(@"semaphore create");
+        for (int i = 1; i < 8; ++i) {
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSLog(@"semaphore task %@ start", @(i));
+                sleep(1);
+                NSLog(@"semaphore task %@ finish", @(i));
+                dispatch_semaphore_signal(semaphore);
+            });
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+        NSLog(@"semaphore finish");
+    }];
 }
 
 @end

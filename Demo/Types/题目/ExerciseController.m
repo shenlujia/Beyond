@@ -348,6 +348,21 @@
     if (!libHandleIMD) {
         printf("error is %s\n", dlerror());
     }
+    
+    [self test:@"alpha测试" tap:^(UIButton *button) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+        view.backgroundColor = UIColor.redColor;
+        [self.view addSubview:view];
+        
+        NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
+        view.alpha = 0.3;
+        NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
+            [view removeFromSuperview];
+            NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
+        });
+    }];
 }
 
 @end

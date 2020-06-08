@@ -19,9 +19,15 @@
 {
     [super viewDidLoad];
     
-    [self test_c:@"AnimationController"];
+    [self test_c:@"Memory"];
     
-    [self test_c:@"AppearanceController" title:@"UIAppearance"];
+    [self test_c:@"Safety"];
+    
+    [self test_c:@"Ivar"];
+    
+    [self test_c:@"Animation"];
+    
+    [self test_c:@"Appearance" title:@"UIAppearance"];
     
     [self test_c:@"ControlController" title:@"UIControl"];
     

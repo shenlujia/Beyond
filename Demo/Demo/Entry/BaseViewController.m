@@ -63,6 +63,10 @@
 {
     Class clazz = NSClassFromString(c);
     if (!clazz) {
+        NSString *temp = [c stringByAppendingString:@"Controller"];
+        clazz = NSClassFromString(temp);
+    }
+    if (!clazz) {
         return;
     }
     if (title.length == 0) {
