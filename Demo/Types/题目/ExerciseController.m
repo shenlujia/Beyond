@@ -192,6 +192,7 @@
     }
 
     {
+        __unused NSString *wtf = @"wtf SLJ";
         Class cls = [Sark class];
         void *obj = &cls;
         [(__bridge id)obj showYourName];

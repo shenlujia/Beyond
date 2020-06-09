@@ -22,6 +22,19 @@
 
 @end
 
+@interface ScrollView : UIScrollView
+
+@end
+
+@implementation ScrollView
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+}
+
+@end
+
 @interface BaseViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -43,7 +56,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.groupTableViewBackgroundColor;
 
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView = [[ScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.scrollView];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }

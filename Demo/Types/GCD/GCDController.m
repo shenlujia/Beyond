@@ -21,6 +21,8 @@
 {
     [super viewDidLoad];
     
+    WEAKSELF;
+    
     [self test:@"sync同一个队列" tap:^(UIButton *button) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
@@ -172,6 +174,56 @@
         }
         NSLog(@"semaphore finish");
     }];
+    
+    [self test:@"子线程 performSelector case 1" tap:^(UIButton *button) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            // 虽然23不会打印 但是已经加到了runloop 没有run而已
+            // 所以执行case1后再执行case2会发生奇怪的事情
+            NSLog(@"test start");
+            [weak_self performSelector:@selector(p_test_performSelector1)];
+            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            NSLog(@"test end");
+        });
+    }];
+    
+    [self test:@"子线程 performSelector case 2" tap:^(UIButton *button) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"test start");
+            [weak_self performSelector:@selector(p_test_performSelector1)];
+            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [NSRunLoop.currentRunLoop run];
+            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            NSLog(@"test end");
+        });
+    }];
+    
+    [self test:@"子线程 performSelector case 3" tap:^(UIButton *button) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"test start");
+            [weak_self performSelector:@selector(p_test_performSelector1)];
+            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [NSRunLoop.currentRunLoop run];
+            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            [NSRunLoop.currentRunLoop run];
+            NSLog(@"test end");
+        });
+    }];
+}
+
+- (void)p_test_performSelector1
+{
+    NSLog(@"1");
+}
+
+- (void)p_test_performSelector2
+{
+    NSLog(@"2");
+}
+
+- (void)p_test_performSelector3
+{
+    NSLog(@"3");
 }
 
 @end
