@@ -41,7 +41,7 @@
      其他线程则会各自对他们对应的 Autorelease Pool 的生命周期负责。
      */
     
-    [self test:@"NSError autorelease crash" tap:^(UIButton *button) {
+    [self test:@"NSError autorelease crash" tap:^(UIButton *button, NSDictionary *userInfo) {
         /*
          某些类的方法会隐式地使用自己的 Autorelease Pool，在这种时候使用 __autoreleasing 类型要特别小心。
          比如 NSDictionary 的 enumerateKeysAndObjectsUsingBlock 方法
@@ -52,7 +52,7 @@
         [weak_self p_test_autorelease_crash:data error:&error];
     }];
     
-    [self test:@"weak autorelease" tap:^(UIButton *button) {
+    [self test:@"weak autorelease" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_self.test_obj = [[MemoryTestObj alloc] init];
         __weak id weak_obj = weak_self.test_obj;
         NSLog(@"weak = %p", weak_obj);

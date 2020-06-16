@@ -10,7 +10,7 @@
 
 #define WEAKSELF __weak typeof (self) weak_self = self
 
-typedef void (^ActionBlock)(UIButton *button);
+typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 
 @interface BaseViewController : UIViewController
 

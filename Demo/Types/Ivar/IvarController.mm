@@ -130,7 +130,7 @@ IVAR& getIvar(NSObject * object, const char * name) {
 //
 //    };
     
-    [self test:@"父类和子类相同property" tap:^(UIButton *button) {
+    [self test:@"父类和子类相同property" tap:^(UIButton *button, NSDictionary *userInfo) {
         TestIvarOne *one = [[TestIvarOne alloc] init];
         one.index = 5;
         NSLog(@"");

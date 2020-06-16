@@ -34,7 +34,7 @@ static void (^s_block_obj_1)(void) = ^(){
 {
     [super viewDidLoad];
     
-    [self test:@"static global" tap:^(UIButton *button) {
+    [self test:@"static global" tap:^(UIButton *button, NSDictionary *userInfo) {
         int local_int = 20;
 
         NSLog(@"p_static_int: %p %d", &p_static_int, p_static_int);
@@ -59,7 +59,7 @@ static void (^s_block_obj_1)(void) = ^(){
         block();
     }];
 
-    [self test:@"GlobalBlock MallocBlock StackBlock" tap:^(UIButton *button) {
+    [self test:@"GlobalBlock MallocBlock StackBlock" tap:^(UIButton *button, NSDictionary *userInfo) {
         int a = 22;
         void (^l_block_1)(void) = ^(){
             NSLog(@"l_block_1");

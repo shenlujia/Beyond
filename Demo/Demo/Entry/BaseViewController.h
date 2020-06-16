@@ -10,7 +10,9 @@
 
 #define WEAKSELF __weak typeof (self) weak_self = self
 
-typedef void (^ActionBlock)(UIButton *button);
+#define kButtonTapCountKey @"count"
+
+typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 
 @interface BaseViewController : UIViewController
 

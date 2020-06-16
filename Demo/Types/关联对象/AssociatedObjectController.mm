@@ -169,7 +169,7 @@ TestDeallocCpp1Class p_cpp_obj2;
     TestDeallocCpp1Class::shared1();
     TestDeallocCpp1Class::shared2();
 
-    [self test:@"test" tap:^(UIButton *button) {
+    [self test:@"test" tap:^(UIButton *button, NSDictionary *userInfo) {
         Test1Derived *main = [[Test1Derived alloc] init];
         //               main.cpp_obj1.name = "cpp_obj1";
         //               main.cpp_obj2.name = "cpp_obj2";

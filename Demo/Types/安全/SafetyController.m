@@ -158,7 +158,7 @@ typedef int (*ptrace_ptr_t)(int _request, pid_t _pid, caddr_t _addr, int _data);
      
      */
     
-    [self test:@"disable_gdb" tap:^(UIButton *button) {
+    [self test:@"disable_gdb" tap:^(UIButton *button, NSDictionary *userInfo) {
         // dlopen： 当path 参数为0是,他会自动查找 $LD_LIBRARY_PATH,$DYLD_LIBRARY_PATH, $DYLD_FALLBACK_LIBRARY_PATH 和 当前工作目录中的动态链接库.
         void* handle = dlopen(0, RTLD_GLOBAL | RTLD_NOW);
         ptrace_ptr_t ptrace_ptr = (ptrace_ptr_t)dlsym(handle, "ptrace");
@@ -166,12 +166,12 @@ typedef int (*ptrace_ptr_t)(int _request, pid_t _pid, caddr_t _addr, int _data);
         dlclose(handle);
     }];
     
-    [self test:@"方法使用函数指针替换" tap:^(UIButton *button) {
+    [self test:@"方法使用函数指针替换" tap:^(UIButton *button, NSDictionary *userInfo) {
         [SafetyUtilEntry shared]->isVerified();
         [SafetyUtilEntry shared]->resetPassword(@"123");
     }];
     
-    [self test:@"静态方法release会被裁剪符号" tap:^(UIButton *button) {
+    [self test:@"静态方法release会被裁剪符号" tap:^(UIButton *button, NSDictionary *userInfo) {
         /*
         如果函数属性为 static ，那么编译时该函数符号就会被解析为local符号。
         在发布release程序时（用Xcode打包编译二进制）默认会strip裁掉这些函数符号，无疑给逆向者加大了工作难度。
@@ -180,7 +180,7 @@ typedef int (*ptrace_ptr_t)(int _request, pid_t _pid, caddr_t _addr, int _data);
         __unused id kk2 = static_safety_createBtn();
     }];
     
-    [self test:@"及时擦除数据" tap:^(UIButton *button) {
+    [self test:@"及时擦除数据" tap:^(UIButton *button, NSDictionary *userInfo) {
         // 对于敏感数据，我们不希望长时间放在内存中，而希望使用完后立即就被释放掉。
         // 但是不管是ARC还是MRC，自动释放池也有轮循工作周期，我们都无法控制内存数据被擦除的准确时间，让hackers们有机可乘。
         {

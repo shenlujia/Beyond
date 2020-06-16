@@ -7,6 +7,8 @@
 //
 
 #import "GCDController.h"
+#include <mach/mach_init.h>
+#import "MacroHeader.h"
 
 @interface GCDController ()
 {
@@ -23,7 +25,45 @@
     
     WEAKSELF;
     
-    [self test:@"sync同一个队列" tap:^(UIButton *button) {
+    [self test:@"主线程不一定执行主队列 主队列不一定在主线程" tap:^(UIButton *button, NSDictionary *userInfo) {
+        static int key = 0;
+        CFStringRef context = CFSTR("main");
+        dispatch_queue_set_specific(dispatch_get_main_queue(), &key, (void *)context, (dispatch_function_t)CFRelease);
+        void (^block)(void) = ^{
+            NSLog(@"main thread: %@", @([[NSThread currentThread] isMainThread]));
+            void *name = dispatch_get_specific(&key);
+            NSLog(@"queue: %@", name);
+        };
+        
+        NSLog(@"主线程执行");
+        block();
+        PRINT_BLANK_LINE
+        
+        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"主线程sync其他线程执行");
+            block();
+            PRINT_BLANK_LINE
+        });
+        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"其他线程执行");
+            block();
+            PRINT_BLANK_LINE
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSLog(@"其他线程sync主线程");
+                block();
+                PRINT_BLANK_LINE
+            });
+        });
+        if ([userInfo[kButtonTapCountKey] integerValue] > 1) {
+            // 这个会导致主线程退出 然后主队列也会在其他线程执行
+            dispatch_main();
+        }
+        NSLog(@"case结束");
+        PRINT_BLANK_LINE
+    }];
+    
+    [self test:@"sync同一个队列" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -55,7 +95,7 @@
         });
     }];
 
-    [self test:@"使dispatch_once不执行" tap:^(UIButton *button) {
+    [self test:@"使dispatch_once不执行" tap:^(UIButton *button, NSDictionary *userInfo) {
         static dispatch_once_t onceToken = ~0l;
         dispatch_once(&onceToken, ^{
             // 不会调用
@@ -64,7 +104,7 @@
         });
     }];
 
-    [self test:@"sync 快手" tap:^(UIButton *button) {
+    [self test:@"sync 快手" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -107,7 +147,7 @@
         });
     }];
 
-    [self test:@"sync 最多三秒返回 多多" tap:^(UIButton *button) {
+    [self test:@"sync 最多三秒返回 多多" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC));
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.sync.wait", DISPATCH_QUEUE_SERIAL);
@@ -123,7 +163,7 @@
         NSLog(@"ret = %@", ret);
     }];
 
-    [self test:@"sync ???" tap:^(UIButton *button) {
+    [self test:@"sync ???" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -143,7 +183,7 @@
         });
     }];
     
-    [self test:@"group" tap:^(UIButton *button) {
+    [self test:@"group" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_group_t group = dispatch_group_create();
         NSLog(@"group create");
         for (int i = 1; i < 8; ++i) {
@@ -160,7 +200,7 @@
         });
     }];
     
-    [self test:@"semephore顺序执行" tap:^(UIButton *button) {
+    [self test:@"semephore顺序执行" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSLog(@"semaphore create");
         for (int i = 1; i < 8; ++i) {
@@ -175,7 +215,7 @@
         NSLog(@"semaphore finish");
     }];
     
-    [self test:@"子线程 performSelector case 1" tap:^(UIButton *button) {
+    [self test:@"子线程 performSelector case 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             // 虽然23不会打印 但是已经加到了runloop 没有run而已
             // 所以执行case1后再执行case2会发生奇怪的事情
@@ -187,7 +227,7 @@
         });
     }];
     
-    [self test:@"子线程 performSelector case 2" tap:^(UIButton *button) {
+    [self test:@"子线程 performSelector case 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"test start");
             [weak_self performSelector:@selector(p_test_performSelector1)];
@@ -198,7 +238,7 @@
         });
     }];
     
-    [self test:@"子线程 performSelector case 3" tap:^(UIButton *button) {
+    [self test:@"子线程 performSelector case 3" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"test start");
             [weak_self performSelector:@selector(p_test_performSelector1)];

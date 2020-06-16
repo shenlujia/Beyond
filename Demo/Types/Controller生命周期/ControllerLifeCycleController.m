@@ -64,15 +64,15 @@
 
     WEAKSELF;
 
-    [self test:@"push child" tap:^(UIButton *button) {
+    [self test:@"push child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         [weak_self.navigationController pushViewController:c animated:YES];
     }];
 
-    [self test:@"add child" tap:^(UIButton *button) {
+    [self test:@"add child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         __weak ControllerLifeCycleChildController *weak_c = c;
-        [weak_c test:@"remove child" tap:^(UIButton *button) {
+        [weak_c test:@"remove child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c removeFromParentViewController];
             [weak_c.view removeFromSuperview];
         }];
@@ -81,42 +81,42 @@
         [weak_self.view addSubview:c.view];
     }];
 
-    [self test:@"present child" tap:^(UIButton *button) {
+    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
         // iOS13+ UIModalPresentationAutomatic
         // iOS12- UIModalPresentationFullScreen
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         __weak ControllerLifeCycleChildController *weak_c = c;
-        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+        [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
         [weak_self presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button) {
+    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationFullScreen;
         __weak ControllerLifeCycleChildController *weak_c = c;
-        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+        [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
         [weak_self presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button) {
+    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationOverFullScreen;
         __weak ControllerLifeCycleChildController *weak_c = c;
-        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+        [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
         [weak_self presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button) {
+    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         __weak ControllerLifeCycleChildController *weak_c = c;
-        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+        [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
         [weak_self presentViewController:c animated:YES completion:nil];

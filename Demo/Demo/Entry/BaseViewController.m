@@ -15,10 +15,18 @@
 @property (nonatomic, copy) ActionBlock tap;
 @property (nonatomic, assign) SEL action;
 @property (nonatomic, strong) UIButton *button;
+@property (nonatomic, strong) NSMutableDictionary *userInfo;
 
 @end
 
 @implementation EntryDataModel
+
+- (instancetype)init
+{
+    self = [super init];
+    _userInfo = [NSMutableDictionary dictionary];
+    return self;
+}
 
 @end
 
@@ -86,7 +94,7 @@
         title = [c stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
     }
     WEAKSELF;
-    ActionBlock block = ^(UIButton *button) {
+    ActionBlock block = ^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *to = [[clazz alloc] init];
         [weak_self.navigationController pushViewController:to animated:YES];
     };
@@ -132,7 +140,7 @@
     }
 
     if (model.set) {
-        model.set(button);
+        model.set(button, nil);
     }
 }
 
@@ -158,8 +166,10 @@
 - (void)p_base_buttonAction:(UIButton *)button
 {
     EntryDataModel *model = self.models[button.tag];
+    NSInteger count = [model.userInfo[kButtonTapCountKey] integerValue] + 1;
+    model.userInfo[kButtonTapCountKey] = @(count);
     if (model.tap) {
-        model.tap(button);
+        model.tap(button, model.userInfo);
     }
 }
 

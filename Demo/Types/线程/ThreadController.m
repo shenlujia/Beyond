@@ -13,6 +13,8 @@ static NSInteger s_thread_int = 0;
 
 @interface ThreadController ()
 
+@property (nonatomic, strong) NSThread *thread;
+
 @end
 
 @implementation ThreadController
@@ -21,7 +23,28 @@ static NSInteger s_thread_int = 0;
 {
     [super viewDidLoad];
     
-    [self test:@"不同类型的线程安全 不加锁" tap:^(UIButton *button) {
+    WEAKSELF;
+    
+    __block CFRunLoopRef runloop = NULL;
+    self.thread = [[NSThread alloc] initWithBlock: ^{
+        runloop = NSRunLoop.currentRunLoop.getCFRunLoop;
+        [NSRunLoop.currentRunLoop addPort:[[NSMachPort alloc] init] forMode:NSRunLoopCommonModes];
+        [NSRunLoop.currentRunLoop run];
+        NSParameterAssert(0);
+    }];
+    [self.thread start];
+    
+    [self test:@"runloop" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CFRunLoopPerformBlock(runloop, NSRunLoopCommonModes, ^{
+            NSLog(@"runloop perform block 1");
+        });
+        [weak_self performSelector:@selector(p_test_runloop) onThread:weak_self.thread withObject:nil waitUntilDone:NO];
+        CFRunLoopPerformBlock(runloop, NSRunLoopCommonModes, ^{
+            NSLog(@"runloop perform block 2");
+        });
+    }];
+    
+    [self test:@"不同类型的线程安全 不加锁" tap:^(UIButton *button, NSDictionary *userInfo) {
         g_thread_int = 0;
         s_thread_int = 0;
         __block NSInteger p_local_int = 0;
@@ -36,7 +59,7 @@ static NSInteger s_thread_int = 0;
         NSLog(@"global=%@ static=%@ local=%@", @(g_thread_int), @(s_thread_int), @(p_local_int));
     }];
     
-    [self test:@"不同类型的线程安全 加锁" tap:^(UIButton *button) {
+    [self test:@"不同类型的线程安全 加锁" tap:^(UIButton *button, NSDictionary *userInfo) {
         g_thread_int = 0;
         s_thread_int = 0;
         static NSLock *lock = nil;
@@ -56,6 +79,11 @@ static NSInteger s_thread_int = 0;
         sleep(1);
         NSLog(@"global=%@ static=%@ local=%@", @(g_thread_int), @(s_thread_int), @(p_local_int));
     }];
+}
+
+- (void)p_test_runloop
+{
+    NSLog(@"p_test_runloop");
 }
 
 @end

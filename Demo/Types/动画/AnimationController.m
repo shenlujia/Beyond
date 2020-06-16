@@ -53,7 +53,7 @@ static UIColor * kRandomColor()
     self.testLayer1.backgroundColor = kRandomColor().CGColor;
     [self.testView1.layer addSublayer:self.testLayer1];
     
-    [self test:@"LayerColor" tap:^(UIButton *button) {
+    [self test:@"LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
         NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
@@ -65,7 +65,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step2 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"CATransaction + LayerColor" tap:^(UIButton *button) {
+    [self test:@"CATransaction + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
         NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
@@ -88,7 +88,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step4 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"animateWithDuration + LayerColor" tap:^(UIButton *button) {
+    [self test:@"animateWithDuration + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
         NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
@@ -111,11 +111,11 @@ static UIColor * kRandomColor()
         NSLog(@"Step4 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"ViewColor" tap:^(UIButton *button) {
+    [self test:@"ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_self.testView2.backgroundColor = kRandomColor();
     }];
     
-    [self test:@"CATransaction + ViewColor" tap:^(UIButton *button) {
+    [self test:@"CATransaction + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
         
@@ -133,7 +133,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"animateWithDuration + ViewColor" tap:^(UIButton *button) {
+    [self test:@"animateWithDuration + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
         
@@ -151,7 +151,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"断点后还会继续动画" tap:^(UIButton *button) {
+    [self test:@"断点后还会继续动画" tap:^(UIButton *button, NSDictionary *userInfo) {
         
         NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
         
@@ -171,7 +171,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
     }];
     
-    [self test:@"触摸响应位于动画末端" tap:^(UIButton *button) {
+    [self test:@"触摸响应位于动画末端" tap:^(UIButton *button, NSDictionary *userInfo) {
     }];
 }
 
