@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     
+    [self test_c:@"Thread"];
+    
     [self test_c:@"Memory"];
     
     [self test_c:@"Safety"];

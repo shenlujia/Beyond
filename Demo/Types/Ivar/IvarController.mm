@@ -25,6 +25,26 @@ IVAR& getIvar(NSObject * object, const char * name) {
     return *((IVAR *)0);
 }
 
+@interface TestIvarRoot : NSObject
+
+@property (nonatomic, assign) NSInteger index;
+
+@end
+
+@implementation TestIvarRoot
+
+@end
+
+@interface TestIvarOne : TestIvarRoot
+
+@property (nonatomic, assign) NSInteger index;
+
+@end
+
+@implementation TestIvarOne
+
+@end
+
 @interface TestIvarObj : NSObject
 
 @end
@@ -75,40 +95,46 @@ IVAR& getIvar(NSObject * object, const char * name) {
     
     // 直接用object_getIvar是获取不到基本数据类型的Ivar的，应该通过class_getInstanceVariable拿到Ivar之后，再用ivar_getOffset获取Ivar相对于实例本身的偏移。
     
-    Data * data = [[Data alloc] init];
-    // todo... 需要进一步研究
-    @try {
-        // get
-        NSLog(@"data->b_int32: %d", getIvar<int>(data, "b_int32"));
-
-        // modify
-        getIvar<int>(data, "b_int32") = 234;
-        NSLog(@"data->b_int32: %d", getIvar<int>(data, "b_int32"));
-
-        // get struct
-        NSLog(@"data->_size.height: %lf", getIvar<CGSize>(data, "_size").height);
-        NSLog(@"data->_size.width: %lf", getIvar<CGSize>(data, "_size").width);
-        NSLog(@"data->_another_size.height: %lf", getIvar<CGSize>(data, "_another_size").height);
-        NSLog(@"data->_another_size.width: %lf", getIvar<CGSize>(data, "_another_size").width);
-//        TestIvarObj *t = getIvar<TestIvarObj *>(data, "obj");
-        
-        Ivar ivar_obj = class_getInstanceVariable(object_getClass(data), "obj");
-        ptrdiff_t kkk = ivar_getOffset(ivar_obj);
-        id ooo = object_getIvar(data, ivar_obj);
-        
-        Ivar ivar_obj2 = class_getInstanceVariable(object_getClass(data), "b_int32");
-        ptrdiff_t kkk2 = ivar_getOffset(ivar_obj2);
-        id ooo2 = object_getIvar(data, ivar_obj2);
-        
-
-        // get some non-exist ivar
-        // throws
-        getIvar<int>(data, "_int32");
-    } @catch (NSException *exception) {
-        NSLog(@"exception: %@", [exception reason]);
-    } @finally {
-
-    };
+//    Data * data = [[Data alloc] init];
+//    // todo... 需要进一步研究
+//    @try {
+//        // get
+//        NSLog(@"data->b_int32: %d", getIvar<int>(data, "b_int32"));
+//
+//        // modify
+//        getIvar<int>(data, "b_int32") = 234;
+//        NSLog(@"data->b_int32: %d", getIvar<int>(data, "b_int32"));
+//
+//        // get struct
+//        NSLog(@"data->_size.height: %lf", getIvar<CGSize>(data, "_size").height);
+//        NSLog(@"data->_size.width: %lf", getIvar<CGSize>(data, "_size").width);
+//        NSLog(@"data->_another_size.height: %lf", getIvar<CGSize>(data, "_another_size").height);
+//        NSLog(@"data->_another_size.width: %lf", getIvar<CGSize>(data, "_another_size").width);
+////        TestIvarObj *t = getIvar<TestIvarObj *>(data, "obj");
+//
+//        Ivar ivar_obj = class_getInstanceVariable(object_getClass(data), "obj");
+//        ptrdiff_t kkk = ivar_getOffset(ivar_obj);
+//        id ooo = object_getIvar(data, ivar_obj);
+//
+//        Ivar ivar_obj2 = class_getInstanceVariable(object_getClass(data), "b_int32");
+//        ptrdiff_t kkk2 = ivar_getOffset(ivar_obj2);
+//        id ooo2 = object_getIvar(data, ivar_obj2);
+//
+//
+//        // get some non-exist ivar
+//        // throws
+//        getIvar<int>(data, "_int32");
+//    } @catch (NSException *exception) {
+//        NSLog(@"exception: %@", [exception reason]);
+//    } @finally {
+//
+//    };
+    
+    [self test:@"父类和子类相同property" tap:^(UIButton *button) {
+        TestIvarOne *one = [[TestIvarOne alloc] init];
+        one.index = 5;
+        NSLog(@"");
+    }];
 }
 
 @end

@@ -82,7 +82,39 @@
     }];
 
     [self test:@"present child" tap:^(UIButton *button) {
+        // iOS13+ UIModalPresentationAutomatic
+        // iOS12- UIModalPresentationFullScreen
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
+        __weak ControllerLifeCycleChildController *weak_c = c;
+        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+            [weak_c dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [weak_self presentViewController:c animated:YES completion:nil];
+    }];
+    
+    [self test:@"present child" tap:^(UIButton *button) {
+        ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
+        c.modalPresentationStyle = UIModalPresentationFullScreen;
+        __weak ControllerLifeCycleChildController *weak_c = c;
+        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+            [weak_c dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [weak_self presentViewController:c animated:YES completion:nil];
+    }];
+    
+    [self test:@"present child" tap:^(UIButton *button) {
+        ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
+        c.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        __weak ControllerLifeCycleChildController *weak_c = c;
+        [weak_c test:@"dismiss child" tap:^(UIButton *button) {
+            [weak_c dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [weak_self presentViewController:c animated:YES completion:nil];
+    }];
+    
+    [self test:@"present child" tap:^(UIButton *button) {
+        ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
+        c.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         __weak ControllerLifeCycleChildController *weak_c = c;
         [weak_c test:@"dismiss child" tap:^(UIButton *button) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];

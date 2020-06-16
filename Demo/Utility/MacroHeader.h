@@ -25,4 +25,7 @@ do { \
 } while (0);
 
 
+#define PRINT_BLANK_LINE printf("\n");
+
+
 #endif /* MacroHeader_h */

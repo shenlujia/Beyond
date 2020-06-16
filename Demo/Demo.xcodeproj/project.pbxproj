@@ -26,6 +26,7 @@
 		57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C1243DA46B002E481E /* ControllerLifeCycleController.m */; };
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
+		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		57FD50C4243DA7CB002E481E /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		57FD50C6243DB174002E481E /* AssociatedObjectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssociatedObjectController.h; sourceTree = "<group>"; };
 		57FD50C7243DB174002E481E /* AssociatedObjectController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AssociatedObjectController.mm; sourceTree = "<group>"; };
+		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
+		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +229,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				57FDA33E249700A4009D5997 /* 线程 */,
 				57418C11248DCF6900BFCAC1 /* 内存 */,
 				5741445D2489CA7B00BFCAC1 /* 安全 */,
 				57F271222487D474004BB2C0 /* Ivar */,
@@ -258,6 +262,15 @@
 				57FD50C7243DB174002E481E /* AssociatedObjectController.mm */,
 			);
 			path = "关联对象";
+			sourceTree = "<group>";
+		};
+		57FDA33E249700A4009D5997 /* 线程 */ = {
+			isa = PBXGroup;
+			children = (
+				57FDA33F249700B6009D5997 /* ThreadController.h */,
+				57FDA340249700B6009D5997 /* ThreadController.m */,
+			);
+			path = "线程";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +359,7 @@
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
+				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

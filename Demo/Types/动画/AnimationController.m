@@ -32,6 +32,10 @@ static UIColor * kRandomColor()
     
     WEAKSELF;
     
+    /*
+     隐式动画实现的背后体现了核心动画精心设计的许多机制。在layer的属性发生改变之后，会向它的代理方请求一个CAAction行为来完成后续的工作，系统允许代理方返回nil指针。一旦这么做，修改属性的工作最终移交给CATransaction处理，由修改的属性值决定是否自动生成一个CABasicAnimation。如果满足，此时隐式动画将被触发。
+     */
+    
     self.testView1 = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 64, 64)];
     [self.testView1 setTitle:@"点我1" forState:UIControlStateNormal];
     [self.view addSubview:self.testView1];

@@ -239,6 +239,36 @@
         printf("\n");
     }
     
+    [self test:@"block捕获auto 1" tap:^(UIButton *button) {
+        __block int a = 0;
+        int b = 6;
+        NSLog(@"1 a：%p a=%d", &a, a); // 栈区
+        NSLog(@"1 b：%p b=%d", &b, b); // 栈区
+        void (^foo)(void) = ^{
+            NSLog(@"block内部：a：%p a=%d", &a, a); // 堆区
+            NSLog(@"block内部：b：%p b=%d", &b, b); // 堆区
+        };
+        NSLog(@"2 a：%p a=%d", &a, a); // 堆区
+        NSLog(@"2 b：%p b=%d", &b, b); // 栈区
+        foo();
+        NSLog(@"3 a：%p a=%d", &a, a); // 堆区
+        NSLog(@"3 b：%p b=%d", &b, b); // 栈区
+    }];
+    
+    [self test:@"block捕获auto 2" tap:^(UIButton *button) {
+        __block int a = 0;
+        int b = 6;
+        NSLog(@"1 a：%p a=%d", &a, a); // 栈区
+        NSLog(@"1 b：%p b=%d", &b, b); // 栈区
+        ^{
+            a = 1;
+            NSLog(@"block内部：a：%p a=%d", &a, a); // 栈区
+            NSLog(@"block内部：b：%p b=%d", &b, b); // 栈区
+        }();
+        NSLog(@"2 a：%p a=%d", &a, a); // 堆区
+        NSLog(@"2 b：%p b=%d", &b, b); // 栈区
+    }];
+    
     [self test:@"performSelector、NSInvocation内存泄漏" tap:^(UIButton *button) {
         // ARC对于以new,copy,mutableCopy和alloc以及 以这四个单词开头的所有函数，默认认为函数返回值直接持有对象
         @autoreleasepool {
