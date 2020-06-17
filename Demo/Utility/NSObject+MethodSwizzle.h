@@ -8,6 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+static inline bool is_sel_same(const char *func, SEL _cmd)
+{
+    char buff[256] = {'\0'};
+    if (strlen(func) > 2) {
+        char* s = strstr(func, " ") + 1;
+        char* e = strstr(func, "]");
+        memcpy(buff, s, sizeof(char) * (e - s) );
+        return strcmp(buff, sel_getName(_cmd)) == 0;
+    }
+    return false;
+}
+
+#define ALERT_IF_METHOD_REPLACED \
+do { \
+  if (!is_sel_same(__PRETTY_FUNCTION__, _cmd)) { \
+    NSLog(@"is_swizzled !!!"); \
+  } \
+} while (0);
+
 extern IMP SSSwizzleMethodWithBlock(Class c, SEL originalSEL, id block);
 
 @interface NSObject (MethodSwizzle)

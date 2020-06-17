@@ -11,12 +11,32 @@
 #import <objc/runtime.h>
 #import <dlfcn.h>
 #import "NSObject+MethodSwizzle.h"
+#import "MacroHeader.h"
 
 @implementation Father
 
 - (void)dealloc
 {
     NSLog(@"~dealloc %@", self.from);
+}
+
+- (void)test_swizzle_none
+{
+    ALERT_IF_METHOD_REPLACED
+    NSLog(@"test_swizzle_none");
+}
+
+- (void)test_swizzle_orig
+{
+    ALERT_IF_METHOD_REPLACED
+    NSLog(@"test_swizzle_orig");
+}
+
+- (void)test_swizzle_alt
+{
+    ALERT_IF_METHOD_REPLACED
+    NSLog(@"test_swizzle_alt");
+    [self test_swizzle_alt];
 }
 
 - (Class)class
@@ -135,6 +155,11 @@
 
 @implementation ExerciseController
 
++ (void)load
+{
+    [Father ss_swizzleMethod:@selector(test_swizzle_orig) withMethod:@selector(test_swizzle_alt)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -158,6 +183,14 @@
         NSLog(@"===Sark instance = %@ 地址 = %p", sark, &sark);
 
         [sark showYourName];
+    }
+    
+    {
+        Father *obj = [[Father alloc] init];
+        [obj test_swizzle_none];
+        PRINT_BLANK_LINE
+        [obj test_swizzle_orig];
+        PRINT_BLANK_LINE
     }
 
     {
