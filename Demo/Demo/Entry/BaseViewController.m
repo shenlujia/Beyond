@@ -52,6 +52,11 @@
 
 @implementation BaseViewController
 
+- (void)dealloc
+{
+    NSLog(@"~%@", NSStringFromClass([self class]));
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -93,10 +98,10 @@
     if (title.length == 0) {
         title = [c stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
     }
-    WEAKSELF;
+    WEAKSELF
     ActionBlock block = ^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *to = [[clazz alloc] init];
-        [weak_self.navigationController pushViewController:to animated:YES];
+        [weak_s.navigationController pushViewController:to animated:YES];
     };
     [self p_test:title set:nil tap:block action:NULL];
 }
@@ -149,18 +154,19 @@
     for (EntryDataModel *model in self.models) {
         [model.button removeFromSuperview];
     }
+    const CGFloat spaceY = 10;
     for (NSInteger idx = 0; idx < self.models.count; ++idx) {
         EntryDataModel *model = self.models[idx];
         [self.scrollView addSubview:model.button];
         model.button.tag = idx;
-        CGRect frame = CGRectMake(10, 10, self.view.bounds.size.width, 50);
+        CGRect frame = CGRectMake(10, spaceY, self.view.bounds.size.width, 50);
         frame.size.width -= 2 * frame.origin.x;
-        frame.origin.y += idx * (frame.size.height + 10);
+        frame.origin.y += idx * (frame.size.height + spaceY);
         model.button.frame = frame;
     }
 
     CGRect frame = [[self.models.lastObject button] frame];
-    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(frame));
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(frame) + spaceY);
 }
 
 - (void)p_base_buttonAction:(UIButton *)button

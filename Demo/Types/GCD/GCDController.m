@@ -23,9 +23,9 @@
 {
     [super viewDidLoad];
     
-    WEAKSELF;
+    WEAKSELF
     
-    [self test:@"主线程不一定执行主队列 主队列不一定在主线程" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"主线程不一定执行主队列 主队列不一定在主线程" tap:^(UIButton *button, NSDictionary *userInfo) {
         static int key = 0;
         CFStringRef context = CFSTR("main");
         dispatch_queue_set_specific(dispatch_get_main_queue(), &key, (void *)context, (dispatch_function_t)CFRelease);
@@ -63,7 +63,7 @@
         PRINT_BLANK_LINE
     }];
     
-    [self test:@"sync同一个队列" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"sync同一个队列" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -95,16 +95,16 @@
         });
     }];
 
-    [self test:@"使dispatch_once不执行" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"使dispatch_once不执行" tap:^(UIButton *button, NSDictionary *userInfo) {
         static dispatch_once_t onceToken = ~0l;
         dispatch_once(&onceToken, ^{
             // 不会调用
-            NSParameterAssert(0);
+            assert(0);
             NSLog(@"onceToken设为-1后 内部判定已经执行过不会再调用");
         });
     }];
 
-    [self test:@"sync 快手" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"sync 快手" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -147,7 +147,7 @@
         });
     }];
 
-    [self test:@"sync 最多三秒返回 多多" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"sync 最多三秒返回 多多" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC));
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.sync.wait", DISPATCH_QUEUE_SERIAL);
@@ -163,7 +163,7 @@
         NSLog(@"ret = %@", ret);
     }];
 
-    [self test:@"sync ???" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"sync ???" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_queue_t queue1 = dispatch_queue_create("com.slj.1", DISPATCH_QUEUE_SERIAL);
         dispatch_queue_t queue2 = dispatch_queue_create("com.slj.2", DISPATCH_QUEUE_SERIAL);
 
@@ -183,7 +183,7 @@
         });
     }];
     
-    [self test:@"group" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"group" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_group_t group = dispatch_group_create();
         NSLog(@"group create");
         for (int i = 1; i < 8; ++i) {
@@ -200,7 +200,7 @@
         });
     }];
     
-    [self test:@"semephore顺序执行" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"semephore顺序执行" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSLog(@"semaphore create");
         for (int i = 1; i < 8; ++i) {
@@ -215,36 +215,36 @@
         NSLog(@"semaphore finish");
     }];
     
-    [self test:@"子线程 performSelector case 1" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"子线程 performSelector case 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             // 虽然23不会打印 但是已经加到了runloop 没有run而已
             // 所以执行case1后再执行case2会发生奇怪的事情
             NSLog(@"test start");
-            [weak_self performSelector:@selector(p_test_performSelector1)];
-            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
-            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            [weak_s performSelector:@selector(p_test_performSelector1)];
+            [weak_s performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [weak_s performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
             NSLog(@"test end");
         });
     }];
     
-    [self test:@"子线程 performSelector case 2" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"子线程 performSelector case 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"test start");
-            [weak_self performSelector:@selector(p_test_performSelector1)];
-            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [weak_s performSelector:@selector(p_test_performSelector1)];
+            [weak_s performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
             [NSRunLoop.currentRunLoop run];
-            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            [weak_s performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
             NSLog(@"test end");
         });
     }];
     
-    [self test:@"子线程 performSelector case 3" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"子线程 performSelector case 3" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             NSLog(@"test start");
-            [weak_self performSelector:@selector(p_test_performSelector1)];
-            [weak_self performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
+            [weak_s performSelector:@selector(p_test_performSelector1)];
+            [weak_s performSelector:@selector(p_test_performSelector2) withObject:nil afterDelay:0];
             [NSRunLoop.currentRunLoop run];
-            [weak_self performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
+            [weak_s performSelector:@selector(p_test_performSelector3) withObject:nil afterDelay:3];
             [NSRunLoop.currentRunLoop run];
             NSLog(@"test end");
         });

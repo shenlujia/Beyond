@@ -42,7 +42,7 @@
     [self.obj removeObserver:self forKeyPath:@"nake_a"];
     [self.obj removeObserver:self forKeyPath:@"nake_b"];
     //    [self.obj removeObserver:self forKeyPath:@"_nake_b"];
-    [self.obj removeObserver:self forKeyPath:@"not_exist"];
+//    [self.obj removeObserver:self forKeyPath:@"not_exist"];
 }
 
 - (void)viewDidLoad

@@ -68,10 +68,10 @@
     if (title.length == 0) {
         title = [c stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
     }
-    WEAKSELF;
+    WEAKSELF
     ActionBlock block = ^(UIButton *button) {
         UIViewController *to = [[clazz alloc] init];
-        [weak_self.navigationController pushViewController:to animated:YES];
+        [weak_s.navigationController pushViewController:to animated:YES];
     };
     [self p_test:title set:nil tap:block action:NULL];
 }
@@ -105,6 +105,7 @@
     [button setTitle:model.title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15];
+    button.titleLabel.adjustsFontSizeToFitWidth = YES;
     model.button = button;
 
     if (model.action) {

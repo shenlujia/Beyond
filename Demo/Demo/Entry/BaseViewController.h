@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define WEAKSELF __weak typeof (self) weak_self = self
+#define WEAKSELF __weak typeof (self) weak_s = self;
 
 #define kButtonTapCountKey @"count"
 

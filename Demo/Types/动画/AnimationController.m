@@ -30,7 +30,7 @@ static UIColor * kRandomColor()
 {
     [super viewDidLoad];
     
-    WEAKSELF;
+    WEAKSELF
     
     /*
      隐式动画实现的背后体现了核心动画精心设计的许多机制。在layer的属性发生改变之后，会向它的代理方请求一个CAAction行为来完成后续的工作，系统允许代理方返回nil指针。一旦这么做，修改属性的工作最终移交给CATransaction处理，由修改的属性值决定是否自动生成一个CABasicAnimation。如果满足，此时隐式动画将被触发。
@@ -53,125 +53,125 @@ static UIColor * kRandomColor()
     self.testLayer1.backgroundColor = kRandomColor().CGColor;
     [self.testView1.layer addSublayer:self.testLayer1];
     
-    [self test:@"LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
-        weak_self.testLayer1.backgroundColor = kRandomColor().CGColor;
-        weak_self.testView1.layer.backgroundColor = kRandomColor().CGColor;
+        weak_s.testLayer1.backgroundColor = kRandomColor().CGColor;
+        weak_s.testView1.layer.backgroundColor = kRandomColor().CGColor;
         
-        NSLog(@"Step2 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step2 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"CATransaction + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"CATransaction + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
         [CATransaction begin];
         [CATransaction setAnimationDuration:2];
         
-        NSLog(@"Step2 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step2 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
-        weak_self.testLayer1.backgroundColor = kRandomColor().CGColor;
-        weak_self.testView1.layer.backgroundColor = kRandomColor().CGColor;
+        weak_s.testLayer1.backgroundColor = kRandomColor().CGColor;
+        weak_s.testView1.layer.backgroundColor = kRandomColor().CGColor;
         
-        NSLog(@"Step3 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step3 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step3 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step3 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
         [CATransaction commit];
         
-        NSLog(@"Step4 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step4 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step4 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step4 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"animateWithDuration + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"animateWithDuration + LayerColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step1 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step1 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:2];
         
-        NSLog(@"Step2 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step2 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step2 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
-        weak_self.testLayer1.backgroundColor = kRandomColor().CGColor;
-        weak_self.testView1.layer.backgroundColor = kRandomColor().CGColor;
+        weak_s.testLayer1.backgroundColor = kRandomColor().CGColor;
+        weak_s.testView1.layer.backgroundColor = kRandomColor().CGColor;
         
-        NSLog(@"Step3 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step3 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step3 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step3 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
         
         [UIView commitAnimations];
         
-        NSLog(@"Step4 testView1: %@", [self.testView1 actionForLayer:self.testView1.layer forKey:@"backgroundColor"]);
-        NSLog(@"Step4 testLayer1: %@", [self.testView1 actionForLayer:self.testLayer1 forKey:@"backgroundColor"]);
+        NSLog(@"Step4 testView1: %@", [weak_s.testView1 actionForLayer:weak_s.testView1.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step4 testLayer1: %@", [weak_s.testView1 actionForLayer:weak_s.testLayer1 forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
-        weak_self.testView2.backgroundColor = kRandomColor();
+    [weak_s test:@"ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+        weak_s.testView2.backgroundColor = kRandomColor();
     }];
     
-    [self test:@"CATransaction + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"CATransaction + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step1: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
         [CATransaction begin];
         [CATransaction setAnimationDuration:2];
         
-        NSLog(@"Step2: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step2: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
-        weak_self.testView2.backgroundColor = kRandomColor();
+        weak_s.testView2.backgroundColor = kRandomColor();
         
-        NSLog(@"Step3: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step3: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
         [CATransaction commit];
         
-        NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step4: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"animateWithDuration + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"animateWithDuration + ViewColor" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step1: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:2];
         
-        NSLog(@"Step2: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step2: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
-        weak_self.testView2.backgroundColor = kRandomColor();
+        weak_s.testView2.backgroundColor = kRandomColor();
         
-        NSLog(@"Step3: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step3: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
         
         [UIView commitAnimations];
         
-        NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"backgroundColor"]);
+        NSLog(@"Step4: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"backgroundColor"]);
     }];
     
-    [self test:@"断点后还会继续动画" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"断点后还会继续动画" tap:^(UIButton *button, NSDictionary *userInfo) {
         
-        NSLog(@"Step1: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
+        NSLog(@"Step1: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:5];
         
-        NSLog(@"Step2: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
+        NSLog(@"Step2: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
         
-        CGAffineTransform t = weak_self.testView2.transform;
+        CGAffineTransform t = weak_s.testView2.transform;
         t = t.tx == 200 ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(200, 200);
-        weak_self.testView2.transform = t;
+        weak_s.testView2.transform = t;
         
-        NSLog(@"Step3: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
+        NSLog(@"Step3: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
         
         [UIView commitAnimations];
         
-        NSLog(@"Step4: %@", [self.testView2 actionForLayer:self.testView2.layer forKey:@"transform"]);
+        NSLog(@"Step4: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
     }];
     
-    [self test:@"触摸响应位于动画末端" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"触摸响应位于动画末端" tap:^(UIButton *button, NSDictionary *userInfo) {
     }];
 }
 

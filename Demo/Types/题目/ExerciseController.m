@@ -164,7 +164,7 @@
 {
     [super viewDidLoad];
     
-    WEAKSELF;
+    WEAKSELF
 
     {
         NSLog(@"ViewController = %@ , 地址 = %p", self, &self);
@@ -272,7 +272,7 @@
         printf("\n");
     }
     
-    [self test:@"block捕获auto 1" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"block捕获auto 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         __block int a = 0;
         int b = 6;
         NSLog(@"1 a：%p a=%d", &a, a); // 栈区
@@ -288,7 +288,7 @@
         NSLog(@"3 b：%p b=%d", &b, b); // 栈区
     }];
     
-    [self test:@"block捕获auto 2" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"block捕获auto 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         __block int a = 0;
         int b = 6;
         NSLog(@"1 a：%p a=%d", &a, a); // 栈区
@@ -302,7 +302,7 @@
         NSLog(@"2 b：%p b=%d", &b, b); // 栈区
     }];
     
-    [self test:@"performSelector、NSInvocation内存泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"performSelector、NSInvocation内存泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
         // ARC对于以new,copy,mutableCopy和alloc以及 以这四个单词开头的所有函数，默认认为函数返回值直接持有对象
         @autoreleasepool {
             NSLog(@"performSelector createObject");
@@ -355,18 +355,18 @@
         printf("\n");
     }];
 
-    self.queue = [[NSOperationQueue alloc] init];
-    self.queue.maxConcurrentOperationCount = 1;
-    self.gcd_queue = dispatch_queue_create("gcd", NULL);
-    [self test:@"队列线程" tap:^(UIButton *button, NSDictionary *userInfo) {
-        [self.queue addOperationWithBlock:^{
+    weak_s.queue = [[NSOperationQueue alloc] init];
+    weak_s.queue.maxConcurrentOperationCount = 1;
+    weak_s.gcd_queue = dispatch_queue_create("gcd", NULL);
+    [weak_s test:@"队列线程" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [weak_s.queue addOperationWithBlock:^{
             NSThread *t = [NSThread currentThread];
             if (t.name.length == 0) {
                 t.name = @"ns_queue";
             }
             NSLog(@"thread: %@", t);
         }];
-        dispatch_async(self.gcd_queue, ^{
+        dispatch_async(weak_s.gcd_queue, ^{
             NSThread *t = [NSThread currentThread];
             if (t.name.length == 0) {
                 t.name = @"gcd_queue";
@@ -375,8 +375,8 @@
         });
     }];
 
-    [self test:@"SEL" tap:^(UIButton *button, NSDictionary *userInfo) {
-        __strong typeof (weak_self) strong_self = weak_self;
+    [weak_s test:@"SEL" tap:^(UIButton *button, NSDictionary *userInfo) {
+        __strong typeof (weak_s) strong_self = weak_s;
         
         const char *name = [NSString stringWithFormat:@"%@%@", @"viewWillLayoutSubview", @"s"].UTF8String;
         SEL sel = sel_registerName(name);
@@ -413,10 +413,10 @@
         printf("error is %s\n", dlerror());
     }
     
-    [self test:@"alpha测试" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"alpha测试" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
         view.backgroundColor = UIColor.redColor;
-        [self.view addSubview:view];
+        [weak_s.view addSubview:view];
         
         NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
         view.alpha = 0.3;

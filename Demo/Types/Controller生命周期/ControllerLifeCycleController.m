@@ -62,11 +62,11 @@
     [super viewDidLoad];
     self.title = @"parent";
 
-    WEAKSELF;
+    WEAKSELF
 
     [self test:@"push child" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
-        [weak_self.navigationController pushViewController:c animated:YES];
+        [weak_s.navigationController pushViewController:c animated:YES];
     }];
 
     [self test:@"add child" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -77,8 +77,8 @@
             [weak_c.view removeFromSuperview];
         }];
 
-        [weak_self addChildViewController:c];
-        [weak_self.view addSubview:c.view];
+        [weak_s addChildViewController:c];
+        [weak_s.view addSubview:c.view];
     }];
 
     [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -89,7 +89,7 @@
         [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
-        [weak_self presentViewController:c animated:YES completion:nil];
+        [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
     [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -99,7 +99,7 @@
         [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
-        [weak_self presentViewController:c animated:YES completion:nil];
+        [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
     [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -109,7 +109,7 @@
         [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
-        [weak_self presentViewController:c animated:YES completion:nil];
+        [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
     [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -119,7 +119,7 @@
         [weak_c test:@"dismiss child" tap:^(UIButton *button, NSDictionary *userInfo) {
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
-        [weak_self presentViewController:c animated:YES completion:nil];
+        [weak_s presentViewController:c animated:YES completion:nil];
     }];
 }
 
