@@ -11,6 +11,7 @@
 #import "MacroHeader.h"
 #import "NSObject+Dealloc.h"
 #import <mach/mach.h>
+#import "SDWebImageDecoder.h"
 
 @interface MemoryTestObj : NSObject
 {
@@ -59,14 +60,27 @@ static void *s_leakObj = NULL;
     
     WEAKSELF
     
-    [self test:@"Profile Leaks 能检测泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
+    /*
+     CG内存不会显示在debug navigator里面
+     text内存一般为1M maskToBounds、attributedText、textColor无关；如果有透明度的背景色，2M(老版本4M)
+     */
+    
+    [self test:@"Profile Leaks 能检测泄漏 1" tap:^(UIButton *button, NSDictionary *userInfo) {
+        int size = 1024 * 1024;
+        void *p = malloc(size);
+        SS_MAIN_DELAY(10, ^{
+            memset(p, 1, size / 10);
+        });
+    }];
+    
+    [self test:@"Profile Leaks 能检测泄漏 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         MemoryTestObj *leakObj1 = [MemoryTestObj new];
         MemoryTestObj *leakObj2 = [MemoryTestObj new];
         leakObj1.leak_obj = leakObj2;
         leakObj2.leak_obj = leakObj1;
     }];
     
-    [self test:@"Profile Leaks 不能检测泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"Profile Leaks 不能检测泄漏 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         MemoryTestObj *leakObj1 = [MemoryTestObj new];
         MemoryTestObj *leakObj2 = [MemoryTestObj new];
         leakObj1.leak_obj = leakObj2;
@@ -74,26 +88,103 @@ static void *s_leakObj = NULL;
         s_leakObj = (__bridge void *)(leakObj1);
     }];
     
-    [self test:@"Profile Leaks 不能检测泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"Profile Leaks 不能检测泄漏 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         [weak_s p_test_fail_check_leak];
     }];
     
-    [self test:@"Profile Allocations image" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"text nobkg CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CGFloat scale = UIScreen.mainScreen.scale;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
+        label.text = @"WTF";
+        label.textColor = [UIColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:0.6];
+        [weak_s.view addSubview:label];
+    }];
+    
+    [self test:@"text bkg CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CGFloat scale = UIScreen.mainScreen.scale;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
+        label.text = @"WTF";
+        label.alpha = 0.5;
+        [weak_s.view addSubview:label];
+    }];
+    
+    [self test:@"text alpha CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CGFloat scale = UIScreen.mainScreen.scale;
+        UILabel *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
+        view.text = @"WTF";
+        view.alpha = 0.5;
+        [weak_s.view addSubview:view];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
+        })
+    }];
+    
+    [self test:@"text bkg_alpha CA+2M(老版本4M)" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CGFloat scale = UIScreen.mainScreen.scale;
+        UILabel *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
+        view.text = @"WTF";
+        view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.1];
+        [weak_s.view addSubview:view];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
+        })
+    }];
+    
+    [self test:@"text clip CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        CGFloat scale = UIScreen.mainScreen.scale;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
+        label.text = @"WTF";
+        label.layer.cornerRadius = 5;
+        label.clipsToBounds = YES;
+        [weak_s.view addSubview:label];
+    }];
+    
+    [self test:@"image只加载 +0M" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
         __block UIImage *obj = [UIImage imageWithContentsOfFile:path];
-        SS_MAIN_DELAY(100, ^{
+        SS_MAIN_DELAY(20, ^{
             obj = nil;
         })
     }];
     
-    [self test:@"Profile Allocations imageView" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"image提前解码 CG+4M" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
-        UIImage *obj = [UIImage imageWithContentsOfFile:path];
+        UIImage *temp = [UIImage imageWithContentsOfFile:path];
+        __block UIImage *obj = [UIImage decodedImageWithImage:temp];
+        SS_MAIN_DELAY(20, ^{
+            obj = nil;
+        })
+    }];
+    
+    [self test:@"image提前解码+显示 CG+4M CA+4M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        UIImage *temp = [UIImage imageWithContentsOfFile:path];
+        UIImage *obj = [UIImage decodedImageWithImage:temp];
         UIImageView *view = [[UIImageView alloc] initWithImage:obj];
         view.frame = CGRectMake(100, 100, 100, 100);
         [weak_s.view addSubview:view];
-        SS_MAIN_DELAY(20, ^{
-            [view removeFromSuperview];
+    }];
+    
+    [self test:@"image显示 新版本会缓存(ImageIO+4M) CA+4M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        UIImage *obj = [UIImage imageWithContentsOfFile:path];
+        UIImageView *view = [[UIImageView alloc] initWithImage:obj];
+        view.frame = CGRectMake(100, 100, 10, 10);
+        [weak_s.view addSubview:view];
+    }];
+    
+    [self test:@"image显示 缓存和path无关和内容有关(ImageIO+4M) CA+4M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSString *to_path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        to_path = [to_path stringByAppendingPathComponent:NSDate.date.description];
+        [data writeToFile:to_path atomically:YES];
+        UIImage *obj = [UIImage imageWithContentsOfFile:to_path];
+        UIImageView *view = [[UIImageView alloc] initWithImage:obj];
+        view.frame = CGRectMake(100, 100, 10, 10);
+        [weak_s.view addSubview:view];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
         })
     }];
     

@@ -20,6 +20,7 @@
 		57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */; };
 		57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB889F249E5D380093433B /* NSObject+Dealloc.m */; };
 		57FB88A2249EDD3C0093433B /* memory_test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57FB88A1249EDD3C0093433B /* memory_test_1.jpg */; };
+		57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB942C24A0722A0093433B /* SDWebImageDecoder.m */; };
 		57FD50A8243DA263002E481E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A7243DA263002E481E /* Assets.xcassets */; };
 		57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A9243DA263002E481E /* LaunchScreen.storyboard */; };
 		57FD50BA243DA3F0002E481E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B6243DA3EF002E481E /* ViewController.m */; };
@@ -58,6 +59,8 @@
 		57FB889E249E5D380093433B /* NSObject+Dealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dealloc.h"; sourceTree = "<group>"; };
 		57FB889F249E5D380093433B /* NSObject+Dealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dealloc.m"; sourceTree = "<group>"; };
 		57FB88A1249EDD3C0093433B /* memory_test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = memory_test_1.jpg; sourceTree = "<group>"; };
+		57FB942B24A0722A0093433B /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		57FB942C24A0722A0093433B /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
 		57FD5098243DA25F002E481E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FD50AA243DA263002E481E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -183,10 +186,12 @@
 			isa = PBXGroup;
 			children = (
 				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
-				57F89438246E3A6B007AEFC6 /* NSObject+MethodSwizzle.h */,
-				57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */,
 				57FB889E249E5D380093433B /* NSObject+Dealloc.h */,
 				57FB889F249E5D380093433B /* NSObject+Dealloc.m */,
+				57F89438246E3A6B007AEFC6 /* NSObject+MethodSwizzle.h */,
+				57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */,
+				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
+				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
+				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
