@@ -25,6 +25,8 @@ static NSInteger s_thread_int = 0;
     
     WEAKSELF
     
+    [self test_c:@"ThreadPipe" title:@"NSPipe只能传递流式的数据 通过文件可以跨进程通信"];
+    
     __block CFRunLoopRef runloop = NULL;
     weak_s.thread = [[NSThread alloc] initWithBlock:^{
         runloop = NSRunLoop.currentRunLoop.getCFRunLoop;

@@ -47,6 +47,7 @@
 
 @property (atomic, strong) NSObject *test_obj;
 @property (nonatomic, strong) MemoryTestObj *leak_test_obj;
+@property (nonatomic, strong) UILabel *label;
 
 @end
 
@@ -60,10 +61,19 @@ static void *s_leakObj = NULL;
     
     WEAKSELF
     
+    weak_s.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+    [weak_s.view addSubview:weak_s.label];
+    weak_s.label.textAlignment = NSTextAlignmentCenter;
+    weak_s.label.numberOfLines = -1;
+    weak_s.label.textColor = UIColor.redColor;
+    [weak_s p_printMempry];
+    
     /*
      CG内存不会显示在debug navigator里面
      text内存一般为1M maskToBounds、attributedText、textColor无关；如果有透明度的背景色，2M(老版本4M)
      */
+    
+    [self test:nil tap:nil];
     
     [self test:@"Profile Leaks 能检测泄漏 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         int size = 1024 * 1024;
@@ -188,14 +198,14 @@ static void *s_leakObj = NULL;
         })
     }];
     
-    [self test:@"Profile Allocations malloc" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"malloc 1M" tap:^(UIButton *button, NSDictionary *userInfo) {
         void *p = malloc(1024 * 1024);
         SS_MAIN_DELAY(5, ^{
             free(p);
         });
     }];
     
-    [self test:@"Profile Allocations new" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"new 1M" tap:^(UIButton *button, NSDictionary *userInfo) {
         int len = 1024 * 1024;
         void *p = malloc(len);
         __block NSData *data = [NSData dataWithBytesNoCopy:p length:len];
@@ -204,7 +214,7 @@ static void *s_leakObj = NULL;
         })
     }];
     
-    [self test:@"Profile Allocations 分配虚拟内存" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"vm_deallocate 100M use 10M" tap:^(UIButton *button, NSDictionary *userInfo) {
         vm_address_t address;
         vm_size_t size = 100 * 1024 * 1024;
         kern_return_t ret = vm_allocate((vm_map_t)mach_task_self(), &address, size, VM_MAKE_TAG(200) | VM_FLAGS_ANYWHERE);
@@ -282,6 +292,44 @@ static void *s_leakObj = NULL;
     if (error) {
         *error = temp;
     }
+}
+
+- (void)p_printMempry
+{
+    WEAKSELF
+    weak_s.label.text = [self getUsedMemory];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weak_s p_printMempry];
+    });
+}
+
+- (int64_t)memoryPhysFootprint
+{
+    task_vm_info_data_t vmInfo;
+    mach_msg_type_number_t count = TASK_VM_INFO_COUNT;
+    kern_return_t ret = task_info(mach_task_self(), TASK_VM_INFO, (task_info_t)&vmInfo, &count);
+    if (ret != KERN_SUCCESS) {
+        return 0;
+    }
+    return vmInfo.phys_footprint;
+}
+
+- (NSString *)getUsedMemory
+{
+    struct mach_task_basic_info info;
+    mach_msg_type_number_t size = MACH_TASK_BASIC_INFO_COUNT;
+    kern_return_t kerr = task_info(mach_task_self(),
+                                   MACH_TASK_BASIC_INFO,
+                                   (task_info_t)&info,
+                                   &size);
+    if (kerr != KERN_SUCCESS) {
+        return nil;
+    }
+    
+    CGFloat resident_size = 1.0 * info.resident_size / 1024 / 1024;
+    CGFloat virtual_size = 1.0 * info.virtual_size / 1024 / 1024;
+    CGFloat phys_footprint = 1.0 * [self memoryPhysFootprint] / 1024 / 1024;
+    return [NSString stringWithFormat:@"virtual[%.1f] resident[%.1f] phys[%.1f]", virtual_size, resident_size, phys_footprint];
 }
 
 @end
