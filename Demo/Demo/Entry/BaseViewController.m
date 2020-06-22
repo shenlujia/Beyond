@@ -135,6 +135,7 @@
     [button setTitle:model.title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15];
+    button.titleLabel.numberOfLines = 0;
     model.button = button;
 
     if (model.action) {

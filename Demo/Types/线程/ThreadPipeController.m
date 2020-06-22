@@ -11,9 +11,8 @@
 @interface SystemLogHooker : NSObject
 
 @property (nonatomic, strong) void (^callback)(NSString *text);
-
 @property (nonatomic, strong, readonly) NSPipe *pipe;
-@property (nonatomic, assign, readonly) int saved;
+@property (nonatomic, assign, readonly) int old;
 
 @end
 
@@ -21,10 +20,8 @@
 
 - (void)dealloc
 {
-    NSPipe *pipe = self.pipe;
-//    close(pipe.fileHandleForWriting.fileDescriptor);
-    dup2(_saved, fileno(stderr));
     NSLog(@"~%@", NSStringFromClass([self class]));
+    [self close];
 }
 
 - (instancetype)init
@@ -34,10 +31,11 @@
         NSPipe *pipe = [NSPipe pipe];
         _pipe = pipe;
         
-        _saved = dup2(pipe.fileHandleForWriting.fileDescriptor, fileno(stderr));
+        _old = dup(fileno(stderr));
+        dup2(pipe.fileHandleForWriting.fileDescriptor, fileno(stderr));
         
         [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(redirectNotificationHandle:)
+                                               selector:@selector(fileHandleReadCompletion:)
                                                    name:NSFileHandleReadCompletionNotification
                                                  object:pipe.fileHandleForReading];
         [pipe.fileHandleForReading readInBackgroundAndNotify];
@@ -45,10 +43,13 @@
     return self;
 }
 
-- (void)redirectNotificationHandle:(NSNotification *)n
+- (void)fileHandleReadCompletion:(NSNotification *)n
 {
+    NSString *text = nil;
     NSData *data = n.userInfo[NSFileHandleNotificationDataItem];
-    NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (data.length) {
+        text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
     if (self.callback) {
         self.callback(text);
     }
@@ -57,7 +58,8 @@
 
 - (void)close
 {
-    
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+    dup2(_old, fileno(stderr));
 }
 
 @end
@@ -71,26 +73,21 @@
 
 @implementation ThreadPipeController
 
-- (void)dealloc
-{
-    self.hooker;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     WEAKSELF
     
-    CGRect frame = self.view.bounds;
+    CGRect frame = weak_s.view.bounds;
     frame.size.height /= 3;
-    frame.origin.y = self.view.bounds.size.height - frame.size.height;
-    self.textView = [[UITextView alloc] initWithFrame:frame];
-    [self.view addSubview:self.textView];
-    self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    frame.origin.y = weak_s.view.bounds.size.height - frame.size.height;
+    weak_s.textView = [[UITextView alloc] initWithFrame:frame];
+    [weak_s.view addSubview:weak_s.textView];
+    weak_s.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    self.hooker = [[SystemLogHooker alloc] init];
-    self.hooker.callback = ^(NSString *text) {
+    weak_s.hooker = [[SystemLogHooker alloc] init];
+    weak_s.hooker.callback = ^(NSString *text) {
         text = text ?: @"";
         [weak_s.textView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:text]];
         NSRange range;
@@ -99,9 +96,14 @@
         [weak_s.textView scrollRangeToVisible:range];
     };
     
-    [self test:@"log" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"log" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSLog(@"%@", NSDate.date);
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.hooker close];
 }
 
 @end
