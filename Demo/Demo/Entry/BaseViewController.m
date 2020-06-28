@@ -8,6 +8,34 @@
 
 #import "BaseViewController.h"
 
+@interface NaviItemModel : NSObject
+
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) ActionBlock tap;
+@property (nonatomic, strong) NSMutableDictionary *userInfo;
+
+@end
+
+@implementation NaviItemModel
+
+- (instancetype)init
+{
+    self = [super init];
+    _userInfo = [NSMutableDictionary dictionary];
+    return self;
+}
+
+- (void)tapAction
+{
+    NSInteger count = [self.userInfo[kButtonTapCountKey] integerValue] + 1;
+    self.userInfo[kButtonTapCountKey] = @(count);
+    if (self.tap) {
+        self.tap(nil, self.userInfo);
+    }
+}
+
+@end
+
 @interface EntryDataModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
@@ -46,6 +74,7 @@
 @interface BaseViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSMutableArray *naviItems;
 @property (nonatomic, strong) NSMutableArray *models;
 
 @end
@@ -60,6 +89,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.naviItems = [NSMutableArray array];
     self.models = [NSMutableArray array];
     return self;
 }
@@ -78,6 +108,28 @@
 {
     [super viewDidLayoutSubviews];
     [self reloadData];
+}
+
+- (void)add_navi_right_item:(NSString *)title tap:(ActionBlock)tap
+{
+    if (title.length == 0 || !tap) {
+        return;
+    }
+    NaviItemModel *object = [[NaviItemModel alloc] init];
+    object.title = title;
+    object.tap = tap;
+    [self.naviItems addObject:object];
+    
+    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
+    for (NaviItemModel *obj in self.naviItems) {
+        UIBarButtonItem *item = nil;
+        item = [[UIBarButtonItem alloc] initWithTitle:obj.title
+                                                style:UIBarButtonItemStylePlain
+                                               target:object
+                                               action:@selector(tapAction)];
+        [rightBarButtonItems addObject:item];
+    }
+    self.navigationItem.rightBarButtonItems = rightBarButtonItems;
 }
 
 - (void)test_c:(NSString *)c

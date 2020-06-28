@@ -61,6 +61,11 @@ static void *s_leakObj = NULL;
     
     WEAKSELF
     
+    [self add_navi_right_item:@"push" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIViewController *c = [[MemoryController alloc] init];
+        [weak_s.navigationController pushViewController:c animated:YES];
+    }];
+
     weak_s.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
     [weak_s.view addSubview:weak_s.label];
     weak_s.label.textAlignment = NSTextAlignmentCenter;
@@ -191,8 +196,9 @@ static void *s_leakObj = NULL;
         [data writeToFile:to_path atomically:YES];
         UIImage *obj = [UIImage imageWithContentsOfFile:to_path];
         UIImageView *view = [[UIImageView alloc] initWithImage:obj];
-        view.frame = CGRectMake(100, 100, 10, 10);
+        view.frame = CGRectMake(100, 100, 10000, 10000);
         [weak_s.view addSubview:view];
+        view.alpha = 0.3;
         SS_MAIN_DELAY(1, ^{
             NSLog(@"%@", view.layer.contents);
         })

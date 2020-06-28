@@ -16,6 +16,8 @@ typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 
 @interface BaseViewController : UIViewController
 
+- (void)add_navi_right_item:(NSString *)title tap:(ActionBlock)tap;
+
 - (void)test_c:(NSString *)c;
 
 - (void)test_c:(NSString *)c title:(NSString *)title;
