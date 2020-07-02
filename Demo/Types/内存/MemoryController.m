@@ -13,6 +13,27 @@
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
 
+static UIColor * kRandomColor()
+{
+    CGFloat r = (arc4random() % 256) / 255.0;
+    CGFloat g = (arc4random() % 256) / 255.0;
+    CGFloat b = (arc4random() % 256) / 255.0;
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+}
+
+@interface MemoryDrawRectView : UIView
+
+@end
+
+@implementation MemoryDrawRectView
+
+- (void)drawRect:(CGRect)rect
+{
+    
+}
+
+@end
+
 @interface MemoryTestObj : NSObject
 {
     NSInteger a[1024];
@@ -60,6 +81,7 @@ static void *s_leakObj = NULL;
     [super viewDidLoad];
     
     WEAKSELF
+    const CGFloat scale = UIScreen.mainScreen.scale;
     
     [self add_navi_right_item:@"push" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[MemoryController alloc] init];
@@ -146,7 +168,6 @@ static void *s_leakObj = NULL;
     }];
     
     [self test:@"text clip CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
-        CGFloat scale = UIScreen.mainScreen.scale;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
         label.text = @"WTF";
         label.layer.cornerRadius = 5;
@@ -204,34 +225,74 @@ static void *s_leakObj = NULL;
         })
     }];
     
-    [self test:@"malloc 1M" tap:^(UIButton *button, NSDictionary *userInfo) {
-        void *p = malloc(1024 * 1024);
-        SS_MAIN_DELAY(5, ^{
-            free(p);
-        });
-    }];
-    
-    [self test:@"new 1M" tap:^(UIButton *button, NSDictionary *userInfo) {
-        int len = 1024 * 1024;
-        void *p = malloc(len);
-        __block NSData *data = [NSData dataWithBytesNoCopy:p length:len];
-        SS_MAIN_DELAY(5, ^{
-            data = nil;
+    [self test:@"无drawRect 有背景色 0M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 1024 / scale, 1024 / scale)];
+        view.backgroundColor = [kRandomColor() colorWithAlphaComponent:0.1];
+        [weak_s.view addSubview:view];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
         })
     }];
     
-    [self test:@"vm_deallocate 100M use 10M" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"有drawRect 无背景色 0M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = [[MemoryDrawRectView alloc] initWithFrame:CGRectMake(100, 100, 1024 / scale, 1024 / scale)];
+        [weak_s.view addSubview:view];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
+        })
+    }];
+    
+    [self test:@"有drawRect 有背景色 4M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = [[MemoryDrawRectView alloc] initWithFrame:CGRectMake(100, 100, 1024 / scale, 1024 / scale)];
+        [weak_s.view addSubview:view];
+        view.backgroundColor = kRandomColor();
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
+        })
+    }];
+    
+    [self test:@"有drawRect 有alpha背景色 1M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = [[MemoryDrawRectView alloc] initWithFrame:CGRectMake(100, 100, 1024 / scale, 1024 / scale)];
+        [weak_s.view addSubview:view];
+        view.backgroundColor = [kRandomColor() colorWithAlphaComponent:0.1];
+        SS_MAIN_DELAY(1, ^{
+            NSLog(@"%@", view.layer.contents);
+        })
+    }];
+    
+    [self test:@"malloc 100M 裸读10M 写10M 实际占用20M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        int len = 100 * 1024 * 1024;
+        void *address = malloc(len);
+        // Resident=0  dirty=0  VirtualSize=100M  物理内存不占用
+        SS_MAIN_DELAY(5, ^{
+            // Resident=10M  dirty=10M  VirtualSize=100M  裸读10M 写10M 实际占用20M
+            for (int i = 0; i < 10 * 1024 * 1024; ++i) {
+                *((char *)address + i) = 0xab;
+            }
+            for (int i = 10 * 1024 * 1024; i < 20 * 1024 * 1024; ++i) {
+              __unused int v = *((char *)address + i);
+            }
+            SS_MAIN_DELAY(5, ^{
+                free(address);
+            })
+        })
+    }];
+    
+    [self test:@"vm_deallocate 100M 裸读10M 写10M 实际占用20M" tap:^(UIButton *button, NSDictionary *userInfo) {
         vm_address_t address;
         vm_size_t size = 100 * 1024 * 1024;
         kern_return_t ret = vm_allocate((vm_map_t)mach_task_self(), &address, size, VM_MAKE_TAG(200) | VM_FLAGS_ANYWHERE);
         assert(ret == 0);
         // Resident=0  dirty=0  VirtualSize=100M  物理内存不占用
-        SS_MAIN_DELAY(10, ^{
-            // Resident=10M  dirty=10M  VirtualSize=100M  写了10M 实际占用10M
+        SS_MAIN_DELAY(5, ^{
+            // Resident=10M  dirty=10M  VirtualSize=100M  裸读10M 写10M 实际占用20M
             for (int i = 0; i < 10 * 1024 * 1024; ++i) {
-              *((char *)address + i) = 0xab;
+                *((char *)address + i) = 0xab;
             }
-            SS_MAIN_DELAY(10, ^{
+            for (int i = 10 * 1024 * 1024; i < 20 * 1024 * 1024; ++i) {
+              __unused int v = *((char *)address + i);
+            }
+            SS_MAIN_DELAY(5, ^{
                 vm_deallocate((vm_map_t)mach_task_self(), address, size);
             })
         })
