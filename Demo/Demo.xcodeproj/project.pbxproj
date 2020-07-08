@@ -13,6 +13,11 @@
 		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
+		57CDBA8524B48E0800F9856F /* KVCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDBA8424B48E0800F9856F /* KVCController.m */; };
+		57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDE89024B5626B00F9856F /* RunLoopController.m */; };
+		57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF41C24B56A3E00F9856F /* TimerController.m */; };
+		57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF41F24B56A6000F9856F /* GCDTimer.m */; };
+		57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF42224B56AA100F9856F /* NSTimer+SS.m */; };
 		57D44F67244D9DF100871A34 /* KVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F66244D9DF100871A34 /* KVOController.m */; };
 		57D44F6B244DA92200871A34 /* ControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F6A244DA92200871A34 /* ControlController.m */; };
 		57D4684124502B9A00871A34 /* AppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4684024502B9A00871A34 /* AppearanceController.m */; };
@@ -47,6 +52,16 @@
 		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
 		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
 		5774CB1E2441789F00C7A59E /* ExerciseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseController.m; sourceTree = "<group>"; };
+		57CDBA8324B48E0800F9856F /* KVCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCController.h; sourceTree = "<group>"; };
+		57CDBA8424B48E0800F9856F /* KVCController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCController.m; sourceTree = "<group>"; };
+		57CDE88F24B5626B00F9856F /* RunLoopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopController.h; sourceTree = "<group>"; };
+		57CDE89024B5626B00F9856F /* RunLoopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopController.m; sourceTree = "<group>"; };
+		57CDF41B24B56A3E00F9856F /* TimerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerController.h; sourceTree = "<group>"; };
+		57CDF41C24B56A3E00F9856F /* TimerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerController.m; sourceTree = "<group>"; };
+		57CDF41E24B56A6000F9856F /* GCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
+		57CDF41F24B56A6000F9856F /* GCDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
+		57CDF42124B56AA100F9856F /* NSTimer+SS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+SS.h"; sourceTree = "<group>"; };
+		57CDF42224B56AA100F9856F /* NSTimer+SS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+SS.m"; sourceTree = "<group>"; };
 		57D44F65244D9DF100871A34 /* KVOController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOController.h; sourceTree = "<group>"; };
 		57D44F66244D9DF100871A34 /* KVOController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOController.m; sourceTree = "<group>"; };
 		57D44F69244DA92200871A34 /* ControlController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlController.h; sourceTree = "<group>"; };
@@ -152,6 +167,37 @@
 			path = GCD;
 			sourceTree = "<group>";
 		};
+		57CDBA8224B48DF700F9856F /* KVC */ = {
+			isa = PBXGroup;
+			children = (
+				57CDBA8324B48E0800F9856F /* KVCController.h */,
+				57CDBA8424B48E0800F9856F /* KVCController.m */,
+			);
+			path = KVC;
+			sourceTree = "<group>";
+		};
+		57CDE88E24B5625000F9856F /* RunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				57CDE88F24B5626B00F9856F /* RunLoopController.h */,
+				57CDE89024B5626B00F9856F /* RunLoopController.m */,
+			);
+			path = RunLoop;
+			sourceTree = "<group>";
+		};
+		57CDF41A24B56A3200F9856F /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				57CDF41B24B56A3E00F9856F /* TimerController.h */,
+				57CDF41C24B56A3E00F9856F /* TimerController.m */,
+				57CDF41E24B56A6000F9856F /* GCDTimer.h */,
+				57CDF41F24B56A6000F9856F /* GCDTimer.m */,
+				57CDF42124B56AA100F9856F /* NSTimer+SS.h */,
+				57CDF42224B56AA100F9856F /* NSTimer+SS.m */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		57D44F64244D9DE500871A34 /* KVO */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +294,9 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				57CDF41A24B56A3200F9856F /* Timer */,
+				57CDE88E24B5625000F9856F /* RunLoop */,
+				57CDBA8224B48DF700F9856F /* KVC */,
 				57FDA33E249700A4009D5997 /* 线程 */,
 				57418C11248DCF6900BFCAC1 /* 内存 */,
 				5741445D2489CA7B00BFCAC1 /* 安全 */,
@@ -366,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */,
 				57FD50BB243DA3F0002E481E /* main.m in Sources */,
 				57D4684124502B9A00871A34 /* AppearanceController.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
@@ -375,6 +425,7 @@
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				57D44F6B244DA92200871A34 /* ControlController.m in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
+				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
@@ -388,6 +439,9 @@
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
+				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,
+				57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */,
+				57CDBA8524B48E0800F9856F /* KVCController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,12 @@
 {
     [super viewDidLoad];
     
+    [self test_c:@"Timer"];
+    
+    [self test_c:@"RunLoop"];
+    
+    [self test_c:@"KVC"];
+    
     [self test_c:@"Thread"];
     
     [self test_c:@"Memory"];
