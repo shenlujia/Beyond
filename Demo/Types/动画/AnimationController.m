@@ -32,6 +32,16 @@ static UIColor * kRandomColor()
     
     WEAKSELF
     
+    [self add_navi_right_item:@"暂停" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [weak_s pauseAnimation:weak_s.testView1];
+        [weak_s pauseAnimation:weak_s.testView2];
+    }];
+    
+    [self add_navi_right_item:@"恢复" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [weak_s resumeAnimation:weak_s.testView1];
+        [weak_s resumeAnimation:weak_s.testView2];
+    }];
+    
     /*
      隐式动画实现的背后体现了核心动画精心设计的许多机制。在layer的属性发生改变之后，会向它的代理方请求一个CAAction行为来完成后续的工作，系统允许代理方返回nil指针。一旦这么做，修改属性的工作最终移交给CATransaction处理，由修改的属性值决定是否自动生成一个CABasicAnimation。如果满足，此时隐式动画将被触发。
      */
@@ -152,7 +162,7 @@ static UIColor * kRandomColor()
     }];
     
     [weak_s test:@"断点后还会继续动画" tap:^(UIButton *button, NSDictionary *userInfo) {
-        
+        const BOOL even = [userInfo[kButtonTapCountKey] integerValue] % 2 == 0;
         NSLog(@"Step1: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
         
         [UIView beginAnimations:nil context:nil];
@@ -161,7 +171,7 @@ static UIColor * kRandomColor()
         NSLog(@"Step2: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
         
         CGAffineTransform t = weak_s.testView2.transform;
-        t = t.tx == 200 ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(200, 200);
+        t = even ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(200, 300);
         weak_s.testView2.transform = t;
         
         NSLog(@"Step3: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
@@ -171,7 +181,26 @@ static UIColor * kRandomColor()
         NSLog(@"Step4: %@", [weak_s.testView2 actionForLayer:weak_s.testView2.layer forKey:@"transform"]);
     }];
     
-    [weak_s test:@"触摸响应位于动画末端" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [weak_s test:@"断点后还会继续动画 使用UIViewAnimationBlock transform" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [UIView animateWithDuration:5 animations:^{
+            const BOOL even = [userInfo[kButtonTapCountKey] integerValue] % 2 == 0;
+            CGAffineTransform t = weak_s.testView2.transform;
+            t = even ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(200, 300);
+            weak_s.testView2.transform = t;
+        }];
+    }];
+    
+    [weak_s test:@"断点后还会继续动画 使用UIViewAnimationBlock frame" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [UIView animateWithDuration:5 animations:^{
+            const BOOL even = [userInfo[kButtonTapCountKey] integerValue] % 2 == 0;
+            CGRect frame = weak_s.testView2.frame;
+            frame.origin.x = 20 + (even ? 0 : 200);
+            frame.origin.y = 200 + (even ? 0 : 300);
+            weak_s.testView2.frame = frame;
+        }];
+    }];
+    
+    [weak_s test:@"触摸响应位于动画末端 可以试试倒数三个动画" tap:^(UIButton *button, NSDictionary *userInfo) {
     }];
 }
 
@@ -183,6 +212,23 @@ static UIColor * kRandomColor()
 - (void)test2Action
 {
     NSLog(@"test2Action");
+}
+
+- (void)pauseAnimation:(UIView *)view
+{
+    CFTimeInterval pauseTime = [view.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    view.layer.timeOffset = pauseTime;
+    view.layer.speed = 0;
+}
+
+- (void)resumeAnimation:(UIView *)view
+{
+    CFTimeInterval pauseTime = view.layer.timeOffset;
+    CFTimeInterval timeSincePause = CACurrentMediaTime() - pauseTime;
+    
+    view.layer.timeOffset = 0;
+    view.layer.beginTime = timeSincePause;
+    view.layer.speed = 1;
 }
 
 @end

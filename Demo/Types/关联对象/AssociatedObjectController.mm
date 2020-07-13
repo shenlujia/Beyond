@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <string>
 #include <mutex>
+#import "MacroHeader.h"
 
 using namespace std;
 
@@ -161,8 +162,17 @@ TestDeallocCpp1Class p_cpp_obj2;
 {
     [super viewDidLoad];
 
-    NSLog(@"Main所有属性: %@", [self allProperties:[Test1Derived class]]);
-    NSLog(@"Main所有方法: %@", [self allMethods:[Test1Derived class]]);
+    PRINT_BLANK_LINE
+    NSLog(@"%@:", NSStringFromClass([Test1Base class]));
+    NSLog(@"ivar: %@", [self allIvars:[Test1Base class]]);
+    NSLog(@"property: %@", [self allProperties:[Test1Base class]]);
+    NSLog(@"方法: %@", [self allMethods:[Test1Base class]]);
+    
+    PRINT_BLANK_LINE
+    NSLog(@"%@:", NSStringFromClass([Test1Derived class]));
+    NSLog(@"ivar: %@", [self allIvars:[Test1Derived class]]);
+    NSLog(@"property: %@", [self allProperties:[Test1Derived class]]);
+    NSLog(@"方法: %@", [self allMethods:[Test1Derived class]]);
     
     TestDeallocCpp1Class::k1.name = "k1";
     TestDeallocCpp1Class::k2.name = "k2";
@@ -197,6 +207,21 @@ TestDeallocCpp1Class p_cpp_obj2;
         associatedObject.main_assign = main;
         objc_setAssociatedObject(main, @selector(title), associatedObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }];
+}
+
+- (NSArray *)allIvars:(Class)cls
+{
+    unsigned int count = 0;
+    Ivar *ivars = class_copyIvarList(cls, &count);
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < count; ++i) {
+        Ivar property = ivars[i];
+        const char *cName = ivar_getName(property);
+        NSString *name = [NSString stringWithCString:cName encoding:NSUTF8StringEncoding];
+        [array addObject:name];
+    }
+    free(ivars);
+    return array;
 }
 
 - (NSArray *)allProperties:(Class)cls

@@ -13,6 +13,68 @@
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
 
+#define SELBuild(a) [a string]
+#define SSSEL [PrivateSELBuilder head]
+
+@interface PrivateSELBuilder : NSObject
+
+@property (nonatomic, strong, readonly) NSString *s;
+@property (nonatomic, strong, readonly) PrivateSELBuilder *next;
+@property (nonatomic, strong, readonly) PrivateSELBuilder *end;
+
++ (instancetype)head;
+
+- (NSString *)string;
+
+@end
+
+@implementation PrivateSELBuilder
+
++ (instancetype)head
+{
+    return [PrivateSELBuilder object:@""];
+}
+
+- (NSString *)string
+{
+    NSString *next = [self.next string];
+    if (next) {
+        return [NSString stringWithFormat:@"%@%@", self.s, next];
+    }
+    return self.s;
+}
+
++ (instancetype)object:(NSString *)s
+{
+    PrivateSELBuilder *obj = [[PrivateSELBuilder alloc] init];
+    obj->_s = s;
+    return obj;
+}
+
+- (PrivateSELBuilder *)A
+{
+    [self append:@"A"];
+    return self;
+}
+
+- (void)append:(NSString *)s
+{
+    PrivateSELBuilder *end = self.end;
+    if (!end) {
+        end = self;
+    }
+    end->_next = [PrivateSELBuilder object:s];
+    _end = end->_next;
+}
+
+- (PrivateSELBuilder *)B
+{
+    [self append:@"B"];
+    return self;
+}
+
+@end
+
 static UIColor * kRandomColor()
 {
     CGFloat r = (arc4random() % 256) / 255.0;
@@ -20,6 +82,19 @@ static UIColor * kRandomColor()
     CGFloat b = (arc4random() % 256) / 255.0;
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
+
+@interface MemoryDeallocObj : NSProxy
+
+@end
+
+@implementation MemoryDeallocObj
+
+- (void)dealloc
+{
+    NSLog(@"~%@ %@", NSStringFromClass([self class]), [NSThread currentThread]);
+}
+
+@end
 
 @interface MemoryDrawRectView : UIView
 
@@ -80,12 +155,21 @@ static void *s_leakObj = NULL;
 {
     [super viewDidLoad];
     
+    NSString *s = SELBuild(SSSEL.A.B.A);
+    
     WEAKSELF
     const CGFloat scale = UIScreen.mainScreen.scale;
     
     [self add_navi_right_item:@"push" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[MemoryController alloc] init];
         [weak_s.navigationController pushViewController:c animated:YES];
+    }];
+    [self add_navi_right_item:@"dealloc" tap:^(UIButton *button, NSDictionary *userInfo) {
+        __unused MemoryDeallocObj *obj1 = [MemoryDeallocObj alloc];
+        __block MemoryDeallocObj *obj2 = [MemoryDeallocObj alloc];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            obj2 = nil;
+        });
     }];
 
     weak_s.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];

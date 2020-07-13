@@ -8,6 +8,7 @@
 
 #import "BlockController.h"
 #import "MacroHeader.h"
+#import "BlockNotCallChecker.h"
 
 static int p_static_int = 5;
 int p_global_block_int = 10;
@@ -33,6 +34,8 @@ static void (^s_block_obj_1)(void) = ^(){
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    WEAKSELF
     
     [self test:@"static global" tap:^(UIButton *button, NSDictionary *userInfo) {
         int local_int = 20;
@@ -86,6 +89,81 @@ static void (^s_block_obj_1)(void) = ^(){
         PRINT_BLANK_LINE
         NSLog(@"%@", ^{NSLog(@"%@", @(a));});
     }];
+    
+    [self test:@"block同步是否被调用" set:nil action:@selector(block_sync_called_or_not)];
+    
+    [self test:@"block异步是否被调用" set:nil action:@selector(block_async_called_or_not)];
+}
+
+- (void)block_sync_called_or_not
+{
+    PRINT_BLANK_LINE
+    {
+        __block BlockNotCallChecker *checker = nil;
+        void (^block)(void) = ^{
+            NSLog(@"sync block1 done");
+            [checker cleanup];
+        };
+        checker = [BlockNotCallChecker checkerWithName:@"block1" block:block];
+        [self block_sync_called_test:block];
+    }
+    {
+        __block BlockNotCallChecker *checker = nil;
+        void (^block)(void) = ^{
+            NSLog(@"sync block2 done");
+            [checker cleanup];
+        };
+        checker = [BlockNotCallChecker checkerWithName:@"block2" block:block];
+        [self block_sync_called_not_test:block];
+    }
+}
+
+- (void)block_sync_called_test:(void (^)(void))block
+{
+    block();
+}
+
+- (void)block_sync_called_not_test:(void (^)(void))block
+{
+    
+}
+
+- (void)block_async_called_or_not
+{
+    PRINT_BLANK_LINE
+    {
+        __block BlockNotCallChecker *checker = nil;
+        void (^block)(void) = ^{
+            NSLog(@"async block3 done");
+            [checker cleanup];
+        };
+        checker = [BlockNotCallChecker checkerWithName:@"block3" block:block];
+        [self block_async_called_test:block];
+    }
+    {
+        __block BlockNotCallChecker *checker = nil;
+        void (^block)(void) = ^{
+            NSLog(@"async block4 done");
+            [checker cleanup];
+        };
+        checker = [BlockNotCallChecker checkerWithName:@"block4" block:block];
+        [self block_async_called_not_test:block];
+    }
+}
+
+- (void)block_async_called_test:(void (^)(void))block
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __unused void (^b)(void) = block;
+        b();
+    });
+}
+
+- (void)block_async_called_not_test:(void (^)(void))block
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __unused void (^b)(void) = block;
+    });
 }
 
 @end

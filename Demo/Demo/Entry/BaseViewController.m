@@ -115,15 +115,15 @@
     if (title.length == 0 || !tap) {
         return;
     }
-    NaviItemModel *object = [[NaviItemModel alloc] init];
-    object.title = title;
-    object.tap = tap;
-    [self.naviItems addObject:object];
+    NaviItemModel *current = [[NaviItemModel alloc] init];
+    current.title = title;
+    current.tap = tap;
+    [self.naviItems addObject:current];
     
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-    for (NaviItemModel *obj in self.naviItems) {
+    for (NaviItemModel *object in self.naviItems) {
         UIBarButtonItem *item = nil;
-        item = [[UIBarButtonItem alloc] initWithTitle:obj.title
+        item = [[UIBarButtonItem alloc] initWithTitle:object.title
                                                 style:UIBarButtonItemStylePlain
                                                target:object
                                                action:@selector(tapAction)];

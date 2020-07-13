@@ -67,7 +67,7 @@ IVAR& getIvar(NSObject * object, const char * name) {
 
 - (void):(id)obj
 {
-    NSLog(@"%s",_cmd);
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 - (instancetype)init {

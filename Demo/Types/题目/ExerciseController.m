@@ -17,7 +17,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"~dealloc %@", self.from);
+    NSLog(@"~dealloc %@ %@", NSStringFromClass([self class]), self.from);
 }
 
 - (void)test_swizzle_none
@@ -163,8 +163,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    WEAKSELF
 
     {
         NSLog(@"ViewController = %@ , 地址 = %p", self, &self);
@@ -272,6 +270,8 @@
         printf("\n");
     }
     
+    WEAKSELF
+    
     [weak_s test:@"block捕获auto 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         __block int a = 0;
         int b = 6;
@@ -321,13 +321,17 @@
             NSLog(@"performSelector new");
             [Father performSelector:@selector(new)];
             __unused Father *temp = [Father performSelector:@selector(new)];
+            temp = nil;
         }
         printf("\n");
         @autoreleasepool {
             NSLog(@"performSelector init");
             SEL selctor = @selector(init);
             Father *obj = [Father alloc];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [obj performSelector:selctor];
+#pragma clang diagnostic pop
         }
         printf("\n");
         @autoreleasepool {
