@@ -99,21 +99,19 @@ static void (^s_block_obj_1)(void) = ^(){
 {
     PRINT_BLANK_LINE
     {
-        __block BlockNotCallChecker *checker = nil;
+        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block1"];
         void (^block)(void) = ^{
             NSLog(@"sync block1 done");
-            [checker cleanup];
+            [checker didCall];
         };
-        checker = [BlockNotCallChecker checkerWithName:@"block1" block:block];
         [self block_sync_called_test:block];
     }
     {
-        __block BlockNotCallChecker *checker = nil;
+        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block2"];
         void (^block)(void) = ^{
             NSLog(@"sync block2 done");
-            [checker cleanup];
+            [checker didCall];
         };
-        checker = [BlockNotCallChecker checkerWithName:@"block2" block:block];
         [self block_sync_called_not_test:block];
     }
 }
@@ -132,21 +130,19 @@ static void (^s_block_obj_1)(void) = ^(){
 {
     PRINT_BLANK_LINE
     {
-        __block BlockNotCallChecker *checker = nil;
+        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block3"];
         void (^block)(void) = ^{
             NSLog(@"async block3 done");
-            [checker cleanup];
+            [checker didCall];
         };
-        checker = [BlockNotCallChecker checkerWithName:@"block3" block:block];
         [self block_async_called_test:block];
     }
     {
-        __block BlockNotCallChecker *checker = nil;
+        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block4"];
         void (^block)(void) = ^{
             NSLog(@"async block4 done");
-            [checker cleanup];
+            [checker didCall];
         };
-        checker = [BlockNotCallChecker checkerWithName:@"block4" block:block];
         [self block_async_called_not_test:block];
     }
 }

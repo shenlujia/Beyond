@@ -431,6 +431,23 @@
             NSLog(@"alpha=%.1f opaque=%@ || opacity=%.1f opaque=%@", view.alpha, @(view.opaque), view.layer.opacity, @(view.layer.opaque));
         });
     }];
+    
+    [weak_s test:@"addTarget nil" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 30, 30)];
+        [self.view addSubview:view];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+        b.frame = view.bounds;
+        b.backgroundColor = UIColor.redColor;
+        [view addSubview:b];
+        // 如果target=nil 会发给响应链上第一个愿意接收的对象
+        [b addTarget:nil action:@selector(test_addTarget_nil) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:nil action:NSSelectorFromString(@"test_addTarget_sel_not_exist") forControlEvents:UIControlEventTouchUpInside];
+    }];
+}
+
+- (void)test_addTarget_nil
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 @end

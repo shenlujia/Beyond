@@ -1,0 +1,13 @@
+
+source 'git@gitlab.alibaba-inc.com:kaola-ios-spec/KaolaSpec.git'
+source "git@gitlab.alibaba-inc.com:alipods/specs.git"
+source "git@gitlab.alibaba-inc.com:alipods/specs-mirror.git"
+
+platform :ios, '9.0'
+
+inhibit_all_warnings!
+
+target 'RichText' do
+  
+  pod 'YYText'
+end

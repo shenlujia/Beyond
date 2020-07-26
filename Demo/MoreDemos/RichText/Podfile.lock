@@ -1,0 +1,16 @@
+PODS:
+  - YYText (1.0.7.1)
+
+DEPENDENCIES:
+  - YYText
+
+SPEC REPOS:
+  "podspec@podspec.alibaba-inc.com:alibaba-specs/":
+    - YYText
+
+SPEC CHECKSUMS:
+  YYText: fcf647ea3f95bbd4fae5dcf7ee127fc77c1a6db4
+
+PODFILE CHECKSUM: 420191774d4dfd9feaf505a49844048c56207a53
+
+COCOAPODS: 1.7.5

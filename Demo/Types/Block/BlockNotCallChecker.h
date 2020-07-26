@@ -10,10 +10,10 @@
 
 @interface BlockNotCallChecker : NSObject
 
-@property (nonatomic, copy) void (^callback)(BOOL);
+@property (nonatomic, copy) void (^callback)(void);
 
-+ (instancetype)checkerWithName:(NSString *)name block:(id)block;
+- (instancetype)initWithName:(NSString *)name;
 
-- (void)cleanup;
+- (void)didCall;
 
 @end
