@@ -174,6 +174,22 @@
 
         void *obj = &cls;
         NSLog(@"===Void *obj = %@ 地址 = %p", obj, &obj);
+        
+        {
+            NSLog(@"栈区变量");
+            void *start = (void *)&self;
+            void *end = (void *)&obj;
+            long count = (start - end) / 0x8;
+            for (long i = 0; i < count; i++) {
+                void *address = start - 0x8 * i;
+                if (i == 1) {
+                    NSLog(@"%p: %s", address, *(char **)(address));
+                } else {
+                    NSLog(@"%p: %@", address, *(void **)address);
+                }
+            }
+            PRINT_BLANK_LINE
+        }
 
         [(__bridge id)obj showYourName];
 
@@ -378,6 +394,8 @@
             NSLog(@"thread: %@", t);
         });
     }];
+    
+    [weak_s test:@"图层混合时 masksToBounds会触发离屏渲染" set:nil action:@selector(test_offscreen_rendering)];
 
     [weak_s test:@"SEL" tap:^(UIButton *button, NSDictionary *userInfo) {
         __strong typeof (weak_s) strong_self = weak_s;
@@ -448,6 +466,47 @@
 - (void)test_addTarget_nil
 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)test_offscreen_rendering
+{
+    __block CGRect frame = CGRectMake(100, 100, 50, 50);
+    UIImageView * (^creation)(void) = ^UIImageView * {
+        UIImageView *view = [[UIImageView alloc] initWithFrame:frame];
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        view.image = [UIImage imageWithContentsOfFile:path];
+        [self.view addSubview:view];
+        view.backgroundColor = UIColor.redColor;
+        view.layer.cornerRadius = frame.size.height / 2;
+        frame.origin.y += frame.size.height + 5;
+        return view;
+    };
+    // 以下所有样式默认带背景色+带图+带圆角
+    {
+        __unused UIImageView *view = creation(); // 背景色+masksToBounds 无离屏渲染
+        view.image = nil;
+        view.layer.masksToBounds = YES;
+    }
+    {
+        __unused UIImageView *view = creation(); // 图+masksToBounds 无离屏渲染
+        view.backgroundColor = nil;
+        view.layer.masksToBounds = YES;
+    }
+    {
+        __unused UIImageView *view = creation(); // 图+背景色 无离屏渲染
+    }
+    {
+        __unused UIImageView *view = creation(); // 图+背景色+masksToBounds 有离屏渲染
+        view.layer.masksToBounds = YES;
+    }
+    {
+        __unused UIImageView *view = creation(); // 图片+mask 有离屏渲染
+        CGRect rect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:10];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.path = path.CGPath;
+        view.layer.mask = maskLayer;
+    }
 }
 
 @end

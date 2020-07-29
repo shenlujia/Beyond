@@ -7,6 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import <stdio.h>
+#import <iostream>
+
+using namespace std;
 
 @interface EntryDataModel : NSObject
 
@@ -42,7 +46,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.groupTableViewBackgroundColor;
-
+    
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.scrollView];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

@@ -12,7 +12,7 @@
 		57F5F2BF24CB2C6600078BD7 /* RichTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F5F2BE24CB2C6600078BD7 /* RichTextView.m */; };
 		57F894A4246E453B007AEFC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F894A3246E453B007AEFC6 /* Assets.xcassets */; };
 		57F894A7246E453B007AEFC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F894A5246E453B007AEFC6 /* LaunchScreen.storyboard */; };
-		57F894B8246E4567007AEFC6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F894B2246E4567007AEFC6 /* BaseViewController.m */; };
+		57F894B8246E4567007AEFC6 /* BaseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F894B2246E4567007AEFC6 /* BaseViewController.mm */; };
 		57F894B9246E4567007AEFC6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F894B3246E4567007AEFC6 /* ViewController.m */; };
 		57F894BA246E4567007AEFC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F894B4246E4567007AEFC6 /* main.m */; };
 		57F894BB246E4567007AEFC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F894B5246E4567007AEFC6 /* AppDelegate.m */; };
@@ -29,7 +29,7 @@
 		57F894A6246E453B007AEFC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57F894A8246E453B007AEFC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57F894B1246E4567007AEFC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		57F894B2246E4567007AEFC6 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		57F894B2246E4567007AEFC6 /* BaseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseViewController.mm; sourceTree = "<group>"; };
 		57F894B3246E4567007AEFC6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		57F894B4246E4567007AEFC6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		57F894B5246E4567007AEFC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 				57F894B1246E4567007AEFC6 /* AppDelegate.h */,
 				57F894B5246E4567007AEFC6 /* AppDelegate.m */,
 				57F894B6246E4567007AEFC6 /* BaseViewController.h */,
-				57F894B2246E4567007AEFC6 /* BaseViewController.m */,
+				57F894B2246E4567007AEFC6 /* BaseViewController.mm */,
 				57F894B4246E4567007AEFC6 /* main.m */,
 				57F894B7246E4567007AEFC6 /* ViewController.h */,
 				57F894B3246E4567007AEFC6 /* ViewController.m */,
@@ -120,7 +120,6 @@
 				4F59CF85F6296DE9E513FD84 /* Pods-RichText.debug.xcconfig */,
 				E231E16B8CE16F65A668048C /* Pods-RichText.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -222,7 +221,7 @@
 				57F894BB246E4567007AEFC6 /* AppDelegate.m in Sources */,
 				57F894B9246E4567007AEFC6 /* ViewController.m in Sources */,
 				57F894BA246E4567007AEFC6 /* main.m in Sources */,
-				57F894B8246E4567007AEFC6 /* BaseViewController.m in Sources */,
+				57F894B8246E4567007AEFC6 /* BaseViewController.mm in Sources */,
 				57F5F2BF24CB2C6600078BD7 /* RichTextView.m in Sources */,
 				57F5F2BC24CB2C5200078BD7 /* TestRichTextViewController.m in Sources */,
 			);

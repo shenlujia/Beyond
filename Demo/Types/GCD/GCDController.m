@@ -196,7 +196,64 @@
             });
         }
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-            NSLog(@"group notify");
+            NSLog(@"group notify 1");
+        });
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            NSLog(@"group notify 2");
+        });
+    }];
+    
+    [weak_s test:@"barriar CONCURRENT" tap:^(UIButton *button, NSDictionary *userInfo) {
+        PRINT_BLANK_LINE
+        dispatch_queue_t queue = dispatch_queue_create("com.gcdTest.queue", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(queue, ^{
+            NSLog(@"work1");
+        });
+        dispatch_barrier_async(queue, ^{
+            sleep(3);
+            NSLog(@"work2");
+            sleep(3);
+        });
+        dispatch_async(queue, ^{
+            NSLog(@"work3");
+        });
+        dispatch_async(queue, ^{
+            sleep(3);
+            NSLog(@"work4");
+            sleep(3);
+        });
+        dispatch_async(queue, ^{
+            NSLog(@"work5");
+        });
+        dispatch_barrier_async(queue, ^{
+            NSLog(@"work6");
+        });
+    }];
+    
+    [weak_s test:@"barriar global_queue 无效" tap:^(UIButton *button, NSDictionary *userInfo) {
+        PRINT_BLANK_LINE
+        dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+        dispatch_async(queue, ^{
+            NSLog(@"work1");
+        });
+        dispatch_barrier_async(queue, ^{
+            sleep(2);
+            NSLog(@"work2");
+            sleep(2);
+        });
+        dispatch_async(queue, ^{
+            NSLog(@"work3");
+        });
+        dispatch_async(queue, ^{
+            sleep(3);
+            NSLog(@"work4");
+            sleep(3);
+        });
+        dispatch_async(queue, ^{
+            NSLog(@"work5");
+        });
+        dispatch_barrier_async(queue, ^{
+            NSLog(@"work6");
         });
     }];
     
