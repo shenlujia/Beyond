@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707304D24D2BD7C00A9883A /* AppearanceController.m */; };
+		5707305024D2BD7D00A9883A /* ControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707304E24D2BD7C00A9883A /* ControlController.m */; };
+		5707305324D2BD9500A9883A /* UIKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707305224D2BD9500A9883A /* UIKitController.m */; };
+		5707305624D2BE4200A9883A /* GestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707305524D2BE4200A9883A /* GestureController.m */; };
 		572339372447F92C009DD534 /* GCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572339362447F92C009DD534 /* GCDController.m */; };
 		574144602489CA8900BFCAC1 /* SafetyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5741445F2489CA8900BFCAC1 /* SafetyController.m */; };
 		57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57418C13248DCF7700BFCAC1 /* MemoryController.m */; };
@@ -21,8 +25,6 @@
 		57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF41F24B56A6000F9856F /* GCDTimer.m */; };
 		57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF42224B56AA100F9856F /* NSTimer+SS.m */; };
 		57D44F67244D9DF100871A34 /* KVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F66244D9DF100871A34 /* KVOController.m */; };
-		57D44F6B244DA92200871A34 /* ControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D44F6A244DA92200871A34 /* ControlController.m */; };
-		57D4684124502B9A00871A34 /* AppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4684024502B9A00871A34 /* AppearanceController.m */; };
 		57F271252487D482004BB2C0 /* IvarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57F271242487D482004BB2C0 /* IvarController.mm */; };
 		57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */; };
 		57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB889F249E5D380093433B /* NSObject+Dealloc.m */; };
@@ -42,6 +44,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5707304B24D2BD7C00A9883A /* AppearanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceController.h; sourceTree = "<group>"; };
+		5707304C24D2BD7C00A9883A /* ControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlController.h; sourceTree = "<group>"; };
+		5707304D24D2BD7C00A9883A /* AppearanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceController.m; sourceTree = "<group>"; };
+		5707304E24D2BD7C00A9883A /* ControlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlController.m; sourceTree = "<group>"; };
+		5707305124D2BD9500A9883A /* UIKitController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKitController.h; sourceTree = "<group>"; };
+		5707305224D2BD9500A9883A /* UIKitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIKitController.m; sourceTree = "<group>"; };
+		5707305424D2BE4200A9883A /* GestureController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureController.h; sourceTree = "<group>"; };
+		5707305524D2BE4200A9883A /* GestureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestureController.m; sourceTree = "<group>"; };
 		572339352447F92C009DD534 /* GCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDController.h; sourceTree = "<group>"; };
 		572339362447F92C009DD534 /* GCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDController.m; sourceTree = "<group>"; };
 		5741445E2489CA8900BFCAC1 /* SafetyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafetyController.h; sourceTree = "<group>"; };
@@ -70,10 +80,6 @@
 		57CDF42224B56AA100F9856F /* NSTimer+SS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+SS.m"; sourceTree = "<group>"; };
 		57D44F65244D9DF100871A34 /* KVOController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOController.h; sourceTree = "<group>"; };
 		57D44F66244D9DF100871A34 /* KVOController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOController.m; sourceTree = "<group>"; };
-		57D44F69244DA92200871A34 /* ControlController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlController.h; sourceTree = "<group>"; };
-		57D44F6A244DA92200871A34 /* ControlController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControlController.m; sourceTree = "<group>"; };
-		57D4683F24502B9A00871A34 /* AppearanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppearanceController.h; sourceTree = "<group>"; };
-		57D4684024502B9A00871A34 /* AppearanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppearanceController.m; sourceTree = "<group>"; };
 		57F271232487D482004BB2C0 /* IvarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IvarController.h; sourceTree = "<group>"; };
 		57F271242487D482004BB2C0 /* IvarController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IvarController.mm; sourceTree = "<group>"; };
 		57F89437246E37DB007AEFC6 /* MacroHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroHeader.h; sourceTree = "<group>"; };
@@ -118,6 +124,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5707304A24D2BD7C00A9883A /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5707304B24D2BD7C00A9883A /* AppearanceController.h */,
+				5707304D24D2BD7C00A9883A /* AppearanceController.m */,
+				5707304C24D2BD7C00A9883A /* ControlController.h */,
+				5707304E24D2BD7C00A9883A /* ControlController.m */,
+				5707305424D2BE4200A9883A /* GestureController.h */,
+				5707305524D2BE4200A9883A /* GestureController.m */,
+				5707305124D2BD9500A9883A /* UIKitController.h */,
+				5707305224D2BD9500A9883A /* UIKitController.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		5741445D2489CA7B00BFCAC1 /* 安全 */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,24 +236,6 @@
 			path = KVO;
 			sourceTree = "<group>";
 		};
-		57D44F68244DA91400871A34 /* UIControl */ = {
-			isa = PBXGroup;
-			children = (
-				57D44F69244DA92200871A34 /* ControlController.h */,
-				57D44F6A244DA92200871A34 /* ControlController.m */,
-			);
-			path = UIControl;
-			sourceTree = "<group>";
-		};
-		57D4683E24502B8D00871A34 /* UIAppearance */ = {
-			isa = PBXGroup;
-			children = (
-				57D4683F24502B9A00871A34 /* AppearanceController.h */,
-				57D4684024502B9A00871A34 /* AppearanceController.m */,
-			);
-			path = UIAppearance;
-			sourceTree = "<group>";
-		};
 		57F271222487D474004BB2C0 /* Ivar */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +307,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5707304A24D2BD7C00A9883A /* UIKit */,
 				57CDF41A24B56A3200F9856F /* Timer */,
 				57CDE88E24B5625000F9856F /* RunLoop */,
 				57CDBA8224B48DF700F9856F /* KVC */,
@@ -318,8 +322,6 @@
 				57FD50BE243DA447002E481E /* Controller生命周期 */,
 				577D43532447F8530043C1A3 /* GCD */,
 				57D44F64244D9DE500871A34 /* KVO */,
-				57D4683E24502B8D00871A34 /* UIAppearance */,
-				57D44F68244DA91400871A34 /* UIControl */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -427,17 +429,18 @@
 			files = (
 				57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */,
 				57FD50BB243DA3F0002E481E /* main.m in Sources */,
-				57D4684124502B9A00871A34 /* AppearanceController.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
+				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
+				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
-				57D44F6B244DA92200871A34 /* ControlController.m in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
+				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
@@ -448,6 +451,7 @@
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
+				5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,

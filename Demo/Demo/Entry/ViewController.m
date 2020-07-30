@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     
+    [self test_c:@"UIKit"];
+    
     [self test_c:@"Timer"];
     
     [self test_c:@"RunLoop"];
@@ -34,10 +36,6 @@
     [self test_c:@"Ivar"];
     
     [self test_c:@"Animation"];
-    
-    [self test_c:@"Appearance" title:@"UIAppearance"];
-    
-    [self test_c:@"ControlController" title:@"UIControl"];
     
     [self test_c:@"KVOController"];
     
