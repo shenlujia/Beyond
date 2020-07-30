@@ -200,6 +200,16 @@
     }
     
     {
+        PRINT_BLANK_LINE
+        NSString *s0 = @"123456";
+        NSString *s1 = [NSString stringWithFormat:@"123456"];
+        NSString *s2 = [NSString stringWithFormat:@"%@", @"123456"];
+        NSLog(@"%p %p %p", s0, s1, s2);
+        NSLog(@"%p %p %p", &s0, &s1, &s2);
+        PRINT_BLANK_LINE
+    }
+    
+    {
         Father *obj = [[Father alloc] init];
         [obj test_swizzle_none];
         PRINT_BLANK_LINE
