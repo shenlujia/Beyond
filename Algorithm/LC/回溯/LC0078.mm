@@ -86,6 +86,12 @@ static void subsets_digui_impl(vector<vector<int>> &ret, vector<int> &nums, int 
     vector<int> v = {1, 2, 3};
     vector<vector<int>> ret1 = subsets(v);
     vector<vector<int>> ret2 = subsets_digui(v);
+    for (auto& v : ret1) {
+        sort(v.begin(), v.end());
+    }
+    for (auto& v : ret2) {
+        sort(v.begin(), v.end());
+    }
     sort(ret1.begin(), ret1.end());
     sort(ret2.begin(), ret2.end());
     NSParameterAssert(ret1.size() == 8 && ret1 == ret2);
