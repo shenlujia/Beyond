@@ -288,39 +288,31 @@
  */
 + (NSArray *)mergeSort:(NSArray *)unSortArray
 {
-    NSInteger len = unSortArray.count;
-    // 递归终止条件
-    if (len <= 1) {
+    if (unSortArray.count <= 1) {
         return unSortArray;
     }
-    NSInteger mid = len / 2;
-    // 对左半部分进行拆分
-    NSArray *lList = [self mergeSort:[unSortArray subarrayWithRange:NSMakeRange(0, mid)]];
-    // 对右半部分进行拆分
-    NSArray *rList = [self mergeSort:[unSortArray subarrayWithRange:NSMakeRange(mid, len - mid)]];
-    // 递归结束后执行下面的语句
-    NSInteger lIndex = 0;
-    NSInteger rIndex = 0;
-    // 进行合并
-    NSMutableArray *results = [NSMutableArray array];
-    while (lIndex < lList.count && rIndex < rList.count) {
-        if ([lList[lIndex] integerValue] < [rList[rIndex] integerValue]) {
-            [results addObject:lList[lIndex]];
-            lIndex += 1;
+    NSInteger mid = unSortArray.count / 2;
+    NSArray *leftArray = [self mergeSort:[unSortArray subarrayWithRange:NSMakeRange(0, mid)]];
+    NSArray *rightArray = [self mergeSort:[unSortArray subarrayWithRange:NSMakeRange(mid, unSortArray.count - mid)]];
+    NSInteger i = 0;
+    NSInteger j = 0;
+    NSMutableArray *ret = [NSMutableArray array];
+    while (i < leftArray.count && j < rightArray.count) {
+        if ([leftArray[i] integerValue] < [rightArray[j] integerValue]) {
+            [ret addObject:leftArray[i]];
+            ++i;
         } else {
-            [results addObject:rList[rIndex]];
-            rIndex += 1;
+            [ret addObject:rightArray[j]];
+            ++j;
         }
     }
-    // 把左边剩余元素加到排序结果中
-    if (lIndex < lList.count) {
-        [results addObjectsFromArray:[lList subarrayWithRange:NSMakeRange(lIndex, lList.count - lIndex)]];
+    if (i < leftArray.count) {
+        [ret addObjectsFromArray:[leftArray subarrayWithRange:NSMakeRange(i, leftArray.count - i)]];
     }
-    // 把右边剩余元素加到排序结果中
-    if (rIndex < rList.count) {
-        [results addObjectsFromArray:[rList subarrayWithRange:NSMakeRange(rIndex, rList.count - rIndex)]];
+    if (j < rightArray.count) {
+        [ret addObjectsFromArray:[rightArray subarrayWithRange:NSMakeRange(j, rightArray.count - j)]];
     }
-    return results;
+    return ret;
 }
 
 /*
