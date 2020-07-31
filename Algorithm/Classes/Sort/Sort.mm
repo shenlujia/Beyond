@@ -233,39 +233,33 @@
     return [self _quickSort:unSortArray leftIndex:0 rightIndex:unSortArray.count - 1];
 }
 
-+ (NSArray *)_quickSort:(NSMutableArray *)unSortArray leftIndex:(NSInteger)lindex rightIndex:(NSInteger)rIndex
++ (NSArray *)_quickSort:(NSMutableArray *)unSortArray leftIndex:(NSInteger)leftIndex rightIndex:(NSInteger)rightIndex
 {
-    NSInteger i = lindex;
-    NSInteger j = rIndex;
-    // 取中间的值作为一个支点
-    NSNumber *pivot = unSortArray[(lindex + rIndex) / 2];
-    while (i <= j) {
-        // 向左移动，直到找打大于支点的元素
-        while ([unSortArray[i] integerValue] < [pivot integerValue]) {
-            i++;
+    NSInteger left = leftIndex;
+    NSInteger right = rightIndex;
+    NSInteger pivot = [unSortArray[(leftIndex + rightIndex) / 2] integerValue];
+    while (left <= right) {
+        while ([unSortArray[left] integerValue] < pivot) {
+            ++left;
         }
-        // 向右移动，直到找到小于支点的元素
-        while ([unSortArray[j] integerValue] > [pivot integerValue]) {
-            j--;
+        while (pivot < [unSortArray[right] integerValue]) {
+            --right;
         }
-        // 交换两个元素，让左边的大于支点，右边的小于支点
-        if (i <= j) {
-            NSNumber *temp = unSortArray[i];
-            unSortArray[i] = unSortArray[j];
-            unSortArray[j] = temp;
-            i++;
-            j--;
+        if (left <= right) {
+            id temp = unSortArray[left];
+            unSortArray[left] = unSortArray[right];
+            unSortArray[right] = temp;
+            ++left;
+            --right;
         }
     }
-    // 递归左边，进行快速排序
-    if (lindex < j) {
-        [self _quickSort:unSortArray leftIndex:lindex rightIndex:j];
+    if (left < rightIndex) {
+        [self _quickSort:unSortArray leftIndex:left rightIndex:rightIndex];
     }
-    // 递归右边，进行快速排序
-    if (i < rIndex) {
-        [self _quickSort:unSortArray leftIndex:i rightIndex:rIndex];
+    if (leftIndex < right) {
+        [self _quickSort:unSortArray leftIndex:leftIndex rightIndex:right];
     }
-    return [unSortArray copy];
+    return unSortArray;
 }
 
 /*
