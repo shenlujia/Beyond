@@ -1,17 +1,9 @@
 //
-//  LC0033.m
-//  DSPro
-//
 //  Created by SLJ on 2020/1/15.
 //  Copyright © 2020 SLJ. All rights reserved.
 //
 
-#import "LC0033.h"
-#import <vector>
-
-using namespace std;
-
-@implementation LC0033
+LC_CLASS_BEGIN(0033)
 
 /*
  搜索旋转排序数组
@@ -35,7 +27,7 @@ using namespace std;
  输入: nums = [4,5,6,7,0,1,2], target = 3
  输出: -1
  */
-int search(vector<int>& nums, int target)
+static int search(vector<int>& nums, int target)
 {
     int left = 0;
     int right = (int)nums.size() - 1;
@@ -105,29 +97,17 @@ static int index_of_value(vector<int> &nums, int left, int right, int target)
 
 static int find_original_start(vector<int> &nums)
 {
-    int len = (int)nums.size();
-    if (len == 0) {
-        return -1;
-    }
-    if (nums[0] <= nums[len - 1]) {
-        return 0;
-    }
-
     int left = 0;
-    int right = len - 1;
-    while (left <= right) {
-        int mid = (left + right) / 2;
-        if (nums[mid] > nums[mid + 1]) {
-            return mid + 1;
-        }
-        if (nums[left] < nums[mid]) {
-            left = mid;
-        }
-        if (nums[right] > nums[mid]) {
+    int right = (int)nums.size() - 1;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] > nums[right]) {
+            left = mid + 1;
+        } else {
             right = mid;
         }
     }
-    return -1;
+    return left;
 }
 
 + (void)run
@@ -164,4 +144,4 @@ static int find_original_start(vector<int> &nums)
     }
 }
 
-@end
+LC_CLASS_END

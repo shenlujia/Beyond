@@ -250,12 +250,9 @@
         }
         // 交换两个元素，让左边的大于支点，右边的小于支点
         if (i <= j) {
-            // 如果 i == j，交换个啥？
-            if (i != j) {
-                NSNumber *temp = unSortArray[i];
-                unSortArray[i] = unSortArray[j];
-                unSortArray[j] = temp;
-            }
+            NSNumber *temp = unSortArray[i];
+            unSortArray[i] = unSortArray[j];
+            unSortArray[j] = temp;
             i++;
             j--;
         }

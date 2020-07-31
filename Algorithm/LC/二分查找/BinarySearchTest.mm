@@ -104,7 +104,7 @@ static int right_bound(vector<int> nums, int target)
 
 + (void)run
 {
-    vector<int> v = {33};
+    vector<int> v = {33, 69, 153};
 
     for (int i = 0; i < v.size(); ++i) {
         int value = v[i];

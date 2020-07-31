@@ -40,7 +40,7 @@
     [DesignTest run];
     [TreeTest run];
     [MergeIntervalTest run];
-    //    [Sort run];
+    [Sort run];
     [ListTest run];
 }
 
