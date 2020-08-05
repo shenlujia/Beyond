@@ -241,6 +241,7 @@
     {
         Sark *sark = [Sark new];
         Sark *sark2 = [Sark new];
+        NSLog(@"sark class 地址=%p", [Sark class]);
         NSLog(@"sark 地址=%p", &sark);   //  此处如果输出 sark 地址=0x7ffee378c640
         NSLog(@"sark2 地址=%p", &sark2); // 那么 sark2 地址=??
         [sark speak];
