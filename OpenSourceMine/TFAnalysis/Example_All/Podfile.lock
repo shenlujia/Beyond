@@ -1,0 +1,18 @@
+PODS:
+  - TFAnalysis (0.0.1):
+    - TFAnalysis/Base (= 0.0.1)
+  - TFAnalysis/Base (0.0.1)
+
+DEPENDENCIES:
+  - TFAnalysis (from `../`)
+
+EXTERNAL SOURCES:
+  TFAnalysis:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TFAnalysis: e2103a6708a9e1003e352646113b82fcd9bf4720
+
+PODFILE CHECKSUM: c286bc2438f61770777ce9a71394817a706dde42
+
+COCOAPODS: 1.2.0
