@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "HsAudioEncoder.h"
-#import "HsAudioRecorder.h"
-#import "HsAudioPlayer.h"
+#import "SSAudioEncoder.h"
+#import "SSAudioRecorder.h"
+#import "SSAudioPlayer.h"
 
-@interface ViewController () <HsAudioRecorderDelegate>
+@interface ViewController () <SSAudioRecorderDelegate>
 
 @property (nonatomic, strong) UILabel *infoLabel;
 
@@ -19,8 +19,8 @@
 @property (nonatomic, copy) NSString *MP3Path;
 @property (nonatomic, strong) NSDate *recordDate;
 
-@property (nonatomic, strong) HsAudioRecorder *recorder;
-@property (nonatomic, strong) HsAudioPlayer *player;
+@property (nonatomic, strong) SSAudioRecorder *recorder;
+@property (nonatomic, strong) SSAudioPlayer *player;
 
 @end
 
@@ -36,11 +36,11 @@
     self.PCMPath = [documentPath stringByAppendingPathComponent:@"pcm.file"];
     self.MP3Path = [documentPath stringByAppendingPathComponent:@"audio.mp3"];
     
-    self.recorder = [[HsAudioRecorder alloc] init];
+    self.recorder = [[SSAudioRecorder alloc] init];
     self.recorder.filePath = self.PCMPath;
     self.recorder.delegate = self;
     
-    self.player = [[HsAudioPlayer alloc] init];
+    self.player = [[SSAudioPlayer alloc] init];
     self.player.filePath = self.MP3Path;
     
     CGRect frame = self.view.bounds;
@@ -92,7 +92,7 @@
     [[NSFileManager defaultManager] removeItemAtPath:self.MP3Path error:nil];
     
     NSDate *date = [NSDate date];
-    HsAudioEncoder *encoder = [[HsAudioEncoder alloc] init];
+    SSAudioEncoder *encoder = [[SSAudioEncoder alloc] init];
     [encoder convertPCM:self.PCMPath toMP3:self.MP3Path error:nil];
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
     
@@ -114,9 +114,9 @@
     [self.player stop];
 }
 
-#pragma mark - HsAudioRecorderDelegate
+#pragma mark - SSAudioRecorderDelegate
 
-- (void)audioRecorder:(HsAudioRecorder *)recorder currentMeter:(CGFloat)meter
+- (void)audioRecorder:(SSAudioRecorder *)recorder currentMeter:(CGFloat)meter
 {
     NSLog(@"%f", meter);
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.recordDate];

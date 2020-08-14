@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 typedef void (^TimerWrapperBlock)(void);
