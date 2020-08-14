@@ -1,0 +1,25 @@
+{
+  "name": "TFAnalysis",
+  "version": "0.0.1",
+  "summary": "summary",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "www.shenlujia.com",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": "shenlujia",
+  "source": {
+    "svn": "https://10.7.12.91/repo/EHDiOS/trunk/EHDComponentRepo/TFAnalysis",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "subspecs": [
+    {
+      "name": "Base",
+      "source_files": "TFAnalysis/**/*.{m,mm,h}"
+    }
+  ]
+}
