@@ -1,0 +1,238 @@
+{
+    "color" : {
+        "theme" : {
+            "rgb" : "230, 40, 40",
+            "alpha" : ""
+        },
+        "lightTheme" : {
+            "rgb" : "200, 30, 30",
+            "alpha" : ""
+        },
+        "contrast" : {
+            "rgb" : "0, 0, 255",
+            "alpha" : ""
+        },
+        "background" : {
+            "rgb" : "243, 243, 243",
+            "alpha" : ""
+        },
+        "white" : {
+            "hex" : "FFFFFF",
+            "alpha" : ""
+        },
+        "black" : {
+            "hex" : "000000",
+            "alpha" : ""
+        },
+        "clear" : {
+            "hex" : "000000",
+            "alpha" : "0"
+        },
+        "darkText" : {
+            "rgb" : "51, 51, 51",
+            "alpha" : ""
+        },
+        "lightText1" : {
+            "rgb" : "102, 102, 102",
+            "alpha" : ""
+        },
+        "lightText2" : {
+            "rgb" : "153, 153, 153",
+            "alpha" : ""
+        },
+        "lightText3" : {
+            "rgb" : "160, 160, 160",
+            "alpha" : ""
+        },
+        "line" : {
+            "rgb" : "221, 221, 221",
+            "alpha" : ""
+        }
+    },
+    "cell" : {
+        "normal" : {
+            "backgroundColor" : {
+                "hex" : "FFFFFF",
+                "alpha" : ""
+            },
+            "highlightedBackgroundColor" : {
+                "rgb" : "248, 248, 249",
+                "alpha" : ""
+            },
+            "selectedBackgroundColor" : {
+                "rgb" : "248, 248, 249",
+                "alpha" : ""
+            }
+        }
+    },
+    "button" : {
+        "normalStyle" : {
+            "normal" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "hex" : "FFFFFF",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : "0.6"
+                }
+            },
+            "disabled" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "hex" : "FFFFFF",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "222, 223, 226",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            },
+            "highlighted" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "hex" : "FFFFFF",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "200, 30, 30",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            }
+        },
+        "lightStyle" : {
+            "normal" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "252, 233, 233",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            },
+            "disabled" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "hex" : "FFFFFF",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "222, 223, 226",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            },
+            "highlighted" : {
+                "borderColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "rgb" : "250, 212, 212",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            }
+        },
+        "hollowStyle" : {
+            "normal" : {
+                "borderColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            },
+            "disabled" : {
+                "borderColor" : {
+                    "hex" : "ADADAD",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "hex" : "ADADAD",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            },
+            "highlighted" : {
+                "borderColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "textColor" : {
+                    "rgb" : "230, 40, 40",
+                    "alpha" : ""
+                },
+                "backgroundColor" : {
+                    "hex" : "FEF0F0",
+                    "alpha" : ""
+                },
+                "shadowColor" : {
+                    "hex" : "",
+                    "alpha" : ""
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+[
+ {
+ "name" : "tfehd_demoHomePage",
+ "class" : "TFEHDHomeViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_carloadDeliveryGoods",
+ "class" : "TFEHDCarloadDeliverGoodsViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_carpoolDeliveryGoods",
+ "class" : "TFEHDCarpoolDeliverGoodsViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_regularBusDeliveryGoods",
+ "class" : "TFEHDRegularBusDeliverGoodsViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_diverDeliveryGoods",
+ "class" : "TFEHDDriverDeliveryGoodsViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_deliverySuccessGoods",
+ "class" : "TFEHDDeliverGoodsSucessViewController",
+ "selector" : "createComponent:",
+ },
+ 
+ {
+ "name" : "tfehd_homeDeliveryGoods",
+ "class" : "TFEHDDeliverGoodsViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebar",
+ "class" : "TFSidebarManager",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMyAddress",
+ "class" : "TFMyAddressListViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMyCoin",
+ "class" : "TFMyCoinViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMyGoldBean",
+ "class" : "TFMyGoldBeanManager",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMyGoldBeanDetailList",
+ "class" : "TFMGBBeanListViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMyMessage",
+ "class" : "EHDMyMessageMainViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_preloading",
+ "class" : "TFPreloadingViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_welcomeVideo",
+ "class" : "TFVideoViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_selectTransportCity",
+ "class" : "TFSelectTransportCityController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_myMotorcade",
+ "class" : "EHDMyMotorcadeViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_XiaoMi",
+ "class" : "TFHuoDiXiaoMiIndex",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_driveDetial",
+ "class" : "EHDDriverDetailViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_teamLocation",
+ "class" : "EHDTeamLocationMapController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_vehicleGoodsListDetail",
+ "class" : "EHDGoodsListDetailViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_bancheGoodsListDetail",
+ "class" : "EHDBusListDeatilMapViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_lingdanGoodsListDetail",
+ "class" : "EHDLDListDetailViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_sidebarMySet",
+ "class" : "TFSetViewController",
+ "selector" : "createComponent:",
+ },
+ {
+ "name" : "tfehd_Ka",
+ "class" : "EHDKaViewController",
+ "selector" : "createComponent:",
+ },
+]

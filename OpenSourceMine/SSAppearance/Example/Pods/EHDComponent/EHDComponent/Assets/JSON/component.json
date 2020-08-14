@@ -1,0 +1,12 @@
+[
+ {
+ "name" : "TestA",
+ "class" : "EHDTestAViewController",
+ "selector" : "",
+ },
+ {
+ "name" : "TestB",
+ "class" : "EHDTestBViewController",
+ "selector" : "",
+ },
+]
