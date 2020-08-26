@@ -1,3 +1,6 @@
 [submodule "submodules/fucking-algorithm"]
 	path = submodules/fucking-algorithm
 	url = https://github.com/labuladong/fucking-algorithm
+[submodule "submodules/OOMDetector"]
+	path = submodules/OOMDetector
+	url = https://github.com/Tencent/OOMDetector
