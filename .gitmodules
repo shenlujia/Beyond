@@ -1,0 +1,3 @@
+[submodule "submodules/fucking-algorithm"]
+	path = submodules/fucking-algorithm
+	url = https://github.com/labuladong/fucking-algorithm
