@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     
+    [self test_c:@"Fishhook"];
+    
     [self test_c:@"UIKit"];
     
     [self test_c:@"Timer"];
