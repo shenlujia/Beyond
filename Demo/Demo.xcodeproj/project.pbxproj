@@ -14,6 +14,7 @@
 		572339372447F92C009DD534 /* GCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572339362447F92C009DD534 /* GCDController.m */; };
 		574144602489CA8900BFCAC1 /* SafetyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5741445F2489CA8900BFCAC1 /* SafetyController.m */; };
 		57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57418C13248DCF7700BFCAC1 /* MemoryController.m */; };
+		574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 574C80AA24F36D560018D47B /* DontLikeCommon.m */; };
 		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
@@ -58,6 +59,8 @@
 		5741445F2489CA8900BFCAC1 /* SafetyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafetyController.m; sourceTree = "<group>"; };
 		57418C12248DCF7700BFCAC1 /* MemoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryController.h; sourceTree = "<group>"; };
 		57418C13248DCF7700BFCAC1 /* MemoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryController.m; sourceTree = "<group>"; };
+		574C80A924F36D560018D47B /* DontLikeCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DontLikeCommon.h; sourceTree = "<group>"; };
+		574C80AA24F36D560018D47B /* DontLikeCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DontLikeCommon.m; sourceTree = "<group>"; };
 		5756D9C72463B38500CA3991 /* AnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationController.h; sourceTree = "<group>"; };
 		5756D9C82463B38500CA3991 /* AnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationController.m; sourceTree = "<group>"; };
 		5774B18C243FFEA900C7A59E /* BlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockController.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */,
 				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
+				574C80A924F36D560018D47B /* DontLikeCommon.h */,
+				574C80AA24F36D560018D47B /* DontLikeCommon.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -441,6 +446,7 @@
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
+				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
