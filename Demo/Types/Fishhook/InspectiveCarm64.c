@@ -11,7 +11,7 @@
 
 #import "fishhook.h"
 
-#if !TARGET_OS_SIMULATOR
+#if !TARGET_OS_SIMULATOR && DEBUG
 
 #define DEFAULT_CALLSTACK_DEPTH 128
 #define CALLSTACK_DEPTH_INCREMENT 64
@@ -170,6 +170,13 @@ void hook_msgsend(void)
 {
     pthread_key_create(&threadKey, &destroyThreadCallStack);
     rebind_symbols((struct rebinding[1]){{"objc_msgSend", (void*)hook_Objc_msgSend, (void**)&orig_objc_msgSend}, }, 1);
+}
+
+#else
+
+void hook_msgsend(void)
+{
+    
 }
 
 #endif

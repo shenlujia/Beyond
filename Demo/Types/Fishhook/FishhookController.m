@@ -39,7 +39,7 @@ extern void hook_msgsend(void);
 {
     [super viewDidLoad];
     
-    [self test:@"hook msg_send" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"arm64 hook msg_send" tap:^(UIButton *button, NSDictionary *userInfo) {
         PRINT_BLANK_LINE
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{

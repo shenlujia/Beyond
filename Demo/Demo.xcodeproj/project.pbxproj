@@ -18,6 +18,10 @@
 		574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */ = {isa = PBXBuildFile; fileRef = 574CA36D24F666A20018D47B /* InspectiveCarm64.c */; };
 		574CA37124F666A20018D47B /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 574CA36E24F666A20018D47B /* fishhook.c */; };
 		574CA37424F666B90018D47B /* FishhookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 574CA37324F666B90018D47B /* FishhookController.m */; };
+		574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */ = {isa = PBXBuildFile; fileRef = 574CA37724F679660018D47B /* KKCallStackSymbol.c */; };
+		574CA37C24F679670018D47B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 574CA37824F679660018D47B /* README.md */; };
+		574CA37D24F679670018D47B /* KKCallStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 574CA37924F679660018D47B /* KKCallStack.m */; };
+		574CA38024F679770018D47B /* CallStackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 574CA37F24F679770018D47B /* CallStackController.m */; };
 		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
@@ -69,6 +73,13 @@
 		574CA36F24F666A20018D47B /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		574CA37224F666B90018D47B /* FishhookController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishhookController.h; sourceTree = "<group>"; };
 		574CA37324F666B90018D47B /* FishhookController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishhookController.m; sourceTree = "<group>"; };
+		574CA37624F679660018D47B /* KKCallStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCallStack.h; sourceTree = "<group>"; };
+		574CA37724F679660018D47B /* KKCallStackSymbol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KKCallStackSymbol.c; sourceTree = "<group>"; };
+		574CA37824F679660018D47B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		574CA37924F679660018D47B /* KKCallStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCallStack.m; sourceTree = "<group>"; };
+		574CA37A24F679660018D47B /* KKCallStackSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCallStackSymbol.h; sourceTree = "<group>"; };
+		574CA37E24F679770018D47B /* CallStackController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallStackController.h; sourceTree = "<group>"; };
+		574CA37F24F679770018D47B /* CallStackController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallStackController.m; sourceTree = "<group>"; };
 		5756D9C72463B38500CA3991 /* AnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationController.h; sourceTree = "<group>"; };
 		5756D9C82463B38500CA3991 /* AnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationController.m; sourceTree = "<group>"; };
 		5774B18C243FFEA900C7A59E /* BlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockController.h; sourceTree = "<group>"; };
@@ -178,8 +189,21 @@
 				574CA37224F666B90018D47B /* FishhookController.h */,
 				574CA37324F666B90018D47B /* FishhookController.m */,
 			);
-			name = Fishhook;
-			path = Types/Fishhook;
+			path = Fishhook;
+			sourceTree = "<group>";
+		};
+		574CA37524F679660018D47B /* CallStack */ = {
+			isa = PBXGroup;
+			children = (
+				574CA37E24F679770018D47B /* CallStackController.h */,
+				574CA37F24F679770018D47B /* CallStackController.m */,
+				574CA37624F679660018D47B /* KKCallStack.h */,
+				574CA37924F679660018D47B /* KKCallStack.m */,
+				574CA37724F679660018D47B /* KKCallStackSymbol.c */,
+				574CA37A24F679660018D47B /* KKCallStackSymbol.h */,
+				574CA37824F679660018D47B /* README.md */,
+			);
+			path = CallStack;
 			sourceTree = "<group>";
 		};
 		5756D9C62463B36D00CA3991 /* 动画 */ = {
@@ -288,7 +312,6 @@
 		57FD508F243DA25F002E481E = {
 			isa = PBXGroup;
 			children = (
-				574CA36C24F666850018D47B /* Fishhook */,
 				57F89436246E37CE007AEFC6 /* Utility */,
 				57FD50BD243DA447002E481E /* Types */,
 				57FD509A243DA25F002E481E /* Demo */,
@@ -334,6 +357,8 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				574CA37524F679660018D47B /* CallStack */,
+				574CA36C24F666850018D47B /* Fishhook */,
 				5707304A24D2BD7C00A9883A /* UIKit */,
 				57CDF41A24B56A3200F9856F /* Timer */,
 				57CDE88E24B5625000F9856F /* RunLoop */,
@@ -443,6 +468,7 @@
 			files = (
 				57FB88A2249EDD3C0093433B /* memory_test_1.jpg in Resources */,
 				57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */,
+				574CA37C24F679670018D47B /* README.md in Resources */,
 				57FD50A8243DA263002E481E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,12 +486,14 @@
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
+				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
 				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
+				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
@@ -478,6 +506,7 @@
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
+				574CA38024F679770018D47B /* CallStackController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
@@ -623,6 +652,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KEKFQFC5E3;
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
