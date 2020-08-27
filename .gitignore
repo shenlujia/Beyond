@@ -4,3 +4,4 @@ flutter_app_demo
 xcuserdata
 xcshareddata
 Pods
+*.DS_Store
