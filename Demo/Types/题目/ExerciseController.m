@@ -52,6 +52,14 @@
     return ret;
 }
 
+- (Father *)createObject
+{
+    NSLog(@"-> createObject");
+    Father *ret = [[[self class] alloc] init];
+    ret.from = @"createObject";
+    return ret;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -71,6 +79,14 @@
 {
     NSLog(@"-> newObject");
     Father *ret = [[super alloc] init];
+    ret.from = @"newObject";
+    return ret;
+}
+
+- (Father *)newObject
+{
+    NSLog(@"-> newObject");
+    Father *ret = [[[self class] alloc] init];
     ret.from = @"newObject";
     return ret;
 }
@@ -384,6 +400,33 @@
             [invocation getReturnValue:&ret];
         }
         printf("\n");
+    }];
+    
+    [weak_s test:@"NSInvocation getReturnValue崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
+        PRINT_BLANK_LINE
+        @autoreleasepool {
+            Father *obj = [[Father alloc] init];
+            SEL selector = @selector(newObject);
+            NSMethodSignature *signature = [Father methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            invocation.selector = selector;
+            invocation.target = obj;
+            [invocation invoke];
+            id ret;
+            [invocation getReturnValue:&ret];
+        }
+        PRINT_BLANK_LINE
+        @autoreleasepool {
+            Father *obj = [[Father alloc] init];
+            SEL selector = @selector(createObject);
+            NSMethodSignature *signature = [Father methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            invocation.selector = selector;
+            invocation.target = obj;
+            [invocation invoke];
+            id ret;
+            [invocation getReturnValue:&ret];
+        }
     }];
 
     weak_s.queue = [[NSOperationQueue alloc] init];
