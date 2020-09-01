@@ -7,6 +7,7 @@
 //
 
 #import "ThreadController.h"
+#import "KKThreadMonitor.h"
 
 NSInteger g_thread_int = 0;
 static NSInteger s_thread_int = 0;
@@ -24,6 +25,20 @@ static NSInteger s_thread_int = 0;
     [super viewDidLoad];
     
     WEAKSELF
+    
+    [self test:@"KKThreadMonitor" tap:^(UIButton *button, NSDictionary *userInfo) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [KKThreadMonitor startMonitor];
+        });
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            for (NSInteger idx = 0; idx < 20; ++idx) {
+                [NSThread detachNewThreadWithBlock:^{
+                    sleep(10);
+                }];
+            }
+        });
+    }];
     
     [self test_c:@"ThreadPipe" title:@"NSPipe只能传递流式的数据 通过文件可以跨进程通信"];
     

@@ -7,3 +7,12 @@
 [submodule "submodules/OCEval"]
 	path = submodules/OCEval
 	url = https://github.com/lilidan/OCEval
+[submodule "submodules/Stinger"]
+	path = submodules/Stinger
+	url = https://github.com/eleme/Stinger
+[submodule "submodules/Lokie"]
+	path = submodules/Lokie
+	url = https://github.com/alibaba/Lokie
+[submodule "submodules/KKMagicHook"]
+	path = submodules/KKMagicHook
+	url = https://github.com/maniackk/KKMagicHook

@@ -9,9 +9,15 @@
 #import "ExerciseController.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import <mach-o/dyld.h>
 #import <dlfcn.h>
 #import "NSObject+MethodSwizzle.h"
 #import "MacroHeader.h"
+
+static void add_image_callback(const struct mach_header *mhp, intptr_t slide)
+{
+    NSLog(@"add_image_callback %p", mhp);
+}
 
 @implementation Father
 
@@ -514,6 +520,13 @@
         // 如果target=nil 会发给响应链上第一个愿意接收的对象
         [b addTarget:nil action:@selector(test_addTarget_nil) forControlEvents:UIControlEventTouchUpInside];
         [b addTarget:nil action:NSSelectorFromString(@"test_addTarget_sel_not_exist") forControlEvents:UIControlEventTouchUpInside];
+    }];
+    
+    [weak_s test:@"_dyld_register_func_for_add_image" tap:^(UIButton *button, NSDictionary *userInfo) {
+        // 用dyld提供的C接口来注册image加载的回调是一种常见做法，第一次注册回调的时候会立刻把当前已经加载的image回调
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            _dyld_register_func_for_add_image(add_image_callback);
+        });
     }];
 }
 
