@@ -9,21 +9,7 @@
 #import "KKCallStack.h"
 #include "KKCallStackSymbol.h"
 
-#if TARGET_OS_SIMULATOR
-
-@implementation KKCallStack
-
-+ (NSString *)callStackWithType:(KKCallStackType)type
-{
-    return nil;
-}
-
-@end
-
-#else
-
 #if defined(__arm64__)
-//#define DETAG_INSTRUCTION_ADDRESS(A) ((A) & ~(3UL))
 #define KK_THREAD_STATE_COUNT ARM_THREAD_STATE64_COUNT
 #define KK_THREAD_STATE ARM_THREAD_STATE64
 #define KK_FRAME_POINTER __fp
@@ -31,7 +17,6 @@
 #define KK_INSTRUCTION_ADDRESS __pc
 
 #elif defined(__arm__)
-//#define DETAG_INSTRUCTION_ADDRESS(A) ((A) & ~(1UL))
 #define KK_THREAD_STATE_COUNT ARM_THREAD_STATE_COUNT
 #define KK_THREAD_STATE ARM_THREAD_STATE
 #define KK_FRAME_POINTER __r[7]
@@ -39,15 +24,13 @@
 #define KK_INSTRUCTION_ADDRESS __pc
 
 #elif defined(__x86_64__)
-//#define DETAG_INSTRUCTION_ADDRESS(A) (A)
 #define KK_THREAD_STATE_COUNT x86_THREAD_STATE64_COUNT
 #define KK_THREAD_STATE x86_THREAD_STATE64
 #define KK_FRAME_POINTER __rbp
-#define KK_LINKER_POINTER __rlr
+#define KK_LINKER_POINTER __rsp
 #define KK_INSTRUCTION_ADDRESS __rip
 
 #elif defined(__i386__)
-//#define DETAG_INSTRUCTION_ADDRESS(A) (A)
 #define KK_THREAD_STATE_COUNT x86_THREAD_STATE32_COUNT
 #define KK_THREAD_STATE x86_THREAD_STATE32
 #define KK_FRAME_POINTER __ebp
@@ -161,7 +144,7 @@ NSString *generateSymbol(uintptr_t *pcArr, int arrLen, thread_t thread)
     }
     
     freeMemory(csInfo);
-    return strM.copy;
+    return [strM copy];
 }
 
 NSString *formatFuncInfo(FuncInfo info)
@@ -207,5 +190,3 @@ bool readFPMemory(const void *fp, const void *dst, const vm_size_t len)
 }
 
 @end
-
-#endif

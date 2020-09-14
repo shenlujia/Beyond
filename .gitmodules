@@ -16,3 +16,6 @@
 [submodule "submodules/KKMagicHook"]
 	path = submodules/KKMagicHook
 	url = https://github.com/maniackk/KKMagicHook
+[submodule "submodules/iOS-Tips"]
+	path = submodules/iOS-Tips
+	url = https://github.com/awesome-tips/iOS-Tips
