@@ -19,3 +19,6 @@
 [submodule "submodules/iOS-Tips"]
 	path = submodules/iOS-Tips
 	url = https://github.com/awesome-tips/iOS-Tips
+[submodule "submodules/yacd"]
+	path = submodules/yacd
+	url = https://github.com/DerekSelander/yacd
