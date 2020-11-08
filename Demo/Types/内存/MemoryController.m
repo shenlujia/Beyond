@@ -12,6 +12,30 @@
 #import "NSObject+Dealloc.h"
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
+#import <objc/runtime.h>
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
+#pragma clang diagnostic ignored "-Wunused-variable"
+
+
+@interface SSWeakParamObj : NSObject
+
+@property (nonatomic, strong) id obj;
+@property (nonatomic, strong) NSString *name;
+
+@end
+
+@implementation SSWeakParamObj
+
+- (void)dealloc
+{
+    NSLog(@"~SSWeakParamObj %@", self.name);
+}
+
+@end
 
 #define SELBuild(a) [a string]
 #define SSSEL [PrivateSELBuilder head]
@@ -140,6 +164,9 @@ static UIColor * kRandomColor()
 @end
 
 @interface MemoryController ()
+{
+    NSString *_raw_obj;
+}
 
 @property (atomic, strong) NSObject *test_obj;
 @property (nonatomic, strong) MemoryTestObj *leak_test_obj;
@@ -411,6 +438,26 @@ static void *s_leakObj = NULL;
         sleep(1);
         NSLog(@"weak = %p", weak_obj);
     }];
+
+    [self test:@"传参 weak" tap:^(UIButton *button, NSDictionary *userInfo) {
+        SSWeakParamObj *obj = [[SSWeakParamObj alloc] init];
+        obj.obj = weak_s;
+        obj.name = @"weak";
+        [weak_s block_param_weak:obj];
+    }];
+
+    [self test:@"传参 strong" tap:^(UIButton *button, NSDictionary *userInfo) {
+        SSWeakParamObj *obj = [[SSWeakParamObj alloc] init];
+        obj.obj = weak_s;
+        obj.name = @"strong";
+        [weak_s block_param_strong:obj];
+    }];
+
+    [self test:@"self->_abc 类型参数" tap:^(UIButton *button, NSDictionary *userInfo) {
+        STRONGSELF
+        _raw_obj = nil; // 内存泄漏
+        self->_raw_obj = @"abc";
+    }];
 }
 
 - (void)p_test_fail_check_leak
@@ -483,4 +530,26 @@ static void *s_leakObj = NULL;
     return [NSString stringWithFormat:@"virtual[%.1f] resident[%.1f] phys[%.1f]", virtual_size, resident_size, phys_footprint];
 }
 
+- (void)block_param_weak:(__weak SSWeakParamObj *)param
+{
+    void (^block)(void) = ^{
+        NSLog(@"start %@", param.name);
+    };
+    block();
+    objc_setAssociatedObject(self, _cmd, block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)block_param_strong:(SSWeakParamObj *)param
+{
+    void (^block)(void) = ^{
+        NSLog(@"start %@", param.name);
+    };
+    block();
+    objc_setAssociatedObject(self, _cmd, block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 @end
+
+
+#pragma clang diagnostic pop
+
