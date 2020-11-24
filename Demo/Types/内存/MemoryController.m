@@ -461,10 +461,9 @@ static void *s_leakObj = NULL;
     }];
 
     leak_detector_register_object(self, 1);
-    leak_detector_register_callback(^(NSDictionary *business, NSDictionary *total) {
-        PRINT_BLANK_LINE
-        NSLog(@"%@", business);
-    }, 3);
+    leak_detector_register_callback(3, ^(SSLeakDetectorCallback *object) {
+
+    });
 }
 
 - (void)p_test_fail_check_leak

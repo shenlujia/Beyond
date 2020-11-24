@@ -23,11 +23,67 @@ struct leak_detector_str_cmp : public binary_function<const char *, const char *
     }
 };
 
+#define SSClassSet set<const char *, leak_detector_str_cmp>
+#define SSCheckMap map<const char *, set<long long>, leak_detector_str_cmp>
+
 static pthread_mutex_t m_class_mutex;
-static set<const char *, leak_detector_str_cmp> m_class_set;
+static SSClassSet m_class_set;
 
 static NSRecursiveLock *m_check_lock;
-static map<const char *, set<long long>, leak_detector_str_cmp> m_check_map;
+static SSCheckMap m_check_map;
+
+#pragma mark - SSLeakDetectorCallback
+
+@implementation SSLeakDetectorCallback
+
+- (void)updateWithData:(const SSCheckMap &)data
+{
+    NSMutableDictionary *total = [NSMutableDictionary dictionary];
+    for (auto it = m_check_map.begin(); it != m_check_map.end(); ++it) {
+        NSString *name = [NSString stringWithUTF8String:it->first];
+        NSMutableArray *array = [NSMutableArray array];
+        for (auto p : it->second) {
+            [array addObject:[NSString stringWithFormat:@"%p", (void *)p]];
+        }
+        total[name] = array;
+    }
+
+    NSMutableDictionary *nonempty = [NSMutableDictionary dictionary];
+    [total enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *array, BOOL *stop) {
+        if (array.count) {
+            nonempty[name] = array;
+        }
+    }];
+
+    NSMutableArray *business = [NSMutableArray array];
+    NSMutableArray *more_than_once = [NSMutableArray array];
+    [nonempty enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *array, BOOL *stop) {
+        if ([name hasPrefix:@"CA"] ||
+            [name hasPrefix:@"NS"] ||
+            [name hasPrefix:@"UI"]) {
+            return;
+        }
+        [business addObject:[NSString stringWithFormat:@"%@ | %@", name, @(array.count)]];
+        if (array.count > 1) {
+            [more_than_once addObject:[NSString stringWithFormat:@"%@ | %@", @(array.count), name]];
+        }
+    }];
+    [business sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        return [obj1 compare:obj2];
+    }];
+    [more_than_once sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        return [obj1 compare:obj2];
+    }];
+
+    _total = total;
+    _nonempty = nonempty;
+    _business = business;
+    _more_than_once = more_than_once;
+}
+
+@end
+
+#pragma mark - Private
 
 @interface NSObject (LeakDetector)
 
@@ -55,6 +111,30 @@ static inline void _detect_object_alloc(id object)
         }
         [m_check_lock unlock];
     }
+}
+
+static inline bool _leak_detector_should_filter(const char *encoding)
+{
+    if (!encoding) {
+        return true;
+    }
+    int len = (int)strlen(encoding);
+    if (len <= 3) {
+        return true;
+    }
+    if (encoding[0] != '@') {
+        return true;
+    }
+
+    const int name_len = len - 3;
+    char string[name_len];
+    memset(string, 0, name_len);
+    memcpy(string, encoding + 2, name_len);
+    if (strcmp(string, "NSURL") == 0) {
+        return true;
+    }
+
+    return false;
 }
 
 #pragma mark - Public
@@ -102,10 +182,19 @@ void leak_detector_register_object(id object, int depth)
                 for (int i = 0; i < count; ++i) {
                     Ivar one = total[i];
                     const char *encoding = ivar_getTypeEncoding(one);
-                    if (encoding[0] == '@') {
-                        NSString *key = [NSString stringWithCString:ivar_getName(one) encoding:NSUTF8StringEncoding];
-                        leak_detector_register_object([object valueForKey:key], depth - 1);
+                    if (_leak_detector_should_filter(encoding)) {
+                        continue;
                     }
+                    id value = nil;
+                    NSString *key = [NSString stringWithUTF8String:ivar_getName(one)];
+                    @try {
+                        value = [object valueForKey:key];
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+
+                    }
+                    leak_detector_register_object(value, depth - 1);
                 }
                 free(total);
                 currentClass = class_getSuperclass(currentClass);
@@ -114,7 +203,7 @@ void leak_detector_register_object(id object, int depth)
     }
 }
 
-void leak_detector_register_callback(void (^callback)(NSDictionary *business, NSDictionary *total), NSTimeInterval interval)
+void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(SSLeakDetectorCallback *object))
 {
     [NSObject ss_registerDetectorSwizzleIfNeeded];
 
@@ -126,25 +215,11 @@ void leak_detector_register_callback(void (^callback)(NSDictionary *business, NS
     }
     timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
         [m_check_lock lock];
-        NSMutableDictionary *business = [NSMutableDictionary dictionary];
-        NSMutableDictionary *total = [NSMutableDictionary dictionary];
-        for (auto it = m_check_map.begin(); it != m_check_map.end(); ++it) {
-            NSString *name = [NSString stringWithUTF8String:it->first];
-            NSMutableArray *array = [NSMutableArray array];
-            for (auto p : it->second) {
-                [array addObject:[NSString stringWithFormat:@"%p", (void *)p]];
-            }
-            if (array.count) {
-                if (![name hasPrefix:@"CA"] &&
-                    ![name hasPrefix:@"NS"] &&
-                    ![name hasPrefix:@"UI"]) {
-                    business[name] = array;
-                }
-                total[name] = array;
-            }
-        }
+        SSCheckMap data = m_check_map;
         [m_check_lock unlock];
-        callback(business, total);
+        SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
+        [object updateWithData:data];
+        callback(object);
     }];
 }
 
