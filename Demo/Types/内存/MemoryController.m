@@ -13,6 +13,7 @@
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
 #import <objc/runtime.h>
+#import "SimpleLeakDetector.h"
 
 
 #pragma clang diagnostic push
@@ -181,7 +182,7 @@ static void *s_leakObj = NULL;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     NSString *s = SELBuild(SSSEL.A.B.A);
     
     WEAKSELF
@@ -458,6 +459,12 @@ static void *s_leakObj = NULL;
         _raw_obj = nil; // 内存泄漏
         self->_raw_obj = @"abc";
     }];
+
+    simple_leak_detect_object(self, 1);
+    simple_leak_detect_callback(^(NSDictionary *leaks) {
+//        PRINT_BLANK_LINE
+        NSLog(@"%@", leaks);
+    }, 3);
 }
 
 - (void)p_test_fail_check_leak
