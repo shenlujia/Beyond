@@ -46,12 +46,12 @@
 		57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A9243DA263002E481E /* LaunchScreen.storyboard */; };
 		57FD50BA243DA3F0002E481E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B6243DA3EF002E481E /* ViewController.m */; };
 		57FD50BB243DA3F0002E481E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B7243DA3EF002E481E /* main.m */; };
-		57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B8243DA3EF002E481E /* AppDelegate.m */; };
+		57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B8243DA3EF002E481E /* AppDelegate.mm */; };
 		57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C1243DA46B002E481E /* ControllerLifeCycleController.m */; };
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
-		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.m */; };
+		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,7 +129,7 @@
 		57FD50B5243DA3EF002E481E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57FD50B6243DA3EF002E481E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		57FD50B7243DA3EF002E481E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		57FD50B8243DA3EF002E481E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		57FD50B8243DA3EF002E481E /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		57FD50B9243DA3EF002E481E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		57FD50C0243DA46B002E481E /* ControllerLifeCycleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControllerLifeCycleController.h; sourceTree = "<group>"; };
 		57FD50C1243DA46B002E481E /* ControllerLifeCycleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControllerLifeCycleController.m; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 		5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
-		5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLeakDetector.m; sourceTree = "<group>"; };
+		5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,7 +324,7 @@
 				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
 				5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */,
-				5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.m */,
+				5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				57FD50B5243DA3EF002E481E /* AppDelegate.h */,
-				57FD50B8243DA3EF002E481E /* AppDelegate.m */,
+				57FD50B8243DA3EF002E481E /* AppDelegate.mm */,
 				57FD50B7243DA3EF002E481E /* main.m */,
 				57FD50B9243DA3EF002E481E /* ViewController.h */,
 				57FD50B6243DA3EF002E481E /* ViewController.m */,
@@ -510,7 +510,7 @@
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
-				5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.m in Sources */,
+				5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
 				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
@@ -524,7 +524,7 @@
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57E89A7124FD13AA005F2A6C /* KKThreadMonitor.m in Sources */,
-				57FD50BC243DA3F0002E481E /* AppDelegate.m in Sources */,
+				57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */,
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,

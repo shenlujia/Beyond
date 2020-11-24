@@ -460,10 +460,10 @@ static void *s_leakObj = NULL;
         self->_raw_obj = @"abc";
     }];
 
-    simple_leak_detect_object(self, 1);
-    simple_leak_detect_callback(^(NSDictionary *leaks) {
-//        PRINT_BLANK_LINE
-        NSLog(@"%@", leaks);
+    leak_detector_register_object(self, 1);
+    leak_detector_register_callback(^(NSDictionary *business, NSDictionary *total) {
+        PRINT_BLANK_LINE
+        NSLog(@"%@", business);
     }, 3);
 }
 

@@ -8,6 +8,7 @@
 
 #import "ThreadController.h"
 #import "KKThreadMonitor.h"
+#import "SimpleLeakDetector.h"
 
 NSInteger g_thread_int = 0;
 static NSInteger s_thread_int = 0;
