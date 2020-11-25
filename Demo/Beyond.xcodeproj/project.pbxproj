@@ -122,7 +122,7 @@
 		57FB9F9B24A083140093433B /* ThreadPipeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadPipeController.m; sourceTree = "<group>"; };
 		57FBB68C24A0A41E0093433B /* ThreadPortController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadPortController.h; sourceTree = "<group>"; };
 		57FBB68D24A0A41E0093433B /* ThreadPortController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadPortController.m; sourceTree = "<group>"; };
-		57FD5098243DA25F002E481E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57FD5098243DA25F002E481E /* Beyond.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beyond.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FD50AA243DA263002E481E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57FD50AC243DA263002E481E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 		57FD5099243DA25F002E481E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57FD5098243DA25F002E481E /* Demo.app */,
+				57FD5098243DA25F002E481E /* Beyond.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -433,9 +433,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57FD5097243DA25F002E481E /* Demo */ = {
+		57FD5097243DA25F002E481E /* Beyond */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildConfigurationList = 57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Beyond" */;
 			buildPhases = (
 				57FD5094243DA25F002E481E /* Sources */,
 				57FD5095243DA25F002E481E /* Frameworks */,
@@ -445,9 +445,9 @@
 			);
 			dependencies = (
 			);
-			name = Demo;
+			name = Beyond;
 			productName = Demo;
-			productReference = 57FD5098243DA25F002E481E /* Demo.app */;
+			productReference = 57FD5098243DA25F002E481E /* Beyond.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -464,7 +464,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Beyond" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -477,7 +477,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57FD5097243DA25F002E481E /* Demo */,
+				57FD5097243DA25F002E481E /* Beyond */,
 			);
 		};
 /* End PBXProject section */
@@ -714,7 +714,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Demo" */ = {
+		57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Beyond" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57FD50AF243DA263002E481E /* Debug */,
@@ -723,7 +723,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Beyond" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57FD50B2243DA263002E481E /* Debug */,

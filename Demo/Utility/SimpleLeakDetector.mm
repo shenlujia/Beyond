@@ -8,7 +8,6 @@
 
 #import "SimpleLeakDetector.h"
 #import <objc/runtime.h>
-#include <functional>
 #include <pthread.h>
 #include <set>
 #include <map>
@@ -39,7 +38,7 @@ static SSCheckMap m_check_map;
 - (void)updateWithData:(const SSCheckMap &)data
 {
     NSMutableDictionary *total = [NSMutableDictionary dictionary];
-    for (auto it = m_check_map.begin(); it != m_check_map.end(); ++it) {
+    for (auto it = data.begin(); it != data.end(); ++it) {
         NSString *name = [NSString stringWithUTF8String:it->first];
         NSMutableArray *array = [NSMutableArray array];
         for (auto p : it->second) {
@@ -72,7 +71,7 @@ static SSCheckMap m_check_map;
         return [obj1 compare:obj2];
     }];
     [more_than_once sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-        return [obj1 compare:obj2];
+        return [obj2 compare:obj1];
     }];
 
     _total = total;
@@ -91,10 +90,10 @@ static SSCheckMap m_check_map;
 
 @end
 
-static inline void _detect_object_alloc(id object)
+static inline bool _detect_object_alloc(id object)
 {
     if (!object) {
-        return;
+        return false;
     }
 
     const char *name = object_getClassName(object);
@@ -103,14 +102,20 @@ static inline void _detect_object_alloc(id object)
     bool enabled = m_class_set.find(name) != m_class_set.end();
     pthread_mutex_unlock(&m_class_mutex);
 
+    bool ret = false;
     if (enabled) {
         [m_check_lock lock];
         auto it = m_check_map.find(name);
         if (it != m_check_map.end()) {
-            it->second.insert((long long)object);
+            long long value = (long long)object;
+            if (it->second.find(value) == it->second.end()) {
+                it->second.insert(value);
+                ret = true;
+            }
         }
         [m_check_lock unlock];
     }
+    return ret;
 }
 
 static inline bool _leak_detector_should_filter(const char *encoding)
@@ -127,10 +132,13 @@ static inline bool _leak_detector_should_filter(const char *encoding)
     }
 
     const int name_len = len - 3;
-    char string[name_len];
+    char string[name_len + 1];
     memset(string, 0, name_len);
     memcpy(string, encoding + 2, name_len);
-    if (strcmp(string, "NSURL") == 0) {
+    if (strcmp(string, "NSMutableAttributedString") == 0 ||
+        strcmp(string, "NSMutableString") == 0 ||
+        strcmp(string, "NSString") == 0 ||
+        strcmp(string, "NSURL") == 0) {
         return true;
     }
 
@@ -172,9 +180,8 @@ void leak_detector_register_object(id object, int depth)
     [m_check_lock unlock];
 
     if ([object class] != object) {
-        _detect_object_alloc(object);
-
-        if (depth > 0) {
+        bool success = _detect_object_alloc(object);
+        if (success && depth > 0) {
             Class currentClass = [object class];
             while (currentClass) {
                 unsigned int count = 0;

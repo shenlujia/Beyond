@@ -460,7 +460,7 @@ static void *s_leakObj = NULL;
         self->_raw_obj = @"abc";
     }];
 
-    leak_detector_register_object(self, 1);
+    leak_detector_register_object(self, 100000);
     leak_detector_register_callback(3, ^(SSLeakDetectorCallback *object) {
 
     });
