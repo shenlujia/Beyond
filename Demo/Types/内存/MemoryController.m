@@ -462,7 +462,7 @@ static void *s_leakObj = NULL;
 
     leak_detector_register_object(self, 100000);
     leak_detector_register_callback(3, ^(SSLeakDetectorCallback *object) {
-
+        NSLog(@"%@", object.more_than_once);
     });
 }
 

@@ -23,7 +23,7 @@ extern "C" {
 
 void leak_detector_register_class(Class c);
 void leak_detector_register_object(id object, int depth);
-void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(SSLeakDetectorCallback *object));
+void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object));
 
 #ifdef __cplusplus
 }
