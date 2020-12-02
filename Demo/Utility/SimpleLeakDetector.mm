@@ -148,13 +148,13 @@ static inline bool _leak_detector_should_filter(Ivar ivar)
     return false;
 }
 
-static inline bool _leak_detector_should_filter(const char *class_name)
+static inline bool _leak_detector_should_filter_class(const char *class_name)
 {
     if (!class_name) {
         return true;
     }
 
-    static const vector<const char *> full_match = {"NSString", "NSURL"};
+    static const vector<const char *> full_match = {"NSString", "NSArray", "NSURL", "GPBAutocreatedArray"};
     for (auto s : full_match) {
         if (strcmp(class_name, s) == 0) {
             return true;
@@ -190,7 +190,7 @@ void leak_detector_register_object(id object, int depth)
     }
 
     const char *class_name = object_getClassName(object);
-    if (_leak_detector_should_filter(class_name)) {
+    if (_leak_detector_should_filter_class(class_name)) {
         return;
     }
 
@@ -206,6 +206,12 @@ void leak_detector_register_object(id object, int depth)
         if (success && depth > 0) {
             Class currentClass = [object class];
             while (currentClass) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                if (![currentClass performSelector:@selector(accessInstanceVariablesDirectly)]) {
+                    break;
+                }
+#pragma clang diagnostic pop
                 unsigned int count = 0;
                 Ivar *total = class_copyIvarList(currentClass, &count);
                 for (int i = 0; i < count; ++i) {
