@@ -8,11 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+
 #define WEAKSELF __weak typeof (self) weak_s = self;
 #define STRONGSELF __strong typeof (weak_s) self = weak_s;
 
 
 #define kButtonTapCountKey @"count"
+
+
+static void inline ss_print_cost(NSString *title, dispatch_block_t block) {
+    double start = CFAbsoluteTimeGetCurrent();
+    if (block != nil) {
+        block();
+    }
+    double end = CFAbsoluteTimeGetCurrent();
+    NSString *text = [NSString stringWithFormat:@"[slj_cost] %@: %f", title, end - start];
+    printf("%s\n", text.UTF8String);
+};
+
 
 typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 

@@ -52,6 +52,9 @@
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
 		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
+		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
+		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
+		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +144,10 @@
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 		5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
 		5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
+		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
+		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
+		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
+		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +384,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5ECAF9512580A79000984E77 /* AVKit */,
 				574CA37524F679660018D47B /* CallStack */,
 				574CA36C24F666850018D47B /* Fishhook */,
 				5707304A24D2BD7C00A9883A /* UIKit */,
@@ -428,6 +436,17 @@
 				57FBB68D24A0A41E0093433B /* ThreadPortController.m */,
 			);
 			path = "线程";
+			sourceTree = "<group>";
+		};
+		5ECAF9512580A79000984E77 /* AVKit */ = {
+			isa = PBXGroup;
+			children = (
+				5ECAF95E2580B41D00984E77 /* test_avkit1.mov */,
+				5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */,
+				5ECAF9522580A79000984E77 /* AVKitController.h */,
+				5ECAF9532580A79000984E77 /* AVKitController.m */,
+			);
+			path = AVKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +510,8 @@
 				57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */,
 				57E89A7324FD1412005F2A6C /* KKThreadMonitor.md in Resources */,
 				574CA37C24F679670018D47B /* README.md in Resources */,
+				5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */,
+				5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */,
 				57FD50A8243DA263002E481E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +538,7 @@
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
 				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
+				5ECAF9542580A79000984E77 /* AVKitController.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
