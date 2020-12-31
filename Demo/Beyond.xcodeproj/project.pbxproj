@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1471FE1F2A98C7EB407C0911 /* libPods-Beyond.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5031BF8E1941A154D07BF /* libPods-Beyond.a */; };
 		5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707304D24D2BD7C00A9883A /* AppearanceController.m */; };
 		5707305024D2BD7D00A9883A /* ControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707304E24D2BD7C00A9883A /* ControlController.m */; };
 		5707305324D2BD9500A9883A /* UIKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707305224D2BD9500A9883A /* UIKitController.m */; };
@@ -52,12 +53,16 @@
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
 		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
+		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
+		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
+		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53D328C22F16CF730A51016D /* Pods-Beyond.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.debug.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.debug.xcconfig"; sourceTree = "<group>"; };
 		5707304B24D2BD7C00A9883A /* AppearanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppearanceController.h; sourceTree = "<group>"; };
 		5707304C24D2BD7C00A9883A /* ControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlController.h; sourceTree = "<group>"; };
 		5707304D24D2BD7C00A9883A /* AppearanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceController.m; sourceTree = "<group>"; };
@@ -142,12 +147,20 @@
 		57FD50C7243DB174002E481E /* AssociatedObjectController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AssociatedObjectController.mm; sourceTree = "<group>"; };
 		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
+		59F5031BF8E1941A154D07BF /* libPods-Beyond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beyond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
 		5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
+		5E07DFED259D6FE1004E4A66 /* HorizontalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewCell.h; sourceTree = "<group>"; };
+		5E07DFEE259D6FE1004E4A66 /* HorizontalCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewLayout.h; sourceTree = "<group>"; };
+		5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewController.m; sourceTree = "<group>"; };
+		5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewCell.m; sourceTree = "<group>"; };
+		5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewController.h; sourceTree = "<group>"; };
+		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
+		A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.release.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,12 +168,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1471FE1F2A98C7EB407C0911 /* libPods-Beyond.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31E39A15DB044FDDDEE70457 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				53D328C22F16CF730A51016D /* Pods-Beyond.debug.xcconfig */,
+				A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5707304A24D2BD7C00A9883A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +193,7 @@
 				5707304E24D2BD7C00A9883A /* ControlController.m */,
 				5707305424D2BE4200A9883A /* GestureController.h */,
 				5707305524D2BE4200A9883A /* GestureController.m */,
+				5E07DFEC259D6FE1004E4A66 /* HorizontalCollectionView */,
 				5707305124D2BD9500A9883A /* UIKitController.h */,
 				5707305224D2BD9500A9883A /* UIKitController.m */,
 			);
@@ -343,6 +367,8 @@
 				57FD50BD243DA447002E481E /* Types */,
 				57FD509A243DA25F002E481E /* Demo */,
 				57FD5099243DA25F002E481E /* Products */,
+				31E39A15DB044FDDDEE70457 /* Pods */,
+				D4EA06309F64FDB43730C4A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -438,6 +464,19 @@
 			path = "线程";
 			sourceTree = "<group>";
 		};
+		5E07DFEC259D6FE1004E4A66 /* HorizontalCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5E07DFED259D6FE1004E4A66 /* HorizontalCollectionViewCell.h */,
+				5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */,
+				5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */,
+				5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */,
+				5E07DFEE259D6FE1004E4A66 /* HorizontalCollectionViewLayout.h */,
+				5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */,
+			);
+			path = HorizontalCollectionView;
+			sourceTree = "<group>";
+		};
 		5ECAF9512580A79000984E77 /* AVKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +488,14 @@
 			path = AVKit;
 			sourceTree = "<group>";
 		};
+		D4EA06309F64FDB43730C4A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59F5031BF8E1941A154D07BF /* libPods-Beyond.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -456,6 +503,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Beyond" */;
 			buildPhases = (
+				CE1495E1B93DB872CDE84F4D /* [CP] Check Pods Manifest.lock */,
 				57FD5094243DA25F002E481E /* Sources */,
 				57FD5095243DA25F002E481E /* Frameworks */,
 				57FD5096243DA25F002E481E /* Resources */,
@@ -518,6 +566,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CE1495E1B93DB872CDE84F4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Beyond-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		57FD5094243DA25F002E481E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -543,6 +616,7 @@
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
 				574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */,
+				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57E89A7124FD13AA005F2A6C /* KKThreadMonitor.m in Sources */,
@@ -552,7 +626,9 @@
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
+				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,
 				574CA38024F679770018D47B /* CallStackController.m in Sources */,
+				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
@@ -693,6 +769,7 @@
 		};
 		57FD50B2243DA263002E481E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53D328C22F16CF730A51016D /* Pods-Beyond.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -714,6 +791,7 @@
 		};
 		57FD50B3243DA263002E481E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
