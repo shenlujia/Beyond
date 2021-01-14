@@ -36,6 +36,8 @@
     printf("INFINITY * 0 = %f \n", INFINITY * 0);
     printf("INFINITY * 0.0 = %f \n", INFINITY * 0.0);
     printf("INFINITY * 0.1 = %f \n", INFINITY * 0.1);
+    printf("INFINITY * 1000 = %f \n", INFINITY * 1000);
+    printf("INFINITY * INFINITY = %f \n", INFINITY * INFINITY);
     printf("0.0 / INFINITY = %f \n", 0.0 / INFINITY);
     printf("1.0 / INFINITY = %f \n", 1.0 / INFINITY);
     printf("INFINITY - INFINITY = %f \n", INFINITY - INFINITY);
@@ -46,6 +48,8 @@
     printf("INFINITY / INFINITY = %f \n", INFINITY / INFINITY);
     printf("INFINITY > 1: %s \n", INFINITY > 1 ? "true" : "false");
     printf("INFINITY < 1: %s \n", INFINITY < 1 ? "true" : "false");
+    printf("INFINITY > CGFLOAT_MAX: %s \n", INFINITY > CGFLOAT_MAX ? "true" : "false");
+    printf("INFINITY == CGFLOAT_MAX: %s \n", INFINITY == CGFLOAT_MAX ? "true" : "false");
     printf("======\n");
     printf("0 / NAN = %f \n", 0 / NAN);
     printf("0.0 / NAN = %f \n", 0.0 / NAN);
@@ -65,6 +69,8 @@
     printf("sizeof(NAN) = %d    sizeof(INFI) = %d \n", (int)sizeof(NAN), (int)sizeof(INFINITY));
 
     [self test_c:@"HorizontalCollectionView"];
+
+    [self test_c:@"Lottie"];
 
     [self test_c:@"Gesture"];
     

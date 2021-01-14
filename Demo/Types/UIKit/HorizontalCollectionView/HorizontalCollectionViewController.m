@@ -77,4 +77,9 @@
     NSLog(@"%@", indexPath);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"willDisplayCell system %@", @(indexPath.item));
+}
+
 @end

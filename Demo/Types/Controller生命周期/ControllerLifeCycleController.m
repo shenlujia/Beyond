@@ -81,7 +81,7 @@
         [weak_s.view addSubview:c.view];
     }];
 
-    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"present child 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         // iOS13+ UIModalPresentationAutomatic
         // iOS12- UIModalPresentationFullScreen
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
@@ -92,7 +92,7 @@
         [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"present child 2" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationFullScreen;
         __weak ControllerLifeCycleChildController *weak_c = c;
@@ -102,7 +102,7 @@
         [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"present child 3" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationOverFullScreen;
         __weak ControllerLifeCycleChildController *weak_c = c;
@@ -112,7 +112,7 @@
         [weak_s presentViewController:c animated:YES completion:nil];
     }];
     
-    [self test:@"present child" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"present child 4" tap:^(UIButton *button, NSDictionary *userInfo) {
         ControllerLifeCycleChildController *c = [[ControllerLifeCycleChildController alloc] init];
         c.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         __weak ControllerLifeCycleChildController *weak_c = c;
@@ -120,6 +120,22 @@
             [weak_c dismissViewControllerAnimated:YES completion:nil];
         }];
         [weak_s presentViewController:c animated:YES completion:nil];
+    }];
+
+    [self test:@"present present dismiss to current" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ControllerLifeCycleChildController *c1 = [[ControllerLifeCycleChildController alloc] init];
+        c1.modalPresentationStyle = UIModalPresentationFullScreen;
+        __weak ControllerLifeCycleChildController *weak_c1 = c1;
+        [weak_c1 test:@"gogogo add" tap:^(UIButton *button, NSDictionary *userInfo) {
+            ControllerLifeCycleChildController *c2 = [[ControllerLifeCycleChildController alloc] init];
+            c2.modalPresentationStyle = UIModalPresentationFullScreen;
+            __weak ControllerLifeCycleChildController *weak_c2 = c2;
+            [weak_c2 test:@"dismiss to upup" tap:^(UIButton *button, NSDictionary *userInfo) {
+                [weak_s dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [weak_c1 presentViewController:c2 animated:YES completion:nil];
+        }];
+        [weak_s presentViewController:c1 animated:YES completion:nil];
     }];
 }
 

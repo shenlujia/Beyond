@@ -3,7 +3,8 @@ platform:ios,'10.0'
 
 target 'Beyond' do
 
-    pod 'FLEX'
+  pod 'FLEX'
+  pod 'lottie-ios', '2.5.3'
 
 end
 
