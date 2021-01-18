@@ -24,7 +24,7 @@
     NSMutableArray *attributesArray = [NSMutableArray array];
     NSInteger count = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
     for (NSInteger idx = 0; idx < count; ++idx) {
-        [attributesArray addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]]];
+        [attributesArray addObject:[[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]] copy]];
     }
 
     NSMutableArray *xArray = [NSMutableArray array];
@@ -61,7 +61,7 @@
 
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    return self.attributesArray;
+    return [[NSArray alloc] initWithArray:self.attributesArray copyItems:YES];
 }
 
 @end
