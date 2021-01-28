@@ -14,6 +14,7 @@
 
 @property (nonatomic, copy) NSArray *data;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 @end
 
@@ -68,12 +69,23 @@
 {
     NSString *identifier = NSStringFromClass([HorizontalCollectionViewCell class]);
     HorizontalCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    [cell updateWithTitle:self.data[indexPath.item]];
+    [cell updateWithTitle:self.data[indexPath.item] selected:indexPath.item == self.selectedIndex];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *visibleCells = self.collectionView.visibleCells;
+    [self.collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {
+        if (obj.item == self.selectedIndex) {
+            [visibleCells[idx] updateWithTitle:self.data[obj.item] selected:NO];
+        }
+        if (obj.item == indexPath.item) {
+            [visibleCells[idx] updateWithTitle:self.data[obj.item] selected:YES];
+        }
+    }];
+    self.selectedIndex = indexPath.item;
+
     NSLog(@"%@", indexPath);
 }
 

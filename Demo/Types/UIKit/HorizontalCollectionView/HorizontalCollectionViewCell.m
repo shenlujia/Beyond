@@ -7,9 +7,11 @@
 //
 
 #import "HorizontalCollectionViewCell.h"
+#import <Masonry/Masonry.h>
 
 @interface HorizontalCollectionViewCell ()
 
+@property (nonatomic, strong) UIView *roundView;
 @property (nonatomic, strong) UILabel *label;
 
 @end
@@ -26,6 +28,21 @@
     contentView.layer.cornerRadius = 5;
     contentView.layer.borderWidth = 1 / UIScreen.mainScreen.scale;
     contentView.layer.borderColor = UIColor.whiteColor.CGColor;
+
+    _roundView = ({
+        UIView *view = [[UIView alloc] init];
+        [contentView addSubview:view];
+        view.layer.cornerRadius = 5;
+        view.backgroundColor = [UIColor.cyanColor colorWithAlphaComponent:0.5];
+
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.equalTo(contentView);
+            make.width.equalTo(contentView).offset(4);
+            make.height.equalTo(contentView).offset(4);
+        }];
+
+        view;
+    });
 
     _label = ({
         UILabel *view = [[UILabel alloc] init];
@@ -47,9 +64,10 @@
     return self;
 }
 
-- (void)updateWithTitle:(NSString *)title
+- (void)updateWithTitle:(NSString *)title selected:(BOOL)selected
 {
     self.label.text = title;
+    self.roundView.hidden = !selected;
 }
 
 @end

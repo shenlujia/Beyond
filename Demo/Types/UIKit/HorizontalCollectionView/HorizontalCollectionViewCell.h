@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HorizontalCollectionViewCell : UICollectionViewCell
 
-- (void)updateWithTitle:(NSString *)title;
+- (void)updateWithTitle:(NSString *)title selected:(BOOL)selected;
 
 @end
 
