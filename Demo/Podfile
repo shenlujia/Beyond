@@ -5,6 +5,7 @@ target 'Beyond' do
 
   pod 'FLEX'
   pod 'Masonry'
+  pod 'Bugly'
   pod 'lottie-ios', '2.5.3'
 
 end

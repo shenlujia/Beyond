@@ -52,6 +52,8 @@
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
+		5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */; };
 		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
 		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
@@ -79,6 +81,8 @@
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
+		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
+		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +172,10 @@
 		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 		59F5031BF8E1941A154D07BF /* libPods-Beyond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beyond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E04F98325CC33AB00FE80F2 /* MemoryNonARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryNonARC.h; sourceTree = "<group>"; };
+		5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryNonARC.m; sourceTree = "<group>"; };
+		5E04F98925CC36FE00FE80F2 /* MemoryDetectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryDetectController.h; sourceTree = "<group>"; };
+		5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryDetectController.m; sourceTree = "<group>"; };
 		5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
 		5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
 		5E07DFED259D6FE1004E4A66 /* HorizontalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewCell.h; sourceTree = "<group>"; };
@@ -201,6 +209,11 @@
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
+		5EF0245D25CAA9AE00EDB1EE /* objc_class_detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_class_detail.h; sourceTree = "<group>"; };
+		5EF0245E25CAA9AE00EDB1EE /* AWEClassUsageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWEClassUsageHelper.h; sourceTree = "<group>"; };
+		5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AWEClassUsageHelper.mm; sourceTree = "<group>"; };
+		5EF0246225CAA9CA00EDB1EE /* UselessClassCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UselessClassCheckController.h; sourceTree = "<group>"; };
+		5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UselessClassCheckController.m; sourceTree = "<group>"; };
 		A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.release.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +270,10 @@
 				57FB88A1249EDD3C0093433B /* memory_test_1.jpg */,
 				57418C12248DCF7700BFCAC1 /* MemoryController.h */,
 				57418C13248DCF7700BFCAC1 /* MemoryController.m */,
+				5E04F98925CC36FE00FE80F2 /* MemoryDetectController.h */,
+				5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */,
+				5E04F98325CC33AB00FE80F2 /* MemoryNonARC.h */,
+				5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */,
 			);
 			path = "内存";
 			sourceTree = "<group>";
@@ -452,6 +469,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5EF0245B25CAA9AE00EDB1EE /* 无用类检测 */,
 				5ECAF9512580A79000984E77 /* AVKit */,
 				574CA37524F679660018D47B /* CallStack */,
 				574CA36C24F666850018D47B /* Fishhook */,
@@ -606,6 +624,26 @@
 			path = AVKit;
 			sourceTree = "<group>";
 		};
+		5EF0245B25CAA9AE00EDB1EE /* 无用类检测 */ = {
+			isa = PBXGroup;
+			children = (
+				5EF0245C25CAA9AE00EDB1EE /* class_usage_oc_impl */,
+				5EF0246225CAA9CA00EDB1EE /* UselessClassCheckController.h */,
+				5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */,
+			);
+			path = "无用类检测";
+			sourceTree = "<group>";
+		};
+		5EF0245C25CAA9AE00EDB1EE /* class_usage_oc_impl */ = {
+			isa = PBXGroup;
+			children = (
+				5EF0245E25CAA9AE00EDB1EE /* AWEClassUsageHelper.h */,
+				5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */,
+				5EF0245D25CAA9AE00EDB1EE /* objc_class_detail.h */,
+			);
+			path = class_usage_oc_impl;
+			sourceTree = "<group>";
+		};
 		D4EA06309F64FDB43730C4A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +773,8 @@
 			files = (
 				57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */,
 				57FD50BB243DA3F0002E481E /* main.m in Sources */,
+				5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */,
+				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				574CA37124F666A20018D47B /* fishhook.c in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
@@ -745,6 +785,7 @@
 				5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
 				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
+				5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
@@ -753,6 +794,7 @@
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
+				5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */,
 				574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */,
 				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
@@ -912,7 +954,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WMQTYQAM6Q;
+				DEVELOPMENT_TEAM = 72TFJYDP24;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -920,10 +962,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = HotSoon_Wildcard_NO812YBONL;
+				PROVISIONING_PROFILE_SPECIFIER = Dian_Xiong_3_Wildcard_3UBVP0C5MS;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -936,17 +979,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = WMQTYQAM6Q;
+				DEVELOPMENT_TEAM = 72TFJYDP24;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = HotSoon_Wildcard_NO812YBONL;
+				PROVISIONING_PROFILE_SPECIFIER = Dian_Xiong_3_Wildcard_3UBVP0C5MS;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

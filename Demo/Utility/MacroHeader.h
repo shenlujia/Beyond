@@ -40,4 +40,16 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)),
 });
 
 
+#define SS_CHECK_TIME_REGISTER static int p_time_index = 0; static CGFloat p_time_start = 0;
+#define SS_CHECK_TIME_AUTO_START SS_CHECK_TIME_START(NSStringFromSelector(_cmd))
+#define SS_CHECK_TIME_START(title) \
+do { \
+p_time_index = 0; NSLog(@"slj check %@", title); p_time_start = CFAbsoluteTimeGetCurrent(); \
+} while (0);
+#define SS_CHECK_TIME_STEP \
+do { \
+p_time_index++; NSLog(@"slj check step %@: %f", @(p_time_index), CFAbsoluteTimeGetCurrent() - p_time_start); p_time_start = CFAbsoluteTimeGetCurrent(); \
+} while (0);
+
+
 #endif /* MacroHeader_h */

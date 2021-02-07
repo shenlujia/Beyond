@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Bugly/Bugly.h>
 #import "MacroHeader.h"
 
 static NSNumber *backgroundTaskIdentifier = nil;
@@ -24,8 +25,13 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Bugly startWithAppId:@"ca58095700"];
+
+    NSString *name = nil;
+    name = @"ViewController";
+    name = @"MemoryDetectController";
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    UIViewController *c = [[NSClassFromString(@"ViewController") alloc] init];
+    UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];
     navi.navigationBar.translucent = NO;
     self.window.rootViewController = navi;

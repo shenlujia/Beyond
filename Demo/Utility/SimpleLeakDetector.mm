@@ -247,14 +247,16 @@ void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(i
     if (!callback) {
         return;
     }
-    timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
-        pthread_mutex_lock(&m_data_mutex);
-        SSCheckMap data = m_check_map;
-        pthread_mutex_unlock(&m_data_mutex);
-        SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
-        [object updateWithData:data];
-        callback(object);
-    }];
+    if (@available(iOS 10, *)) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
+            pthread_mutex_lock(&m_data_mutex);
+            SSCheckMap data = m_check_map;
+            pthread_mutex_unlock(&m_data_mutex);
+            SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
+            [object updateWithData:data];
+            callback(object);
+        }];
+    }
 }
 
 #ifdef __cplusplus

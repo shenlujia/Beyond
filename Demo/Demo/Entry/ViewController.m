@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
 
+    [self test_c:@"UselessClassCheck"];
+
     [self test_c:@"AVKit"];
     
     [self test_c:@"CallStack"];
