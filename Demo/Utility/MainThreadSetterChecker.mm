@@ -132,8 +132,6 @@ void main_thread_setter_checker_on_class(Class c)
                 userInfo[@"callStack"] = callStack;
                 if (m_callback) {
                     m_callback(userInfo);
-                } else {
-                    NSLog(@"%@", userInfo);
                 }
                 _not_main_thread_call_add(userInfo);
             }

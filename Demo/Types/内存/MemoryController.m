@@ -213,6 +213,8 @@ static void *s_leakObj = NULL;
      */
     
     [self test:nil tap:nil];
+
+    [self test_c:@"MemoryDetect"];
     
     [self test:@"Profile Leaks 能检测泄漏 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         int size = 1024 * 1024;
