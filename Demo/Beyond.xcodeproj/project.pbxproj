@@ -52,7 +52,7 @@
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
-		5E04003C25D021C300FE80F2 /* NotMainThreadClassDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E04003B25D021C300FE80F2 /* NotMainThreadClassDetector.mm */; };
+		5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */; };
 		5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */; };
 		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
@@ -173,8 +173,8 @@
 		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 		59F5031BF8E1941A154D07BF /* libPods-Beyond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beyond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E04003A25D021C300FE80F2 /* NotMainThreadClassDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotMainThreadClassDetector.h; sourceTree = "<group>"; };
-		5E04003B25D021C300FE80F2 /* NotMainThreadClassDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NotMainThreadClassDetector.mm; sourceTree = "<group>"; };
+		5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainThreadSetterChecker.h; sourceTree = "<group>"; };
+		5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainThreadSetterChecker.mm; sourceTree = "<group>"; };
 		5E04F98325CC33AB00FE80F2 /* MemoryNonARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryNonARC.h; sourceTree = "<group>"; };
 		5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryNonARC.m; sourceTree = "<group>"; };
 		5E04F98925CC36FE00FE80F2 /* MemoryDetectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryDetectController.h; sourceTree = "<group>"; };
@@ -418,8 +418,8 @@
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
 				5E06F6DF256BEB7B00934EEF /* SimpleLeakDetector.h */,
 				5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */,
-				5E04003A25D021C300FE80F2 /* NotMainThreadClassDetector.h */,
-				5E04003B25D021C300FE80F2 /* NotMainThreadClassDetector.mm */,
+				5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */,
+				5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -809,7 +809,7 @@
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
-				5E04003C25D021C300FE80F2 /* NotMainThreadClassDetector.mm in Sources */,
+				5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,

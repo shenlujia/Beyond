@@ -8,7 +8,7 @@
 
 #import "MemoryDetectController.h"
 #import "MemoryNonARC.h"
-#import "NotMainThreadClassDetector.h"
+#import "MainThreadSetterChecker.h"
 
 @interface MemoryDetectObj : NSObject
 
@@ -32,6 +32,8 @@
     MemoryDetectObj *_raw_obj;
 }
 
+@property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) UIEdgeInsets insets;
 @property (nonatomic, strong) void (^block)(void);
 @property (nonatomic, strong) MemoryDetectObj *obj;
 @property (nonatomic, strong) NSDictionary *dictionary;
@@ -109,7 +111,7 @@
         [MemoryNonARC releaseObject:obj];
     }];
 
-    [NotMainThreadClassDetector checkClass:[MemoryDetectMain class]];
+    main_thread_setter_checker_on_class([MemoryDetectMain class]);
     [self test:@"对象非主线程调用监控" set:nil action:@selector(testNotMainThreadClassDetectAction)];
 }
 
@@ -123,13 +125,21 @@
         main.obj = [[MemoryDetectObj alloc] init];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
             [MemoryDetectController testNotMainThreadClassDetectAction2:main];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
+                NSLog(@"current all = %@", main_thread_setter_checker_all_records());
+            });
         });
     });
 }
 
 + (void)testNotMainThreadClassDetectAction2:(MemoryDetectMain *)m
 {
+    m.index = 3;
     m.dictionary = @{@"1" : @"2"};
+    m.block = ^{
+
+    };
+    m.insets = UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 @end
