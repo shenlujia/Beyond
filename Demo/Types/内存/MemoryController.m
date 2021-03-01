@@ -14,6 +14,7 @@
 #import "SDWebImageDecoder.h"
 #import <objc/runtime.h>
 #import "SimpleLeakDetector.h"
+#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 
 
 #pragma clang diagnostic push
@@ -462,6 +463,7 @@ static void *s_leakObj = NULL;
         self->_raw_obj = @"abc";
     }];
 
+    leak_detector_find_owner_of_class([self class]);
     leak_detector_register_object(self, 100000);
     leak_detector_register_callback(3, ^(SSLeakDetectorCallback *object) {
         NSLog(@"%@", object.more_than_once);

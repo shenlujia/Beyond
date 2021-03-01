@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Bugly/Bugly.h>
+#import <FLEX/FLEX.h>
+#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "MacroHeader.h"
 
 static NSNumber *backgroundTaskIdentifier = nil;
@@ -27,9 +29,11 @@ static NSNumber *backgroundTaskIdentifier = nil;
 {
     [Bugly startWithAppId:@"ca58095700"];
 
+    [[FLEXManager sharedManager] showExplorer];
+
     NSString *name = nil;
     name = @"ViewController";
-    name = @"MemoryDetectController";
+//    name = @"MemoryDetectController";
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];

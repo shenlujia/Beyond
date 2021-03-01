@@ -55,7 +55,7 @@
 		5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */; };
 		5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */; };
-		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; };
+		5E06F6E1256BEB7B00934EEF /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E06F6E0256BEB7B00934EEF /* SimpleLeakDetector.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
@@ -79,6 +79,7 @@
 		5E5BA97925AEA32B0082AA9D /* draft_migrate_connection.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA96625AEA32B0082AA9D /* draft_migrate_connection.json */; };
 		5E5BA98125AEB2170082AA9D /* cover_title_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA97F25AEB2170082AA9D /* cover_title_light.json */; };
 		5E5BA98225AEB2170082AA9D /* cover_title.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA98025AEB2170082AA9D /* cover_title.json */; };
+		5E72077F25ECD09400BD9F59 /* SSFLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E72077E25ECD09400BD9F59 /* SSFLEXHeapEnumerator.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
@@ -208,6 +209,8 @@
 		5E5BA96625AEA32B0082AA9D /* draft_migrate_connection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = draft_migrate_connection.json; sourceTree = "<group>"; };
 		5E5BA97F25AEB2170082AA9D /* cover_title_light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cover_title_light.json; sourceTree = "<group>"; };
 		5E5BA98025AEB2170082AA9D /* cover_title.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cover_title.json; sourceTree = "<group>"; };
+		5E72077D25ECD09400BD9F59 /* SSFLEXHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFLEXHeapEnumerator.h; sourceTree = "<group>"; };
+		5E72077E25ECD09400BD9F59 /* SSFLEXHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 		57F89436246E37CE007AEFC6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				5E72077D25ECD09400BD9F59 /* SSFLEXHeapEnumerator.h */,
+				5E72077E25ECD09400BD9F59 /* SSFLEXHeapEnumerator.m */,
 				574C80A924F36D560018D47B /* DontLikeCommon.h */,
 				574C80AA24F36D560018D47B /* DontLikeCommon.m */,
 				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
@@ -784,6 +789,7 @@
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
+				5E72077F25ECD09400BD9F59 /* SSFLEXHeapEnumerator.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
 				5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */,

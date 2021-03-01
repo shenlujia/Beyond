@@ -7,6 +7,7 @@ target 'Beyond' do
   pod 'Masonry'
   pod 'Bugly'
   pod 'lottie-ios', '2.5.3'
+  pod 'FBRetainCycleDetector'
 
 end
 

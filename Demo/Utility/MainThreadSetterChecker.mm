@@ -47,7 +47,7 @@ static IMP SSSwizzleMethodWithBlock(Class c, SEL originalSEL, id block)
     }
 }
 
-void _not_main_thread_call_add(NSDictionary *m_userInfo)
+void _main_thread_setter_checker_add(NSDictionary *m_userInfo)
 {
     NSDictionary *userInfo = [m_userInfo copy];
     if (!userInfo) {
@@ -133,7 +133,7 @@ void main_thread_setter_checker_on_class(Class c)
                 if (m_callback) {
                     m_callback(userInfo);
                 }
-                _not_main_thread_call_add(userInfo);
+                _main_thread_setter_checker_add(userInfo);
             }
         });
     }

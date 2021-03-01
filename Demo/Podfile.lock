@@ -1,11 +1,13 @@
 PODS:
   - Bugly (2.5.71)
-  - FLEX (3.0.0)
+  - FBRetainCycleDetector (0.1.4)
+  - FLEX (4.4.0)
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
   - Bugly
+  - FBRetainCycleDetector
   - FLEX
   - lottie-ios (= 2.5.3)
   - Masonry
@@ -13,16 +15,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bugly
+    - FBRetainCycleDetector
     - FLEX
     - lottie-ios
     - Masonry
 
 SPEC CHECKSUMS:
   Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
-  FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  FLEX: 0592c011c6dfbfdb94a5e24f2d4a9dbff0c6026d
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: b6302e8cdbe04941356afba321e17c60da617b60
+PODFILE CHECKSUM: 161f320239abf4508f02d86da5117802aa0c6e8a
 
 COCOAPODS: 1.7.5
