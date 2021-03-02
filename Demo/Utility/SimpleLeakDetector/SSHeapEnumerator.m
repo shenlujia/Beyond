@@ -1,12 +1,5 @@
-//
-//  FLEXHeapEnumerator.m
-//  Flipboard
-//
-//  Created by Ryan Olson on 5/28/14.
-//  Copyright (c) 2020 FLEX Team. All rights reserved.
-//
 
-#import "SSFLEXHeapEnumerator.h"
+#import "SSHeapEnumerator.h"
 #import "FLEXObjcInternal.h"
 #import <malloc/malloc.h>
 #import <mach/mach.h>
@@ -19,7 +12,7 @@ typedef struct {
     Class isa;
 } flex_maybe_object_t;
 
-@implementation SSFLEXHeapEnumerator
+@implementation SSHeapEnumerator
 
 static void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount) {
     if (!context) {

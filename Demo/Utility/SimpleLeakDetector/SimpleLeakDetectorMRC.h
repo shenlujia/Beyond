@@ -1,5 +1,5 @@
 //
-//  SimpleLeakDetector.h
+//  SimpleLeakDetectorMRC.h
 //  Demo
 //
 //  Created by ZZZ on 2020/11/15.
@@ -15,7 +15,6 @@
 @property (nonatomic, copy, readonly) NSArray *diffs;
 @property (nonatomic, copy, readonly) NSArray *business;
 @property (nonatomic, copy, readonly) NSArray *more_than_once;
-@property (nonatomic, copy, readonly) NSArray *owners;
 
 @end
 
@@ -23,10 +22,10 @@
 extern "C" {
 #endif
 
-void leak_detector_find_owner_of_class(Class c);
-void leak_detector_register_class(Class c);
-void leak_detector_register_object(id object, int depth);
+void leak_detector_register_init();
 void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object));
+
+void leak_detector_enum_live_objects(void (^callback)(const char *class_name, long long pointer));
 
 #ifdef __cplusplus
 }

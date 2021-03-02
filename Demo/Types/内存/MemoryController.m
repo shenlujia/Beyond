@@ -185,6 +185,7 @@ static void *s_leakObj = NULL;
     [super viewDidLoad];
 
     NSString *s = SELBuild(SSSEL.A.B.A);
+    self.leak_test_obj = [[MemoryTestObj alloc] init];
     
     WEAKSELF
     const CGFloat scale = UIScreen.mainScreen.scale;
@@ -462,12 +463,6 @@ static void *s_leakObj = NULL;
         _raw_obj = nil; // 内存泄漏
         self->_raw_obj = @"abc";
     }];
-
-    leak_detector_find_owner_of_class([self class]);
-    leak_detector_register_object(self, 100000);
-    leak_detector_register_callback(3, ^(SSLeakDetectorCallback *object) {
-        NSLog(@"%@", object.more_than_once);
-    });
 }
 
 - (void)p_test_fail_check_leak

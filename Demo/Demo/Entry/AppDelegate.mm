@@ -33,7 +33,7 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
     NSString *name = nil;
     name = @"ViewController";
-//    name = @"MemoryDetectController";
+    name = @"MemoryLeakDetectController";
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];
