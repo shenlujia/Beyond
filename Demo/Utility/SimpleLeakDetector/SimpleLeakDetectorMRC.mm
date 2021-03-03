@@ -27,134 +27,22 @@ struct leak_detector_str_cmp : public binary_function<const char *, const char *
     }
 };
 
-#define SSCheckMap map<const char *, set<long long>, leak_detector_str_cmp>
-
+#define SSCheckMap map<const char *, set<uintptr_t>, leak_detector_str_cmp>
 static SSCheckMap m_check_map;
+
 static pthread_mutex_t m_data_mutex;
-static SSLeakDetectorCallback *m_last_record;
+#define CHECK_MAP_LOCKING(action) \
+do { \
+pthread_mutex_lock(&m_data_mutex); action; pthread_mutex_unlock(&m_data_mutex); \
+} while (NO);
 
-#pragma mark - SSLeakDetectorCallback
-
-@implementation SSLeakDetectorCallback
-
-- (void)updateWithData:(const SSCheckMap &)data last_nonempty:(NSDictionary *)last_nonempty last_diffs:(NSArray *)last_diffs
-{
-    NSMutableDictionary *total = [NSMutableDictionary dictionary];
-    for (auto it = data.begin(); it != data.end(); ++it) {
-        NSString *name = [NSString stringWithUTF8String:it->first];
-        NSMutableArray *array = [NSMutableArray array];
-        for (auto p : it->second) {
-            [array addObject:[NSString stringWithFormat:@"%p", (void *)p]];
-        }
-        total[name] = array;
-    }
-    [self updateWithDictionary:total last_nonempty:last_nonempty last_diffs:last_diffs];
-}
-
-- (void)updateWithDictionary:(NSDictionary *)dictionary last_nonempty:(NSDictionary *)last_nonempty last_diffs:(NSArray *)last_diffs
-{
-    NSMutableDictionary *nonempty = [NSMutableDictionary dictionary];
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *array, BOOL *stop) {
-        if (array.count) {
-            nonempty[name] = array;
-        }
-    }];
-
-    NSMutableArray *business = [NSMutableArray array];
-    NSString *separator = @"  |  ";
-    [nonempty enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *array, BOOL *stop) {
-        if ([name hasPrefix:@"CA"] ||
-            [name hasPrefix:@"NS"] ||
-            [name hasPrefix:@"UI"]) {
-            return;
-        }
-        [business addObject:[NSString stringWithFormat:@"%@%@%@", name, separator, @(array.count)]];
-    }];
-    [business sortUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-        return [a compare:b];
-    }];
-
-    NSMutableArray *more_than_once = [NSMutableArray array];
-    [business enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-        NSArray *components = [obj componentsSeparatedByString:separator];
-        components = @[components.lastObject, components.firstObject];
-        if ([components.firstObject integerValue] > 1) {
-            [more_than_once addObject:components];
-        }
-    }];
-    [more_than_once sortUsingComparator:^NSComparisonResult(NSArray *a, NSArray *b) {
-        NSInteger x = [a.firstObject integerValue];
-        NSInteger y = [b.firstObject integerValue];
-        if (x == y) {
-            return [a.lastObject compare:b.lastObject];
-        }
-        return x < y ? NSOrderedDescending : NSOrderedAscending;
-    }];
-    [[more_than_once copy] enumerateObjectsUsingBlock:^(NSArray *a, NSUInteger idx, BOOL *stop) {
-        more_than_once[idx] = [NSString stringWithFormat:@"%@%@%@", a.firstObject, separator, a.lastObject];
-    }];
-
-    _total = dictionary;
-    _nonempty = nonempty;
-    _business = business;
-    _more_than_once = more_than_once;
-
-    if (last_nonempty) {
-        NSMutableDictionary *diff = [NSMutableDictionary dictionary];
-        [nonempty enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *obj, BOOL *stop) {
-            NSArray *old = last_nonempty[key];
-            NSInteger count = obj.count - old.count;
-            if (count > 0) {
-                diff[key] = @(count);
-            }
-        }];
-
-        NSMutableArray *diffs = [NSMutableArray arrayWithArray:last_diffs];
-        if (diff.count) {
-            [diffs addObject:diff];
-        }
-        _diffs = diffs;
-    }
-}
-
-@end
-
-#pragma mark - Private
-
-@interface NSObject (LeakDetector)
-
-+ (void)ss_registerDetectorSwizzleIfNeeded;
-
-@end
-
-static inline bool _detect_object_alloc(id object)
-{
-    if (!object) {
-        return false;
-    }
-
-    const char *name = object_getClassName(object);
-
-    bool ret = false;
-
-    pthread_mutex_lock(&m_data_mutex);
-
-    auto it = m_check_map.find(name);
-    if (it == m_check_map.end()) {
-        m_check_map[name] = set<long long>();
-        it = m_check_map.find(name);
-    }
-
-    long long value = (long long)object;
-    if (it->second.find(value) == it->second.end()) {
-        it->second.insert(value);
-        ret = true;
-    }
-
-    pthread_mutex_unlock(&m_data_mutex);
-
-    return ret;
-}
+static bool m_delay_dealloc_flag;
+static set<uintptr_t> m_delay_dealloc_set;
+static pthread_mutex_t m_delay_dealloc_mutex;
+#define DELAY_DEALLOC_LOCKING(action) \
+do { \
+pthread_mutex_lock(&m_delay_dealloc_mutex); action; pthread_mutex_unlock(&m_delay_dealloc_mutex); \
+} while (NO)
 
 static inline bool _leak_detector_should_filter_class(const char *class_name)
 {
@@ -179,60 +67,6 @@ static inline bool _leak_detector_should_filter_class(const char *class_name)
     return false;
 }
 
-#pragma mark - Public
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void leak_detector_register_init()
-{
-    [NSObject ss_registerDetectorSwizzleIfNeeded];
-}
-
-void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object))
-{
-    static NSTimer *timer = nil;
-    [timer invalidate];
-
-    if (!callback) {
-        return;
-    }
-    if (@available(iOS 10, *)) {
-        timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
-            pthread_mutex_lock(&m_data_mutex);
-            SSCheckMap data = m_check_map;
-            pthread_mutex_unlock(&m_data_mutex);
-
-            SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
-            [object updateWithData:data last_nonempty:nil last_diffs:nil];
-            callback(object);
-            m_last_record = object;
-            [object release];
-        }];
-    }
-}
-
-void leak_detector_enum_live_objects(void (^callback)(const char *class_name, long long pointer))
-{
-    if (!callback) {
-        return;
-    }
-    pthread_mutex_lock(&m_data_mutex);
-    for (auto &it : m_check_map) {
-        for (auto value : it.second) {
-            callback(it.first, value);
-        }
-    }
-    pthread_mutex_unlock(&m_data_mutex);
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-#pragma mark - Swizzle
-
 static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 {
     Method origMethod = class_getInstanceMethod(c, origSEL);
@@ -250,8 +84,17 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 + (id)ss_leak_detector_alloc
 {
     id object = [self ss_leak_detector_alloc];
-    if (!_leak_detector_should_filter_class(class_getName(self))) {
-        _detect_object_alloc(object);
+    const char *name = object_getClassName(object);
+
+    if (!_leak_detector_should_filter_class(name)) {
+        CHECK_MAP_LOCKING({
+            auto it = m_check_map.find(name);
+            if (it == m_check_map.end()) {
+                m_check_map[name] = set<uintptr_t>();
+                it = m_check_map.find(name);
+            }
+            it->second.insert((uintptr_t)object);
+        });
     }
     return object;
 }
@@ -260,24 +103,78 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 {
     const char *name = object_getClassName(self);
 
-    pthread_mutex_lock(&m_data_mutex);
-    auto it = m_check_map.find(name);
-    if (it != m_check_map.end()) {
-        it->second.erase((long long)self);
-    }
-    pthread_mutex_unlock(&m_data_mutex);
+    CHECK_MAP_LOCKING({
+        auto it = m_check_map.find(name);
+        if (it != m_check_map.end()) {
+            it->second.erase((uintptr_t)self);
+        }
+    })
 
-    [self ss_leak_detector_dealloc];
+    bool should_delay = false;
+    DELAY_DEALLOC_LOCKING({
+        should_delay = m_delay_dealloc_flag;
+        if (should_delay) {
+            m_delay_dealloc_set.insert((uintptr_t)self);
+        }
+    });
+
+    if (!should_delay) {
+        [self ss_leak_detector_dealloc];
+    }
 }
 
-+ (void)ss_registerDetectorSwizzleIfNeeded
+@end
+
+@implementation SimpleLeakDetectorMRC
+
++ (void)run
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         pthread_mutex_init(&m_data_mutex, NULL);
-        SwizzleInstanceMethod(object_getClass([self class]), NSSelectorFromString(@"alloc"), @selector(ss_leak_detector_alloc));
-        SwizzleInstanceMethod([self class], NSSelectorFromString(@"dealloc"), @selector(ss_leak_detector_dealloc));
+        m_delay_dealloc_flag = false;
+        pthread_mutex_init(&m_delay_dealloc_mutex, NULL);
+        Class c = [NSObject class];
+        SwizzleInstanceMethod(object_getClass(c), NSSelectorFromString(@"alloc"), @selector(ss_leak_detector_alloc));
+        SwizzleInstanceMethod(c, NSSelectorFromString(@"dealloc"), @selector(ss_leak_detector_dealloc));
     });
+}
+
++ (void)enumObjectsWithBlock:(void (^)(const char *class_name, uintptr_t pointer))block
+{
+    if (!block) {
+        return;
+    }
+    CHECK_MAP_LOCKING({
+        for (auto &it : m_check_map) {
+            for (auto value : it.second) {
+                block(it.first, value);
+            }
+        }
+    })
+}
+
++ (void)enableDelayDealloc
+{
+    DELAY_DEALLOC_LOCKING({
+        m_delay_dealloc_flag = true;
+    });
+}
+
++ (void)disableDelayDealloc
+{
+    set<uintptr_t> delay_set;
+
+    DELAY_DEALLOC_LOCKING({
+        delay_set = m_delay_dealloc_set;
+        m_delay_dealloc_set.clear();
+        m_delay_dealloc_flag = false;
+    });
+
+    for (uintptr_t p : delay_set) {
+        NSObject *obj = (NSObject *)p;
+        [obj ss_leak_detector_dealloc];
+    }
 }
 
 @end

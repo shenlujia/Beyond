@@ -14,19 +14,26 @@
 
 @implementation SimpleLeakDetector
 
+- (void)dealloc
+{
+
+}
+
 + (void)start
 {
     [FBAssociationManager hook];
-    leak_detector_register_init();
+    [SimpleLeakDetectorMRC run];
 }
 
-+ (NSArray *)allLiveObjects
++ (SSLeakDetectorRecord *)currentLiveObjectsRecord
 {
-    NSMutableArray *liveObjects = [NSMutableArray array];
-    leak_detector_enum_live_objects(^(const char *class_name, long long pointer) {
-        [liveObjects addObject:(__bridge NSObject *)((void *)pointer)];
-    });
-    return liveObjects;
+    SSLeakDetectorRecord *record = [[SSLeakDetectorRecord alloc] init];
+
+//    NSMutableArray *liveObjects = [NSMutableArray array];
+//    leak_detector_enum_live_objects(^(const char *class_name, uintptr_t pointer) {
+//        [liveObjects addObject:(__bridge NSObject *)((void *)pointer)];
+//    });
+    return record;
 }
 
 + (NSArray *)retainedObjectsWithObject:(id)object
@@ -37,54 +44,75 @@
 + (NSArray *)ownersOfObject:(id)object
 {
     NSMutableArray *ret = [NSMutableArray array];
-    NSArray *liveObjects = [self allLiveObjects];
-    for (NSObject *liveObject in liveObjects) {
-        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-        if ([retained containsObject:object]) {
-            [ret addObject:liveObject];
-        }
-    }
+//    NSArray *liveObjects = [self allLiveObjects];
+//    for (NSObject *liveObject in liveObjects) {
+//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
+//        if ([retained containsObject:object]) {
+//            [ret addObject:liveObject];
+//        }
+//    }
     return ret;
 }
 
 + (NSArray *)ownersOfClass:(Class)c
 {
     NSMutableArray *ret = [NSMutableArray array];
-    NSArray *liveObjects = [self allLiveObjects];
-    for (NSObject *liveObject in liveObjects) {
-        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-        for (NSObject *temp in retained) {
-            if ([temp class] == c) {
-                [ret addObject:liveObject];
-                break;
-            }
-        }
-    }
+//    NSArray *liveObjects = [self allLiveObjects];
+//    for (NSObject *liveObject in liveObjects) {
+//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
+//        for (NSObject *temp in retained) {
+//            if ([temp class] == c) {
+//                [ret addObject:liveObject];
+//                break;
+//            }
+//        }
+//    }
     return ret;
 }
 
 + (id)anyOwnerOfClass:(Class)c
 {
-    NSArray *liveObjects = [self allLiveObjects];
-    for (NSObject *liveObject in liveObjects) {
-        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-        for (NSObject *temp in retained) {
-            if ([temp class] == c) {
-                return liveObject;
-            }
-        }
-    }
+//    NSArray *liveObjects = [self allLiveObjects];
+//    for (NSObject *liveObject in liveObjects) {
+//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
+//        for (NSObject *temp in retained) {
+//            if ([temp class] == c) {
+//                return liveObject;
+//            }
+//        }
+//    }
     return nil;
 }
 
-+ (NSArray *)arrayWithSet:(const set<long long> &)s
-{
-    NSMutableArray *array = [NSMutableArray array];
-    for (long long value : s) {
-        NSObject *temp = (__bridge NSObject *)((void *)value);
-        [array addObject:temp];
-    }
-    return array;
-}
+//void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object))
+//{
+//    static NSTimer *timer = nil;
+//    [timer invalidate];
+//
+//    if (!callback) {
+//        return;
+//    }
+//    if (@available(iOS 10, *)) {
+//        timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
+//            pthread_mutex_lock(&m_data_mutex);
+//            SSCheckMap data = m_check_map;
+//            pthread_mutex_unlock(&m_data_mutex);
+//
+////            NSMutableDictionary *total = [NSMutableDictionary dictionary];
+////            for (auto it = data.begin(); it != data.end(); ++it) {
+////                NSString *name = [NSString stringWithUTF8String:it->first];
+////                NSMutableArray *array = [NSMutableArray array];
+////                for (auto p : it->second) {
+////                    [array addObject:[NSString stringWithFormat:@"%p", (void *)p]];
+////                }
+////                total[name] = array;
+////            }
+////
+////            SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
+////            [object updateWithData:data last_nonempty:nil last_diffs:nil];
+////            callback(object);
+//        }];
+//    }
+//}
 
 @end

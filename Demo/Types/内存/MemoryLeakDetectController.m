@@ -8,7 +8,23 @@
 
 #import "MemoryLeakDetectController.h"
 #import "SimpleLeakDetector.h"
+#import "SimpleLeakDetectorMRC.h"
 #import <objc/runtime.h>
+#import <FLEX/FLEX.h>
+
+@interface TestMemoryLeakDetectObjInternal : NSObject
+
+@end
+
+@implementation TestMemoryLeakDetectObjInternal
+
+- (void)dealloc
+{
+    NSString *s = NSStringFromClass([self class]);
+    printf("~%s\n", s.UTF8String);
+}
+
+@end
 
 @interface TestMemoryLeakDetectObj : NSObject
 
@@ -18,10 +34,17 @@
 @property (nonatomic, strong) NSMutableDictionary *dictionary;
 
 @property (nonatomic, strong) TestMemoryLeakDetectObj *obj;
+@property (nonatomic, strong) TestMemoryLeakDetectObjInternal *internal;
 
 @end
 
 @implementation TestMemoryLeakDetectObj
+
+- (void)dealloc
+{
+    NSString *s = NSStringFromClass([self class]);
+    printf("~%s\n", s.UTF8String);
+}
 
 - (instancetype)init
 {
@@ -68,9 +91,30 @@
 
     [SimpleLeakDetector start];
 
+    [self test:@"自循环" set:nil action:@selector(test_objRetainSelf)];
+
+    [self test:@"disableDelayDealloc" tap:^(UIButton *button, NSDictionary *userInfo) {
+        TestMemoryLeakDetectObj *obj = [[TestMemoryLeakDetectObj alloc] init];
+        obj.internal = [[TestMemoryLeakDetectObjInternal alloc] init];
+        [SimpleLeakDetectorMRC disableDelayDealloc];
+    }];
+
+    [self test:@"enableDelayDealloc" tap:^(UIButton *button, NSDictionary *userInfo) {
+        TestMemoryLeakDetectObj *obj = [[TestMemoryLeakDetectObj alloc] init];
+        obj.internal = [[TestMemoryLeakDetectObjInternal alloc] init];
+        [SimpleLeakDetectorMRC enableDelayDealloc];
+    }];
+
     [self test:@"findOwnersOfObject" set:nil action:@selector(test_findOwnersOfObject)];
 
     [self test:@"retainedObjectsWithObject" set:nil action:@selector(test_retainedObjectsWithObject)];
+}
+
+- (void)test_objRetainSelf
+{
+    TestMemoryLeakDetectObj *obj = [TestMemoryLeakDetectObj create];
+    obj.obj = [TestMemoryLeakDetectObj create];
+    obj.obj.obj = obj;
 }
 
 - (void)test_findOwnersOfObject
@@ -83,11 +127,11 @@
     }
     {
         TestMemoryLeakDetectObj *blocked = [TestMemoryLeakDetectObj create];
-        void (^block)(void) = ^{
+        __unused void (^block)(void) = ^{
             blocked.obj = nil;
         };
         NSArray *owners1 = [SimpleLeakDetector ownersOfObject:blocked];
-        NSLog(@"");
+        NSLog(@"%@", owners1);
     }
 }
 

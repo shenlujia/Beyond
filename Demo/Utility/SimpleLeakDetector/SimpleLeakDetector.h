@@ -7,17 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SSLeakDetectorRecord.h"
 
 @interface SimpleLeakDetector : NSObject
 
 + (void)start;
 
-+ (NSArray *)allLiveObjects;
++ (SSLeakDetectorRecord *)allLiveObjects;
 
 + (NSArray *)retainedObjectsWithObject:(id)object;
 
 + (NSArray *)ownersOfObject:(id)object;
 + (NSArray *)ownersOfClass:(Class)c;
 + (id)anyOwnerOfClass:(Class)c;
+
+
 
 @end

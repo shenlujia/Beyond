@@ -80,6 +80,7 @@
 		5E5BA98125AEB2170082AA9D /* cover_title_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA97F25AEB2170082AA9D /* cover_title_light.json */; };
 		5E5BA98225AEB2170082AA9D /* cover_title.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA98025AEB2170082AA9D /* cover_title.json */; };
 		5E61389325EE3DB800127B6E /* SSHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */; };
+		5E613F9F25EF574400127B6E /* SSLeakDetectorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E613F9E25EF574400127B6E /* SSLeakDetectorRecord.m */; };
 		5E7207AD25ED203100BD9F59 /* SimpleLeakDetectorInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207AC25ED203100BD9F59 /* SimpleLeakDetectorInternal.mm */; };
 		5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */; };
 		5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */; };
@@ -214,6 +215,8 @@
 		5E5BA98025AEB2170082AA9D /* cover_title.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cover_title.json; sourceTree = "<group>"; };
 		5E61389125EE3DB800127B6E /* SSHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHeapEnumerator.h; sourceTree = "<group>"; };
 		5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHeapEnumerator.m; sourceTree = "<group>"; };
+		5E613F9D25EF574400127B6E /* SSLeakDetectorRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSLeakDetectorRecord.h; sourceTree = "<group>"; };
+		5E613F9E25EF574400127B6E /* SSLeakDetectorRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLeakDetectorRecord.m; sourceTree = "<group>"; };
 		5E7207AB25ED203100BD9F59 /* SimpleLeakDetectorInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetectorInternal.h; sourceTree = "<group>"; };
 		5E7207AC25ED203100BD9F59 /* SimpleLeakDetectorInternal.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetectorInternal.mm; sourceTree = "<group>"; };
 		5E7207B325ED282C00BD9F59 /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
@@ -421,18 +424,18 @@
 		57F89436246E37CE007AEFC6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				5E7207AA25ED202100BD9F59 /* SimpleLeakDetector */,
 				574C80A924F36D560018D47B /* DontLikeCommon.h */,
 				574C80AA24F36D560018D47B /* DontLikeCommon.m */,
 				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
+				5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */,
+				5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */,
 				57FB889E249E5D380093433B /* NSObject+Dealloc.h */,
 				57FB889F249E5D380093433B /* NSObject+Dealloc.m */,
 				57F89438246E3A6B007AEFC6 /* NSObject+MethodSwizzle.h */,
 				57F89439246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m */,
 				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
-				5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */,
-				5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */,
+				5E7207AA25ED202100BD9F59 /* SimpleLeakDetector */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -634,14 +637,16 @@
 		5E7207AA25ED202100BD9F59 /* SimpleLeakDetector */ = {
 			isa = PBXGroup;
 			children = (
-				5E61389125EE3DB800127B6E /* SSHeapEnumerator.h */,
-				5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */,
 				5E7207B325ED282C00BD9F59 /* SimpleLeakDetector.h */,
 				5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */,
-				5E06F6DF256BEB7B00934EEF /* SimpleLeakDetectorMRC.h */,
-				5E06F6E0256BEB7B00934EEF /* SimpleLeakDetectorMRC.mm */,
 				5E7207AB25ED203100BD9F59 /* SimpleLeakDetectorInternal.h */,
 				5E7207AC25ED203100BD9F59 /* SimpleLeakDetectorInternal.mm */,
+				5E06F6DF256BEB7B00934EEF /* SimpleLeakDetectorMRC.h */,
+				5E06F6E0256BEB7B00934EEF /* SimpleLeakDetectorMRC.mm */,
+				5E61389125EE3DB800127B6E /* SSHeapEnumerator.h */,
+				5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */,
+				5E613F9D25EF574400127B6E /* SSLeakDetectorRecord.h */,
+				5E613F9E25EF574400127B6E /* SSLeakDetectorRecord.m */,
 			);
 			path = SimpleLeakDetector;
 			sourceTree = "<group>";
@@ -854,6 +859,7 @@
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
 				574CA37424F666B90018D47B /* FishhookController.m in Sources */,
+				5E613F9F25EF574400127B6E /* SSLeakDetectorRecord.m in Sources */,
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,
 				57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */,
 				5E7207AD25ED203100BD9F59 /* SimpleLeakDetectorInternal.mm in Sources */,

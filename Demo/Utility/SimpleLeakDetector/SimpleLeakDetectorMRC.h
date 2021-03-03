@@ -8,25 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SSLeakDetectorCallback : NSObject
+@interface SimpleLeakDetectorMRC : NSObject
 
-@property (nonatomic, copy, readonly) NSDictionary *total;
-@property (nonatomic, copy, readonly) NSDictionary *nonempty;
-@property (nonatomic, copy, readonly) NSArray *diffs;
-@property (nonatomic, copy, readonly) NSArray *business;
-@property (nonatomic, copy, readonly) NSArray *more_than_once;
++ (void)run;
+
++ (void)enumObjectsWithBlock:(void (^)(const char *class_name, uintptr_t pointer))block;
+
++ (void)enableDelayDealloc;
++ (void)disableDelayDealloc;
 
 @end
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void leak_detector_register_init();
-void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object));
-
-void leak_detector_enum_live_objects(void (^callback)(const char *class_name, long long pointer));
-
-#ifdef __cplusplus
-}
-#endif
