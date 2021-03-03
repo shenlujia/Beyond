@@ -12,9 +12,12 @@
 
 + (void)run;
 
-+ (void)enumObjectsWithBlock:(void (^)(const char *class_name, uintptr_t pointer))block;
++ (void)enumPointersWithBlock:(void (^)(const char *class_name, uintptr_t pointer))block;
+
++ (BOOL)isPointerValidWithClassName:(const char *)name pointer:(uintptr_t)pointer;
 
 + (void)enableDelayDealloc;
+
 + (void)disableDelayDealloc;
 
 @end

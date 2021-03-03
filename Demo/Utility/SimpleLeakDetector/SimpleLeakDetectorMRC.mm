@@ -8,14 +8,12 @@
 
 #import "SimpleLeakDetectorMRC.h"
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
-#import <objc/runtime.h>
 #import <map>
-#import <pthread.h>
-#import <string>
 #import <set>
 #import <vector>
+#import <pthread.h>
+#import <objc/runtime.h>
 #import <malloc/malloc.h>
-#import "SimpleLeakDetectorInternal.h"
 
 using namespace std;
 
@@ -34,7 +32,7 @@ static pthread_mutex_t m_data_mutex;
 #define CHECK_MAP_LOCKING(action) \
 do { \
 pthread_mutex_lock(&m_data_mutex); action; pthread_mutex_unlock(&m_data_mutex); \
-} while (NO);
+} while (NO)
 
 static bool m_delay_dealloc_flag;
 static set<uintptr_t> m_delay_dealloc_set;
@@ -49,21 +47,15 @@ static inline bool _leak_detector_should_filter_class(const char *class_name)
     if (!class_name) {
         return true;
     }
-
-    static const vector<const char *> full_match = {"NSString", "NSArray", "NSURL", "GPBAutocreatedArray"};
-    for (auto s : full_match) {
-        if (strcmp(class_name, s) == 0) {
-            return true;
-        }
+    if (strncmp(class_name, "_", 1) == 0) { // 内部类一个一个处理太麻烦，一次性屏蔽
+        return true;
     }
-
-    static const vector<const char *> prefix_match = {"CA", "UI", "FB", "NS", "OS_", "_"};
-    for (auto s : prefix_match) {
-        if (strncmp(class_name, s, strlen(s)) == 0) {
-            return true;
-        }
+    if (strncmp(class_name, "NSTagged", 8) == 0) {
+        return true;
     }
-
+    if (strcmp(class_name, "NSAutoreleasePool") == 0) {
+        return true;
+    }
     return false;
 }
 
@@ -108,7 +100,7 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
         if (it != m_check_map.end()) {
             it->second.erase((uintptr_t)self);
         }
-    })
+    });
 
     bool should_delay = false;
     DELAY_DEALLOC_LOCKING({
@@ -140,18 +132,34 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
     });
 }
 
-+ (void)enumObjectsWithBlock:(void (^)(const char *class_name, uintptr_t pointer))block
++ (void)enumPointersWithBlock:(void (^)(const char *, uintptr_t))block
 {
     if (!block) {
         return;
     }
+    SSCheckMap check_map;
     CHECK_MAP_LOCKING({
-        for (auto &it : m_check_map) {
-            for (auto value : it.second) {
-                block(it.first, value);
+        check_map = m_check_map;
+    });
+    for (auto it : check_map) {
+        for (auto value : it.second) {
+            block(it.first, value);
+        }
+    }
+}
+
++ (BOOL)isPointerValidWithClassName:(const char *)name pointer:(uintptr_t)pointer
+{
+    BOOL ret = NO;
+    CHECK_MAP_LOCKING({
+        if (name) {
+            auto it = m_check_map.find(name);
+            if (it != m_check_map.end()) {
+                ret = it->second.find(pointer) != it->second.end();
             }
         }
-    })
+    });
+    return ret;
 }
 
 + (void)enableDelayDealloc
@@ -163,15 +171,15 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
 
 + (void)disableDelayDealloc
 {
-    set<uintptr_t> delay_set;
+    set<uintptr_t> dealloc_set;
 
     DELAY_DEALLOC_LOCKING({
-        delay_set = m_delay_dealloc_set;
+        dealloc_set = m_delay_dealloc_set;
         m_delay_dealloc_set.clear();
         m_delay_dealloc_flag = false;
     });
 
-    for (uintptr_t p : delay_set) {
+    for (uintptr_t p : dealloc_set) {
         NSObject *obj = (NSObject *)p;
         [obj ss_leak_detector_dealloc];
     }

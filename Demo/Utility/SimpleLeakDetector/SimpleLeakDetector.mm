@@ -9,20 +9,48 @@
 #import "SimpleLeakDetector.h"
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "SimpleLeakDetectorMRC.h"
-#import "SimpleLeakDetectorInternal.h"
-#import <objc/runtime.h>
+#import "SSHeapEnumerator.h"
 
 @implementation SimpleLeakDetector
-
-- (void)dealloc
-{
-
-}
 
 + (void)start
 {
     [FBAssociationManager hook];
     [SimpleLeakDetectorMRC run];
+}
+
++ (NSDictionary<NSString *, NSArray<NSNumber *> *> *)allDetectedLiveObjects
+{
+    NSMutableDictionary *total = [NSMutableDictionary dictionary];
+    [SimpleLeakDetectorMRC enumPointersWithBlock:^(const char *class_name, uintptr_t pointer) {
+        NSString *name = [NSString stringWithUTF8String:class_name];
+        if (name) {
+            NSMutableArray *array = total[name];
+            if (!array) {
+                array = [NSMutableArray array];
+                total[name] = array;
+            }
+            [array addObject:@(pointer)];
+        }
+    }];
+    return total;
+}
+
++ (NSDictionary<NSString *, NSNumber *> *)allHeapObjects
+{
+    NSMutableArray *array = [NSMutableArray array];
+    [SSHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+        [array addObject:actualClass];
+    }];
+    NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+    for (Class c in array) {
+        NSString *name = NSStringFromClass(c);
+        if (name) {
+            NSNumber *obj = ret[name];
+            ret[name] = @(obj.integerValue + 1);
+        }
+    }
+    return ret;
 }
 
 + (SSLeakDetectorRecord *)currentLiveObjectsRecord
@@ -38,81 +66,130 @@
 
 + (NSArray *)retainedObjectsWithObject:(id)object
 {
-    return [SimpleLeakDetectorInternal retainedObjectsWithObject:object];
+    if ([object isKindOfClass:[NSArray class]]) {
+        return (NSArray *)object;
+    }
+
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+        NSMutableArray *ret = [NSMutableArray arrayWithArray:dictionary.allKeys];
+        [ret addObjectsFromArray:dictionary.allValues];
+        return ret;
+    }
+
+    if ([object isKindOfClass:[NSHashTable class]]) {
+        NSHashTable *table = (NSHashTable *)object;
+        return table.pointerFunctions.usesStrongWriteBarrier ? table.allObjects : @[];
+    }
+
+    if ([object isKindOfClass:[NSMapTable class]]) {
+        NSMapTable *table = (NSMapTable *)object;
+        NSDictionary *dictionary = table.keyPointerFunctions.usesStrongWriteBarrier ? table.dictionaryRepresentation : @{};
+        return [self retainedObjectsWithObject:dictionary];
+    }
+
+    if ([object isKindOfClass:[NSSet class]]) {
+        return ((NSSet *)object).allObjects;
+    }
+
+    FBObjectGraphConfiguration *configuration = [[FBObjectGraphConfiguration alloc] init];
+    FBObjectiveCObject *wrapper = [[FBObjectiveCObject alloc] initWithObject:object configuration:configuration];
+    NSSet *allRetainedObjects = [wrapper allRetainedObjects];
+
+    NSMutableArray *ret = [NSMutableArray array];
+    for (FBObjectiveCObject *temp in allRetainedObjects.allObjects) {
+        if (temp.object) {
+            [ret addObject:temp.object];
+        }
+    }
+
+    return ret;
 }
 
 + (NSArray *)ownersOfObject:(id)object
 {
     NSMutableArray *ret = [NSMutableArray array];
-//    NSArray *liveObjects = [self allLiveObjects];
-//    for (NSObject *liveObject in liveObjects) {
-//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-//        if ([retained containsObject:object]) {
-//            [ret addObject:liveObject];
-//        }
-//    }
+    NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
+        for (NSNumber *value in array) {
+            uintptr_t pointer = value.unsignedLongValue;
+            [SimpleLeakDetectorMRC enableDelayDealloc];
+            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+                NSObject *temp = (__bridge NSObject *)((void *)pointer);
+                NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
+                if ([retained containsObject:object]) {
+                    [ret addObject:temp];
+                }
+            }
+            [SimpleLeakDetectorMRC disableDelayDealloc];
+        }
+    }];
     return ret;
 }
 
 + (NSArray *)ownersOfClass:(Class)c
 {
     NSMutableArray *ret = [NSMutableArray array];
-//    NSArray *liveObjects = [self allLiveObjects];
-//    for (NSObject *liveObject in liveObjects) {
-//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-//        for (NSObject *temp in retained) {
-//            if ([temp class] == c) {
-//                [ret addObject:liveObject];
-//                break;
-//            }
-//        }
-//    }
+    NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
+        for (NSNumber *value in array) {
+            uintptr_t pointer = value.unsignedLongValue;
+            [SimpleLeakDetectorMRC enableDelayDealloc];
+            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+                NSObject *temp = (__bridge NSObject *)((void *)pointer);
+                NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
+                for (id one in retained) {
+                    if ([one isKindOfClass:c]) {
+                        [ret addObject:temp];
+                    }
+                }
+            }
+            [SimpleLeakDetectorMRC disableDelayDealloc];
+        }
+    }];
     return ret;
 }
 
-+ (id)anyOwnerOfClass:(Class)c
++ (NSSet *)findRetainCyclesWithClasses:(NSArray *)classes maxCycleLength:(NSInteger)maxCycleLength
 {
-//    NSArray *liveObjects = [self allLiveObjects];
-//    for (NSObject *liveObject in liveObjects) {
-//        NSArray *retained = [self retainedObjectsWithObject:liveObject];
-//        for (NSObject *temp in retained) {
-//            if ([temp class] == c) {
-//                return liveObject;
-//            }
-//        }
-//    }
-    return nil;
-}
+    NSMutableSet *classSet = [NSMutableSet set];
+    for (id item in classes) {
+        NSString *name = nil;
+        if ([item isKindOfClass:[NSString class]]) {
+            name = item;
+        } else if ([item class] == item) {
+            name = NSStringFromClass(item);
+        }
+        NSCParameterAssert(name.length > 0);
+        [classSet addObject:name];
+    }
 
-//void leak_detector_register_callback(NSTimeInterval interval, void (^callback)(id object))
-//{
-//    static NSTimer *timer = nil;
-//    [timer invalidate];
-//
-//    if (!callback) {
-//        return;
-//    }
-//    if (@available(iOS 10, *)) {
-//        timer = [NSTimer scheduledTimerWithTimeInterval:MAX(interval, 1) repeats:YES block:^(NSTimer *timer) {
-//            pthread_mutex_lock(&m_data_mutex);
-//            SSCheckMap data = m_check_map;
-//            pthread_mutex_unlock(&m_data_mutex);
-//
-////            NSMutableDictionary *total = [NSMutableDictionary dictionary];
-////            for (auto it = data.begin(); it != data.end(); ++it) {
-////                NSString *name = [NSString stringWithUTF8String:it->first];
-////                NSMutableArray *array = [NSMutableArray array];
-////                for (auto p : it->second) {
-////                    [array addObject:[NSString stringWithFormat:@"%p", (void *)p]];
-////                }
-////                total[name] = array;
-////            }
-////
-////            SSLeakDetectorCallback *object = [[SSLeakDetectorCallback alloc] init];
-////            [object updateWithData:data last_nonempty:nil last_diffs:nil];
-////            callback(object);
-//        }];
-//    }
-//}
+    NSMutableArray *candidates = [NSMutableArray array];
+    NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
+        if ([classSet containsObject:key]) {
+            for (NSNumber *value in array) {
+                uintptr_t pointer = value.unsignedLongValue;
+                [SimpleLeakDetectorMRC enableDelayDealloc];
+                if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+                    NSObject *temp = (__bridge NSObject *)((void *)pointer);
+                    if (temp) {
+                        [candidates addObject:temp];
+                    }
+                }
+                [SimpleLeakDetectorMRC disableDelayDealloc];
+            }
+        }
+    }];
+
+    FBObjectGraphConfiguration *configuration = [[FBObjectGraphConfiguration alloc] init];
+    FBRetainCycleDetector *detector = [[FBRetainCycleDetector alloc] initWithConfiguration:configuration];
+    for (id candidate in candidates) {
+        [detector addCandidate:candidate];
+    }
+    NSSet<NSArray<FBObjectiveCGraphElement *> *> *set = [detector findRetainCyclesWithMaxCycleLength:maxCycleLength];
+
+    return set;
+}
 
 @end
