@@ -162,6 +162,21 @@ static inline void SwizzleInstanceMethod(Class c, SEL origSEL, SEL newSEL)
     return ret;
 }
 
++ (void)addPointerWithClassName:(const char *)name pointer:(uintptr_t)pointer
+{
+    if (!name) {
+        return;
+    }
+    CHECK_MAP_LOCKING({
+        auto it = m_check_map.find(name);
+        if (it == m_check_map.end()) {
+            m_check_map[name] = set<uintptr_t>();
+            it = m_check_map.find(name);
+        }
+        it->second.insert(pointer);
+    });
+}
+
 + (void)enableDelayDealloc
 {
     DELAY_DEALLOC_LOCKING({

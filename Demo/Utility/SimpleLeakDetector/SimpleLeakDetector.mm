@@ -7,16 +7,22 @@
 //
 
 #import "SimpleLeakDetector.h"
+#import <objc/runtime.h>
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "SimpleLeakDetectorMRC.h"
 #import "SSHeapEnumerator.h"
 
+@interface SimpleLeakDetector ()
+
+@property (nonatomic, strong) NSTimer *timer;
+
+@end
+
 @implementation SimpleLeakDetector
 
-+ (void)start
++ (void)run
 {
-    [FBAssociationManager hook];
-    [SimpleLeakDetectorMRC run];
+    [[SimpleLeakDetector detector] p_run];
 }
 
 + (NSDictionary<NSString *, NSArray<NSNumber *> *> *)allDetectedLiveObjects
@@ -39,7 +45,12 @@
 + (NSDictionary<NSString *, NSNumber *> *)allHeapObjects
 {
     NSMutableArray *array = [NSMutableArray array];
+
     [SSHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+        const char *name = class_getName(actualClass);
+        if (strcmp(name, "JSExport") == 0) {
+            return;
+        }
         [array addObject:actualClass];
     }];
     NSMutableDictionary *ret = [NSMutableDictionary dictionary];
@@ -117,8 +128,10 @@
             if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
                 NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
-                if ([retained containsObject:object]) {
-                    [ret addObject:temp];
+                for (id one in retained) {
+                    if ([SimpleLeakDetector p_object:one conformTo:object]) {
+                        [ret addObject:temp];
+                    }
                 }
             }
             [SimpleLeakDetectorMRC disableDelayDealloc];
@@ -127,9 +140,9 @@
     return ret;
 }
 
-+ (NSArray *)ownersOfClass:(Class)c
++ (id)anyOwnerOfObject:(id)object
 {
-    NSMutableArray *ret = [NSMutableArray array];
+    __block id ret = nil;
     NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
     [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
         for (NSNumber *value in array) {
@@ -139,12 +152,16 @@
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
                 NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
                 for (id one in retained) {
-                    if ([one isKindOfClass:c]) {
-                        [ret addObject:temp];
+                    if ([SimpleLeakDetector p_object:one conformTo:object]) {
+                        ret = temp;
                     }
                 }
             }
             [SimpleLeakDetectorMRC disableDelayDealloc];
+
+            if (ret) {
+                *stop = YES;
+            }
         }
     }];
     return ret;
@@ -190,6 +207,68 @@
     NSSet<NSArray<FBObjectiveCGraphElement *> *> *set = [detector findRetainCyclesWithMaxCycleLength:maxCycleLength];
 
     return set;
+}
+
+#pragma mark - private
+
++ (SimpleLeakDetector *)detector
+{
+    static dispatch_once_t onceToken;
+    static id instance;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
+
+- (void)p_run
+{
+    if (self.timer) {
+        return;
+    }
+
+    [FBAssociationManager hook];
+    [SimpleLeakDetectorMRC run];
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(p_timerCallback) userInfo:nil repeats:YES];
+}
+
++ (BOOL)p_object:(NSObject *)object conformTo:(id)to
+{
+    if (object == to) {
+        return YES;
+    }
+
+    Class c;
+    if ([to class] == to) {
+        c = to;
+    } else if ([to isKindOfClass:[NSString class]]) {
+        c = NSClassFromString(to);
+    }
+    if (c) {
+        return [object isKindOfClass:c];
+    }
+
+    return NO;
+}
+
+- (void)p_timerCallback
+{
+    Class c = NSClassFromString(@"ACCImageAlbumEditComponent");
+//                NSMutableArray *objects = [NSMutableArray array];
+//                for (id temp in [SimpleLeakDetector allLiveObjects]) {
+//                    if ([temp isKindOfClass:c]) {
+//                        [objects addObject:temp];
+//                    }
+//                }
+
+    SSLeakDetectorRecord *record = [[SSLeakDetectorRecord alloc] init];
+    [record updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
+    
+    id any =nil;
+    if (any) {
+        NSLog(@"");
+    }
 }
 
 @end

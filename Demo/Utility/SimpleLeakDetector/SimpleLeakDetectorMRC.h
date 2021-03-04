@@ -16,6 +16,8 @@
 
 + (BOOL)isPointerValidWithClassName:(const char *)name pointer:(uintptr_t)pointer;
 
++ (void)addPointerWithClassName:(const char *)name pointer:(uintptr_t)pointer;
+
 + (void)enableDelayDealloc;
 
 + (void)disableDelayDealloc;

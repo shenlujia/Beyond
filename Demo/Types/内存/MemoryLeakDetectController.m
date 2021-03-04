@@ -12,6 +12,7 @@
 #import "SimpleLeakDetector.h"
 #import "SimpleLeakDetectorMRC.h"
 #import "MacroHeader.h"
+#import "SSLiveObjectsViewController.h"
 
 @interface TestMemoryLeakDetectObjInternal : NSObject
 
@@ -86,9 +87,12 @@
 
 @implementation MemoryLeakDetectController
 
-+ (void)initialize
+- (instancetype)init
 {
-    [SimpleLeakDetector start];
+    self = [super init];
+    [SimpleLeakDetector run];
+    [SimpleLeakDetectorMRC addPointerWithClassName:class_getName([self class]) pointer:(uintptr_t)self];
+    return self;
 }
 
 - (void)viewDidLoad
@@ -114,6 +118,12 @@
         NSLog(@"%@", allHeapObjects);
     }];
 
+    [self test:@"当前对象列表" tap:^(UIButton *button, NSDictionary *userInfo) {
+        SSLeakDetectorRecord *object = [[SSLeakDetectorRecord alloc] init];
+        [object updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
+        [SSLiveObjectsViewController showWithObject:object];
+    }];
+
     [self test:@"findOwnersOfObject" set:nil action:@selector(test_findOwnersOfObject)];
 
     [self test:@"retainedObjectsWithObject" set:nil action:@selector(test_retainedObjectsWithObject)];
@@ -130,9 +140,14 @@
         SS_CHECK_TIME_STEP
         NSArray *owners1 = [SimpleLeakDetector ownersOfObject:self.obj];
         SS_CHECK_TIME_STEP
-        NSArray *owners2 = [SimpleLeakDetector ownersOfClass:[TestMemoryLeakDetectObj class]];
+        NSArray *owners2 = [SimpleLeakDetector ownersOfObject:[TestMemoryLeakDetectObj class]];
         SS_CHECK_TIME_STEP
-        NSAssert([owners1 containsObject:self] && [owners2 containsObject:self], @"");
+        NSArray *owners3 = [SimpleLeakDetector ownersOfObject:@"TestMemoryLeakDetectObj"];
+        SS_CHECK_TIME_STEP
+        id owner1 = [SimpleLeakDetector anyOwnerOfObject:self.obj];
+        SS_CHECK_TIME_STEP
+        NSParameterAssert([owners1 containsObject:owner1]);
+        NSParameterAssert([owners1 containsObject:self] && [owners2 containsObject:self] && [owners3 containsObject:self]);
     }
 
     {
@@ -154,12 +169,16 @@
 
 - (void)test_findRetainCyclesWithClasses
 {
+    self.obj = [[TestMemoryLeakDetectObj alloc] init];
+    self.obj.obj = [[TestMemoryLeakDetectObj alloc] init];
+    self.obj.obj.obj = (id)self;
+
     TestMemoryLeakDetectObj *obj = [[TestMemoryLeakDetectObj alloc] init];
     obj.obj = [[TestMemoryLeakDetectObj alloc] init];
     obj.obj.obj = obj;
 
     NSArray *classes = @[@"MemoryLeakDetectController", [TestMemoryLeakDetectObj class]];
-    NSSet *set = [SimpleLeakDetector findRetainCyclesWithClasses:classes maxCycleLength:3];
+    NSSet *set = [SimpleLeakDetector findRetainCyclesWithClasses:classes maxCycleLength:10];
     NSLog(@"%@", set);
 
     obj.obj.obj = nil;

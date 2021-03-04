@@ -29,8 +29,6 @@ static NSNumber *backgroundTaskIdentifier = nil;
 {
     [Bugly startWithAppId:@"ca58095700"];
 
-    [[FLEXManager sharedManager] showExplorer];
-
     NSString *name = nil;
     name = @"ViewController";
     name = @"MemoryLeakDetectController";
@@ -40,6 +38,13 @@ static NSNumber *backgroundTaskIdentifier = nil;
     navi.navigationBar.translucent = NO;
     self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];
+
+    [navi.navigationBar addGestureRecognizer:({
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [tap addTarget:self action:@selector(tapBarAction)];
+        tap.numberOfTapsRequired = 3;
+        tap;
+    })];
     
     NSNotificationCenter *n = NSNotificationCenter.defaultCenter;
     [n addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -47,6 +52,11 @@ static NSNumber *backgroundTaskIdentifier = nil;
     [n addObserver:self selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
     
     return YES;
+}
+
+- (void)tapBarAction
+{
+    [[FLEXManager sharedManager] toggleExplorer];
 }
 
 - (void)didBecomeActive
