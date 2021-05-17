@@ -141,8 +141,12 @@
 {
     Class clazz = NSClassFromString(c);
     if (!clazz) {
-        NSString *temp = [c stringByAppendingString:@"Controller"];
+        NSString *temp = [NSString stringWithFormat:@"%@Controller", c];
         clazz = NSClassFromString(temp);
+        if (!clazz) {
+            NSString *temp = [NSString stringWithFormat:@"SS%@Controller", c];
+            clazz = NSClassFromString(temp);
+        }
     }
     if (!clazz) {
         return;

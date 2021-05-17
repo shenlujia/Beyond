@@ -306,6 +306,34 @@
             NSLog(@"test end");
         });
     }];
+
+    [weak_s test:@"dispatch_group_leave crash" tap:^(UIButton *button, NSDictionary *userInfo) {
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_leave(group);
+    }];
+
+    [weak_s test:@"group donot wait leave" tap:^(UIButton *button, NSDictionary *userInfo) {
+        PRINT_BLANK_LINE
+        static NSInteger task_cost = 0;
+        task_cost = (task_cost % 5) + 1;
+        NSInteger current_task = task_cost;
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_enter(group);
+        NSLog(@"task start (cost = %@s)", @(current_task));
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(current_task * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_group_leave(group);
+            NSLog(@"task finish (cost = %@s)", @(current_task));
+        });
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"wait start");
+            CGFloat begin = CFAbsoluteTimeGetCurrent();
+            dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)));
+            NSLog(@"wait end, total_wait_time = %f", CFAbsoluteTimeGetCurrent() - begin);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"===END===");
+            });
+        });
+    }];
 }
 
 - (void)p_test_performSelector1

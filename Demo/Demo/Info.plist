@@ -41,5 +41,27 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSAppleMusicUsageDescription</key>
+    <string> 用于选取手机内的本地音乐</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>抖音需要获取您的日历权限，以便您正常使用促销提醒等服务</string>
+    <key>NSCameraUsageDescription</key>
+    <string> 用于拍照设为个人头像，及拍摄短视频时访问相机</string>
+    <key>NSContactsUsageDescription</key>
+    <string> 用于获知通讯录联系人中使用该应用的用户名单</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>面容ID用于支付</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>为了保障并优化视频播放，需要获取您的本地网络权限</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string> 用于推荐附近的内容和服务</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string> 用于拍摄短视频时访问麦克风收录视频声音</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string> 请允许访问所有照片，以便更自由地制作视频和保存作品至本地</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string> 请允许访问所有照片，以便更自由地制作视频和保存作品至本地</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>请放心，开启权限不会获取你在其他站点的隐私信息，该权限仅用于标识设备并保障服务安全与提升浏览体验</string>
 </dict>
 </plist>

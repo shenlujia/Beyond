@@ -16,6 +16,8 @@
 
 @interface TestMemoryLeakDetectObjInternal : NSObject
 
+@property (nonatomic, assign) NSInteger wtf_uuu;
+
 @end
 
 @implementation TestMemoryLeakDetectObjInternal
@@ -112,16 +114,14 @@
     }];
 
     [self test:@"allObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
-        NSDictionary *allLiveObjects = [SimpleLeakDetector allDetectedLiveObjects];
-        NSLog(@"%@", allLiveObjects);
-        NSDictionary *allHeapObjects = [SimpleLeakDetector allHeapObjects];
-        NSLog(@"%@", allHeapObjects);
+        NSDictionary *live = [SimpleLeakDetector allDetectedLiveObjects];
+        NSLog(@"%@", live);
+        NSDictionary *heap = [SimpleLeakDetector allHeapObjects];
+        NSLog(@"%@", heap);
     }];
 
     [self test:@"当前对象列表" tap:^(UIButton *button, NSDictionary *userInfo) {
-        SSLeakDetectorRecord *object = [[SSLeakDetectorRecord alloc] init];
-        [object updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
-        [SSLiveObjectsViewController showWithObject:object];
+        [SSLiveObjectsViewController show];
     }];
 
     [self test:@"findOwnersOfObject" set:nil action:@selector(test_findOwnersOfObject)];

@@ -25,16 +25,16 @@
     [[SimpleLeakDetector detector] p_run];
 }
 
-+ (NSDictionary<NSString *, NSArray<NSNumber *> *> *)allDetectedLiveObjects
++ (NSDictionary<Class, NSArray<NSNumber *> *> *)allDetectedLiveObjects
 {
     NSMutableDictionary *total = [NSMutableDictionary dictionary];
     [SimpleLeakDetectorMRC enumPointersWithBlock:^(const char *class_name, uintptr_t pointer) {
-        NSString *name = [NSString stringWithUTF8String:class_name];
-        if (name) {
-            NSMutableArray *array = total[name];
+        Class c = objc_getClass(class_name);
+        if (c) {
+            NSMutableArray *array = total[c];
             if (!array) {
                 array = [NSMutableArray array];
-                total[name] = array;
+                total[c] = array;
             }
             [array addObject:@(pointer)];
         }
@@ -42,7 +42,7 @@
     return total;
 }
 
-+ (NSDictionary<NSString *, NSNumber *> *)allHeapObjects
++ (NSDictionary<NSString *, NSNumber *> *)allHeapObjects_old
 {
     NSMutableArray *array = [NSMutableArray array];
 
@@ -64,15 +64,22 @@
     return ret;
 }
 
-+ (SSLeakDetectorRecord *)currentLiveObjectsRecord
++ (NSDictionary<Class, NSArray<NSNumber *> *> *)allHeapObjects
 {
-    SSLeakDetectorRecord *record = [[SSLeakDetectorRecord alloc] init];
-
-//    NSMutableArray *liveObjects = [NSMutableArray array];
-//    leak_detector_enum_live_objects(^(const char *class_name, uintptr_t pointer) {
-//        [liveObjects addObject:(__bridge NSObject *)((void *)pointer)];
-//    });
-    return record;
+    NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+    [SSHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+        const char *name = class_getName(actualClass);
+        if (strcmp(name, "JSExport") == 0) {
+            return;
+        }
+        NSMutableArray *array = ret[actualClass];
+        if (!array) {
+            array = [NSMutableArray array];
+            ret[actualClass] = array;
+        }
+        [array addObject:@((uintptr_t)object)];
+    }];
+    return ret;
 }
 
 + (NSArray *)retainedObjectsWithObject:(id)object
@@ -121,11 +128,11 @@
 {
     NSMutableArray *ret = [NSMutableArray array];
     NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
-    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(Class c, NSArray *array, BOOL *stop) {
         for (NSNumber *value in array) {
             uintptr_t pointer = value.unsignedLongValue;
             [SimpleLeakDetectorMRC enableDelayDealloc];
-            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:class_getName(c) pointer:pointer]) {
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
                 NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
                 for (id one in retained) {
@@ -144,11 +151,11 @@
 {
     __block id ret = nil;
     NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
-    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(Class c, NSArray *array, BOOL *stop) {
         for (NSNumber *value in array) {
             uintptr_t pointer = value.unsignedLongValue;
             [SimpleLeakDetectorMRC enableDelayDealloc];
-            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+            if ([SimpleLeakDetectorMRC isPointerValidWithClassName:class_getName(c) pointer:pointer]) {
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
                 NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
                 for (id one in retained) {
@@ -171,24 +178,24 @@
 {
     NSMutableSet *classSet = [NSMutableSet set];
     for (id item in classes) {
-        NSString *name = nil;
+        Class c;
         if ([item isKindOfClass:[NSString class]]) {
-            name = item;
+            c = NSClassFromString(item);
         } else if ([item class] == item) {
-            name = NSStringFromClass(item);
+            c = (Class)item;
         }
-        NSCParameterAssert(name.length > 0);
-        [classSet addObject:name];
+        NSCParameterAssert(c);
+        [classSet addObject:c];
     }
 
     NSMutableArray *candidates = [NSMutableArray array];
     NSDictionary *liveObjects = [SimpleLeakDetector allDetectedLiveObjects];
-    [liveObjects enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *array, BOOL *stop) {
-        if ([classSet containsObject:key]) {
+    [liveObjects enumerateKeysAndObjectsUsingBlock:^(Class c, NSArray *array, BOOL *stop) {
+        if ([classSet containsObject:c]) {
             for (NSNumber *value in array) {
                 uintptr_t pointer = value.unsignedLongValue;
                 [SimpleLeakDetectorMRC enableDelayDealloc];
-                if ([SimpleLeakDetectorMRC isPointerValidWithClassName:key.UTF8String pointer:pointer]) {
+                if ([SimpleLeakDetectorMRC isPointerValidWithClassName:class_getName(c) pointer:pointer]) {
                     NSObject *temp = (__bridge NSObject *)((void *)pointer);
                     if (temp) {
                         [candidates addObject:temp];
@@ -254,16 +261,16 @@
 
 - (void)p_timerCallback
 {
-    Class c = NSClassFromString(@"ACCImageAlbumEditComponent");
+    __unused Class c = NSClassFromString(@"ACCImageAlbumEditComponent");
 //                NSMutableArray *objects = [NSMutableArray array];
 //                for (id temp in [SimpleLeakDetector allLiveObjects]) {
 //                    if ([temp isKindOfClass:c]) {
 //                        [objects addObject:temp];
 //                    }
 //                }
-
-    SSLeakDetectorRecord *record = [[SSLeakDetectorRecord alloc] init];
-    [record updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
+//
+//    SSLeakDetectorObject *object = [[SSLeakDetectorObject alloc] init];
+//    [record updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
     
     id any =nil;
     if (any) {

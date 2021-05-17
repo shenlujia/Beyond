@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSLeakDetectorRecord.h"
 
 @interface SimpleLeakDetector : NSObject
 
 + (void)run;
 
-+ (NSDictionary<NSString *, NSArray<NSNumber *> *> *)allDetectedLiveObjects; // 通过监听`alloc`获取对象
-+ (NSDictionary<NSString *, NSNumber *> *)allHeapObjects; // 从堆内获取对象 堆内对象不太可靠
++ (NSDictionary<Class, NSArray<NSNumber *> *> *)allDetectedLiveObjects; // 通过监听`alloc`获取对象
++ (NSDictionary<Class, NSArray<NSNumber *> *> *)allHeapObjects; // 从堆内获取对象 堆内对象不太可靠
 
 + (NSArray *)ownersOfObject:(id)object; // 从`allDetectedLiveObjects`内部找引用了`object`的对象 支持`NSString *`、`Class`、`NSObject *`
 + (id)anyOwnerOfObject:(id)object; // 从`allDetectedLiveObjects`内部找任意一个引用了`object`的对象

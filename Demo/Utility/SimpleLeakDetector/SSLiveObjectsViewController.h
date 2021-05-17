@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SSLeakDetectorRecord.h"
+#import "SSLeakDetectorObject.h"
 
 @interface SSLiveObjectsViewController : UIViewController
 
-+ (void)showWithObject:(SSLeakDetectorRecord *)object;
++ (void)show;
 
 @end
