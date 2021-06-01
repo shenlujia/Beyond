@@ -104,6 +104,16 @@
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.title.length == 0) {
+        NSString *text = NSStringFromClass([self class]);
+        text = [text stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
+        self.title = [text stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
+    }
+}
+
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];

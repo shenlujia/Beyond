@@ -8,6 +8,7 @@
 
 #import "PhotoController.h"
 #import <Photos/Photos.h>
+#import "Logger.h"
 #import "ImagePickerHandler.h"
 #import "DeviceAuthority.h"
 
@@ -23,7 +24,14 @@
 {
     [super viewDidLoad];
 
-    [DeviceAuthority requestPhotoAuthorization:nil];
+    [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
+        NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
+        if (@available(iOS 14, *)) {
+            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+            NSLog(@"authorizationStatusForAccessLevel %@", @(status));
+        }
+        NSLog(@"requestPhotoAuthorization %@", @(status));
+    }];
 
     WEAKSELF
     
@@ -36,7 +44,9 @@
                 if (imageData) {
                     CIImage *image = [CIImage imageWithData:imageData];
                     if (image) {
-                        __unused NSDictionary<NSString *,id> *properties = image.properties;
+                        NSDictionary *properties = image.properties;
+                        NSDictionary *exif = [properties objectForKey:(NSString *)kCGImagePropertyExifDictionary];
+                        __unused id kkk = [exif objectForKey:(NSString *)kCGImagePropertyExifUserComment];
                         NSLog(@"");
                     }
 

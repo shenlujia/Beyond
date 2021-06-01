@@ -87,6 +87,7 @@
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
 		5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */; };
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
+		5E7BD8382666597900F90FE6 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BD8372666597900F90FE6 /* Logger.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
@@ -234,6 +235,8 @@
 		5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerHandler.m; sourceTree = "<group>"; };
 		5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAuthority.h; sourceTree = "<group>"; };
 		5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAuthority.m; sourceTree = "<group>"; };
+		5E7BD8362666597900F90FE6 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		5E7BD8372666597900F90FE6 /* Logger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
 				5E7207AA25ED202100BD9F59 /* SimpleLeakDetector */,
+				5E7BD8362666597900F90FE6 /* Logger.h */,
+				5E7BD8372666597900F90FE6 /* Logger.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -894,6 +899,7 @@
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,
 				574CA38024F679770018D47B /* CallStackController.m in Sources */,
+				5E7BD8382666597900F90FE6 /* Logger.m in Sources */,
 				5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */,
 				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
