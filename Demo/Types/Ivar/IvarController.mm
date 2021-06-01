@@ -37,8 +37,6 @@ IVAR& getIvar(NSObject * object, const char * name) {
 
 @interface TestIvarOne : TestIvarRoot
 
-@property (nonatomic, assign) NSInteger index;
-
 @end
 
 @implementation TestIvarOne

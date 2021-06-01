@@ -8,7 +8,6 @@
 
 #import "SSFoundationController.h"
 #import "MacroHeader.h"
-#import "DeviceAuth.h"
 
 @interface SSFoundationDEBUGLogA : NSObject
 
@@ -69,22 +68,16 @@
         NSLog(@"%@", [b debugDescription]);
     }];
 
-    [self test:@"DeviceAuth requestPhotoLibraryPermission" tap:^(UIButton *button, NSDictionary *userInfo) {
-        [DeviceAuth requestPhotoLibraryPermission:^(BOOL success) {
-            NSLog(@"requestPhotoLibraryPermission: %@", @(success));
-        }];
-    }];
-
     [self test:@"fetchAssets" tap:^(UIButton *button, NSDictionary *userInfo) {
-        PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-        fetchOptions.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld || mediaType == %ld", PHAssetMediaTypeImage, PHAssetMediaTypeVideo];
-        NSArray<NSSortDescriptor *> *sortDescriptor = @[
-            [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(creationDate)) ascending:YES]
-        ];
-        fetchOptions.sortDescriptors = sortDescriptor;
-        fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeiTunesSynced;
-        PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsWithOptions:fetchOptions];
-        NSLog(@"fetchAssetsWithOptions %@", @(result.count));
+//        PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+//        fetchOptions.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld || mediaType == %ld", PHAssetMediaTypeImage, PHAssetMediaTypeVideo];
+//        NSArray<NSSortDescriptor *> *sortDescriptor = @[
+//            [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(creationDate)) ascending:YES]
+//        ];
+//        fetchOptions.sortDescriptors = sortDescriptor;
+//        fetchOptions.includeAssetSourceTypes = PHAssetSourceTypeUserLibrary | PHAssetSourceTypeiTunesSynced;
+//        PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsWithOptions:fetchOptions];
+//        NSLog(@"fetchAssetsWithOptions %@", @(result.count));
     }];
 }
 

@@ -20,6 +20,16 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
 @implementation AppDelegate
 
+- (BOOL)isViewGuidePopped:(UIView *)view
+{
+    return objc_getAssociatedObject(view, _cmd) != nil;
+}
+
+- (void)setViewGuidePopped:(UIView *)parentView
+{
+    objc_setAssociatedObject(parentView, _cmd, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (void)dealloc
 {
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -31,7 +41,8 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
     NSString *name = nil;
     name = @"ViewController";
-    name = @"MemoryLeakDetectController";
+//    name = @"MemoryLeakDetectController";
+
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];
@@ -46,10 +57,10 @@ static NSNumber *backgroundTaskIdentifier = nil;
         tap;
     })];
     
-    NSNotificationCenter *n = NSNotificationCenter.defaultCenter;
-    [n addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    [n addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    [n addObserver:self selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
+    NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
+    [center addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [center addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [center addObserver:self selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
     
     return YES;
 }

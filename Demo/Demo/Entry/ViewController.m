@@ -23,6 +23,8 @@
 
     [self test_c:@"UselessClassCheck"];
 
+    [self test_c:@"Photo"];
+
     [self test_c:@"AVKit"];
     
     [self test_c:@"CallStack"];

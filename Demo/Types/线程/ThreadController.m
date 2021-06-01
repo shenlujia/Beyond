@@ -34,9 +34,11 @@ static NSInteger s_thread_int = 0;
         });
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             for (NSInteger idx = 0; idx < 20; ++idx) {
-                [NSThread detachNewThreadWithBlock:^{
-                    sleep(10);
-                }];
+                if (@available(iOS 10.0, *)) {
+                    [NSThread detachNewThreadWithBlock:^{
+                        sleep(10);
+                    }];
+                }
             }
         });
     }];
@@ -46,12 +48,14 @@ static NSInteger s_thread_int = 0;
     [self test_c:@"ThreadPort" title:@"NSPort"];
     
     __block CFRunLoopRef runloop = NULL;
-    weak_s.thread = [[NSThread alloc] initWithBlock:^{
-        runloop = NSRunLoop.currentRunLoop.getCFRunLoop;
-        [NSRunLoop.currentRunLoop addPort:[[NSMachPort alloc] init] forMode:NSRunLoopCommonModes];
-        [NSRunLoop.currentRunLoop run];
-        assert(0);
-    }];
+    if (@available(iOS 10.0, *)) {
+        weak_s.thread = [[NSThread alloc] initWithBlock:^{
+            runloop = NSRunLoop.currentRunLoop.getCFRunLoop;
+            [NSRunLoop.currentRunLoop addPort:[[NSMachPort alloc] init] forMode:NSRunLoopCommonModes];
+            [NSRunLoop.currentRunLoop run];
+            assert(0);
+        }];
+    }
     [weak_s.thread start];
     
     [weak_s test:@"runloop" tap:^(UIButton *button, NSDictionary *userInfo) {

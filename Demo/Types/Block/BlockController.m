@@ -35,8 +35,6 @@ static void (^s_block_obj_1)(void) = ^(){
 {
     [super viewDidLoad];
     
-    WEAKSELF
-    
     [self test:@"static global" tap:^(UIButton *button, NSDictionary *userInfo) {
         int local_int = 20;
 
