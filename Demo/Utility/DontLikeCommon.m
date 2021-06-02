@@ -7,6 +7,7 @@
 //
 
 #import "DontLikeCommon.h"
+#import <objc/runtime.h>
 
 @implementation DontLikeCommon
 
@@ -142,4 +143,39 @@ CGSize calcTextSize(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *f
 //上述方法的精简版本
 CGSize calcTextSizeV2(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *font) {
     return calcTextSize(fitsSize, text, numberOfLines, font, NSTextAlignmentNatural, NSLineBreakByTruncatingTail,0.0, CGSizeZero);
+}
+
+NSMutableArray *ss_connect_internal_array(id object)
+{
+    if (!object) {
+        return nil;
+    }
+    const void *key = "ss_connect_internal_key";
+    NSMutableArray *array = objc_getAssociatedObject(object, key);
+    if (![array isKindOfClass:[NSMutableArray class]]) {
+        array = [NSMutableArray array];
+        objc_setAssociatedObject(object, key, array, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return array;
+}
+
+void ss_connect_add(id object, NSObject *value)
+{
+    if (object && value) {
+        [ss_connect_internal_array(object) addObject:value];
+    }
+}
+
+void ss_connect_remove(id object, NSObject *value)
+{
+    if (object && value) {
+        [ss_connect_internal_array(object) removeObject:value];
+    }
+}
+
+void ss_connect_cleanup(id object)
+{
+    if (object) {
+        [ss_connect_internal_array(object) removeAllObjects];
+    }
 }

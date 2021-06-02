@@ -8,6 +8,7 @@
 
 #import "RunLoopController.h"
 #import "MacroHeader.h"
+#import "Logger.h"
 
 @interface RunLoopController ()
 

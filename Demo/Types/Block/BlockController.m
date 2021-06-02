@@ -9,6 +9,7 @@
 #import "BlockController.h"
 #import "MacroHeader.h"
 #import "BlockNotCallChecker.h"
+#import "Logger.h"
 
 static int p_static_int = 5;
 int p_global_block_int = 10;

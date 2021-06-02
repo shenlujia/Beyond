@@ -15,3 +15,7 @@
 extern CGSize calcTextSize(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *font, NSTextAlignment textAlignment, NSLineBreakMode lineBreakMode, CGFloat minimumScaleFactor, CGSize shadowOffset);
 
 extern CGSize calcTextSizeV2(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *font);
+
+extern void ss_connect_add(id object, NSObject *value);
+extern void ss_connect_remove(id object, NSObject *value);
+extern void ss_connect_cleanup(id object);

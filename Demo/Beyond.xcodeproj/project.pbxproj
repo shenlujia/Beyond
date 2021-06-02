@@ -446,6 +446,8 @@
 				5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */,
 				574C80A924F36D560018D47B /* DontLikeCommon.h */,
 				574C80AA24F36D560018D47B /* DontLikeCommon.m */,
+				5E7BD8362666597900F90FE6 /* Logger.h */,
+				5E7BD8372666597900F90FE6 /* Logger.m */,
 				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
 				5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */,
 				5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */,
@@ -458,8 +460,6 @@
 				57FB942B24A0722A0093433B /* SDWebImageDecoder.h */,
 				57FB942C24A0722A0093433B /* SDWebImageDecoder.m */,
 				5E7207AA25ED202100BD9F59 /* SimpleLeakDetector */,
-				5E7BD8362666597900F90FE6 /* Logger.h */,
-				5E7BD8372666597900F90FE6 /* Logger.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1055,7 +1055,7 @@
 				DEVELOPMENT_TEAM = 72TFJYDP24;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1079,7 +1079,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = 72TFJYDP24;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -8,6 +8,7 @@
 
 #import "KVCController.h"
 #import "MacroHeader.h"
+#import "Logger.h"
 
 @interface KVCTestObj : NSObject
 

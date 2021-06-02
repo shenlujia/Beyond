@@ -28,9 +28,6 @@ do { \
 } while (0);
 
 
-#define PRINT_BLANK_LINE printf("\n");
-
-
 #define SS_MAIN_DELAY(time, block) \
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ \
   block(); \

@@ -8,6 +8,7 @@
 
 #import "SSFoundationController.h"
 #import "MacroHeader.h"
+#import "Logger.h"
 
 @interface SSFoundationDEBUGLogA : NSObject
 

@@ -8,11 +8,14 @@
 
 #import "MemoryController.h"
 #import <mach/vm_map.h>
+#import <objc/runtime.h>
 #import "MacroHeader.h"
 #import "NSObject+Dealloc.h"
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
-#import <objc/runtime.h>
+#import "ImagePickerHandler.h"
+#import "Logger.h"
+#import "DontLikeCommon.h"
 
 
 #pragma clang diagnostic push
@@ -282,6 +285,24 @@ static void *s_leakObj = NULL;
             NSLog(@"%@", view.layer.contents);
         })
     }];
+
+    [self test:@"选图 延迟释放data" tap:^(UIButton *button, NSDictionary *userInfo) {
+        WEAKSELF
+        ImagePickerHandler *handler = [[ImagePickerHandler alloc] init];
+        ss_connect_cleanup(self);
+        ss_connect_add(self, handler);
+        __weak ImagePickerHandler *weakHandler = handler;
+        handler.assetBlock = ^(PHAsset *asset) {
+            [weakHandler requestImageDataForAsset:asset handler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+                __block NSData *data = imageData;
+                SS_MAIN_DELAY(10, ^{
+                    data = nil;
+                    NSLog(@"release data");
+                });
+            }];
+        };
+        [handler present];
+    }];
     
     [self test:@"text clip CA+1M" tap:^(UIButton *button, NSDictionary *userInfo) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1024 / scale, 1024 / scale)];
@@ -291,9 +312,37 @@ static void *s_leakObj = NULL;
         [weak_s.view addSubview:label];
     }];
     
-    [self test:@"image只加载 +0M" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"image只加载UIImage +0M" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
         __block UIImage *obj = [UIImage imageWithContentsOfFile:path];
+        SS_MAIN_DELAY(20, ^{
+            obj = nil;
+        })
+    }];
+
+    [self test:@"image只加载CGImage +0M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        UIImage *obj = [UIImage imageWithContentsOfFile:path];
+        CGImageRef image = CGImageRetain(obj.CGImage);
+        SS_MAIN_DELAY(20, ^{
+            CGImageRelease(image);
+        })
+    }];
+
+    [self test:@"image只加载CIImage 1 +4~M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        UIImage *a = [UIImage imageWithContentsOfFile:path];
+        CGImageRef image = CGImageRetain(a.CGImage);
+        __block CIImage *obj = [CIImage imageWithCGImage:image];
+        SS_MAIN_DELAY(20, ^{
+            obj = nil;
+        })
+    }];
+
+    [self test:@"image只加载CIImage 2 +4~M" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        __block CIImage *obj = [CIImage imageWithData:data];
         SS_MAIN_DELAY(20, ^{
             obj = nil;
         })

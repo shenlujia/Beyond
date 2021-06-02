@@ -7,6 +7,8 @@
 //
 
 #import "ImagePickerHandler.h"
+#import "DontLikeCommon.h"
+#import "Logger.h"
 
 @interface ImagePickerHandler () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -16,6 +18,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"~ImagePickerHandler");
     [self.picker dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -23,6 +26,7 @@
 {
     self = [super init];
     if (self) {
+        NSLog(@"ImagePickerHandler");
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

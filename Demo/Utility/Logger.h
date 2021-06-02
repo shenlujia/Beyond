@@ -15,12 +15,13 @@
 #endif
 
 
+#define PRINT_BLANK_LINE printf("\n");
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 void log_impl(NSString *format, ...);
-
 #ifdef __cplusplus
 }
 #endif

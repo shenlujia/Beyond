@@ -11,6 +11,7 @@
 #import <string>
 #include <mutex>
 #import "MacroHeader.h"
+#import "Logger.h"
 
 using namespace std;
 
