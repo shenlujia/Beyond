@@ -41,7 +41,7 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
     NSString *name = nil;
     name = @"ViewController";
-//    name = @"MemoryLeakDetectController";
+    name = @"DEBUGPanelController";
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];

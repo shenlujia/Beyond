@@ -70,6 +70,8 @@
 
     [self test_c:@"HorizontalCollectionView"];
 
+    [self test_c:@"TableViewController"];
+
     [self test_c:@"Lottie"];
 
     [self test_c:@"Gesture"];

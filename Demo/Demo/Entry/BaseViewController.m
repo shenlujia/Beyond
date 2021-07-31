@@ -74,6 +74,7 @@
 @interface BaseViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, assign) BOOL shouldLayout;
 @property (nonatomic, strong) NSMutableArray *naviItems;
 @property (nonatomic, strong) NSMutableArray *models;
 
@@ -117,7 +118,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self reloadData];
+    [self p_setNeedsLayout];
 }
 
 - (void)add_navi_right_item:(NSString *)title tap:(ActionBlock)tap
@@ -216,8 +217,23 @@
     }
 }
 
+- (void)p_setNeedsLayout
+{
+    self.shouldLayout = YES;
+    [NSOperationQueue.mainQueue addOperationWithBlock:^{
+        if (self.shouldLayout) {
+            [self reloadData];
+        }
+    }];
+}
+
 - (void)reloadData
 {
+    if (!self.shouldLayout) {
+        return;
+    }
+    self.shouldLayout = NO;
+
     for (EntryDataModel *model in self.models) {
         [model.button removeFromSuperview];
     }

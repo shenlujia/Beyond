@@ -46,6 +46,23 @@
     [controller presentViewController:self.picker animated:YES completion:nil];
 }
 
+- (void)requestImageForAsset:(PHAsset *)asset handler:(void (^)(UIImage *image, NSDictionary *info))handler
+{
+    if (!asset) {
+        if (handler) {
+            handler(nil, nil);
+        }
+        return;
+    }
+
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    options.networkAccessAllowed = YES;
+
+    PHImageManager *manager = [PHImageManager defaultManager];
+    [manager requestImageForAsset:asset targetSize:CGSizeMake(1080, 1080) contentMode:PHImageContentModeAspectFill options:options resultHandler:handler];
+}
+
 - (void)requestImageDataForAsset:(PHAsset *)asset handler:(void (^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info))handler
 {
     if (!asset) {
@@ -55,8 +72,9 @@
         return;
     }
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.synchronous = YES;
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
     options.networkAccessAllowed = YES;
+
     PHImageManager *manager = [PHImageManager defaultManager];
     [manager requestImageDataForAsset:asset options:options resultHandler:handler];
 }
