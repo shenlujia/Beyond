@@ -78,6 +78,23 @@
         weak_s.panel = [weak_s createNormalPanel];
         [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height)];
     }];
+
+    [self test:@"DEBUGTextView xxx" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [SSViewDEBUGTextViewController showText:@"xxx"];
+    }];
+
+    [self test:@"DEBUGTextView JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSDictionary *a = @{@"a1":@"a11",@"a2":@"a22",@"a3":@"a33"};
+        NSDictionary *b = @{@"b1":@"b11",@"b2":@"b22",@"b3":@"b33"};
+        NSDictionary *c = @{@"ccccccccccc1":[a copy],@"c2":@[@"1",@"2",@"3"]};
+        NSDictionary *d = @{@"ddddddddddd1":[c copy], @"d2":[b copy]};
+        NSDictionary *e = @{@"eeeeeeeeeee1":[d copy], @"e2":[c copy]};
+        NSDictionary *f = @{@"fffffffffff1":[e copy], @"f2":[d copy]};
+        NSDictionary *g = @{@"ggggggggggg1":[f copy], @"g2":[e copy]};
+        NSDictionary *h = @{@"hhhhhhhhhhh1":[g copy], @"h2":[f copy], @"b":@"b1", @"a":@"a1"};
+
+        [SSViewDEBUGTextViewController showJSONObject:h];
+    }];
 }
 
 - (SSViewDEBUGPanel *)createEmptyPanel

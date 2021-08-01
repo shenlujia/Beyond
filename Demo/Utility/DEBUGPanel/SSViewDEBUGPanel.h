@@ -5,7 +5,8 @@
 
 @property (nonatomic, strong, readonly) UITextView *textView;
 
-+ (void)show:(NSString *)text;
++ (void)showText:(NSString *)text;
++ (void)showJSONObject:(id)JSONObject;
 
 @end
 

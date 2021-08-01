@@ -8,7 +8,7 @@
 
 #import "Logger.h"
 
-void log_impl(NSString *format, ...)
+void _ss_log_impl(NSString *format, ...)
 {
     if (!format) {
         return;
