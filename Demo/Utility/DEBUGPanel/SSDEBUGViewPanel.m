@@ -1,15 +1,15 @@
 
-#import "SSViewDEBUGPanel.h"
+#import "SSDEBUGViewPanel.h"
 
-#pragma mark - SSViewDEBUGTextViewController
+#pragma mark - SSDEBUGTextViewController
 
-@interface SSViewDEBUGTextViewController () <UISearchBarDelegate>
+@interface SSDEBUGTextViewController () <UISearchBarDelegate>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
-@implementation SSViewDEBUGTextViewController
+@implementation SSDEBUGTextViewController
 
 @synthesize textView = _textView;
 
@@ -60,7 +60,7 @@
 
 + (void)showText:(NSString *)text
 {
-    SSViewDEBUGTextViewController *textController = [[SSViewDEBUGTextViewController alloc] init];
+    SSDEBUGTextViewController *textController = [[SSDEBUGTextViewController alloc] init];
     textController.textView.text = text;
 
     UINavigationController *navigationController = [[UINavigationController alloc] init];
@@ -75,7 +75,7 @@
 
 + (void)showJSONObject:(id)JSONObject
 {
-    [SSViewDEBUGTextViewController showText:[self textWithJSONObject:JSONObject]];
+    [SSDEBUGTextViewController showText:[self textWithJSONObject:JSONObject]];
 }
 
 + (NSString *)textWithJSONObject:(id)JSONObject
@@ -128,9 +128,9 @@
 
 @end
 
-#pragma mark - SSViewDEBUGPanel
+#pragma mark - SSDEBUGViewPanel
 
-@interface SSViewDEBUGPanel ()
+@interface SSDEBUGViewPanel ()
 
 @property (nonatomic, assign, readonly) CGPoint point;
 @property (nonatomic, weak, readonly) UIView *view;
@@ -146,7 +146,7 @@
 
 @end
 
-@implementation SSViewDEBUGPanel
+@implementation SSDEBUGViewPanel
 
 - (void)dealloc
 {

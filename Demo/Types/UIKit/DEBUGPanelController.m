@@ -8,11 +8,11 @@
 
 #import "DEBUGPanelController.h"
 #import "Logger.h"
-#import "SSViewDEBUGPanel.h"
+#import "SSDEBUGViewPanel.h"
 
 @interface DEBUGPanelController ()
 
-@property (nonatomic, strong) SSViewDEBUGPanel *panel;
+@property (nonatomic, strong) SSDEBUGViewPanel *panel;
 
 @end
 
@@ -80,7 +80,7 @@
     }];
 
     [self test:@"DEBUGTextView xxx" tap:^(UIButton *button, NSDictionary *userInfo) {
-        [SSViewDEBUGTextViewController showText:@"xxx"];
+        [SSDEBUGTextViewController showText:@"xxx"];
     }];
 
     [self test:@"DEBUGTextView JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -93,19 +93,19 @@
         NSDictionary *g = @{@"ggggggggggg1":[f copy], @"g2":[e copy]};
         NSDictionary *h = @{@"hhhhhhhhhhh1":[g copy], @"h2":[f copy], @"b":@"b1", @"a":@"a1"};
 
-        [SSViewDEBUGTextViewController showJSONObject:h];
+        [SSDEBUGTextViewController showJSONObject:h];
     }];
 }
 
-- (SSViewDEBUGPanel *)createEmptyPanel
+- (SSDEBUGViewPanel *)createEmptyPanel
 {
-    SSViewDEBUGPanel *panel = [[SSViewDEBUGPanel alloc] init];
+    SSDEBUGViewPanel *panel = [[SSDEBUGViewPanel alloc] init];
     return panel;
 }
 
-- (SSViewDEBUGPanel *)createNormalPanel
+- (SSDEBUGViewPanel *)createNormalPanel
 {
-    SSViewDEBUGPanel *panel = [[SSViewDEBUGPanel alloc] init];
+    SSDEBUGViewPanel *panel = [[SSDEBUGViewPanel alloc] init];
     for (NSInteger idx = 1; idx <= 20; ++idx) {
         NSString *title = @(idx).stringValue;
         [panel test:title action:^{

@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSViewDEBUGTextViewController : UIViewController
+@interface SSDEBUGTextViewController : UIViewController
 
 @property (nonatomic, strong, readonly) UITextView *textView;
 
@@ -10,7 +10,7 @@
 
 @end
 
-@interface SSViewDEBUGPanel : NSObject
+@interface SSDEBUGViewPanel : NSObject
 
 + (CGSize)itemSize;
 

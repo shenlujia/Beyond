@@ -60,7 +60,7 @@
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
 		5E2544632699BF6F00BC695A /* Byebye.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E2544622699BF6F00BC695A /* Byebye.mm */; };
-		5E3476BB26B4EC76003F4355 /* SSViewDEBUGPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3476BA26B4EC76003F4355 /* SSViewDEBUGPanel.m */; };
+		5E3476BB26B4EC76003F4355 /* SSDEBUGViewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
 		5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BA94A25AEA2D60082AA9D /* LottieController.m */; };
 		5E5BA96725AEA32B0082AA9D /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA95125AEA32B0082AA9D /* img_1.png */; };
@@ -203,8 +203,8 @@
 		5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewController.h; sourceTree = "<group>"; };
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
 		5E2544622699BF6F00BC695A /* Byebye.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Byebye.mm; sourceTree = "<group>"; };
-		5E3476B926B4EC76003F4355 /* SSViewDEBUGPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewDEBUGPanel.h; sourceTree = "<group>"; };
-		5E3476BA26B4EC76003F4355 /* SSViewDEBUGPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewDEBUGPanel.m; sourceTree = "<group>"; };
+		5E3476B926B4EC76003F4355 /* SSDEBUGViewPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGViewPanel.h; sourceTree = "<group>"; };
+		5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGViewPanel.m; sourceTree = "<group>"; };
 		5E347B7626B4F8E3003F4355 /* DEBUGPanelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEBUGPanelController.h; sourceTree = "<group>"; };
 		5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEBUGPanelController.m; sourceTree = "<group>"; };
 		5E5BA94925AEA2D60082AA9D /* LottieController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LottieController.h; sourceTree = "<group>"; };
@@ -604,8 +604,8 @@
 		5E3476B826B4EC58003F4355 /* DEBUGPanel */ = {
 			isa = PBXGroup;
 			children = (
-				5E3476B926B4EC76003F4355 /* SSViewDEBUGPanel.h */,
-				5E3476BA26B4EC76003F4355 /* SSViewDEBUGPanel.m */,
+				5E3476B926B4EC76003F4355 /* SSDEBUGViewPanel.h */,
+				5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */,
 			);
 			path = DEBUGPanel;
 			sourceTree = "<group>";
@@ -919,7 +919,7 @@
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
-				5E3476BB26B4EC76003F4355 /* SSViewDEBUGPanel.m in Sources */,
+				5E3476BB26B4EC76003F4355 /* SSDEBUGViewPanel.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
