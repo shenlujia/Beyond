@@ -1,8 +1,11 @@
 PODS:
-  - Bugly (2.5.71)
+  - Bugly (2.5.90)
   - FBRetainCycleDetector (0.1.4)
-  - FLEX (4.4.0)
+  - FLEX (4.4.1)
   - lottie-ios (2.5.3)
+  - Mantle (2.1.6):
+    - Mantle/extobjc (= 2.1.6)
+  - Mantle/extobjc (2.1.6)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
@@ -10,6 +13,7 @@ DEPENDENCIES:
   - FBRetainCycleDetector
   - FLEX
   - lottie-ios (= 2.5.3)
+  - Mantle
   - Masonry
 
 SPEC REPOS:
@@ -18,15 +22,17 @@ SPEC REPOS:
     - FBRetainCycleDetector
     - FLEX
     - lottie-ios
+    - Mantle
     - Masonry
 
 SPEC CHECKSUMS:
-  Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
+  Bugly: 88bc32c0acc6fef7b74d610f0319ee7560d6b9fe
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
-  FLEX: 0592c011c6dfbfdb94a5e24f2d4a9dbff0c6026d
+  FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  Mantle: 4c0ed6ce47c96eccc4dc3bb071deb3def0e2c3be
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 161f320239abf4508f02d86da5117802aa0c6e8a
+PODFILE CHECKSUM: a8319cb6900b79c34d3c7af3779379d2a9a0baab
 
 COCOAPODS: 1.7.5

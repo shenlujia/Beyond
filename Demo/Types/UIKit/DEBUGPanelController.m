@@ -21,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [NSOperationQueue.mainQueue addOperationWithBlock:^{
         [self testImpl];
     }];

@@ -34,7 +34,7 @@
             NSMutableArray *array = total[c];
             if (!array) {
                 array = [NSMutableArray array];
-                total[c] = array;
+//                total[c] = array; todo...
             }
             [array addObject:@(pointer)];
         }
@@ -75,7 +75,7 @@
         NSMutableArray *array = ret[actualClass];
         if (!array) {
             array = [NSMutableArray array];
-            ret[actualClass] = array;
+//            ret[actualClass] = array; todo...
         }
         [array addObject:@((uintptr_t)object)];
     }];

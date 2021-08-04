@@ -12,6 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (DEBUGLog)
 
++ (NSArray<NSString *> *)ss_ivars;
+
+- (NSDictionary<NSString *, id> *)ss_keyValues;
+
+- (id)ss_JSON;
+
+@end
+
+@interface NSArray (DEBUGLog)
+
 @end
 
 NS_ASSUME_NONNULL_END

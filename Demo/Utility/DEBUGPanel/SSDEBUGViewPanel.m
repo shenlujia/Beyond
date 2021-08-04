@@ -6,6 +6,8 @@
 @interface SSDEBUGTextViewController () <UISearchBarDelegate>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, copy) NSArray *ranges;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -29,6 +31,12 @@
     self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    
+    self.navigationItem.rightBarButtonItems = ({
+        UIBarButtonItem *a = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousAction)];
+        UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextAction)];
+        @[b, a];
+    });
 }
 
 - (UISearchBar *)searchBar
@@ -45,6 +53,8 @@
 {
     if (!_textView) {
         _textView = [[UITextView alloc] init];
+        _textView.editable = NO;
+        _textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     }
     return _textView;
 }
@@ -56,6 +66,18 @@
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)previousAction
+{
+    --self.index;
+    [self adjustCurrentTextRange];
+}
+
+- (void)nextAction
+{
+    ++self.index;
+    [self adjustCurrentTextRange];
 }
 
 + (void)showText:(NSString *)text
@@ -103,9 +125,10 @@
 {
     const NSInteger length = self.textView.text.length;
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = UIColor.blackColor;
+    attributes[NSForegroundColorAttributeName] = UIColor.lightGrayColor;
 
     NSInteger matchCount = 0;
+    NSMutableArray *ranges = [NSMutableArray array];
     if (length) {
         [self.textView.textStorage addAttributes:[attributes copy] range:NSMakeRange(0, length)];
         if (searchText.length) {
@@ -120,10 +143,31 @@
                 [self.textView.textStorage addAttributes:attributes range:r];
                 i = r.location + r.length;
                 ++matchCount;
+                [ranges addObject:[NSValue valueWithRange:r]];
             }
         }
     }
+    
+    if (matchCount == 0) {
+        attributes[NSForegroundColorAttributeName] = UIColor.blackColor;
+        [self.textView.textStorage addAttributes:[attributes copy] range:NSMakeRange(0, length)];
+    }
+    
+    self.ranges = ranges;
+    self.index = 0;
+    [self adjustCurrentTextRange];
     self.title = [NSString stringWithFormat:@"已匹配: %@", @(matchCount)];
+}
+
+- (void)adjustCurrentTextRange
+{
+    if (self.ranges.count == 0) {
+        return;
+    }
+    self.index = MAX(self.index, 0);
+    self.index = MIN(self.index, self.ranges.count - 1);
+    NSRange range = [self.ranges[self.index] rangeValue];
+    [self.textView scrollRangeToVisible:range];
 }
 
 @end

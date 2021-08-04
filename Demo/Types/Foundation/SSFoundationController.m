@@ -8,6 +8,7 @@
 
 #import "SSFoundationController.h"
 #import <pthread.h>
+#import "NSObject+DEBUGLog.h"
 #import "MacroHeader.h"
 #import "Logger.h"
 #import "fishhook.h"
@@ -19,7 +20,61 @@ int my_printf(const char *c, ...)
     return 0;
 }
 
-@interface SSFoundationDEBUGLogA : NSObject
+@interface SSFoundationDEBUGLogBase : NSObject
+
+@property (nonatomic, copy) NSString *temp;
+@property (nonatomic, assign) NSInteger tag;
+@property (nonatomic, assign) bool b1;
+@property (nonatomic, assign) bool b2;
+@property (nonatomic, assign) BOOL b3;
+@property (nonatomic, assign) char c1;
+@property (nonatomic, assign) char c2;
+@property (nonatomic, assign) Class cls1;
+@property (nonatomic, assign) Class cls2;
+@property (nonatomic, assign) SEL sel1;
+@property (nonatomic, assign) SEL sel2;
+@property (nonatomic, assign) char *cc1;
+@property (nonatomic, assign) char *cc2;
+@property (nonatomic, assign) double d1;
+@property (nonatomic, assign) double d2;
+@property (nonatomic, assign) float f1;
+@property (nonatomic, assign) float f2;
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, copy) dispatch_block_t block;
+
+@end
+
+@implementation SSFoundationDEBUGLogBase
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _b2 = YES;
+        _b3 = YES;
+        _c1 = 'X';
+        _cc1 = "abcde";
+        _cls1 = [self class];
+        _sel1 = @selector(tapCount);
+        _d1 = 1.2;
+        _f1 = 2.4;
+        _temp = @"text";
+        _tag = 10;
+        _rect = CGRectMake(1, 2, 3, 4);
+        _block = ^{
+            
+        };
+    }
+    return self;
+}
+
+@end
+
+@interface SSFoundationDEBUGLogA : SSFoundationDEBUGLogBase
+
+@property (nonatomic, strong) NSNumber *number;
+@property (nonatomic, strong) UIView *view;
+@property (nonatomic, weak) id weak_self;
 
 @end
 
@@ -57,10 +112,10 @@ int my_printf(const char *c, ...)
 
     [self testRegularExpression];
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        rebind_symbols((struct rebinding[1]){{"printf", my_printf, (void *)&orig_printf}}, 1);
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        rebind_symbols((struct rebinding[1]){{"printf", my_printf, (void *)&orig_printf}}, 1);
+//    });
 
     WEAKSELF
     [self test:@"先将NSObject+DEBUGLog屏蔽 debugDescription用于控制台默认调用description" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -83,6 +138,40 @@ int my_printf(const char *c, ...)
         NSLog(@"%@", b);
         NSLog(@"%@", [b description]);
         NSLog(@"%@", [b debugDescription]);
+    }];
+    
+    [self test:@"ss_ivars" tap:^(UIButton *button, NSDictionary *userInfo) {
+        PRINT_BLANK_LINE
+        NSArray *ivars = [SSFoundationController ss_ivars];
+        NSLog(@"%@", ivars);
+    }];
+    
+    [self test:@"ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
+        {
+            PRINT_BLANK_LINE
+            SSFoundationDEBUGLogA *a = [[SSFoundationDEBUGLogA alloc] init];
+            a.view = [[UIView alloc] init];
+            a.weak_self = a;
+            NSDictionary *value = [a ss_JSON];
+            NSLog(@"%@", value);
+        }
+        {
+            PRINT_BLANK_LINE
+            id object = UIApplication.sharedApplication.delegate.window.rootViewController;
+            NSDictionary *value = [object ss_JSON];
+            NSLog(@"%@", value);
+        }
+        {
+            PRINT_BLANK_LINE
+            id object = UIApplication.sharedApplication.delegate;
+            NSDictionary *value = [object ss_JSON];
+            NSLog(@"%@", value);
+        }
+        {
+            PRINT_BLANK_LINE
+            UINavigationController *controller = (id)UIApplication.sharedApplication.delegate.window.rootViewController;
+            NSLog(@"%@", [controller.topViewController ss_JSON]);
+        }
     }];
 
     [self test:@"safe assert" tap:^(UIButton *button, NSDictionary *userInfo) {
