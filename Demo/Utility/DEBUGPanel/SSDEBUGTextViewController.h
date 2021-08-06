@@ -1,4 +1,6 @@
 
+#if INHOUSE_TARGET
+
 #import <UIKit/UIKit.h>
 
 @interface SSDEBUGTextViewController : UIViewController
@@ -9,3 +11,5 @@
 + (void)showJSONObject:(id)JSONObject;
 
 @end
+
+#endif

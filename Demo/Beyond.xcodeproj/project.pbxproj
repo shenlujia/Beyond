@@ -60,6 +60,7 @@
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
 		5E11388126BD2E3C00500244 /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */; };
+		5E113D4126BD413800500244 /* NSObject+SSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E113D4026BD413800500244 /* NSObject+SSJSON.m */; };
 		5E2544632699BF6F00BC695A /* Byebye.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E2544622699BF6F00BC695A /* Byebye.mm */; };
 		5E3476BB26B4EC76003F4355 /* SSDEBUGViewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
@@ -205,6 +206,8 @@
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
 		5E11387F26BD2E3C00500244 /* SSDEBUGTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGTextViewController.h; sourceTree = "<group>"; };
 		5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGTextViewController.m; sourceTree = "<group>"; };
+		5E113D3F26BD413800500244 /* NSObject+SSJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSJSON.h"; sourceTree = "<group>"; };
+		5E113D4026BD413800500244 /* NSObject+SSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSJSON.m"; sourceTree = "<group>"; };
 		5E2544622699BF6F00BC695A /* Byebye.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Byebye.mm; sourceTree = "<group>"; };
 		5E3476B926B4EC76003F4355 /* SSDEBUGViewPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGViewPanel.h; sourceTree = "<group>"; };
 		5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGViewPanel.m; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 				5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */,
 				5E11387F26BD2E3C00500244 /* SSDEBUGTextViewController.h */,
 				5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */,
+				5E113D3F26BD413800500244 /* NSObject+SSJSON.h */,
+				5E113D4026BD413800500244 /* NSObject+SSJSON.m */,
 			);
 			path = DEBUGPanel;
 			sourceTree = "<group>";
@@ -905,6 +910,7 @@
 				5E06F6E1256BEB7B00934EEF /* SimpleLeakDetectorMRC.mm in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
 				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
+				5E113D4126BD413800500244 /* NSObject+SSJSON.m in Sources */,
 				5E11388126BD2E3C00500244 /* SSDEBUGTextViewController.m in Sources */,
 				5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */,
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
@@ -1090,6 +1096,12 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 72TFJYDP24;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"INHOUSE_TARGET=1",
+				);
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1114,6 +1126,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = 72TFJYDP24;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

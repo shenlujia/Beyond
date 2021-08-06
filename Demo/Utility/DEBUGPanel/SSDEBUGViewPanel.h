@@ -1,4 +1,6 @@
 
+#if INHOUSE_TARGET
+
 #import <UIKit/UIKit.h>
 
 @interface SSDEBUGViewPanel : NSObject
@@ -12,3 +14,5 @@
 - (void)test:(NSString *)title action:(dispatch_block_t)action;
 
 @end
+
+#endif

@@ -8,7 +8,7 @@
 
 #import "SSFoundationController.h"
 #import <pthread.h>
-#import "NSObject+DEBUGLog.h"
+#import "NSObject+SSJSON.h"
 #import "MacroHeader.h"
 #import "Logger.h"
 #import "fishhook.h"
@@ -138,12 +138,6 @@ int my_printf(const char *c, ...)
         NSLog(@"%@", b);
         NSLog(@"%@", [b description]);
         NSLog(@"%@", [b debugDescription]);
-    }];
-    
-    [self test:@"ss_ivars" tap:^(UIButton *button, NSDictionary *userInfo) {
-        PRINT_BLANK_LINE
-        NSArray *ivars = [SSFoundationController ss_ivars];
-        NSLog(@"%@", ivars);
     }];
     
     [self test:@"ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {

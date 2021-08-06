@@ -1,4 +1,6 @@
 
+#if INHOUSE_TARGET
+
 #import "SSDEBUGViewPanel.h"
 
 @interface SSDEBUGViewPanel () <UIGestureRecognizerDelegate>
@@ -216,3 +218,5 @@
 }
 
 @end
+
+#endif

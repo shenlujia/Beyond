@@ -1,4 +1,6 @@
 
+#if INHOUSE_TARGET
+
 #import "SSDEBUGTextViewController.h"
 
 @interface SSDEBUGTextViewController () <UISearchBarDelegate>
@@ -185,3 +187,5 @@
 }
 
 @end
+
+#endif
