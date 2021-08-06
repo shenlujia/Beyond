@@ -1,180 +1,7 @@
 
 #import "SSDEBUGViewPanel.h"
 
-#pragma mark - SSDEBUGTextViewController
-
-@interface SSDEBUGTextViewController () <UISearchBarDelegate>
-
-@property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, copy) NSArray *ranges;
-@property (nonatomic, assign) NSInteger index;
-
-@end
-
-@implementation SSDEBUGTextViewController
-
-@synthesize textView = _textView;
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    const CGSize size = self.view.bounds.size;
-    const CGFloat searchHeight = self.searchBar.bounds.size.height;
-
-    [self.view addSubview:self.searchBar];
-    self.searchBar.frame = CGRectMake(0, 0, size.width, searchHeight);
-    self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
-    [self.view addSubview:self.textView];
-    self.textView.frame = CGRectMake(0, searchHeight, size.width, size.height - searchHeight);
-    self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-    
-    self.navigationItem.rightBarButtonItems = ({
-        UIBarButtonItem *a = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousAction)];
-        UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextAction)];
-        @[b, a];
-    });
-}
-
-- (UISearchBar *)searchBar
-{
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] init];
-        [_searchBar sizeToFit];
-        _searchBar.delegate = self;
-    }
-    return _searchBar;
-}
-
-- (UITextView *)textView
-{
-    if (!_textView) {
-        _textView = [[UITextView alloc] init];
-        _textView.editable = NO;
-        _textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    }
-    return _textView;
-}
-
-- (void)backAction
-{
-    if (self.navigationController.viewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-- (void)previousAction
-{
-    --self.index;
-    [self adjustCurrentTextRange];
-}
-
-- (void)nextAction
-{
-    ++self.index;
-    [self adjustCurrentTextRange];
-}
-
-+ (void)showText:(NSString *)text
-{
-    SSDEBUGTextViewController *textController = [[SSDEBUGTextViewController alloc] init];
-    textController.textView.text = text;
-
-    UINavigationController *navigationController = [[UINavigationController alloc] init];
-    navigationController.viewControllers = @[textController];
-    navigationController.navigationBar.translucent = NO;
-    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    UIViewController *controller = UIApplication.sharedApplication.delegate.window.rootViewController;
-
-    [controller presentViewController:navigationController animated:YES completion:nil];
-}
-
-+ (void)showJSONObject:(id)JSONObject
-{
-    [SSDEBUGTextViewController showText:[self textWithJSONObject:JSONObject]];
-}
-
-+ (NSString *)textWithJSONObject:(id)JSONObject
-{
-    if (![NSJSONSerialization isValidJSONObject:JSONObject]) {
-        return @"JSON对象无效";
-    }
-
-    NSJSONWritingOptions opt = NSJSONWritingPrettyPrinted;
-    if (@available(iOS 11.0, *)) {
-        opt |= NSJSONWritingSortedKeys;
-    }
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:JSONObject options:opt error:&error];
-    if (error) {
-        return error.description;
-    }
-    if (data) {
-        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }
-    return @"未知错误";
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    const NSInteger length = self.textView.text.length;
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = UIColor.lightGrayColor;
-
-    NSInteger matchCount = 0;
-    NSMutableArray *ranges = [NSMutableArray array];
-    if (length) {
-        [self.textView.textStorage addAttributes:[attributes copy] range:NSMakeRange(0, length)];
-        if (searchText.length) {
-            attributes[NSForegroundColorAttributeName] = UIColor.redColor;
-            NSInteger i = 0;
-            while (YES) {
-                NSRange range = NSMakeRange(i, length - i);
-                NSRange r = [self.textView.text rangeOfString:searchText options:NSCaseInsensitiveSearch range:range];
-                if (r.location == NSNotFound) {
-                    break;
-                }
-                [self.textView.textStorage addAttributes:attributes range:r];
-                i = r.location + r.length;
-                ++matchCount;
-                [ranges addObject:[NSValue valueWithRange:r]];
-            }
-        }
-    }
-    
-    if (matchCount == 0) {
-        attributes[NSForegroundColorAttributeName] = UIColor.blackColor;
-        [self.textView.textStorage addAttributes:[attributes copy] range:NSMakeRange(0, length)];
-    }
-    
-    self.ranges = ranges;
-    self.index = 0;
-    [self adjustCurrentTextRange];
-    self.title = [NSString stringWithFormat:@"已匹配: %@", @(matchCount)];
-}
-
-- (void)adjustCurrentTextRange
-{
-    if (self.ranges.count == 0) {
-        return;
-    }
-    self.index = MAX(self.index, 0);
-    self.index = MIN(self.index, self.ranges.count - 1);
-    NSRange range = [self.ranges[self.index] rangeValue];
-    [self.textView scrollRangeToVisible:range];
-}
-
-@end
-
-#pragma mark - SSDEBUGViewPanel
-
-@interface SSDEBUGViewPanel ()
+@interface SSDEBUGViewPanel () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign, readonly) CGPoint point;
 @property (nonatomic, weak, readonly) UIView *view;
@@ -187,6 +14,8 @@
 
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic, strong) NSMutableArray *actions;
+
+@property (nonatomic, assign) CGPoint panPoint;
 
 @end
 
@@ -214,6 +43,10 @@
             [weak_self setNeedsLayout];
         }];
         [weak_self setNeedsLayout];
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [_scrollView addGestureRecognizer:pan];
+        pan.delegate = self;
     }
     return self;
 }
@@ -223,10 +56,29 @@
     return CGSizeMake(64, 32);
 }
 
+- (void)showInView:(UIView *)view
+{
+    if (!view) {
+        view = UIApplication.sharedApplication.delegate.window.rootViewController.view;
+    }
+    if (!view) {
+        return;
+    }
+    
+    CGPoint point = CGPointMake(view.frame.size.width / 2, view.frame.size.height / 2);
+    NSString *value = [NSUserDefaults.standardUserDefaults valueForKey:[self keyWithView:view]];
+    NSArray *components = [value componentsSeparatedByString:@","];
+    if (components.count == 2) {
+        point = CGPointMake([components[0] floatValue], [components[1] floatValue]);
+    }
+    [self showInView:view startPoint:point];
+}
+
 - (void)showInView:(UIView *)view startPoint:(CGPoint)startPoint
 {
     _view = view;
     _point = startPoint;
+    [self saveLocation];
     [self setNeedsLayout];
 }
 
@@ -265,7 +117,7 @@
     NSMutableArray<UIButton *> *buttons = [NSMutableArray array];
     for (NSInteger idx = 0; idx < self.titles.count && idx < self.actions.count; ++idx) {
         CGRect frame = CGRectMake(0, 0, buttonSize.width, buttonSize.height);
-        frame.origin.y = (frame.size.height + 5) * idx;
+        frame.origin.y = (frame.size.height + 2) * idx;
         UIButton *view = [UIButton buttonWithType:UIButtonTypeCustom];
         view.tag = idx;
         view.frame = frame;
@@ -311,6 +163,56 @@
 {
     dispatch_block_t action = self.actions[button.tag];
     action();
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.panPoint = [gestureRecognizer locationInView:gestureRecognizer.view];
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        const CGSize superSize = gestureRecognizer.view.superview.frame.size;
+        CGRect frame = gestureRecognizer.view.frame;
+        
+        CGPoint point = [gestureRecognizer locationInView:gestureRecognizer.view];
+        frame.origin.x += point.x - self.panPoint.x;
+        frame.origin.y += point.y - self.panPoint.y;
+        frame.origin.x = MIN(frame.origin.x, superSize.width - frame.size.width);
+        frame.origin.x = MAX(frame.origin.x, 0);
+        frame.origin.y = MIN(frame.origin.y, superSize.height - frame.size.height);
+        frame.origin.y = MAX(frame.origin.y, 0);
+        
+        _point = frame.origin;
+        [self saveLocation];
+        gestureRecognizer.view.frame = frame;
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    const CGSize itemSize = [SSDEBUGViewPanel itemSize];
+    const CGPoint point = [gestureRecognizer locationInView:gestureRecognizer.view];
+    return CGRectContainsPoint(CGRectMake(0, 0, itemSize.width, itemSize.height), point);
+}
+
+- (NSString *)keyWithView:(UIView *)view
+{
+    NSString *key1 = NSStringFromClass([self class]);
+    NSString *key2 = nil;
+    if (view) {
+        key2 = NSStringFromClass([view class]);
+    }
+    NSString *key3 = nil;
+    if (view.nextResponder) {
+        key3 = NSStringFromClass([view.nextResponder class]);
+    }
+    return [NSString stringWithFormat:@"%@_%@_%@", key1, key2, key3];
+}
+
+- (void)saveLocation
+{
+    NSString *value = [NSString stringWithFormat:@"%f,%f", self.point.x, self.point.y];
+    [NSUserDefaults.standardUserDefaults setValue:value forKey:[self keyWithView:self.view]];
+    
 }
 
 @end

@@ -27,8 +27,10 @@
     [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
         NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
         if (@available(iOS 14, *)) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
             PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
             NSLog(@"authorizationStatusForAccessLevel %@", @(status));
+#endif
         }
         NSLog(@"requestPhotoAuthorization %@", @(status));
     }];

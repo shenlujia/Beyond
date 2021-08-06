@@ -9,6 +9,7 @@
 #import "DEBUGPanelController.h"
 #import "Logger.h"
 #import "SSDEBUGViewPanel.h"
+#import "SSDEBUGTextViewController.h"
 
 @interface DEBUGPanelController ()
 
@@ -78,6 +79,12 @@
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
         [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height)];
+    }];
+    
+    [self test:@"不指定point 满" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIView *view = weak_s.view;
+        weak_s.panel = [weak_s createNormalPanel];
+        [weak_s.panel showInView:view];
     }];
 
     [self test:@"DEBUGTextView xxx" tap:^(UIButton *button, NSDictionary *userInfo) {

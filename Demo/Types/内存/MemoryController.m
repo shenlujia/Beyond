@@ -366,6 +366,19 @@ static void *s_leakObj = NULL;
         [weak_s.view addSubview:view];
     }];
     
+    [self test:@"image提前解码+显示 mask CG+4M CA+4M ???" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
+        UIImage *temp = [UIImage imageWithContentsOfFile:path];
+        UIImage *obj = [UIImage decodedImageWithImage:temp];
+        UIImageView *view = [[UIImageView alloc] initWithImage:obj];
+        view.frame = CGRectMake(100, 100, 100, 100);
+        CALayer *mask = [[CALayer alloc] init];
+        mask.frame = CGRectMake(10, 10, 80, 80);
+        mask.backgroundColor = UIColor.blueColor.CGColor;
+        view.layer.mask = mask;
+        [weak_s.view addSubview:view];
+    }];
+    
     [self test:@"image显示 新版本会缓存(ImageIO+4M) CA+4M" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *path = [NSBundle.mainBundle pathForResource:@"memory_test_1" ofType:@"jpg"];
         UIImage *obj = [UIImage imageWithContentsOfFile:path];
