@@ -2,6 +2,7 @@
 #if INHOUSE_TARGET
 
 #import "SSDEBUGViewPanel.h"
+#import <objc/runtime.h>
 
 @interface SSDEBUGViewPanel () <UIGestureRecognizerDelegate>
 
@@ -33,7 +34,7 @@
     self = [super init];
     if (self) {
         _scrollView = [[UIScrollView alloc] init];
-        _scrollView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.15];
+        _scrollView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.2];
         _scrollView.showsVerticalScrollIndicator = NO;
         _buttons = [NSMutableArray array];
         _titles = [NSMutableArray array];
@@ -82,6 +83,9 @@
     _point = startPoint;
     [self saveLocation];
     [self setNeedsLayout];
+    
+    const void *key = @selector(showInView:startPoint:);
+    objc_setAssociatedObject(self, key, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)test:(NSString *)title action:(dispatch_block_t)action
@@ -123,7 +127,7 @@
         UIButton *view = [UIButton buttonWithType:UIButtonTypeCustom];
         view.tag = idx;
         view.frame = frame;
-        view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.15];
+        view.backgroundColor = [UIColor.cyanColor colorWithAlphaComponent:0.2];
         NSString *title = self.titles[idx];
         if (idx == 0) {
             title = self.folded ? @"展开" : @"收起";

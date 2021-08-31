@@ -103,6 +103,10 @@
     self.scrollView = [[ScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.scrollView];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap3Action)];
+    tap.numberOfTapsRequired = 3;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -225,6 +229,15 @@
             [self reloadData];
         }
     }];
+}
+
+- (void)tap3Action
+{
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)reloadData

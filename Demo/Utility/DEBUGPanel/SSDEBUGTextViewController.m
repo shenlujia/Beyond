@@ -111,23 +111,27 @@
 
 + (NSString *)textWithJSONObject:(id)JSONObject
 {
-    if (![NSJSONSerialization isValidJSONObject:JSONObject]) {
-        return @"JSON对象无效";
-    }
-
     NSJSONWritingOptions opt = NSJSONWritingPrettyPrinted;
     if (@available(iOS 11.0, *)) {
         opt |= NSJSONWritingSortedKeys;
     }
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:JSONObject options:opt error:&error];
-    if (error) {
-        return error.description;
+    
+    [NSJSONSerialization isValidJSONObject:nil];
+    
+    NSString *text = nil;
+    @try {
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:JSONObject options:opt error:&error];
+        if (error) {
+            text = error.description;
+        }
+        if (data) {
+            text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+    } @catch (NSException *exception) {
+        text = exception.description;
     }
-    if (data) {
-        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }
-    return @"未知错误";
+    return text ?: @"未知错误";
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

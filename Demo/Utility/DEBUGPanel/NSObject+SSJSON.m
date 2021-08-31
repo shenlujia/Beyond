@@ -176,21 +176,23 @@
 
 - (id)ss_JSON
 {
-    if ([self isKindOfClass:[NSString class]]) {
+    if ([self isKindOfClass:[NSString class]] || [self isKindOfClass:[NSNull class]]) {
         return self;
     }
     if ([self isKindOfClass:[NSNumber class]]) {
         NSNumber *object = (NSNumber *)self;
         if (isnan(object.doubleValue)) {
-            return @"Number: NaN";
+            return @"Number: isnan";
+        } else if (isinf(object.doubleValue)) {
+            return @"Number: isinf";
         }
         return object;
     }
     
     NSString *className = NSStringFromClass([self class]);
-    if ([className hasPrefix:@"UI"] ||
-        [className hasPrefix:@"_UI"] ||
-        [className hasPrefix:@"AV"]) {
+    if ([className hasPrefix:@"AV"] ||
+        [className hasPrefix:@"HTSGL"] ||
+        [className hasPrefix:@"UI"]) {
         return [self debugDescription];
     }
     if ([self isKindOfClass:[UIResponder class]]) {
@@ -218,10 +220,23 @@
         NSDictionary *object = (NSDictionary *)self;
         NSMutableDictionary *ret = [NSMutableDictionary dictionary];
         [object enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            id JSON_key = [key ss_JSON];
+            NSString *string_key = nil;
+            if ([key isKindOfClass:[NSString class]]) {
+                string_key = key;
+            } else if ([key isKindOfClass:[NSNumber class]]) {
+                id JSON_key = [key ss_JSON];
+                if ([JSON_key isKindOfClass:[NSString class]]) {
+                    string_key = JSON_key;
+                } else {
+                    string_key = [JSON_key debugDescription];
+                }
+            } else {
+                string_key = [key debugDescription];
+            }
+            
             id JSON_value = [obj ss_JSON];
-            if (JSON_key && JSON_value) {
-                ret[JSON_key] = JSON_value;
+            if (string_key && JSON_value) {
+                ret[string_key] = JSON_value;
             }
         }];
         return ret;
