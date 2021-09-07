@@ -99,7 +99,7 @@
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
-		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.mm */; };
+		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */; };
 		5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */; };
 /* End PBXBuildFile section */
 
@@ -264,7 +264,7 @@
 		5EF0246225CAA9CA00EDB1EE /* UselessClassCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UselessClassCheckController.h; sourceTree = "<group>"; };
 		5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UselessClassCheckController.m; sourceTree = "<group>"; };
 		5EF7C3632601AAAF00E3CF0E /* SSFoundationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSFoundationController.h; sourceTree = "<group>"; };
-		5EF7C3642601AAAF00E3CF0E /* SSFoundationController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SSFoundationController.mm; sourceTree = "<group>"; };
+		5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSFoundationController.m; sourceTree = "<group>"; };
 		5EF7C39A2601D2B300E3CF0E /* NSObject+DEBUGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DEBUGLog.h"; sourceTree = "<group>"; };
 		5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DEBUGLog.m"; sourceTree = "<group>"; };
 		A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.release.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.release.xcconfig"; sourceTree = "<group>"; };
@@ -759,7 +759,7 @@
 			isa = PBXGroup;
 			children = (
 				5EF7C3632601AAAF00E3CF0E /* SSFoundationController.h */,
-				5EF7C3642601AAAF00E3CF0E /* SSFoundationController.mm */,
+				5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -954,7 +954,7 @@
 				5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */,
 				574CA37424F666B90018D47B /* FishhookController.m in Sources */,
 				5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */,
-				5EF7C3652601AAAF00E3CF0E /* SSFoundationController.mm in Sources */,
+				5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */,
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,
 				57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */,
 				57CDBA8524B48E0800F9856F /* KVCController.m in Sources */,

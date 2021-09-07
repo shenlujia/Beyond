@@ -12,6 +12,7 @@
 #import "MacroHeader.h"
 #import "Logger.h"
 #import "fishhook.h"
+#import <KVOController/KVOController.h>
 
 static int (*orig_printf)(const char *c, ...);
 
@@ -20,8 +21,32 @@ int my_printf(const char *c, ...)
     return 0;
 }
 
+@interface SSFoundationDEBUGLogStruct : NSObject
+
+@property (nonatomic, assign) CGPoint point;
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, assign) CGAffineTransform trans;
+
+@end
+
+@implementation SSFoundationDEBUGLogStruct
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _point = CGPointMake(1, 2);
+        _rect = CGRectMake(3, 4, 5, 6);
+        _trans = CGAffineTransformMake(1, 2, 3, 4, 5, 6);
+    }
+    return self;
+}
+
+@end
+
 @interface SSFoundationDEBUGLogBase : NSObject
 
+@property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSString *temp;
 @property (nonatomic, assign) NSInteger tag;
 @property (nonatomic, assign) bool b1;
@@ -102,12 +127,15 @@ int my_printf(const char *c, ...)
 
 @interface SSFoundationController ()
 
+@property (nonatomic, strong) SSFoundationDEBUGLogBase *baseObj;
+
 @end
 
 @implementation SSFoundationController
 
 - (void)viewDidLoad
 {
+    WEAKSELF
     [super viewDidLoad];
 
     [self testRegularExpression];
@@ -116,8 +144,22 @@ int my_printf(const char *c, ...)
 //    dispatch_once(&onceToken, ^{
 //        rebind_symbols((struct rebinding[1]){{"printf", my_printf, (void *)&orig_printf}}, 1);
 //    });
-
-    WEAKSELF
+    
+    [self test:@"NSLog崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *text0 = nil;
+        NSString *text1 = nil;
+        text0 = [NSString stringWithFormat:@"abc%@@f3", @"YES%"];
+//        text0 = [NSString stringWithFormat:@"%@", @"YES%d"];
+//        text0 = [NSString stringWithFormat:@"YES"];
+        
+        NSLog(@"text0=%@  text1=%@", text0, text1);
+//        text1 = [[NSString alloc] initWithFormat:text0 arguments:nil];
+        NSLog(@"text0=%@  text1=%@", text0, text1);
+        NSLog(@"text0=%@  text1=%@", text0, text1, @"");
+        
+        NSLog(@"text0=%@  text1=%@", text0); // crash
+    }];
+    
     [self test:@"先将NSObject+DEBUGLog屏蔽 debugDescription用于控制台默认调用description" tap:^(UIButton *button, NSDictionary *userInfo) {
         PRINT_BLANK_LINE
         NSLog(@"%p", weak_s);
@@ -140,7 +182,46 @@ int my_printf(const char *c, ...)
         NSLog(@"%@", [b debugDescription]);
     }];
     
+    [self test:@"KVOController" tap:^(UIButton *button, NSDictionary *userInfo) {
+        weak_s.baseObj = [[SSFoundationDEBUGLogBase alloc] init];
+        [weak_s.KVOController observe:weak_s.baseObj keyPath:@"text" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+            NSLog(@"%@", change);
+        }];
+        weak_s.baseObj.text = @"1";
+        weak_s.baseObj.text = @"1";
+        weak_s.baseObj.text = @"1";
+        weak_s.baseObj.text = @"2";
+        weak_s.baseObj.text = @"2";
+        weak_s.baseObj.text = @"2";
+    }];
+    
+    [self test:@"weak test NSHashTable NSMapTable" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSHashTable *t1 = [[NSHashTable alloc] init];
+        NSHashTable *t2 = [NSHashTable weakObjectsHashTable];
+        __unused BOOL tt1 = t1.pointerFunctions.usesWeakReadAndWriteBarriers;
+        __unused BOOL tt2 = t2.pointerFunctions.usesWeakReadAndWriteBarriers;
+        NSMapTable *m1 = [NSMapTable weakToWeakObjectsMapTable];
+        NSMapTable *m2 = [NSMapTable weakToStrongObjectsMapTable];
+        NSMapTable *m3 = [NSMapTable strongToWeakObjectsMapTable];
+        NSMapTable *m4 = [NSMapTable strongToStrongObjectsMapTable];
+        __unused BOOL mm1 = m1.keyPointerFunctions.usesWeakReadAndWriteBarriers;
+        __unused BOOL mm2 = m2.keyPointerFunctions.usesWeakReadAndWriteBarriers;
+        __unused BOOL mm3 = m3.keyPointerFunctions.usesWeakReadAndWriteBarriers;
+        __unused BOOL mm4 = m4.keyPointerFunctions.usesWeakReadAndWriteBarriers;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@[@"1",@"2"] forKey:@"test_array"];
+        __unused id kk = [[NSUserDefaults standardUserDefaults] objectForKey:@"test_array"];
+        
+        PRINT_BLANK_LINE
+    }];
+    
     [self test:@"ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
+        {
+            PRINT_BLANK_LINE
+            SSFoundationDEBUGLogStruct *a = [[SSFoundationDEBUGLogStruct alloc] init];
+            NSDictionary *value = [a ss_JSON];
+            NSLog(@"%@", value);
+        }
         {
             PRINT_BLANK_LINE
             SSFoundationDEBUGLogA *a = [[SSFoundationDEBUGLogA alloc] init];
