@@ -62,6 +62,7 @@
 		5E11388126BD2E3C00500244 /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */; };
 		5E113D4126BD413800500244 /* NSObject+SSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E113D4026BD413800500244 /* NSObject+SSJSON.m */; };
 		5E2544632699BF6F00BC695A /* Byebye.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E2544622699BF6F00BC695A /* Byebye.mm */; };
+		5E2E90E526DF643F00E66A8F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E90E426DF643F00E66A8F /* Logger.m */; };
 		5E3476BB26B4EC76003F4355 /* SSDEBUGViewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
 		5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BA94A25AEA2D60082AA9D /* LottieController.m */; };
@@ -92,7 +93,6 @@
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
 		5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */; };
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
-		5E7BD8382666597900F90FE6 /* Logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BD8372666597900F90FE6 /* Logger.mm */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
@@ -209,6 +209,7 @@
 		5E113D3F26BD413800500244 /* NSObject+SSJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSJSON.h"; sourceTree = "<group>"; };
 		5E113D4026BD413800500244 /* NSObject+SSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSJSON.m"; sourceTree = "<group>"; };
 		5E2544622699BF6F00BC695A /* Byebye.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Byebye.mm; sourceTree = "<group>"; };
+		5E2E90E426DF643F00E66A8F /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		5E3476B926B4EC76003F4355 /* SSDEBUGViewPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGViewPanel.h; sourceTree = "<group>"; };
 		5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGViewPanel.m; sourceTree = "<group>"; };
 		5E347B7626B4F8E3003F4355 /* DEBUGPanelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEBUGPanelController.h; sourceTree = "<group>"; };
@@ -251,7 +252,6 @@
 		5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAuthority.h; sourceTree = "<group>"; };
 		5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAuthority.m; sourceTree = "<group>"; };
 		5E7BD8362666597900F90FE6 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		5E7BD8372666597900F90FE6 /* Logger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Logger.mm; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
@@ -463,13 +463,13 @@
 		57F89436246E37CE007AEFC6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				5E2E90E426DF643F00E66A8F /* Logger.m */,
 				5E3476B826B4EC58003F4355 /* DEBUGPanel */,
 				5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */,
 				5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */,
 				574C80A924F36D560018D47B /* DontLikeCommon.h */,
 				574C80AA24F36D560018D47B /* DontLikeCommon.m */,
 				5E7BD8362666597900F90FE6 /* Logger.h */,
-				5E7BD8372666597900F90FE6 /* Logger.mm */,
 				57F89437246E37DB007AEFC6 /* MacroHeader.h */,
 				5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */,
 				5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */,
@@ -903,6 +903,7 @@
 				5E2544632699BF6F00BC695A /* Byebye.mm in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
+				5E2E90E526DF643F00E66A8F /* Logger.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */,
 				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
@@ -941,7 +942,6 @@
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,
 				574CA38024F679770018D47B /* CallStackController.m in Sources */,
-				5E7BD8382666597900F90FE6 /* Logger.mm in Sources */,
 				5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */,
 				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,

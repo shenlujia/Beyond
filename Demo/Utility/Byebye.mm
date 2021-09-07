@@ -48,3 +48,6 @@ __attribute((constructor)) static void byebye(void)
         signal(SIGINT, signalHandler);
     });
 }
+
+
+

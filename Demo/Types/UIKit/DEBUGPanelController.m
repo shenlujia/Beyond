@@ -10,6 +10,7 @@
 #import "Logger.h"
 #import "SSDEBUGViewPanel.h"
 #import "SSDEBUGTextViewController.h"
+#import "NSObject+SSJSON.h"
 
 @interface DEBUGPanelController ()
 
@@ -85,6 +86,32 @@
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
         [weak_s.panel showInView:view];
+    }];
+    
+    [self test:@"isValidJSONObject" tap:^(UIButton *button, NSDictionary *userInfo) {
+        {
+            NSArray *array_no = @[
+                @{@(1):@(2)},
+                @{@(NAN):@(NAN)},
+                @{@"":@(NAN)},
+                @{@"":@(INFINITY)},
+                @{@"":@(INFINITY)},
+                @{@{@"1":@"2"}:@(2)},
+            ];
+            NSArray *array_yes = @[
+                @{@"":@(2)},
+                @{@"":@{@"1":@"2"}},
+            ];
+            for (NSObject *obj in array_no) {
+                NSParameterAssert([NSJSONSerialization isValidJSONObject:obj] == NO);
+                NSParameterAssert([NSJSONSerialization isValidJSONObject:[obj ss_JSON]] == YES);
+            }
+            for (NSObject *obj in array_yes) {
+                NSParameterAssert([NSJSONSerialization isValidJSONObject:obj] == YES);
+                NSParameterAssert([NSJSONSerialization isValidJSONObject:[obj ss_JSON]] == YES);
+            }
+        }
+        PRINT_BLANK_LINE
     }];
 
     [self test:@"DEBUGTextView xxx" tap:^(UIButton *button, NSDictionary *userInfo) {

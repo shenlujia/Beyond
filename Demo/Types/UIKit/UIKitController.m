@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad
 {
+    WEAKSELF
     [super viewDidLoad];
 
     printf("0 / 0 = %f    Division by zero is undefined \n", (float)(0 / 0));
@@ -68,6 +69,28 @@
     printf("sizeof(int) = %d    sizeof(float) = %d \n", (int)sizeof(int), (int)sizeof(float));
     printf("sizeof(NAN) = %d    sizeof(INFI) = %d \n", (int)sizeof(NAN), (int)sizeof(INFINITY));
 
+    [self test:@"present UINavigationController" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UINavigationController *navigation = [[UINavigationController alloc] init];
+        BaseViewController *c1 = [[BaseViewController alloc] init];
+        c1.view.backgroundColor = UIColor.redColor;
+        BaseViewController *c2 = [[BaseViewController alloc] init];
+        c2.view.backgroundColor = UIColor.blueColor;
+        BaseViewController *c3 = [[BaseViewController alloc] init];
+        c3.view.backgroundColor = UIColor.cyanColor;
+        
+        navigation.viewControllers = @[c1];
+        [navigation pushViewController:c2 animated:NO];
+        [navigation pushViewController:c3 animated:YES];
+        
+        navigation.navigationBar.hidden = YES;
+        navigation.modalPresentationCapturesStatusBarAppearance = YES;
+        navigation.modalPresentationStyle = UIModalPresentationFullScreen;
+        
+        [weak_s presentViewController:navigation animated:YES completion:^{
+            
+        }];
+    }];
+    
     [self test_c:@"HorizontalCollectionView"];
 
     [self test_c:@"TableViewController"];

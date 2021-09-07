@@ -5,6 +5,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import <Mantle/Mantle.h>
+#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 
 @implementation NSObject (SSJSON)
 
@@ -130,7 +131,10 @@
         case '(':
         case 'b':
         case '^': {
-            value = [NSString stringWithFormat:@"%s", type];
+            value = [self p_structValueWithType:type offset:offset];
+            if (!value) {
+                value = [NSString stringWithFormat:@"TODO: %s", type];
+            }
             break;
         }
         default: {
@@ -140,6 +144,32 @@
     }
     
     return value;
+}
+
+- (NSString *)p_structValueWithType:(const char *)type offset:(ptrdiff_t)offset
+{
+    unsigned char *bytes = (unsigned char *)(__bridge void *)self;
+    
+    NSString * (^f)(CGFloat v) = ^(CGFloat v) {
+        return [@(v) stringValue];
+    };
+    
+    if (strncmp(type, "{CGPoint=", 9) == 0) {
+        CGPoint v = *((CGPoint *)(bytes + offset));
+        return [NSString stringWithFormat:@"Point{%@,%@}", f(v.x), f(v.y)];
+    }
+    
+    if (strncmp(type, "{CGRect=", 8) == 0) {
+        CGRect v = *((CGRect *)(bytes + offset));
+        return [NSString stringWithFormat:@"Rect{%@,%@,%@,%@}", f(v.origin.x), f(v.origin.y), f(v.size.width), f(v.size.height)];
+    }
+    
+    if (strncmp(type, "{CGAffineTransform=", 19) == 0) {
+        CGAffineTransform v = *((CGAffineTransform *)(bytes + offset));
+        return [NSString stringWithFormat:@"Transform{%@,%@,%@,%@,%@,%@}", f(v.a), f(v.b), f(v.c), f(v.d), f(v.tx), f(v.ty)];
+    }
+    
+    return nil;
 }
 
 - (NSDictionary<NSString *, id> *)ss_keyValues
@@ -192,11 +222,17 @@
     NSString *className = NSStringFromClass([self class]);
     if ([className hasPrefix:@"AV"] ||
         [className hasPrefix:@"HTSGL"] ||
+        [className hasPrefix:@"NLE"] ||
         [className hasPrefix:@"UI"]) {
-        return [self debugDescription];
+        return [self ss_description];
     }
     if ([self isKindOfClass:[UIResponder class]]) {
-        return [self debugDescription];
+        return [self ss_description];
+    }
+    if ([self isKindOfClass:[NSHashTable class]] ||
+        [self isKindOfClass:[NSMapTable class]] ||
+        [self isKindOfClass:[NSPointerArray class]]) {
+        return [self ss_description];
     }
     
     if ([self conformsToProtocol:@protocol(MTLJSONSerializing)]) {
@@ -227,11 +263,10 @@
                 id JSON_key = [key ss_JSON];
                 if ([JSON_key isKindOfClass:[NSString class]]) {
                     string_key = JSON_key;
-                } else {
-                    string_key = [JSON_key debugDescription];
                 }
-            } else {
-                string_key = [key debugDescription];
+            }
+            if (string_key.length == 0) {
+                string_key = [key ss_description];
             }
             
             id JSON_value = [obj ss_JSON];
@@ -247,17 +282,14 @@
         return [object.allObjects ss_JSON];
     }
     
-    if ([self isKindOfClass:[NSHashTable class]]) {
-        NSHashTable *object = (NSHashTable *)self;
-        return [object.allObjects ss_JSON];
-    }
-    
-    if ([self isKindOfClass:[NSMapTable class]]) {
-        NSMapTable *object = (NSMapTable *)self;
-        return [object.dictionaryRepresentation ss_JSON];
-    }
-    
     return [self ss_keyValues];
+}
+
+- (NSString *)ss_description
+{
+    NSString *desc1 = [self description];
+    NSString *desc2 = [self debugDescription];
+    return desc1.length > desc2.length ? desc1 : desc2;
 }
 
 @end
