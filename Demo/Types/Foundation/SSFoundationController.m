@@ -145,6 +145,8 @@ int my_printf(const char *c, ...)
 //        rebind_symbols((struct rebinding[1]){{"printf", my_printf, (void *)&orig_printf}}, 1);
 //    });
     
+    [self test_c:@"FileManager"];
+    
     [self test:@"NSLog崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *text0 = nil;
         NSString *text1 = nil;

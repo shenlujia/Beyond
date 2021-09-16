@@ -88,6 +88,8 @@
 		5E61389325EE3DB800127B6E /* SSHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */; };
 		5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E613F9E25EF574400127B6E /* SSLeakDetectorObject.m */; };
 		5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61549525F08F0900127B6E /* SSLiveObjectsViewController.m */; };
+		5E69C45726F0DED6005B93AB /* NSFileManager+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E69C45626F0DED6005B93AB /* NSFileManager+SS.m */; };
+		5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E69C45926F1BE39005B93AB /* FileManagerController.m */; };
 		5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */; };
 		5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */; };
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
@@ -241,6 +243,10 @@
 		5E613F9E25EF574400127B6E /* SSLeakDetectorObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLeakDetectorObject.m; sourceTree = "<group>"; };
 		5E61549425F08F0900127B6E /* SSLiveObjectsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSLiveObjectsViewController.h; sourceTree = "<group>"; };
 		5E61549525F08F0900127B6E /* SSLiveObjectsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLiveObjectsViewController.m; sourceTree = "<group>"; };
+		5E69C45526F0DED6005B93AB /* NSFileManager+SS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+SS.h"; sourceTree = "<group>"; };
+		5E69C45626F0DED6005B93AB /* NSFileManager+SS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+SS.m"; sourceTree = "<group>"; };
+		5E69C45826F1BE38005B93AB /* FileManagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManagerController.h; sourceTree = "<group>"; };
+		5E69C45926F1BE39005B93AB /* FileManagerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManagerController.m; sourceTree = "<group>"; };
 		5E7207B325ED282C00BD9F59 /* SimpleLeakDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLeakDetector.h; sourceTree = "<group>"; };
 		5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
 		5E7207B925ED29B800BD9F59 /* MemoryLeakDetectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryLeakDetectController.h; sourceTree = "<group>"; };
@@ -760,6 +766,10 @@
 			children = (
 				5EF7C3632601AAAF00E3CF0E /* SSFoundationController.h */,
 				5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */,
+				5E69C45526F0DED6005B93AB /* NSFileManager+SS.h */,
+				5E69C45626F0DED6005B93AB /* NSFileManager+SS.m */,
+				5E69C45826F1BE38005B93AB /* FileManagerController.h */,
+				5E69C45926F1BE39005B93AB /* FileManagerController.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -905,6 +915,7 @@
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
 				5E2E90E526DF643F00E66A8F /* Logger.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
+				5E69C45726F0DED6005B93AB /* NSFileManager+SS.m in Sources */,
 				5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */,
 				5707305624D2BE4200A9883A /* GestureController.m in Sources */,
 				5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */,
@@ -924,6 +935,7 @@
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
 				5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */,
 				574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */,
+				5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */,
 				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
@@ -1094,7 +1106,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 72TFJYDP24;
+				DEVELOPMENT_TEAM = E2CW8KMVEU;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1112,7 +1124,7 @@
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Dian_Xiong_3_Wildcard_3UBVP0C5MS;
+				PROVISIONING_PROFILE_SPECIFIER = wangjiajia_john_Wildcard_303XMXV3BZ;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1125,7 +1137,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = 72TFJYDP24;
+				DEVELOPMENT_TEAM = E2CW8KMVEU;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1137,7 +1149,7 @@
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Dian_Xiong_3_Wildcard_3UBVP0C5MS;
+				PROVISIONING_PROFILE_SPECIFIER = wangjiajia_john_Wildcard_303XMXV3BZ;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
