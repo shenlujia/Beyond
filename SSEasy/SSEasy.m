@@ -39,32 +39,8 @@ static void NSLog_f(NSString *format, ...) {
     if (!PREFIX || [format hasPrefix:PREFIX]) {
         NSLogv_p(format, args);
     }
-    va_end(args);
+    va_end(args);1
 }
-
-void ByebyeExceptionHandler(NSException *exception)
-{
-    NSArray *stack = [exception callStackReturnAddresses];
-    NSLog(@"Stack trace: %@", stack);
-}
-
-@interface ByebyeAssertionHandler : NSAssertionHandler
-
-@end
-
-@implementation ByebyeAssertionHandler
-
-- (void)handleFailureInMethod:(SEL)selector object:(id)object file:(NSString *)fileName lineNumber:(NSInteger)line description:(nullable NSString *)format,...
-{
-    NSLog(@"NSAssert Failure: Method %@ for object %@ in %@#%li", NSStringFromSelector(selector), object, fileName, (long)line);
-}
-
-- (void)handleFailureInFunction:(NSString *)functionName file:(NSString *)fileName lineNumber:(NSInteger)line description:(nullable NSString *)format,...
-{
-    NSLog(@"NSCAssert Failure: Function (%@) in %@#%li", functionName, fileName, (long)line);
-}
-
-@end
 
 @implementation ACCMemoryMonitor (Byebye)
 + (void)startCheckMemoryLeaks:(id)object {}

@@ -123,7 +123,7 @@
         if (!prefix) {
             return text;
         }
-        return [NSString stringWithFormat:@"%@%@%@", prefix, kJOINER, text];
+        return [NSString stringWithFormat:@"%@%@%@", prefix, @" -> ", text];
     };
     
     if ([object isKindOfClass:[NSString class]]) {
