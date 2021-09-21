@@ -2,6 +2,8 @@
 //  Created by ZZZ on 2020/10/30.
 //
 
+#ifdef KKK
+
 #import <CreativeKit/NSObject+ACCSwizzle.h>
 #import <AWEAppSettings/AWEBaseSettings.h>
 #import <KiteLog/KiteLogControl.h>
@@ -12,35 +14,7 @@
 #import <fishhook/fishhook.h>
 #import <objc/runtime.h>
 
-static NSString *PREFIX = @"AWE";
-
-static int (*pthread_kill_p)(pthread_t t, int i);
-int pthread_kill_f(pthread_t t, int i) { return 0; }
-
-static int (*printf_p)(const char *format, ...);
-static int printf_f(const char *format, ...) { return 0; }
-
-static int (*fprintf_p)(FILE *file, const char *format, ...);
-static int fprintf_f(FILE *file, const char *format, ...) { return 0; }
-
-static int (*vfprintf_p)(FILE *file, const char *format, va_list);
-static int vfprintf_f(FILE *file, const char *format, va_list args) { return 0; }
-
-static int (*vprintf_p)(const char *format, va_list);
-static int vprintf_f(const char *format, va_list args) { return 0; }
-
-static void (*NSLogv_p)(NSString *format, va_list args);
-static void NSLogv_f(NSString *format, va_list args) {}
-
-static void (*NSLog_p)(NSString *format, ...);
-static void NSLog_f(NSString *format, ...) {
-    va_list args;
-    va_start(args, format);
-    if (!PREFIX || [format hasPrefix:PREFIX]) {
-        NSLogv_p(format, args);
-    }
-    va_end(args);1
-}
+#import "SSEasyAssert.h"
 
 @implementation ACCMemoryMonitor (Byebye)
 + (void)startCheckMemoryLeaks:(id)object {}
@@ -101,6 +75,8 @@ static void NSLog_f(NSString *format, ...) {
 
 + (void)bye
 {
+    ss_activate_easy_assert();
+    
     [self swizzle];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -128,15 +104,7 @@ static void NSLog_f(NSString *format, ...) {
 
 + (void)go
 {
-    rebind_symbols((struct rebinding[7]) {
-        {"pthread_kill", pthread_kill_f, (void *)&pthread_kill_p},
-        {"fprintf", fprintf_f, (void *)&fprintf_p},
-        {"printf", printf_f, (void *)&printf_p},
-        {"vfprintf", vfprintf_f, (void *)&vfprintf_p},
-        {"vprintf", vprintf_f, (void *)&vprintf_p},
-        {"NSLogv", NSLogv_f, (void *)&NSLogv_p},
-        {"NSLog", NSLog_f, (void *)&NSLog_p},
-    }, 7);
+    
 
     extern bool isTTVideoEngineLogEnabled;
     isTTVideoEngineLogEnabled = NO;
@@ -148,10 +116,9 @@ static void NSLog_f(NSString *format, ...) {
     extern void hmd_disable_cpp_exception_backtrace(void);
     hmd_disable_cpp_exception_backtrace(); // 300M+ memory
 
-    NSAssertionHandler *assertHandler = [[ByebyeAssertionHandler alloc] init];
-    [NSThread.currentThread.threadDictionary setValue:assertHandler forKey:NSAssertionHandlerKey];
-
-    NSSetUncaughtExceptionHandler(&ByebyeExceptionHandler);
+    
 }
 
 @end
+
+#endif

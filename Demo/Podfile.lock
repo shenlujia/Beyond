@@ -1,6 +1,7 @@
 PODS:
   - Bugly (2.5.90)
   - FBRetainCycleDetector (0.1.4)
+  - fishhook (0.2)
   - FLEX (4.4.1)
   - KVOController (1.2.0)
   - lottie-ios (2.5.3)
@@ -12,6 +13,7 @@ PODS:
 DEPENDENCIES:
   - Bugly
   - FBRetainCycleDetector
+  - fishhook
   - FLEX
   - KVOController
   - lottie-ios (= 2.5.3)
@@ -22,6 +24,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bugly
     - FBRetainCycleDetector
+    - fishhook
     - FLEX
     - KVOController
     - lottie-ios
@@ -31,12 +34,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bugly: 88bc32c0acc6fef7b74d610f0319ee7560d6b9fe
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Mantle: 4c0ed6ce47c96eccc4dc3bb071deb3def0e2c3be
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 46386cda5e3835ce3eede54bfaa1c633b7b33cad
+PODFILE CHECKSUM: 51c84a652744c024dbe36da9b6bd20052e6f26ba
 
 COCOAPODS: 1.7.5

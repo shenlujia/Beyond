@@ -147,6 +147,8 @@ int my_printf(const char *c, ...)
     
     [self test_c:@"FileManager"];
     
+    [self test_c:@"SSEasy"];
+    
     [self test:@"NSLog崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *text0 = nil;
         NSString *text1 = nil;

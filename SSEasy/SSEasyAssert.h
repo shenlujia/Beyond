@@ -3,5 +3,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <pthread/pthread.h>
 
-extern void ss_safe_assert(NSString *text);
+FOUNDATION_EXTERN void ss_activate_easy_assert(void);
+
+FOUNDATION_EXTERN void ss_easy_assert_safe(NSString *identifier);

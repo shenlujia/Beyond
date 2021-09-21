@@ -1,0 +1,131 @@
+//
+//  SSEasyController.m
+//  Beyond
+//
+//  Created by ZZZ on 2021/9/18.
+//  Copyright © 2021 SLJ. All rights reserved.
+//
+
+#import "SSEasyController.h"
+#import "SSEasyAssert.h"
+#import "SSEasyException.h"
+#import "SSEasyHook.h"
+#import "SSEasyLog.h"
+
+@implementation NSObject (MethodSwizzleTestTo)
+
++ (void)common_to_method_a:(id)a b:(id)b
+{
+    SSEasyLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+@end
+
+@interface SwizzleTest : NSObject
+
+@end
+
+@implementation SwizzleTest
+
++ (void)cls_void
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+}
+
++ (void)cls_void_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+}
+
++ (id)cls_id_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return nil;
+}
+
++ (float)cls_f_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return 0;
+}
+
+- (void)obj_void
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+}
+
+- (void)obj_void_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+}
+
+- (id)obj_id_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return nil;
+}
+
+- (long long)obj_f_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return 0;
+}
+
+@end
+
+@implementation SSEasyController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ss_activate_easy_assert();
+        ss_activate_easy_exception();
+        
+        ss_method_ignore(@"SwizzleTest", @"cls_void");
+        ss_method_ignore(@"SwizzleTest", @"cls_void_f:d:rect:obj:");
+        ss_method_ignore(@"SwizzleTest", @"cls_id_f:d:rect:obj:");
+        ss_method_ignore(@"SwizzleTest", @"cls_f_f:d:rect:obj:");
+        ss_method_ignore(@"SwizzleTest", @"obj_void");
+        ss_method_ignore(@"SwizzleTest", @"obj_void_f:d:rect:obj:");
+        ss_method_ignore(@"SwizzleTest", @"obj_id_f:d:rect:obj:");
+        ss_method_ignore(@"SwizzleTest", @"obj_f_f:d:rect:obj:");
+    });
+    
+    [self test:@"pthread_kill 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
+        pthread_kill(pthread_self(), SIGINT);
+    }];
+    
+    [self test:@"NSAssert和NSCAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSAssert(0, @"NSAssert 可以继续且只断一次");
+        NSCAssert(0, @"NSCAssert 可以继续且只断一次");
+    }];
+    
+    [self test:@"SafeAssert 可以继续且同内容只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ss_easy_assert_safe(@"SafeAssert 可以继续且同内容只断一次");
+    }];
+    
+    [self test:@"NSException 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [NSException raise:@"XXX" format:@"format"];
+        [NSException raise:@"MMM" format:@"format" arguments:nil];
+    }];
+    
+    [self test:@"ss_method_ignore" tap:^(UIButton *button, NSDictionary *userInfo) {
+        for (NSInteger idx = 0; idx < 3; ++idx) {
+            CGRect r = CGRectMake(3, 4, 5, 6);
+            [SwizzleTest cls_void];
+            [SwizzleTest cls_void_f:1 d:2 rect:r obj:@"6"];
+            SSEasyLog(@"new1: %f", [SwizzleTest cls_f_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new2: %@", [SwizzleTest cls_id_f:1 d:2 rect:r obj:@"6"]);
+            
+            SwizzleTest *obj = [[SwizzleTest alloc] init];
+            [obj obj_void];
+            SSEasyLog(@"new3: %f", [obj obj_f_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new4: %@", [obj obj_id_f:1 d:2 rect:r obj:@"6"]);
+        }
+    }];
+}
+
+@end
