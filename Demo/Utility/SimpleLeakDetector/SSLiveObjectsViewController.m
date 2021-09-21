@@ -157,12 +157,12 @@
 {
     view.autocapitalizationType = UITextAutocapitalizationTypeNone;
     view.autocorrectionType = UITextAutocorrectionTypeNo;
-    view.spellCheckingType = UITextAutocorrectionTypeNo;
+    view.spellCheckingType = UITextSpellCheckingTypeNo;
     view.enablesReturnKeyAutomatically = YES;
     view.delegate = self;
 
     if (@available(iOS 11.0, *)) {
-        view.smartDashesType = UITextSmartQuotesTypeNo;
+        view.smartQuotesType = UITextSmartQuotesTypeNo;
         view.smartDashesType = UITextSmartDashesTypeNo;
         view.smartInsertDeleteType = UITextSmartInsertDeleteTypeNo;
     }

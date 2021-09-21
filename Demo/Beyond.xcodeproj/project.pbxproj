@@ -44,7 +44,6 @@
 		57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FB9F9B24A083140093433B /* ThreadPipeController.m */; };
 		57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FBB68D24A0A41E0093433B /* ThreadPortController.m */; };
 		57FD50A8243DA263002E481E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A7243DA263002E481E /* Assets.xcassets */; };
-		57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FD50A9243DA263002E481E /* LaunchScreen.storyboard */; };
 		57FD50BA243DA3F0002E481E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B6243DA3EF002E481E /* ViewController.m */; };
 		57FD50BB243DA3F0002E481E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B7243DA3EF002E481E /* main.m */; };
 		57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50B8243DA3EF002E481E /* AppDelegate.mm */; };
@@ -92,6 +91,7 @@
 		5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E69C45926F1BE39005B93AB /* FileManagerController.m */; };
 		5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */; };
 		5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */; };
+		5E74CB6926F9DA0D00A619A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */; };
 		5E7BB3FC26F968D10053FDB5 /* SSEasyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BB3F226F968D00053FDB5 /* SSEasyException.m */; };
 		5E7BB3FD26F968D10053FDB5 /* SSEasyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BB3F326F968D00053FDB5 /* SSEasyLog.m */; };
 		5E7BB3FE26F968D10053FDB5 /* SSEasyHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BB3F426F968D00053FDB5 /* SSEasyHook.m */; };
@@ -182,7 +182,6 @@
 		57FBB68D24A0A41E0093433B /* ThreadPortController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadPortController.m; sourceTree = "<group>"; };
 		57FD5098243DA25F002E481E /* Beyond.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beyond.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		57FD50AA243DA263002E481E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57FD50AC243DA263002E481E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57FD50B5243DA3EF002E481E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57FD50B6243DA3EF002E481E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -257,6 +256,7 @@
 		5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleLeakDetector.mm; sourceTree = "<group>"; };
 		5E7207B925ED29B800BD9F59 /* MemoryLeakDetectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryLeakDetectController.h; sourceTree = "<group>"; };
 		5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryLeakDetectController.m; sourceTree = "<group>"; };
+		5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E7BB3F226F968D00053FDB5 /* SSEasyException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyException.m; sourceTree = "<group>"; };
 		5E7BB3F326F968D00053FDB5 /* SSEasyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyLog.m; sourceTree = "<group>"; };
 		5E7BB3F426F968D00053FDB5 /* SSEasyHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyHook.m; sourceTree = "<group>"; };
@@ -536,7 +536,6 @@
 			children = (
 				57FD50B4243DA3EF002E481E /* Entry */,
 				57FD50A7243DA263002E481E /* Assets.xcassets */,
-				57FD50A9243DA263002E481E /* LaunchScreen.storyboard */,
 				57FD50AC243DA263002E481E /* Info.plist */,
 			);
 			path = Demo;
@@ -554,6 +553,7 @@
 				57FD50C4243DA7CB002E481E /* BaseViewController.m */,
 				57CD89B824BC04EC00F9856F /* Temp.h */,
 				57CD89B924BC04EC00F9856F /* Temp.m */,
+				5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -846,7 +846,7 @@
 		57FD5090243DA25F002E481E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = SLJ;
 				TargetAttributes = {
 					57FD5097243DA25F002E481E = {
@@ -883,8 +883,8 @@
 				5E5BA96F25AEA32B0082AA9D /* img_8.png in Resources */,
 				57FB88A2249EDD3C0093433B /* memory_test_1.jpg in Resources */,
 				5E5BA96725AEA32B0082AA9D /* img_1.png in Resources */,
-				57FD50AB243DA263002E481E /* LaunchScreen.storyboard in Resources */,
 				5E5BA97125AEA32B0082AA9D /* moments_plus_guide.json in Resources */,
+				5E74CB6926F9DA0D00A619A6 /* LaunchScreen.storyboard in Resources */,
 				57E89A7324FD1412005F2A6C /* KKThreadMonitor.md in Resources */,
 				5E5BA96C25AEA32B0082AA9D /* img_6.png in Resources */,
 				5E5BA97825AEA32B0082AA9D /* draft_migrate_connection_light.json in Resources */,
@@ -1018,17 +1018,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		57FD50A9243DA263002E481E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57FD50AA243DA263002E481E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		57FD50AF243DA263002E481E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1158,7 +1147,7 @@
 					"INHOUSE_TARGET=1",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1183,7 +1172,7 @@
 				DEVELOPMENT_TEAM = E2CW8KMVEU;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

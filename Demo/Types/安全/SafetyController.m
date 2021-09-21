@@ -10,7 +10,7 @@
 #import <dlfcn.h>
 #import <sys/types.h>
 
-id safety_createBtn()
+id safety_createBtn(void)
 {
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectZero];
     [btn setFrame:CGRectMake(200, 100, 100, 100)];
@@ -20,7 +20,7 @@ id safety_createBtn()
     return btn;
 }
  
-static id static_safety_createBtn()
+static id static_safety_createBtn(void)
 {
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectZero];
     [btn setFrame:CGRectMake(50, 100, 100, 100)];

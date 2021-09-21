@@ -7,5 +7,6 @@
 
 FOUNDATION_EXTERN IMP ss_method_swizzle(Class c, SEL originalSEL, id block);
 
+// 返回值占空间小于一个指针的可能会有问题
 FOUNDATION_EXTERN BOOL ss_method_ignore(NSString *c, NSString *method);
 

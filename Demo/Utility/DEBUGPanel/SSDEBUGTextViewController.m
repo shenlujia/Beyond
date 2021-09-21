@@ -116,8 +116,6 @@
         opt |= NSJSONWritingSortedKeys;
     }
     
-    [NSJSONSerialization isValidJSONObject:nil];
-    
     NSString *text = nil;
     @try {
         NSError *error = nil;

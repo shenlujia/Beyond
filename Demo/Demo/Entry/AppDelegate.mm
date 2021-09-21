@@ -47,6 +47,7 @@ static NSNumber *backgroundTaskIdentifier = nil;
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];
+    navi.view.backgroundColor = UIColor.whiteColor;
     navi.navigationBar.translucent = NO;
     self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];

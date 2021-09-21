@@ -27,7 +27,7 @@ typedef struct {
 
 static KKMachHeaderArr *machHeaderArr = NULL;
 
-void getMachHeader()
+void getMachHeader(void)
 {
     machHeaderArr = (KKMachHeaderArr *)malloc(sizeof(KKMachHeaderArr));
     machHeaderArr->allocLength = _dyld_image_count();

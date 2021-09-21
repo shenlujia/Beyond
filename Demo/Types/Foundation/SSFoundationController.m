@@ -11,15 +11,7 @@
 #import "NSObject+SSJSON.h"
 #import "MacroHeader.h"
 #import "Logger.h"
-#import "fishhook.h"
 #import <KVOController/KVOController.h>
-
-static int (*orig_printf)(const char *c, ...);
-
-int my_printf(const char *c, ...)
-{
-    return 0;
-}
 
 @interface SSFoundationDEBUGLogStruct : NSObject
 
@@ -140,11 +132,6 @@ int my_printf(const char *c, ...)
 
     [self testRegularExpression];
 
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        rebind_symbols((struct rebinding[1]){{"printf", my_printf, (void *)&orig_printf}}, 1);
-//    });
-    
     [self test_c:@"FileManager"];
     
     [self test_c:@"SSEasy"];
