@@ -2,8 +2,6 @@
 //  Created by ZZZ on 2020/10/30.
 //
 
-#ifdef INHOUSE_TARGET
-
 #import "SSEasyAssert.h"
 #import "SSEasyException.h"
 #import "SSEasyHook.h"
@@ -59,5 +57,3 @@ static void bye()
         p_modify_values();
     });
 }
-
-#endif

@@ -7,4 +7,4 @@
 
 FOUNDATION_EXTERN void ss_activate_easy_assert(void);
 
-FOUNDATION_EXTERN void ss_easy_assert_safe(NSString *identifier);
+FOUNDATION_EXTERN void ss_easy_assert_once(NSString *identifier);

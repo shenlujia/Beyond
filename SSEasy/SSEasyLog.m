@@ -47,7 +47,7 @@ void SSEasyLog(NSString *format, ...)
     va_end(args);
 }
 
-static void p_run()
+static void p_activate()
 {
     ss_rebind_symbols((struct rebinding[6]) {
         {"fprintf", fprintf_f, (void *)&fprintf_p},
@@ -63,6 +63,6 @@ void ss_activate_easy_log()
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        p_run();
+        p_activate();
     });
 }

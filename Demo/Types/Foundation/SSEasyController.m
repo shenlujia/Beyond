@@ -122,7 +122,7 @@
     }];
     
     [self test:@"SafeAssert 可以继续且同内容只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
-        ss_easy_assert_safe(@"SafeAssert 可以继续且同内容只断一次");
+        ss_easy_assert_once(@"SafeAssert 可以继续且同内容只断一次");
     }];
     
     [self test:@"NSException 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -134,15 +134,15 @@
             CGRect r = CGRectMake(3, 4, 5, 6);
             [SwizzleTest cls_void];
             [SwizzleTest cls_void_f:1 d:2 rect:r obj:@"6"];
-            SSEasyLog(@"new1: %d", [SwizzleTest cls_bool]);
-            SSEasyLog(@"new2: %f", [SwizzleTest cls_f_f:1 d:2 rect:r obj:@"6"]);
-            SSEasyLog(@"new3: %@", [SwizzleTest cls_id_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"c1: %d", [SwizzleTest cls_bool]);
+            SSEasyLog(@"c2: %f", [SwizzleTest cls_f_f:1 d:2 rect:r obj:@"6"]); // NAN???
+            SSEasyLog(@"c3: %@", [SwizzleTest cls_id_f:1 d:2 rect:r obj:@"6"]);
             
             SwizzleTest *obj = [[SwizzleTest alloc] init];
             [obj obj_void];
-            SSEasyLog(@"new1: %d", [obj obj_bool]);
-            SSEasyLog(@"new2: %f", [obj obj_f_f:1 d:2 rect:r obj:@"6"]);
-            SSEasyLog(@"new3: %@", [obj obj_id_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"o1: %d", [obj obj_bool]);
+            SSEasyLog(@"o2: %f", [obj obj_f_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"o3: %@", [obj obj_id_f:1 d:2 rect:r obj:@"6"]);
         }
     }];
 }
