@@ -1,0 +1,6 @@
+module Pods_Beyond {
+  umbrella header "Pods-Beyond-umbrella.h"
+
+  export *
+  module * { export * }
+}
