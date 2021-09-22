@@ -32,6 +32,12 @@
     SSEasyLog(NSStringFromSelector(_cmd));
 }
 
++ (BOOL)cls_bool
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return YES;
+}
+
 + (void)cls_void_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
 {
     SSEasyLog(NSStringFromSelector(_cmd));
@@ -52,6 +58,12 @@
 - (void)obj_void
 {
     SSEasyLog(NSStringFromSelector(_cmd));
+}
+
+- (BOOL)obj_bool
+{
+    SSEasyLog(NSStringFromSelector(_cmd));
+    return YES;
 }
 
 - (void)obj_void_f:(float)f d:(double)d rect:(CGRect)r obj:(id)obj
@@ -81,14 +93,17 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        ss_activate_easy_log();
         ss_activate_easy_assert();
         ss_activate_easy_exception();
         
         ss_method_ignore(@"SwizzleTest", @"cls_void");
+        ss_method_ignore(@"SwizzleTest", @"cls_bool");
         ss_method_ignore(@"SwizzleTest", @"cls_void_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"cls_id_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"cls_f_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_void");
+        ss_method_ignore(@"SwizzleTest", @"obj_bool");
         ss_method_ignore(@"SwizzleTest", @"obj_void_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_id_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_f_f:d:rect:obj:");
@@ -117,13 +132,15 @@
             CGRect r = CGRectMake(3, 4, 5, 6);
             [SwizzleTest cls_void];
             [SwizzleTest cls_void_f:1 d:2 rect:r obj:@"6"];
-            SSEasyLog(@"new1: %f", [SwizzleTest cls_f_f:1 d:2 rect:r obj:@"6"]);
-            SSEasyLog(@"new2: %@", [SwizzleTest cls_id_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new1: %d", [SwizzleTest cls_bool]);
+            SSEasyLog(@"new2: %f", [SwizzleTest cls_f_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new3: %@", [SwizzleTest cls_id_f:1 d:2 rect:r obj:@"6"]);
             
             SwizzleTest *obj = [[SwizzleTest alloc] init];
             [obj obj_void];
-            SSEasyLog(@"new3: %f", [obj obj_f_f:1 d:2 rect:r obj:@"6"]);
-            SSEasyLog(@"new4: %@", [obj obj_id_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new1: %d", [obj obj_bool]);
+            SSEasyLog(@"new2: %f", [obj obj_f_f:1 d:2 rect:r obj:@"6"]);
+            SSEasyLog(@"new3: %@", [obj obj_id_f:1 d:2 rect:r obj:@"6"]);
         }
     }];
 }

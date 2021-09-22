@@ -2,44 +2,13 @@
 //  Created by ZZZ on 2020/10/30.
 //
 
-#ifdef KKK
-
-#import <CreativeKit/NSObject+ACCSwizzle.h>
-#import <AWEAppSettings/AWEBaseSettings.h>
-#import <KiteLog/KiteLogControl.h>
-#import <BDALog/BDAgileLog.h>
-#import <AWEStudioImpl/AWEACCTrackerImpl.h>
-#import <CreativeKit/ACCMemoryMonitor.h>
-#import <Heimdallr/Heimdallr.h>
-#import <fishhook/fishhook.h>
-#import <objc/runtime.h>
+#ifdef INHOUSE_TARGET1
 
 #import "SSEasyAssert.h"
+#import "SSEasyException.h"
+#import "SSEasyHook.h"
+#import "SSEasyLog.h"
 
-@implementation ACCMemoryMonitor (Byebye)
-+ (void)startCheckMemoryLeaks:(id)object {}
-+ (void)startMemoryMonitorForContext:(NSString *)context tartgetClasses:(NSArray<Class> *)classes maxInstanceCount:(NSUInteger)count {}
-+ (void)addObject:(id)obj forContext:(NSString *)context {}
-+ (void)stopMemoryMonitorForContext:(NSString *)context {}
-@end
-
-@implementation KiteLogControl (Byebye)
-
-+ (BOOL)f_isEnabled
-{
-    return NO;
-}
-
-@end
-
-@implementation Heimdallr (Byebye)
-
-+ (instancetype)shared
-{
-    return nil;
-}
-
-@end
 
 @implementation AWEACCTrackerImpl (Byebye)
 
@@ -59,26 +28,28 @@
 
 @end
 
-@interface Byebye : NSObject
-
-@end
-
-@implementation Byebye
-
-+ (void)load
+static void p_ignore_method
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self bye];
-    });
+    ss_method_ignore(@"ACCMemoryMonitor", @"startCheckMemoryLeaks:");
+    ss_method_ignore(@"ACCMemoryMonitor", @"startMemoryMonitorForContext:");
+    ss_method_ignore(@"ACCMemoryMonitor", @"startMemoryMonitorForContext:tartgetClasses:maxInstanceCount:");
+    ss_method_ignore(@"ACCMemoryMonitor", @"addObject:forContext:");
+    ss_method_ignore(@"ACCMemoryMonitor", @"stopMemoryMonitorForContext:");
+    
+    ss_method_ignore(@"Heimdallr", @"shared");
+    
+    ss_method_ignore(@"KiteLogControl", @"isEnabled");
 }
 
-+ (void)bye
+__attribute__((constructor))
+static void bye()
 {
+    ss_activate_easy_log();
     ss_activate_easy_assert();
+    ss_activate_easy_exception();
     
-    [self swizzle];
-
+    
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self go];
     });

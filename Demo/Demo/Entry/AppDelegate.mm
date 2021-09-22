@@ -58,6 +58,12 @@ static NSNumber *backgroundTaskIdentifier = nil;
         tap.numberOfTapsRequired = 3;
         tap;
     })];
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        [appearance configureWithOpaqueBackground];
+        navi.navigationBar.standardAppearance = appearance;
+        navi.navigationBar.scrollEdgeAppearance = appearance;
+    }
     
     NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
     [center addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
