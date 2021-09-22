@@ -42,7 +42,7 @@ void SSEasyLog(NSString *format, ...)
     va_start(args, format);
 
     NSString *text = [[NSString alloc] initWithFormat:format arguments:args];
-    printf("%s\n", text.UTF8String);
+    printf_p("%s\n", text.UTF8String);
 
     va_end(args);
 }
