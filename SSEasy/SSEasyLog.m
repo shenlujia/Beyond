@@ -3,7 +3,7 @@
 //
 
 #import "SSEasyLog.h"
-#import <fishhook/fishhook.h>
+#import "SSEasyHook.h"
 
 static NSString *PREFIX = @"AWE";
 
@@ -49,7 +49,7 @@ void SSEasyLog(NSString *format, ...)
 
 static void p_run()
 {
-    rebind_symbols((struct rebinding[6]) {
+    ss_rebind_symbols((struct rebinding[6]) {
         {"fprintf", fprintf_f, (void *)&fprintf_p},
         {"printf", printf_f, (void *)&printf_p},
         {"vfprintf", vfprintf_f, (void *)&vfprintf_p},

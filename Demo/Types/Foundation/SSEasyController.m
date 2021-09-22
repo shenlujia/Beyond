@@ -113,8 +113,11 @@
         pthread_kill(pthread_self(), SIGINT);
     }];
     
-    [self test:@"NSAssert和NSCAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"NSAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSAssert(0, @"NSAssert 可以继续且只断一次");
+    }];
+    
+    [self test:@"NSCAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSCAssert(0, @"NSCAssert 可以继续且只断一次");
     }];
     
@@ -124,7 +127,6 @@
     
     [self test:@"NSException 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
         [NSException raise:@"XXX" format:@"format"];
-        [NSException raise:@"MMM" format:@"format" arguments:nil];
     }];
     
     [self test:@"ss_method_ignore" tap:^(UIButton *button, NSDictionary *userInfo) {

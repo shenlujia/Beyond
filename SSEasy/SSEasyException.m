@@ -23,7 +23,7 @@ static void p_run(void)
         ss_easy_assert_safe(text);
     });
     ss_method_swizzle(c, @selector(raise:format:arguments:), ^(id a, id b, id c) {
-        NSString *text = [NSString stringWithFormat:@"%@ raise:%@ format:%@", a, b, c];
+        NSString *text = [NSString stringWithFormat:@"%@ raise:%@ format:%@(arguments)", a, b, c];
         ss_easy_assert_safe(text);
     });
 }

@@ -3,12 +3,11 @@
 //
 
 #import "SSEasyAssert.h"
-#import <fishhook/fishhook.h>
+#import "SSEasyHook.h"
 #import "SSEasyLog.h"
 
 static int (*pthread_kill_real)(pthread_t t, int i);
 int pthread_kill_f(pthread_t t, int i) { return 0; }
-
 
 @interface SSEasyAssertionHandler : NSAssertionHandler
 
@@ -46,7 +45,7 @@ void ss_activate_easy_assert(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        rebind_symbols((struct rebinding[1]) {
+        ss_rebind_symbols((struct rebinding[1]) {
             {"pthread_kill", pthread_kill_f, (void *)&pthread_kill_real}
         }, 1);
         
@@ -66,6 +65,7 @@ void ss_easy_assert_safe(NSString *identifier)
     });
     
     identifier = identifier ?: @"";
+    identifier = [identifier stringByReplacingOccurrencesOfString:@"%" withString:@"#"];
     
     [m_lock lock];
     if (![m_set containsObject:identifier]) {

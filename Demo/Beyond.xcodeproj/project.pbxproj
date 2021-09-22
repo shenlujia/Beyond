@@ -57,9 +57,9 @@
 		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
+		5E0DAD4226FB2C0D00ADAD33 /* SSEasyFixBeyond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DAD4126FB2C0D00ADAD33 /* SSEasyFixBeyond.m */; };
 		5E11388126BD2E3C00500244 /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */; };
 		5E113D4126BD413800500244 /* NSObject+SSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E113D4026BD413800500244 /* NSObject+SSJSON.m */; };
-		5E2544632699BF6F00BC695A /* Byebye.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E2544622699BF6F00BC695A /* Byebye.mm */; };
 		5E2E90E526DF643F00E66A8F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E90E426DF643F00E66A8F /* Logger.m */; };
 		5E3476BB26B4EC76003F4355 /* SSDEBUGViewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
@@ -208,11 +208,12 @@
 		5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewCell.m; sourceTree = "<group>"; };
 		5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewController.h; sourceTree = "<group>"; };
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
+		5E0DAD4026FB2C0D00ADAD33 /* SSEasyFixBeyond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyFixBeyond.h; sourceTree = "<group>"; };
+		5E0DAD4126FB2C0D00ADAD33 /* SSEasyFixBeyond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyFixBeyond.m; sourceTree = "<group>"; };
 		5E11387F26BD2E3C00500244 /* SSDEBUGTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGTextViewController.h; sourceTree = "<group>"; };
 		5E11388026BD2E3C00500244 /* SSDEBUGTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGTextViewController.m; sourceTree = "<group>"; };
 		5E113D3F26BD413800500244 /* NSObject+SSJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSJSON.h"; sourceTree = "<group>"; };
 		5E113D4026BD413800500244 /* NSObject+SSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSJSON.m"; sourceTree = "<group>"; };
-		5E2544622699BF6F00BC695A /* Byebye.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Byebye.mm; sourceTree = "<group>"; };
 		5E2E90E426DF643F00E66A8F /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		5E3476B926B4EC76003F4355 /* SSDEBUGViewPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDEBUGViewPanel.h; sourceTree = "<group>"; };
 		5E3476BA26B4EC76003F4355 /* SSDEBUGViewPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGViewPanel.m; sourceTree = "<group>"; };
@@ -481,7 +482,6 @@
 		57F89436246E37CE007AEFC6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				5E2544622699BF6F00BC695A /* Byebye.mm */,
 				5E3476B826B4EC58003F4355 /* DEBUGPanel */,
 				5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */,
 				5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */,
@@ -508,13 +508,14 @@
 		57FD508F243DA25F002E481E = {
 			isa = PBXGroup;
 			children = (
-				5E7BB3F026F968D00053FDB5 /* SSEasy */,
-				57F89436246E37CE007AEFC6 /* Utility */,
-				57FD50BD243DA447002E481E /* Types */,
 				57FD509A243DA25F002E481E /* Demo */,
-				57FD5099243DA25F002E481E /* Products */,
-				31E39A15DB044FDDDEE70457 /* Pods */,
 				D4EA06309F64FDB43730C4A7 /* Frameworks */,
+				31E39A15DB044FDDDEE70457 /* Pods */,
+				57FD5099243DA25F002E481E /* Products */,
+				5E7BB3F026F968D00053FDB5 /* SSEasy */,
+				5E0DAD3F26FB2C0D00ADAD33 /* SSEasyFixBeyond */,
+				57FD50BD243DA447002E481E /* Types */,
+				57F89436246E37CE007AEFC6 /* Utility */,
 			);
 			sourceTree = "<group>";
 		};
@@ -624,6 +625,16 @@
 				5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */,
 			);
 			path = HorizontalCollectionView;
+			sourceTree = "<group>";
+		};
+		5E0DAD3F26FB2C0D00ADAD33 /* SSEasyFixBeyond */ = {
+			isa = PBXGroup;
+			children = (
+				5E0DAD4026FB2C0D00ADAD33 /* SSEasyFixBeyond.h */,
+				5E0DAD4126FB2C0D00ADAD33 /* SSEasyFixBeyond.m */,
+			);
+			name = SSEasyFixBeyond;
+			path = ../SSEasyFixBeyond;
 			sourceTree = "<group>";
 		};
 		5E3476B826B4EC58003F4355 /* DEBUGPanel */ = {
@@ -939,11 +950,11 @@
 				5E61389325EE3DB800127B6E /* SSHeapEnumerator.m in Sources */,
 				5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */,
 				5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */,
+				5E0DAD4226FB2C0D00ADAD33 /* SSEasyFixBeyond.m in Sources */,
 				5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */,
 				5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */,
 				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
-				5E2544632699BF6F00BC695A /* Byebye.mm in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
 				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
 				5E2E90E526DF643F00E66A8F /* Logger.m in Sources */,

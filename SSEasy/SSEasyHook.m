@@ -18,6 +18,15 @@ static BOOL p_ss_method_swizzle_impl(Class c, NSString *method, id block)
     return YES;
 }
 
+int ss_rebind_symbols(struct rebinding array[], size_t n)
+{
+    extern void open_bdfishhook(void);
+    open_bdfishhook();
+    
+    extern int bd_rebind_symbols(struct rebinding array[], size_t n);
+    return bd_rebind_symbols(array, n);
+}
+
 IMP ss_method_swizzle(Class c, SEL originalSEL, id block)
 {
     NSCParameterAssert(block);
