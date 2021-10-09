@@ -16,7 +16,7 @@
 //
 //@end
 
-static void p_ignore_method()
+static void p_ignore_objc_method()
 {
     ss_method_ignore(@"ACCMemoryMonitor", @"startCheckMemoryLeaks:");
     ss_method_ignore(@"ACCMemoryMonitor", @"startMemoryMonitorForContext:tartgetClasses:maxInstanceCount:");
@@ -28,6 +28,7 @@ static void p_ignore_method()
     ss_method_ignore(@"AWEJSBridge", @"debug_bridgeDicAssert:method:");
     
     ss_method_ignore(@"Heimdallr", @"shared");
+    ss_method_ignore(@"HMDConfigManager", @"sharedInstance"); // 屏蔽所有HeimdallrModule子类
     
     ss_method_ignore(@"KiteLogControl", @"isEnabled");
 }
@@ -44,16 +45,23 @@ static void p_modify_values()
     hmd_disable_cpp_exception_backtrace(); // 300M+ memory
 }
 
-__attribute__((constructor))
-static void bye()
+@interface SSEasy : NSObject
+
+@end
+
+@implementation SSEasy
+
++ (void)load
 {
     ss_activate_easy_log();
     ss_activate_easy_assert();
     ss_activate_easy_exception();
     
-    p_ignore_method();
+    p_ignore_objc_method();
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         p_modify_values();
     });
 }
+
+@end

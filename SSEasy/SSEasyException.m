@@ -10,7 +10,7 @@
 void SSEasyExceptionHandler(NSException *exception)
 {
     NSArray *stack = [exception callStackSymbols];
-    ss_easy_assert_once([NSString stringWithFormat:@"Exception: %@", stack]);
+    ss_easy_assert_once_for_key([NSString stringWithFormat:@"Exception: %@", stack]);
 }
 
 static void p_activate(void)
@@ -20,11 +20,11 @@ static void p_activate(void)
     Class c = object_getClass([NSException class]);
     ss_method_swizzle(c, @selector(raise:format:), ^(id a, id b, id c) {
         NSString *text = [NSString stringWithFormat:@"%@ raise:%@ format:%@", a, b, c];
-        ss_easy_assert_once(text);
+        ss_easy_assert_once_for_key(text);
     });
     ss_method_swizzle(c, @selector(raise:format:arguments:), ^(id a, id b, id c) {
         NSString *text = [NSString stringWithFormat:@"%@ raise:%@ format:%@(arguments)", a, b, c];
-        ss_easy_assert_once(text);
+        ss_easy_assert_once_for_key(text);
     });
 }
 

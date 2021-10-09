@@ -19,14 +19,14 @@ static void p_activate(void)
     ss_method_swizzle([NSAssertionHandler class], selector, ^{
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            ss_easy_assert_once(@"NSAssert");
+            ss_easy_assert_once_for_key(@"NSAssert");
         });
     });
     selector = @selector(handleFailureInFunction:file:lineNumber:description:);
     ss_method_swizzle([NSAssertionHandler class], selector, ^{
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            ss_easy_assert_once(@"NSCAssert");
+            ss_easy_assert_once_for_key(@"NSCAssert");
         });
     });
 }
@@ -39,7 +39,7 @@ void ss_activate_easy_assert(void)
     });
 }
 
-void ss_easy_assert_once(NSString *identifier)
+void ss_easy_assert_once_for_key(NSString *key)
 {
     static NSLock *m_lock = nil;
     static NSMutableSet *m_set = nil;
@@ -49,13 +49,13 @@ void ss_easy_assert_once(NSString *identifier)
         m_lock = [[NSLock alloc] init];
     });
     
-    identifier = identifier ?: @"";
-    identifier = [identifier stringByReplacingOccurrencesOfString:@"%" withString:@"#"];
+    key = key ?: @"";
+    key = [key stringByReplacingOccurrencesOfString:@"%" withString:@"#"];
     
     [m_lock lock];
-    if (![m_set containsObject:identifier]) {
-        [m_set addObject:identifier];
-        SSEasyLog(identifier);
+    if (![m_set containsObject:key]) {
+        [m_set addObject:key];
+        SSEasyLog(key);
         pthread_kill_real(pthread_self(), SIGINT);
     }
     [m_lock unlock];

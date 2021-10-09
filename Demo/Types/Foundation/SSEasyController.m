@@ -122,7 +122,7 @@
     }];
     
     [self test:@"SafeAssert 可以继续且同内容只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
-        ss_easy_assert_once(@"SafeAssert 可以继续且同内容只断一次");
+        ss_easy_assert_once_for_key(@"SafeAssert 可以继续且同内容只断一次");
     }];
     
     [self test:@"NSException 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
