@@ -34,6 +34,10 @@ static void NSLog_f(NSString *format, ...) {
 
 void SSEasyLog(NSString *format, ...)
 {
+    if (!printf_p) {
+        return;
+    }
+    
     if (!format) {
         return;
     }

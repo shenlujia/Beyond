@@ -97,7 +97,14 @@
     UINavigationController *navigationController = [[UINavigationController alloc] init];
     navigationController.viewControllers = @[textController];
     navigationController.navigationBar.translucent = NO;
-    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+    navigationController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        [appearance configureWithOpaqueBackground];
+        navigationController.navigationBar.standardAppearance = appearance;
+        navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
     
     UIViewController *controller = UIApplication.sharedApplication.delegate.window.rootViewController;
 
