@@ -91,6 +91,8 @@
         }];
     }];
     
+    [self test_c:@"Corner"];
+    
     [self test_c:@"HorizontalCollectionView"];
 
     [self test_c:@"TableViewController"];

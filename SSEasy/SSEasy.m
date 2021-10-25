@@ -148,6 +148,14 @@ static void p_replace_objc_method()
 
 + (void)load
 {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self p_run];
+    });
+}
+
++ (void)p_run
+{
     ss_activate_easy_log();
     ss_activate_easy_assert();
     ss_activate_easy_exception();

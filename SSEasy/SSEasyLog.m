@@ -32,6 +32,12 @@ static void NSLog_f(NSString *format, ...) {
     va_end(args);
 }
 
+FOUNDATION_EXTERN void SSEasyLogString(NSString *text)
+{
+    text = [text stringByReplacingOccurrencesOfString:@"@" withString:@"#"];
+    SSEasyLog(text);
+}
+
 void SSEasyLog(NSString *format, ...)
 {
     if (!printf_p) {
@@ -51,6 +57,13 @@ void SSEasyLog(NSString *format, ...)
     va_end(args);
 }
 
+typedef struct SSLoggerInfo_t {
+    const char* filename;
+    const char* func_name;
+    int line;
+    const char* tag;
+} SSLoggerInfo;
+
 static void p_activate()
 {
     ss_rebind_symbols((struct rebinding[6]) {
@@ -61,6 +74,16 @@ static void p_activate()
         {"NSLogv", NSLogv_f, (void *)&NSLogv_p},
         {"NSLog", NSLog_f, (void *)&NSLog_p},
     }, 6);
+    
+    void (^replace_acc_logger_method)(SEL method) = ^(SEL method) {
+        void (^action)(id a, SSLoggerInfo, NSString *) = ^(id a, SSLoggerInfo s, NSString *msg) {
+            SSEasyLogString(msg);
+        };
+        Class c = NSClassFromString(@"AWEACCLogImpl");
+        ss_method_swizzle(c, method, action);
+    };
+    replace_acc_logger_method(NSSelectorFromString(@"toolErrorLogWithInfo:message:"));
+    replace_acc_logger_method(NSSelectorFromString(@"toolWarnLogWithInfo:message:"));
 }
 
 void ss_activate_easy_log()

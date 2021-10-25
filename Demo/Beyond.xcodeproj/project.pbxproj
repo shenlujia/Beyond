@@ -99,6 +99,7 @@
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
 		5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */; };
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
+		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
@@ -271,6 +272,8 @@
 		5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAuthority.h; sourceTree = "<group>"; };
 		5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAuthority.m; sourceTree = "<group>"; };
 		5E7BD8362666597900F90FE6 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
+		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				5EE37117269E8B330080BDB2 /* TableViewController.m */,
 				5707305124D2BD9500A9883A /* UIKitController.h */,
 				5707305224D2BD9500A9883A /* UIKitController.m */,
+				5EACA24F272191E80068F996 /* CornerController.h */,
+				5EACA250272191E80068F996 /* CornerController.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1009,6 +1014,7 @@
 				5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
+				5EACA251272191E80068F996 /* CornerController.m in Sources */,
 				5E7BB3FF26F968D10053FDB5 /* SSEasy.m in Sources */,
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
 				5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */,

@@ -4,6 +4,7 @@
 
 #import "SSEasyHook.h"
 #import "SSEasyLog.h"
+#import "SSEasyAssert.h"
 
 static BOOL p_ss_method_ignore_internal(Class c, NSString *method, id block)
 {
@@ -29,10 +30,11 @@ int ss_rebind_symbols(struct rebinding array[], size_t n)
 
 IMP ss_method_swizzle(Class c, SEL originalSEL, id block)
 {
-    NSCParameterAssert(block);
-
     Method originalMethod = class_getInstanceMethod(c, originalSEL);
-    NSCParameterAssert(originalMethod);
+    if (!block || !originalSEL || !originalMethod) {
+        ss_easy_assert_once_for_key(NSStringFromSelector(originalSEL));
+        return NULL;
+    }
     
     IMP newIMP = imp_implementationWithBlock(block);
     

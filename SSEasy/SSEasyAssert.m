@@ -41,6 +41,14 @@ void ss_activate_easy_assert(void)
 
 void ss_easy_assert_once_for_key(NSString *key)
 {
+    if ([NSBundle.mainBundle.bundleIdentifier containsString:@"demo"]) {
+        return;
+    }
+    
+    if (![key isKindOfClass:[NSString class]]) {
+        return;
+    }
+    
     static NSLock *m_lock = nil;
     static NSMutableSet *m_set = nil;
     static dispatch_once_t onceToken;
@@ -49,14 +57,19 @@ void ss_easy_assert_once_for_key(NSString *key)
         m_lock = [[NSLock alloc] init];
     });
     
-    key = key ?: @"";
-    key = [key stringByReplacingOccurrencesOfString:@"%" withString:@"#"];
-    
     [m_lock lock];
     if (![m_set containsObject:key]) {
         [m_set addObject:key];
-        SSEasyLog(key);
-        pthread_kill_real(pthread_self(), SIGINT);
+        SSEasyLogString(key);
+        
+        if (pthread_kill_real) {
+            pthread_kill_real(pthread_self(), SIGINT);
+        } else {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                pthread_kill(pthread_self(), SIGINT);
+            });
+        }
     }
     [m_lock unlock];
 }
