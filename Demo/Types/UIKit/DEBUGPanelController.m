@@ -8,13 +8,13 @@
 
 #import "DEBUGPanelController.h"
 #import "Logger.h"
-#import "SSDEBUGViewPanel.h"
+#import "SSEasyPanel.h"
 #import "SSDEBUGTextViewController.h"
 #import "NSObject+SSJSON.h"
 
 @interface DEBUGPanelController ()
 
-@property (nonatomic, strong) SSDEBUGViewPanel *panel;
+@property (nonatomic, strong) SSEasyPanel *panel;
 
 @end
 
@@ -36,50 +36,50 @@
     const CGSize size = view.bounds.size;
     [self test:@"左上 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_s.panel = [weak_s createEmptyPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(0, 0)];
+        [weak_s.panel showInView:view center:CGPointMake(0, 0)];
     }];
     [self test:@"左上 满" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_s.panel = [weak_s createNormalPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(0, 0)];
+        [weak_s.panel showInView:view center:CGPointMake(0, 0)];
     }];
     [self test:@"右上 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_s.panel = [weak_s createEmptyPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, 0)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, 0)];
     }];
     [self test:@"右上 满" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, 0)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, 0)];
     }];
     [self test:@"右中 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createEmptyPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height / 2)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, size.height / 2)];
     }];
     [self test:@"右中 满" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height / 2)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, size.height / 2)];
     }];
     [self test:@"左下 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createEmptyPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(0, size.height)];
+        [weak_s.panel showInView:view center:CGPointMake(0, size.height)];
     }];
     [self test:@"左下 满" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(0, size.height)];
+        [weak_s.panel showInView:view center:CGPointMake(0, size.height)];
     }];
     [self test:@"右下 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createEmptyPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, size.height)];
     }];
     [self test:@"右下 满" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIView *view = weak_s.view;
         weak_s.panel = [weak_s createNormalPanel];
-        [weak_s.panel showInView:view startPoint:CGPointMake(size.width, size.height)];
+        [weak_s.panel showInView:view center:CGPointMake(size.width, size.height)];
     }];
     
     [self test:@"不指定point 满" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -132,18 +132,18 @@
     }];
 }
 
-- (SSDEBUGViewPanel *)createEmptyPanel
+- (SSEasyPanel *)createEmptyPanel
 {
-    SSDEBUGViewPanel *panel = [[SSDEBUGViewPanel alloc] init];
+    SSEasyPanel *panel = [[SSEasyPanel alloc] init];
     return panel;
 }
 
-- (SSDEBUGViewPanel *)createNormalPanel
+- (SSEasyPanel *)createNormalPanel
 {
-    SSDEBUGViewPanel *panel = [[SSDEBUGViewPanel alloc] init];
+    SSEasyPanel *panel = [[SSEasyPanel alloc] init];
     for (NSInteger idx = 1; idx <= 20; ++idx) {
         NSString *title = @(idx).stringValue;
-        [panel test:title action:^{
+        [panel test:title action:^(SSEasyPanel *panel) {
             NSLog(title);
         }];
     }

@@ -136,6 +136,8 @@
     
     [self test_c:@"SSEasy"];
     
+    [self test_c:@"MessageSend"];
+    
     [self test:@"NSLog崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *text0 = nil;
         NSString *text1 = nil;

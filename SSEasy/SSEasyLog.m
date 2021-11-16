@@ -8,7 +8,17 @@
 static NSString *PREFIX = @"AWE";
 
 static int (*printf_p)(const char *format, ...);
-static int printf_f(const char *format, ...) { return 0; }
+static int printf_f(const char *format, ...) {
+    NSString *string = [NSString stringWithUTF8String:format];
+    if (!PREFIX || [string hasPrefix:PREFIX]) {
+        va_list args;
+        va_start(args, format);
+        NSString *text = [[NSString alloc] initWithFormat:string arguments:args];
+        va_end(args);
+        SSEasyLogString(text);
+    }
+    return 0;
+}
 
 static int (*fprintf_p)(FILE *file, const char *format, ...);
 static int fprintf_f(FILE *file, const char *format, ...) { return 0; }

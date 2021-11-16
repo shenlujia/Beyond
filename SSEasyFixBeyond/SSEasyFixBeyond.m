@@ -9,18 +9,6 @@
 #import "SSEasyFixBeyond.h"
 #import <fishhook/fishhook.h>
 
-bool isTTVideoEngineLogEnabled = NO;
-
-void hmd_disable_cpp_exception_backtrace(void)
-{
-    
-}
-
-void alog_close(void)
-{
-    
-}
-
 void open_bdfishhook(void)
 {
     

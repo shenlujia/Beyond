@@ -62,6 +62,9 @@ static void p_modify_values()
 
     extern void alog_close(void);
     alog_close();
+    
+    extern void LynxSetMinLogLevel(int level);
+    LynxSetMinLogLevel(0);
 
     extern void hmd_disable_cpp_exception_backtrace(void);
     hmd_disable_cpp_exception_backtrace(); // 300M+ memory
@@ -82,6 +85,8 @@ static void p_ignore_objc_method()
     ss_method_ignore(@"HMDConfigManager", @"sharedInstance"); // 屏蔽所有HeimdallrModule子类
     
     ss_method_ignore(@"KiteLogControl", @"isEnabled");
+    ss_method_ignore(@"IESMMLogger", @"sharedInstance");
+    ss_method_ignore(@"BDPNetworkMonitor", @"sharedInstance");
 }
 
 static void p_swizzle_objc_method()
@@ -98,6 +103,7 @@ static void p_swizzle_objc_method()
     swizzle([UINavigationController class], @"pushViewController:animated:");
     swizzle([UINavigationController class], @"popViewControllerAnimated:animated:");
     swizzle([UINavigationController class], @"popToRootViewControllerAnimated:");
+    swizzle([UIDevice class], @"acc_isIPhoneX");
 }
 
 static void p_replace_objc_method()
@@ -148,9 +154,11 @@ static void p_replace_objc_method()
 
 + (void)load
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self p_run];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self p_run];
+        });
     });
 }
 
@@ -164,9 +172,11 @@ static void p_replace_objc_method()
     p_swizzle_objc_method();
     p_replace_objc_method();
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         p_modify_values();
     });
+    
+    printf("AWE SSSSSSSS %d", 1);
 }
 
 @end
