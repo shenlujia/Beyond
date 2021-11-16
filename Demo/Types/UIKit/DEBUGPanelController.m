@@ -7,7 +7,7 @@
 //
 
 #import "DEBUGPanelController.h"
-#import "Logger.h"
+#import "SSEasy.h"
 #import "SSEasyPanel.h"
 #import "SSDEBUGTextViewController.h"
 #import "NSObject+SSJSON.h"

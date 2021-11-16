@@ -13,7 +13,7 @@
 #import <dlfcn.h>
 #import "NSObject+MethodSwizzle.h"
 #import "MacroHeader.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 static void add_image_callback(const struct mach_header *mhp, intptr_t slide)
 {

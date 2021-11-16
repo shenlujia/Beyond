@@ -9,7 +9,7 @@
 #import "GCDController.h"
 #include <mach/mach_init.h>
 #import "MacroHeader.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 @interface GCDController ()
 {

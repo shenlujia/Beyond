@@ -8,7 +8,7 @@
 
 #import "PhotoController.h"
 #import <Photos/Photos.h>
-#import "Logger.h"
+#import "SSEasy.h"
 #import "ImagePickerHandler.h"
 #import "DeviceAuthority.h"
 

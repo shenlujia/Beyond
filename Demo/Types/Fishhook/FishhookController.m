@@ -8,7 +8,7 @@
 
 #import "FishhookController.h"
 #import "MacroHeader.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 extern void hook_msgsend(void);
 

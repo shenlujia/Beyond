@@ -9,7 +9,7 @@
 #import "CallStackController.h"
 #import "MacroHeader.h"
 #import "KKCallStack.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 #define PRINT_SYSTEM_CALL_STACK \
 PRINT_BLANK_LINE \

@@ -10,7 +10,7 @@
 #import <pthread.h>
 #import "NSObject+SSJSON.h"
 #import "MacroHeader.h"
-#import "Logger.h"
+#import "SSEasy.h"
 #import <KVOController/KVOController.h>
 
 @interface SSFoundationDEBUGLogStruct : NSObject

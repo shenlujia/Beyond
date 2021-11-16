@@ -14,7 +14,7 @@
 #import <mach/mach.h>
 #import "SDWebImageDecoder.h"
 #import "ImagePickerHandler.h"
-#import "Logger.h"
+#import "SSEasy.h"
 #import "DontLikeCommon.h"
 
 

@@ -11,7 +11,7 @@
 #import <objc/runtime.h>
 #import <Mantle/Mantle.h>
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
-#import "Logger.h"
+#import "SSEasy.h"
 
 @implementation NSObject (DEBUGLog)
 

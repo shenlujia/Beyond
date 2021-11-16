@@ -9,7 +9,7 @@
 #import "UselessClassCheckController.h"
 #import "MacroHeader.h"
 #import "AWEClassUsageHelper.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 SS_CHECK_TIME_REGISTER
 

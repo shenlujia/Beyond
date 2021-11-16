@@ -8,7 +8,7 @@
 
 #import "ImagePickerHandler.h"
 #import "DontLikeCommon.h"
-#import "Logger.h"
+#import "SSEasy.h"
 
 @interface ImagePickerHandler () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
