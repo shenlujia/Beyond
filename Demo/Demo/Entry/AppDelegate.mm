@@ -41,8 +41,8 @@ static NSNumber *backgroundTaskIdentifier = nil;
 
     NSString *name = nil;
     name = @"ViewController";
-    name = @"DEBUGPanelController";
-    name = @"SSFoundationController";
+//    name = @"DEBUGPanelController";
+//    name = @"SSFoundationController";
 //    name = @"UIKitController";
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -67,6 +67,8 @@ static NSNumber *backgroundTaskIdentifier = nil;
     }
     
     NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
+    
+    [center addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     [center addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [center addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [center addObserver:self selector:@selector(willTerminate) name:UIApplicationWillTerminateNotification object:nil];
@@ -77,6 +79,11 @@ static NSNumber *backgroundTaskIdentifier = nil;
 - (void)tapBarAction
 {
     [[FLEXManager sharedManager] toggleExplorer];
+}
+
+- (void)willResignActive
+{
+    NSLog(@"willResignActive");
 }
 
 - (void)didBecomeActive
