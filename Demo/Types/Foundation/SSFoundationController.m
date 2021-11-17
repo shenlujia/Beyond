@@ -13,6 +13,14 @@
 #import "SSEasy.h"
 #import <KVOController/KVOController.h>
 
+@interface TestColor : UIColor
+
+@end
+
+@implementation TestColor
+
+@end
+
 @interface SSFoundationDEBUGLogStruct : NSObject
 
 @property (nonatomic, assign) CGPoint point;
@@ -206,6 +214,29 @@
         __unused id kk = [[NSUserDefaults standardUserDefaults] objectForKey:@"test_array"];
         
         PRINT_BLANK_LINE
+    }];
+    
+    [self test:@"UIColor ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
+        {
+            UIColor *color = [TestColor cyanColor];
+            ss_easy_log_text([NSString stringWithFormat:@"cyanColor: %@", color]);
+            ss_easy_log_text([NSString stringWithFormat:@"cyanColor ss_JSON: %@", [color ss]]);
+        }
+        {
+            UIColor *color = [TestColor blueColor];
+            ss_easy_log_text([NSString stringWithFormat:@"blueColor: %@", color]);
+            ss_easy_log_text([NSString stringWithFormat:@"blueColor ss_JSON: %@", [color ss]]);
+        }
+        {
+            UIColor *color = [TestColor redColor];
+            ss_easy_log_text([NSString stringWithFormat:@"redColor: %@", color]);
+            ss_easy_log_text([NSString stringWithFormat:@"redColor ss_JSON: %@", [color ss]]);
+        }
+        {
+            UIColor *color = [TestColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:0.4];
+            ss_easy_log_text([NSString stringWithFormat:@"custom: %@", color]);
+            ss_easy_log_text([NSString stringWithFormat:@"custom ss_JSON: %@", [color ss]]);
+        }
     }];
     
     [self test:@"ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
