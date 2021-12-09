@@ -91,6 +91,10 @@
         }];
     }];
     
+    [self test_c:@"KeyboardController"];
+    
+    [self test_c:@"TopWithBottomAnimationController"];
+    
     [self test_c:@"Corner"];
     
     [self test_c:@"HorizontalCollectionView"];

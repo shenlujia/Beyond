@@ -101,9 +101,11 @@
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
+		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
+		5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED3D35B276225B300BF9F9C /* KeyboardController.m */; };
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
@@ -277,10 +279,14 @@
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
+		5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopWithBottomAnimationController.h; sourceTree = "<group>"; };
+		5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopWithBottomAnimationController.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
+		5ED3D35A276225B300BF9F9C /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
+		5ED3D35B276225B300BF9F9C /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
 		5EE37116269E8B330080BDB2 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		5EE37117269E8B330080BDB2 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		5EF0245D25CAA9AE00EDB1EE /* objc_class_detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_class_detail.h; sourceTree = "<group>"; };
@@ -323,18 +329,22 @@
 				5707304D24D2BD7C00A9883A /* AppearanceController.m */,
 				5707304C24D2BD7C00A9883A /* ControlController.h */,
 				5707304E24D2BD7C00A9883A /* ControlController.m */,
+				5EACA24F272191E80068F996 /* CornerController.h */,
+				5EACA250272191E80068F996 /* CornerController.m */,
 				5E347B7626B4F8E3003F4355 /* DEBUGPanelController.h */,
 				5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */,
 				5707305424D2BE4200A9883A /* GestureController.h */,
 				5707305524D2BE4200A9883A /* GestureController.m */,
 				5E07DFEC259D6FE1004E4A66 /* HorizontalCollectionView */,
+				5ED3D35A276225B300BF9F9C /* KeyboardController.h */,
+				5ED3D35B276225B300BF9F9C /* KeyboardController.m */,
 				5E5BA94825AEA2AA0082AA9D /* Lottie */,
 				5EE37116269E8B330080BDB2 /* TableViewController.h */,
 				5EE37117269E8B330080BDB2 /* TableViewController.m */,
+				5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */,
+				5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */,
 				5707305124D2BD9500A9883A /* UIKitController.h */,
 				5707305224D2BD9500A9883A /* UIKitController.m */,
-				5EACA24F272191E80068F996 /* CornerController.h */,
-				5EACA250272191E80068F996 /* CornerController.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1000,6 +1010,7 @@
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,
 				5E386A552743E93D00DFBE1A /* SSDEBUGTextViewController.m in Sources */,
 				574CA38024F679770018D47B /* CallStackController.m in Sources */,
+				5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */,
 				5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */,
 				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
@@ -1007,6 +1018,7 @@
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
 				5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */,
+				5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
 				5EACA251272191E80068F996 /* CornerController.m in Sources */,
