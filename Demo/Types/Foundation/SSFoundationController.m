@@ -142,7 +142,7 @@
 
     [self test_c:@"FileManager"];
     
-    [self test_c:@"SSEasy"];
+    [self test_c:@"SSEasyController"];
     
     [self test_c:@"MessageSend"];
     

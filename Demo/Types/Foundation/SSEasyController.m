@@ -108,6 +108,10 @@
         pthread_kill(pthread_self(), SIGINT);
     }];
     
+    [self test:@"日志测试" tap:^(UIButton *button, NSDictionary *userInfo) {
+//        NSLog(@"AWESLJ %@", @(3));
+    }];
+    
     [self test:@"NSAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSAssert(0, @"NSAssert 可以继续且只断一次");
     }];
