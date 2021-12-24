@@ -80,6 +80,13 @@
     return 0;
 }
 
+- (NSString *)test_replace_then_call_original_with_index:(NSInteger)index text:(NSString *)text
+{
+    NSString *ret = [NSString stringWithFormat:@"old %@=%@", @(index), text];
+    ss_easy_log(ret);
+    return ret;
+}
+
 @end
 
 @implementation SSEasyController
@@ -108,8 +115,27 @@
         pthread_kill(pthread_self(), SIGINT);
     }];
     
-    [self test:@"日志测试" tap:^(UIButton *button, NSDictionary *userInfo) {
-//        NSLog(@"AWESLJ %@", @(3));
+    [self test:@"替换方法并调用原方法" tap:^(UIButton *button, NSDictionary *userInfo) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            Class c = [SwizzleTest class];
+            SEL selector = NSSelectorFromString(@"test_replace_then_call_original_with_index:text:");
+            __block IMP imp = NULL;
+            imp = ss_method_swizzle(c, selector, ^NSString *(id obj, NSInteger i, NSString *text) {
+                NSString *ret = [NSString stringWithFormat:@"new %@=%@", @(i), text];
+                ss_easy_log_text(ret);
+                typedef NSString *(*TYPE)(id obj, SEL selector, NSInteger i, NSString *text);
+                TYPE p = (TYPE)imp;
+                ss_easy_log_text(@"====== call original start");
+                p(obj, selector, i, text);
+                ss_easy_log_text(@"====== call original finish");
+                return ret;
+            });
+        });
+        PRINT_BLANK_LINE
+        SwizzleTest *o = [[SwizzleTest alloc] init];
+        NSString *ret = [o test_replace_then_call_original_with_index:3 text:@"6"];
+        ss_easy_log(@"done ret: %@", ret);
     }];
     
     [self test:@"NSAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {
