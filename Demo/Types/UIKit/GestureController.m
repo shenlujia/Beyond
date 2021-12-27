@@ -7,6 +7,7 @@
 //
 
 #import "GestureController.h"
+#import "SSEasy.h"
 
 @interface GestureTestView : UIView
 
@@ -162,8 +163,32 @@
         [smallView setupDoubleTap];
         [bigView addSubview:smallView];
     }];
+    
+    [self test:@"tap + swipe" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+        [weak_s.view addGestureRecognizer:tap];
+        UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeUp:)];
+        swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+        [weak_s.view addGestureRecognizer:swipeUp];
+        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeDown:)];
+        swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+        [weak_s.view addGestureRecognizer:swipeDown];
+    }];
 }
 
+- (void)didTap:(UITapGestureRecognizer *)tap
+{
+    ss_easy_log(@"didTap %@", @(tap.state));
+}
 
+- (void)didSwipeUp:(UISwipeGestureRecognizer *)swipe
+{
+    ss_easy_log(@"didSwipeUp %@", @(swipe.state));
+}
+
+- (void)didSwipeDown:(UISwipeGestureRecognizer *)swipe
+{
+    ss_easy_log(@"didSwipeDown %@", @(swipe.state));
+}
 
 @end

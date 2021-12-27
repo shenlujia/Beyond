@@ -9,6 +9,14 @@
 #import "SSEasyController.h"
 #import "SSEasy.h"
 
+typedef struct SSTestStructInfo_t {
+    const char* filename;
+    const char* func_name;
+    int line;
+    NSInteger test;
+    const char* tag;
+} SSTestStructInfo;
+
 @implementation NSObject (MethodSwizzleTestTo)
 
 + (void)common_to_method_a:(id)a b:(id)b
@@ -80,9 +88,10 @@
     return 0;
 }
 
-- (NSString *)test_replace_then_call_original_with_index:(NSInteger)index text:(NSString *)text
+
+- (NSString *)test_replace_then_call_original_with_s:(SSTestStructInfo)s text:(NSString *)text
 {
-    NSString *ret = [NSString stringWithFormat:@"old %@=%@", @(index), text];
+    NSString *ret = [NSString stringWithFormat:@"old %@,%@,%@", @(s.line), @(s.test), text];
     ss_easy_log(ret);
     return ret;
 }
@@ -116,25 +125,37 @@
     }];
     
     [self test:@"替换方法并调用原方法" tap:^(UIButton *button, NSDictionary *userInfo) {
+        typedef struct SSStructTemp_t {
+            const char* filename;
+            const char* func_name;
+            int line;
+            NSInteger test;
+            const char* tag;
+        } SSStructTemp;
+        
+        SSTestStructInfo s;
+        s.line = 2;
+        s.test = 3;
+        
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             Class c = [SwizzleTest class];
-            SEL selector = NSSelectorFromString(@"test_replace_then_call_original_with_index:text:");
+            SEL selector = NSSelectorFromString(@"test_replace_then_call_original_with_s:text:");
             __block IMP imp = NULL;
-            imp = ss_method_swizzle(c, selector, ^NSString *(id obj, NSInteger i, NSString *text) {
-                NSString *ret = [NSString stringWithFormat:@"new %@=%@", @(i), text];
+            imp = ss_method_swizzle(c, selector, ^NSString *(id obj, SSStructTemp s, NSString *text) {
+                NSString *ret = [NSString stringWithFormat:@"new %@,%@,%@", @(s.line), @(s.test), text];
                 ss_easy_log_text(ret);
-                typedef NSString *(*TYPE)(id obj, SEL selector, NSInteger i, NSString *text);
-                TYPE p = (TYPE)imp;
+                typedef NSString *(*Func)(id obj, SEL selector, SSStructTemp s, NSString *text);
+                Func p = (Func)imp;
                 ss_easy_log_text(@"====== call original start");
-                p(obj, selector, i, text);
+                p(obj, selector, s, text);
                 ss_easy_log_text(@"====== call original finish");
                 return ret;
             });
         });
         PRINT_BLANK_LINE
         SwizzleTest *o = [[SwizzleTest alloc] init];
-        NSString *ret = [o test_replace_then_call_original_with_index:3 text:@"6"];
+        NSString *ret = [o test_replace_then_call_original_with_s:s text:@"6"];
         ss_easy_log(@"done ret: %@", ret);
     }];
     
