@@ -13,7 +13,6 @@ typedef struct SSTestStructInfo_t {
     const char* filename;
     const char* func_name;
     int line;
-    NSInteger test;
     const char* tag;
 } SSTestStructInfo;
 
@@ -91,7 +90,7 @@ typedef struct SSTestStructInfo_t {
 
 - (NSString *)test_replace_then_call_original_with_s:(SSTestStructInfo)s text:(NSString *)text
 {
-    NSString *ret = [NSString stringWithFormat:@"old %@,%@,%@", @(s.line), @(s.test), text];
+    NSString *ret = [NSString stringWithFormat:@"old %@,%@", @(s.line), text];
     ss_easy_log(ret);
     return ret;
 }
@@ -129,13 +128,8 @@ typedef struct SSTestStructInfo_t {
             const char* filename;
             const char* func_name;
             int line;
-            NSInteger test;
             const char* tag;
         } SSStructTemp;
-        
-        SSTestStructInfo s;
-        s.line = 2;
-        s.test = 3;
         
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -143,7 +137,7 @@ typedef struct SSTestStructInfo_t {
             SEL selector = NSSelectorFromString(@"test_replace_then_call_original_with_s:text:");
             __block IMP imp = NULL;
             imp = ss_method_swizzle(c, selector, ^NSString *(id obj, SSStructTemp s, NSString *text) {
-                NSString *ret = [NSString stringWithFormat:@"new %@,%@,%@", @(s.line), @(s.test), text];
+                NSString *ret = [NSString stringWithFormat:@"new %@,%@", @(s.line), text];
                 ss_easy_log_text(ret);
                 typedef NSString *(*Func)(id obj, SEL selector, SSStructTemp s, NSString *text);
                 Func p = (Func)imp;
@@ -153,10 +147,16 @@ typedef struct SSTestStructInfo_t {
                 return ret;
             });
         });
-        PRINT_BLANK_LINE
-        SwizzleTest *o = [[SwizzleTest alloc] init];
-        NSString *ret = [o test_replace_then_call_original_with_s:s text:@"6"];
-        ss_easy_log(@"done ret: %@", ret);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            PRINT_BLANK_LINE
+            SwizzleTest *o = [[SwizzleTest alloc] init];
+            SSTestStructInfo temp;
+            temp.line = 2;
+            temp.tag = "mmm";
+            NSString *ret = [o test_replace_then_call_original_with_s:temp text:@"6"];
+            ss_easy_log(@"done ret: %@", ret);
+        });
     }];
     
     [self test:@"NSAssert 可以继续且只断一次" tap:^(UIButton *button, NSDictionary *userInfo) {

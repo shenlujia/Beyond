@@ -95,11 +95,11 @@ uint64_t KVAGetCurrentTime()
         if(isInit){ ++initCnt; }
     }
     free(classes);
-    NSTimeInterval tm_µs =  TOK(Class_FLash);
+    NSTimeInterval tm_us =  TOK(Class_FLash);
     _allClassInfo = @{
         @"classes":m_clzes_info.copy,
         @"class_cnt":@(self.count),
-        @"interval_µs":@(tm_µs),
+        @"interval_µs":@(tm_us),
         @"init_cnt":@(initCnt)
     };
     _flashing = NO;

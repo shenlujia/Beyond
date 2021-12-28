@@ -60,6 +60,9 @@
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
 		5E386A4C2743D4D900DFBE1A /* SSEasyFixBeyond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4B2743D4D900DFBE1A /* SSEasyFixBeyond.m */; };
 		5E386A4F2743D61200DFBE1A /* MessageSendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4E2743D61200DFBE1A /* MessageSendController.m */; };
+		5E4A642F277B1C2E004CA91E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4A642E277B1C2E004CA91E /* AVFoundation.framework */; };
+		5E4A6431277B1C46004CA91E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4A6430277B1C46004CA91E /* Photos.framework */; };
+		5E4A6433277B1C63004CA91E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4A6432277B1C63004CA91E /* CoreMedia.framework */; };
 		5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BA94A25AEA2D60082AA9D /* LottieController.m */; };
 		5E5BA96725AEA32B0082AA9D /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA95125AEA32B0082AA9D /* img_1.png */; };
 		5E5BA96825AEA32B0082AA9D /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BA95225AEA32B0082AA9D /* img_0.png */; };
@@ -217,6 +220,9 @@
 		5E386A4B2743D4D900DFBE1A /* SSEasyFixBeyond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyFixBeyond.m; sourceTree = "<group>"; };
 		5E386A4D2743D61200DFBE1A /* MessageSendController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSendController.h; sourceTree = "<group>"; };
 		5E386A4E2743D61200DFBE1A /* MessageSendController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageSendController.m; sourceTree = "<group>"; };
+		5E4A642E277B1C2E004CA91E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5E4A6430277B1C46004CA91E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		5E4A6432277B1C63004CA91E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5E5BA94925AEA2D60082AA9D /* LottieController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LottieController.h; sourceTree = "<group>"; };
 		5E5BA94A25AEA2D60082AA9D /* LottieController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LottieController.m; sourceTree = "<group>"; };
 		5E5BA95125AEA32B0082AA9D /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
@@ -306,6 +312,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E4A6433277B1C63004CA91E /* CoreMedia.framework in Frameworks */,
+				5E4A6431277B1C46004CA91E /* Photos.framework in Frameworks */,
+				5E4A642F277B1C2E004CA91E /* AVFoundation.framework in Frameworks */,
 				1471FE1F2A98C7EB407C0911 /* libPods-Beyond.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,6 +838,9 @@
 		D4EA06309F64FDB43730C4A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E4A6432277B1C63004CA91E /* CoreMedia.framework */,
+				5E4A6430277B1C46004CA91E /* Photos.framework */,
+				5E4A642E277B1C2E004CA91E /* AVFoundation.framework */,
 				59F5031BF8E1941A154D07BF /* libPods-Beyond.a */,
 			);
 			name = Frameworks;
@@ -1153,10 +1165,20 @@
 			baseConfigurationReference = 53D328C22F16CF730A51016D /* Pods-Beyond.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = K85A37F7SB;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1173,7 +1195,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = _liujingbin_Wildcard_QESJFTWXZW;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -1182,10 +1205,20 @@
 			baseConfigurationReference = A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEPLOYMENT_POSTPROCESSING = YES;
+				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = K85A37F7SB;
+				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1194,11 +1227,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.2;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = _liujingbin_Wildcard_QESJFTWXZW;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
