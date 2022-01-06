@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "SSEasy.h"
 
 @interface NaviItemModel : NSObject
 
@@ -78,6 +79,9 @@
 @property (nonatomic, strong) NSMutableArray *naviItems;
 @property (nonatomic, strong) NSMutableArray *models;
 
+@property (nonatomic, strong) NSDate *createDate;
+@property (nonatomic, strong) NSMutableDictionary *observeMapping;
+
 @end
 
 @implementation BaseViewController
@@ -85,6 +89,7 @@
 - (void)dealloc
 {
     NSLog(@"~%@", NSStringFromClass([self class]));
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -98,6 +103,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.createDate = [NSDate date];
     self.view.backgroundColor = UIColor.groupTableViewBackgroundColor;
 
     self.scrollView = [[ScrollView alloc] initWithFrame:self.view.bounds];
@@ -116,6 +122,16 @@
         NSString *text = NSStringFromClass([self class]);
         text = [text stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
         self.title = [text stringByReplacingOccurrencesOfString:@"Controller" withString:@""];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.createDate) {
+        CGFloat duration = [[NSDate date] timeIntervalSinceDate:self.createDate];
+        ss_easy_log(@"%@ first frame cost: %.2f", NSStringFromClass([self class]), duration * 1000);
+        self.createDate = nil;
     }
 }
 
@@ -145,6 +161,34 @@
         [rightBarButtonItems addObject:item];
     }
     self.navigationItem.rightBarButtonItems = rightBarButtonItems;
+}
+
+- (void)observe:(NSString *)name block:(void (^)(NSNotification *notification))block
+{
+    if (!name || !block) {
+        return;
+    }
+    if (!self.observeMapping) {
+        self.observeMapping = [NSMutableDictionary dictionary];
+    }
+    self.observeMapping[name] = block;
+    NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
+    [center addObserver:self selector:@selector(notificationDidObserve:) name:name object:nil];
+}
+
+- (void)notificationDidObserve:(NSNotification *)notification
+{
+    if (notification.name) {
+        void (^block)(NSNotification *notification) = self.observeMapping[notification.name];
+        if (block) {
+            block(notification);
+        }
+    }
+}
+
+- (void)set_insets:(UIEdgeInsets)insets
+{
+    self.scrollView.contentInset = insets;
 }
 
 - (void)test_c:(NSString *)c

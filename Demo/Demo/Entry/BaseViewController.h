@@ -33,6 +33,10 @@ typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 
 - (void)add_navi_right_item:(NSString *)title tap:(ActionBlock)tap;
 
+- (void)observe:(NSString *)name block:(void (^)(NSNotification *notification))block;
+
+- (void)set_insets:(UIEdgeInsets)insets;
+
 - (void)test_c:(NSString *)c;
 
 - (void)test_c:(NSString *)c title:(NSString *)title;

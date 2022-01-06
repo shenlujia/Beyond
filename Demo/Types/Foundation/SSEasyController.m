@@ -99,10 +99,8 @@ typedef struct SSTestStructInfo_t {
 
 @implementation SSEasyController
 
-- (void)viewDidLoad
++ (void)initialize
 {
-    [super viewDidLoad];
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ss_easy_install();
@@ -118,6 +116,14 @@ typedef struct SSTestStructInfo_t {
         ss_method_ignore(@"SwizzleTest", @"obj_id_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_f_f:d:rect:obj:");
     });
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    ss_easy_detail_log(@"test1 %s %s %s", "sa", "cc");
+    ss_easy_detail_log(@"test2 %@ %@ %@", @(1), @(2), @"333");
     
     [self test:@"pthread_kill 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
         pthread_kill(pthread_self(), SIGINT);

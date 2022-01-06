@@ -93,6 +93,8 @@
     
     [self test_c:@"KeyboardController"];
     
+    [self test_c:@"TextViewController"];
+    
     [self test_c:@"TopWithBottomAnimationController"];
     
     [self test_c:@"Corner"];

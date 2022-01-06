@@ -114,6 +114,7 @@
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
 		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */; };
 		5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */; };
+		5EFAF94B2786FA8500861A44 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAF94A2786FA8500861A44 /* TextViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -304,6 +305,8 @@
 		5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSFoundationController.m; sourceTree = "<group>"; };
 		5EF7C39A2601D2B300E3CF0E /* NSObject+DEBUGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DEBUGLog.h"; sourceTree = "<group>"; };
 		5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DEBUGLog.m"; sourceTree = "<group>"; };
+		5EFAF9492786FA8500861A44 /* TextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		5EFAF94A2786FA8500861A44 /* TextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
 		A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.release.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +357,8 @@
 				5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */,
 				5707305124D2BD9500A9883A /* UIKitController.h */,
 				5707305224D2BD9500A9883A /* UIKitController.m */,
+				5EFAF9492786FA8500861A44 /* TextViewController.h */,
+				5EFAF94A2786FA8500861A44 /* TextViewController.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -968,6 +973,7 @@
 				5EEE20B22775C77E007F7A29 /* SSEasyException.m in Sources */,
 				5E386A4C2743D4D900DFBE1A /* SSEasyFixBeyond.m in Sources */,
 				57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */,
+				5EFAF94B2786FA8500861A44 /* TextViewController.m in Sources */,
 				57FD50BB243DA3F0002E481E /* main.m in Sources */,
 				5E61389325EE3DB800127B6E /* SSHeapEnumerator.m in Sources */,
 				5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */,
@@ -1178,7 +1184,7 @@
 				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
