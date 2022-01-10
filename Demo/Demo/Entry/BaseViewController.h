@@ -15,6 +15,7 @@
 
 #define kButtonTapCountKey @"count"
 
+FOUNDATION_EXTERN UIEdgeInsets app_safeAreaInsets(void);
 
 static void inline ss_print_cost(NSString *title, dispatch_block_t block) {
     double start = CFAbsoluteTimeGetCurrent();

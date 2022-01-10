@@ -59,8 +59,9 @@
         view.text = @"1234567890\n123\n12345678901234567890\n1234567890\n1\n\n\n\n123";
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.inset(15);
+            make.left.right.inset(15);
             make.height.mas_equalTo(300);
+            make.bottom.inset(app_safeAreaInsets().bottom);
         }];
         view;
     });
@@ -160,7 +161,7 @@
             CGFloat endY = CGRectGetMinY(rect);
             CGFloat inset = weak_s.view.frame.size.height - endY;
             if (inset <= 0) {
-                inset = 15;
+                inset = app_safeAreaInsets().bottom;
             }
             make.bottom.inset(inset);
         }];
@@ -215,34 +216,35 @@
     }
     NSMutableArray *layers = [NSMutableArray array];
     for (NSArray *array in segmentArray) {
-        for (NSInteger idx = 0; idx < array.count; ++idx) {
-            NSValue *value = array[idx];
-            CGRect rect = value.CGRectValue;
-            CALayer *layer = [self p_addTestLayer:rect index:idx total:array.count];
-            [layers addObject:layer];
-        }
+        CALayer *layer = [self p_testLayerWithRects:array];
+        [self.textView.layer insertSublayer:layer atIndex:0];
+        [layers addObject:layer];
     }
     self.testLayers = layers;
 }
 
-- (CALayer *)p_addTestLayer:(CGRect)rect index:(NSInteger)index total:(NSInteger)total
+- (CALayer *)p_testLayerWithRects:(NSArray *)rects
 {
-    const CGFloat minX = CGRectGetMinX(rect);
-    const CGFloat maxX = CGRectGetMaxX(rect);
-    static CGFloat offsetY = 0;
-    const CGFloat minY = CGRectGetMinY(rect) + offsetY;
-    const CGFloat maxY = CGRectGetMaxY(rect) - offsetY;
-   
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(minX, minY)];
-    [path addLineToPoint:CGPointMake(maxX, minY)];
-    [path addLineToPoint:CGPointMake(maxX, maxY)];
-    [path addLineToPoint:CGPointMake(minX, maxY)];
-    [path closePath];
+    
+    for (NSInteger idx = 0; idx < rects.count; ++idx) {
+        CGRect rect = [rects[idx] CGRectValue];
+        
+        const CGFloat minX = CGRectGetMinX(rect);
+        const CGFloat maxX = CGRectGetMaxX(rect);
+        static CGFloat offsetY = 1;
+        const CGFloat minY = CGRectGetMinY(rect) + offsetY;
+        const CGFloat maxY = CGRectGetMaxY(rect) - offsetY;
+       
+        [path moveToPoint:CGPointMake(minX, minY)];
+        [path addLineToPoint:CGPointMake(maxX, minY)];
+        [path addLineToPoint:CGPointMake(maxX, maxY)];
+        [path addLineToPoint:CGPointMake(minX, maxY)];
+        [path addLineToPoint:CGPointMake(minX, minY)];
+    }
     
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.fillColor = UIColor.brownColor.CGColor;
-    [self.textView.layer insertSublayer:layer atIndex:0];
     
     [CATransaction begin];
     [CATransaction setDisableActions:YES];

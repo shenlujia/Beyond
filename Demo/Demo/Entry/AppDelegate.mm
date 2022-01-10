@@ -43,7 +43,7 @@ static NSNumber *backgroundTaskIdentifier = nil;
     name = @"ViewController";
     name = @"DEBUGPanelController";
     name = @"SSFoundationController";
-//    name = @"UIKitController";
+    name = @"UIKitController";
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];

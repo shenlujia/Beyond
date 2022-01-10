@@ -9,6 +9,13 @@
 #import "BaseViewController.h"
 #import "SSEasy.h"
 
+UIEdgeInsets app_safeAreaInsets()
+{
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    insets = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
+    return insets;
+}
+
 @interface NaviItemModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
