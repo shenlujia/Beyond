@@ -9,8 +9,6 @@
 #import "NSObject+DEBUGLog.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import <Mantle/Mantle.h>
-#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "SSEasy.h"
 
 @implementation NSObject (DEBUGLog)

@@ -96,20 +96,21 @@
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
+		5EB4599B27D30DD300E7C99A /* SSEasyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4598727D30DD300E7C99A /* SSEasyException.m */; };
+		5EB4599C27D30DD300E7C99A /* SSEasyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4598927D30DD300E7C99A /* SSEasyLog.m */; };
+		5EB4599D27D30DD300E7C99A /* SSEasyHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4598A27D30DD300E7C99A /* SSEasyHook.m */; };
+		5EB4599E27D30DD300E7C99A /* SSEasyAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4598D27D30DD300E7C99A /* SSEasyAssert.m */; };
+		5EB4599F27D30DD300E7C99A /* NSObject+SSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599027D30DD300E7C99A /* NSObject+SSJSON.m */; };
+		5EB459A027D30DD300E7C99A /* SSEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599127D30DD300E7C99A /* SSEasy.m */; };
+		5EB459A127D30DD300E7C99A /* SSEasyAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599427D30DD300E7C99A /* SSEasyAlert.m */; };
+		5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599527D30DD300E7C99A /* SSDEBUGTextViewController.m */; };
+		5EB459A327D30DD300E7C99A /* SSEasyPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599627D30DD300E7C99A /* SSEasyPanel.m */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 		5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED3D35B276225B300BF9F9C /* KeyboardController.m */; };
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
-		5EEE20B12775C77E007F7A29 /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A22775C77E007F7A29 /* SSDEBUGTextViewController.m */; };
-		5EEE20B22775C77E007F7A29 /* SSEasyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A32775C77E007F7A29 /* SSEasyException.m */; };
-		5EEE20B32775C77E007F7A29 /* SSEasyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A52775C77E007F7A29 /* SSEasyLog.m */; };
-		5EEE20B42775C77E007F7A29 /* SSEasyHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A62775C77E007F7A29 /* SSEasyHook.m */; };
-		5EEE20B52775C77E007F7A29 /* SSEasyPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A82775C77E007F7A29 /* SSEasyPanel.m */; };
-		5EEE20B62775C77E007F7A29 /* SSEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20A92775C77E007F7A29 /* SSEasy.m */; };
-		5EEE20B72775C77E007F7A29 /* SSEasyAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20AC2775C77E007F7A29 /* SSEasyAssert.m */; };
-		5EEE20B82775C77E007F7A29 /* NSObject+SSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE20AF2775C77E007F7A29 /* NSObject+SSJSON.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
 		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */; };
@@ -270,6 +271,26 @@
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
+		5EB4598627D30DD300E7C99A /* _Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Foundation.h; sourceTree = "<group>"; };
+		5EB4598727D30DD300E7C99A /* SSEasyException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyException.m; sourceTree = "<group>"; };
+		5EB4598827D30DD300E7C99A /* NSObject+SSJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSJSON.h"; sourceTree = "<group>"; };
+		5EB4598927D30DD300E7C99A /* SSEasyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyLog.m; sourceTree = "<group>"; };
+		5EB4598A27D30DD300E7C99A /* SSEasyHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyHook.m; sourceTree = "<group>"; };
+		5EB4598B27D30DD300E7C99A /* SSEasyAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyAssert.h; sourceTree = "<group>"; };
+		5EB4598C27D30DD300E7C99A /* SSEasyException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyException.h; sourceTree = "<group>"; };
+		5EB4598D27D30DD300E7C99A /* SSEasyAssert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyAssert.m; sourceTree = "<group>"; };
+		5EB4598E27D30DD300E7C99A /* SSEasyHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyHook.h; sourceTree = "<group>"; };
+		5EB4598F27D30DD300E7C99A /* SSEasyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyLog.h; sourceTree = "<group>"; };
+		5EB4599027D30DD300E7C99A /* NSObject+SSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSJSON.m"; sourceTree = "<group>"; };
+		5EB4599127D30DD300E7C99A /* SSEasy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasy.m; sourceTree = "<group>"; };
+		5EB4599327D30DD300E7C99A /* _UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _UIKit.h; sourceTree = "<group>"; };
+		5EB4599427D30DD300E7C99A /* SSEasyAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyAlert.m; sourceTree = "<group>"; };
+		5EB4599527D30DD300E7C99A /* SSDEBUGTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGTextViewController.m; sourceTree = "<group>"; };
+		5EB4599627D30DD300E7C99A /* SSEasyPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyPanel.m; sourceTree = "<group>"; };
+		5EB4599727D30DD300E7C99A /* SSEasyAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyAlert.h; sourceTree = "<group>"; };
+		5EB4599827D30DD300E7C99A /* SSDEBUGTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDEBUGTextViewController.h; sourceTree = "<group>"; };
+		5EB4599927D30DD300E7C99A /* SSEasyPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyPanel.h; sourceTree = "<group>"; };
+		5EB4599A27D30DD300E7C99A /* SSEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasy.h; sourceTree = "<group>"; };
 		5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopWithBottomAnimationController.h; sourceTree = "<group>"; };
 		5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopWithBottomAnimationController.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
@@ -280,22 +301,6 @@
 		5ED3D35B276225B300BF9F9C /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
 		5EE37116269E8B330080BDB2 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		5EE37117269E8B330080BDB2 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		5EEE20A12775C77E007F7A29 /* SSEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasy.h; sourceTree = "<group>"; };
-		5EEE20A22775C77E007F7A29 /* SSDEBUGTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDEBUGTextViewController.m; sourceTree = "<group>"; };
-		5EEE20A32775C77E007F7A29 /* SSEasyException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyException.m; sourceTree = "<group>"; };
-		5EEE20A42775C77E007F7A29 /* NSObject+SSJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSJSON.h"; sourceTree = "<group>"; };
-		5EEE20A52775C77E007F7A29 /* SSEasyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyLog.m; sourceTree = "<group>"; };
-		5EEE20A62775C77E007F7A29 /* SSEasyHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyHook.m; sourceTree = "<group>"; };
-		5EEE20A72775C77E007F7A29 /* SSEasyAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyAssert.h; sourceTree = "<group>"; };
-		5EEE20A82775C77E007F7A29 /* SSEasyPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyPanel.m; sourceTree = "<group>"; };
-		5EEE20A92775C77E007F7A29 /* SSEasy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasy.m; sourceTree = "<group>"; };
-		5EEE20AA2775C77E007F7A29 /* SSEasyException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyException.h; sourceTree = "<group>"; };
-		5EEE20AB2775C77E007F7A29 /* SSDEBUGTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDEBUGTextViewController.h; sourceTree = "<group>"; };
-		5EEE20AC2775C77E007F7A29 /* SSEasyAssert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyAssert.m; sourceTree = "<group>"; };
-		5EEE20AD2775C77E007F7A29 /* SSEasyHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyHook.h; sourceTree = "<group>"; };
-		5EEE20AE2775C77E007F7A29 /* SSEasyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyLog.h; sourceTree = "<group>"; };
-		5EEE20AF2775C77E007F7A29 /* NSObject+SSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSJSON.m"; sourceTree = "<group>"; };
-		5EEE20B02775C77E007F7A29 /* SSEasyPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyPanel.h; sourceTree = "<group>"; };
 		5EF0245D25CAA9AE00EDB1EE /* objc_class_detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_class_detail.h; sourceTree = "<group>"; };
 		5EF0245E25CAA9AE00EDB1EE /* AWEClassUsageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWEClassUsageHelper.h; sourceTree = "<group>"; };
 		5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AWEClassUsageHelper.mm; sourceTree = "<group>"; };
@@ -560,6 +565,7 @@
 				57FD50B4243DA3EF002E481E /* Entry */,
 				57FD50A7243DA263002E481E /* Assets.xcassets */,
 				57FD50AC243DA263002E481E /* Info.plist */,
+				57FD50B9243DA3EF002E481E /* ViewController.h */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -570,7 +576,6 @@
 				57FD50B5243DA3EF002E481E /* AppDelegate.h */,
 				57FD50B8243DA3EF002E481E /* AppDelegate.mm */,
 				57FD50B7243DA3EF002E481E /* main.m */,
-				57FD50B9243DA3EF002E481E /* ViewController.h */,
 				57FD50B6243DA3EF002E481E /* ViewController.m */,
 				57FD50C3243DA7CB002E481E /* BaseViewController.h */,
 				57FD50C4243DA7CB002E481E /* BaseViewController.m */,
@@ -768,6 +773,38 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		5EB4598527D30DD300E7C99A /* _Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5EB4598627D30DD300E7C99A /* _Foundation.h */,
+				5EB4598827D30DD300E7C99A /* NSObject+SSJSON.h */,
+				5EB4599027D30DD300E7C99A /* NSObject+SSJSON.m */,
+				5EB4598B27D30DD300E7C99A /* SSEasyAssert.h */,
+				5EB4598D27D30DD300E7C99A /* SSEasyAssert.m */,
+				5EB4598C27D30DD300E7C99A /* SSEasyException.h */,
+				5EB4598727D30DD300E7C99A /* SSEasyException.m */,
+				5EB4598E27D30DD300E7C99A /* SSEasyHook.h */,
+				5EB4598A27D30DD300E7C99A /* SSEasyHook.m */,
+				5EB4598F27D30DD300E7C99A /* SSEasyLog.h */,
+				5EB4598927D30DD300E7C99A /* SSEasyLog.m */,
+			);
+			path = _Foundation;
+			sourceTree = "<group>";
+		};
+		5EB4599227D30DD300E7C99A /* _UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5EB4599327D30DD300E7C99A /* _UIKit.h */,
+				5EB4599827D30DD300E7C99A /* SSDEBUGTextViewController.h */,
+				5EB4599527D30DD300E7C99A /* SSDEBUGTextViewController.m */,
+				5EB4599727D30DD300E7C99A /* SSEasyAlert.h */,
+				5EB4599427D30DD300E7C99A /* SSEasyAlert.m */,
+				5EB4599927D30DD300E7C99A /* SSEasyPanel.h */,
+				5EB4599627D30DD300E7C99A /* SSEasyPanel.m */,
+			);
+			path = _UIKit;
+			sourceTree = "<group>";
+		};
 		5ECAF9512580A79000984E77 /* AVKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,22 +819,10 @@
 		5EEE20A02775C77E007F7A29 /* SSEasyBase */ = {
 			isa = PBXGroup;
 			children = (
-				5EEE20A42775C77E007F7A29 /* NSObject+SSJSON.h */,
-				5EEE20AF2775C77E007F7A29 /* NSObject+SSJSON.m */,
-				5EEE20AB2775C77E007F7A29 /* SSDEBUGTextViewController.h */,
-				5EEE20A22775C77E007F7A29 /* SSDEBUGTextViewController.m */,
-				5EEE20A12775C77E007F7A29 /* SSEasy.h */,
-				5EEE20A92775C77E007F7A29 /* SSEasy.m */,
-				5EEE20A72775C77E007F7A29 /* SSEasyAssert.h */,
-				5EEE20AC2775C77E007F7A29 /* SSEasyAssert.m */,
-				5EEE20AA2775C77E007F7A29 /* SSEasyException.h */,
-				5EEE20A32775C77E007F7A29 /* SSEasyException.m */,
-				5EEE20AD2775C77E007F7A29 /* SSEasyHook.h */,
-				5EEE20A62775C77E007F7A29 /* SSEasyHook.m */,
-				5EEE20AE2775C77E007F7A29 /* SSEasyLog.h */,
-				5EEE20A52775C77E007F7A29 /* SSEasyLog.m */,
-				5EEE20B02775C77E007F7A29 /* SSEasyPanel.h */,
-				5EEE20A82775C77E007F7A29 /* SSEasyPanel.m */,
+				5EB4598527D30DD300E7C99A /* _Foundation */,
+				5EB4599227D30DD300E7C99A /* _UIKit */,
+				5EB4599A27D30DD300E7C99A /* SSEasy.h */,
+				5EB4599127D30DD300E7C99A /* SSEasy.m */,
 			);
 			name = SSEasyBase;
 			path = ../../../Work/SSDEBUGMain/SSEasyBase;
@@ -970,7 +995,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EEE20B22775C77E007F7A29 /* SSEasyException.m in Sources */,
+				5EB459A327D30DD300E7C99A /* SSEasyPanel.m in Sources */,
+				5EB4599B27D30DD300E7C99A /* SSEasyException.m in Sources */,
 				5E386A4C2743D4D900DFBE1A /* SSEasyFixBeyond.m in Sources */,
 				57CDF42024B56A6000F9856F /* GCDTimer.m in Sources */,
 				5EFAF94B2786FA8500861A44 /* TextViewController.m in Sources */,
@@ -997,12 +1023,9 @@
 				57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */,
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
-				5EEE20B12775C77E007F7A29 /* SSDEBUGTextViewController.m in Sources */,
 				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
 				5ECAF9542580A79000984E77 /* AVKitController.m in Sources */,
-				5EEE20B62775C77E007F7A29 /* SSEasy.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
-				5EEE20B52775C77E007F7A29 /* SSEasyPanel.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
 				5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */,
@@ -1010,15 +1033,17 @@
 				5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */,
 				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
+				5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57E89A7124FD13AA005F2A6C /* KKThreadMonitor.m in Sources */,
+				5EB459A127D30DD300E7C99A /* SSEasyAlert.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */,
-				5EEE20B32775C77E007F7A29 /* SSEasyLog.m in Sources */,
+				5EB4599C27D30DD300E7C99A /* SSEasyLog.m in Sources */,
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
-				5EEE20B42775C77E007F7A29 /* SSEasyHook.m in Sources */,
+				5EB4599D27D30DD300E7C99A /* SSEasyHook.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
 				5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */,
@@ -1026,15 +1051,17 @@
 				5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,
-				5EEE20B72775C77E007F7A29 /* SSEasyAssert.m in Sources */,
 				574CA38024F679770018D47B /* CallStackController.m in Sources */,
 				5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */,
+				5EB4599F27D30DD300E7C99A /* NSObject+SSJSON.m in Sources */,
 				5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */,
 				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
+				5EB4599E27D30DD300E7C99A /* SSEasyAssert.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
 				5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */,
+				5EB459A027D30DD300E7C99A /* SSEasy.m in Sources */,
 				5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,
@@ -1044,7 +1071,6 @@
 				574CA37424F666B90018D47B /* FishhookController.m in Sources */,
 				5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */,
 				5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */,
-				5EEE20B82775C77E007F7A29 /* NSObject+SSJSON.m in Sources */,
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,
 				57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */,
 				57CDBA8524B48E0800F9856F /* KVCController.m in Sources */,
@@ -1191,7 +1217,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1227,7 +1253,7 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

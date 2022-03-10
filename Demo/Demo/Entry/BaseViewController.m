@@ -12,7 +12,9 @@
 UIEdgeInsets app_safeAreaInsets()
 {
     UIEdgeInsets insets = UIEdgeInsetsZero;
-    insets = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
+    if (@available(iOS 11.0, *)) {
+        insets = UIApplication.sharedApplication.delegate.window.safeAreaInsets;
+    }
     return insets;
 }
 

@@ -122,8 +122,30 @@ typedef struct SSTestStructInfo_t {
 {
     [super viewDidLoad];
     
-    ss_easy_detail_log(@"test1 %s %s %s", "sa", "cc");
-    ss_easy_detail_log(@"test2 %@ %@ %@", @(1), @(2), @"333");
+    __weak SSEasyController *host = self;
+    
+    [self test:@"easy alert" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ss_easy_alert(host, ^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"title";
+            configuration.message = @"message";
+            [configuration addAction:@"custom" handler:^(UIAlertController *alert) {
+                ss_easy_log(@"alert action");
+            }];
+        });
+    }];
+    
+    [self test:@"easy alert + 输入框" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ss_easy_alert(host, ^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"title";
+            configuration.message = @"message";
+            [configuration addAction:@"custom" handler:^(UIAlertController *alert) {
+                ss_easy_log(@"alert action");
+            }];
+            [configuration addTextFieldWithHandler:^(UITextField *textField) {
+                
+            }];
+        });
+    }];
     
     [self test:@"pthread_kill 屏蔽" tap:^(UIButton *button, NSDictionary *userInfo) {
         pthread_kill(pthread_self(), SIGINT);

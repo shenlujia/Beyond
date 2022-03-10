@@ -28,11 +28,3 @@ do { \
 } while (0);
 
 extern IMP SSSwizzleMethodWithBlock(Class c, SEL originalSEL, id block);
-
-@interface NSObject (MethodSwizzle)
-
-+ (BOOL)ss_swizzleMethod:(SEL)originalSEL withMethod:(SEL)otherSEL;
-
-+ (BOOL)ss_swizzleClassMethod:(SEL)originalSEL withClassMethod:(SEL)otherSEL;
-
-@end

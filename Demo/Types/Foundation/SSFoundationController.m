@@ -196,26 +196,6 @@
         weak_s.baseObj.text = @"2";
     }];
     
-    [self test:@"weak test NSHashTable NSMapTable" tap:^(UIButton *button, NSDictionary *userInfo) {
-        NSHashTable *t1 = [[NSHashTable alloc] init];
-        NSHashTable *t2 = [NSHashTable weakObjectsHashTable];
-        __unused BOOL tt1 = t1.pointerFunctions.usesWeakReadAndWriteBarriers;
-        __unused BOOL tt2 = t2.pointerFunctions.usesWeakReadAndWriteBarriers;
-        NSMapTable *m1 = [NSMapTable weakToWeakObjectsMapTable];
-        NSMapTable *m2 = [NSMapTable weakToStrongObjectsMapTable];
-        NSMapTable *m3 = [NSMapTable strongToWeakObjectsMapTable];
-        NSMapTable *m4 = [NSMapTable strongToStrongObjectsMapTable];
-        __unused BOOL mm1 = m1.keyPointerFunctions.usesWeakReadAndWriteBarriers;
-        __unused BOOL mm2 = m2.keyPointerFunctions.usesWeakReadAndWriteBarriers;
-        __unused BOOL mm3 = m3.keyPointerFunctions.usesWeakReadAndWriteBarriers;
-        __unused BOOL mm4 = m4.keyPointerFunctions.usesWeakReadAndWriteBarriers;
-        
-        [[NSUserDefaults standardUserDefaults] setObject:@[@"1",@"2"] forKey:@"test_array"];
-        __unused id kk = [[NSUserDefaults standardUserDefaults] objectForKey:@"test_array"];
-        
-        PRINT_BLANK_LINE
-    }];
-    
     [self test:@"UIColor ss_JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
         {
             UIColor *color = [TestColor cyanColor];
