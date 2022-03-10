@@ -125,7 +125,7 @@ typedef struct SSTestStructInfo_t {
     __weak SSEasyController *host = self;
     
     [self test:@"easy alert" tap:^(UIButton *button, NSDictionary *userInfo) {
-        ss_easy_alert(host, ^(SSEasyAlertConfiguration *configuration) {
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
             configuration.title = @"title";
             configuration.message = @"message";
             [configuration addAction:@"custom" handler:^(UIAlertController *alert) {
@@ -135,7 +135,7 @@ typedef struct SSTestStructInfo_t {
     }];
     
     [self test:@"easy alert + 输入框" tap:^(UIButton *button, NSDictionary *userInfo) {
-        ss_easy_alert(host, ^(SSEasyAlertConfiguration *configuration) {
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
             configuration.title = @"title";
             configuration.message = @"message";
             [configuration addAction:@"custom" handler:^(UIAlertController *alert) {

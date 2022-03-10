@@ -26,5 +26,3 @@ do { \
     NSLog(@"is_swizzled !!!"); \
   } \
 } while (0);
-
-extern IMP SSSwizzleMethodWithBlock(Class c, SEL originalSEL, id block);

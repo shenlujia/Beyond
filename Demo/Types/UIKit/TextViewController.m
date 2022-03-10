@@ -8,6 +8,7 @@
 
 #import "TextViewController.h"
 #import <Masonry/Masonry.h>
+#import "SSEasy.h"
 
 @interface TextViewController ()
 
@@ -42,7 +43,7 @@
         UITextView *view = [[UITextView alloc] init];
         [self.view addSubview:view];
         view.backgroundColor = UIColor.lightGrayColor;
-        view.font = [UIFont systemFontOfSize:13];
+        view.font = [UIFont systemFontOfSize:25];
         view.textColor = UIColor.redColor;
         view.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         view.textContainerInset = UIEdgeInsetsZero; // 重要!!!
@@ -66,6 +67,8 @@
         view;
     });
     
+    __block float baseLineOffset = 0;
+    __block float lineHeight = 30;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentLeft;
     
@@ -75,6 +78,13 @@
     attributes[NSForegroundColorAttributeName] = self.textView.textColor;
     
     void (^action)(void) = ^{
+        paragraphStyle.minimumLineHeight = lineHeight;
+        paragraphStyle.maximumLineHeight = lineHeight;
+        // 字体默认从下往上绘制
+        // 行高需要和下面的搭配食用
+        CGFloat realOffset = baseLineOffset + (lineHeight - weak_s.textView.font.lineHeight) / 2;
+        attributes[NSBaselineOffsetAttributeName] = @(realOffset);
+        
         UITextView *textView = weak_s.textView;
         [textView.textStorage setAttributes:attributes range:NSMakeRange(0, textView.text.length)];
         [weak_s p_updateTestLayers];
@@ -86,64 +96,60 @@
     }];
     
     [self test:@"font" tap:^(UIButton *button, NSDictionary *userInfo) {
-        static NSInteger value = 10;
-        value += 2;
-        value = (value % 20);
-        attributes[NSFontAttributeName] = [UIFont systemFontOfSize:value + 10];
-        action();
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"font";
+            UIFont *font = attributes[NSFontAttributeName];
+            NSInteger size = font.pointSize;
+            [configuration addTextFieldWithHandler:^(UITextField *textField) {
+                textField.text = [@(size) stringValue];
+            }];
+            [configuration addConfirmHandler:^(UIAlertController *alert) {
+                NSInteger size = alert.textFields.firstObject.text.integerValue;
+                attributes[NSFontAttributeName] = [UIFont systemFontOfSize:MAX(size, 5)];
+                action();
+            }];
+        });
     }];
     
-    [self test:@"正确设置 lineSpace" tap:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"lineSpace尽量不要改 会有偏移" tap:^(UIButton *button, NSDictionary *userInfo) {
         // http://pingguohe.net/2018/03/29/how-to-implement-line-height.html
-        static NSInteger value = 10;
-        value += 2;
-        value = (value % 30);
-        UIFont *font = weak_s.textView.font;
-        paragraphStyle.lineSpacing = value - (font.lineHeight - font.pointSize);
-        action();
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"lineSpace";
+            [configuration addTextFieldWithHandler:^(UITextField *textField) {
+                textField.text = [@(paragraphStyle.lineSpacing) stringValue];
+            }];
+            [configuration addConfirmHandler:^(UIAlertController *alert) {
+                NSInteger value = alert.textFields.firstObject.text.integerValue;
+                paragraphStyle.lineSpacing = value;
+                action();
+            }];
+        });
     }];
     
-    [self test:@"重置 lineSpace" tap:^(UIButton *button, NSDictionary *userInfo) {
-        paragraphStyle.lineSpacing = 0;
-        action();
+    [self test:@"lineHeight" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"lineHeight";
+            [configuration addTextFieldWithHandler:^(UITextField *textField) {
+                textField.text = [@(lineHeight) stringValue];
+            }];
+            [configuration addConfirmHandler:^(UIAlertController *alert) {
+                lineHeight = alert.textFields.firstObject.text.integerValue;
+                action();
+            }];
+        });
     }];
     
-    [self test:@"错误设置 lineHeight" tap:^(UIButton *button, NSDictionary *userInfo) {
-        static NSInteger value = 10;
-        value += 2;
-        value = (value % 30);
-        
-        const CGFloat lineHeight = weak_s.textView.font.lineHeight + value;
-        paragraphStyle.minimumLineHeight = lineHeight;
-        paragraphStyle.maximumLineHeight = lineHeight;
-        
-        attributes[NSBaselineOffsetAttributeName] = @(0);
-        
-        action();
-    }];
-    
-    [self test:@"正确设置 lineHeight" tap:^(UIButton *button, NSDictionary *userInfo) {
-        static NSInteger value = 10;
-        value += 2;
-        value = (value % 30);
-        
-        const CGFloat lineHeight = weak_s.textView.font.lineHeight + value;
-        paragraphStyle.minimumLineHeight = lineHeight;
-        paragraphStyle.maximumLineHeight = lineHeight;
-        
-        // 字体默认从下往上绘制
-        // 行高需要和下面的搭配食用
-        CGFloat baselineOffset = (lineHeight - weak_s.textView.font.lineHeight) / 2;
-        attributes[NSBaselineOffsetAttributeName] = @(baselineOffset);
-        
-        action();
-    }];
-    
-    [self test:@"重置 lineHeight" tap:^(UIButton *button, NSDictionary *userInfo) {
-        paragraphStyle.minimumLineHeight = weak_s.textView.font.lineHeight;
-        paragraphStyle.maximumLineHeight = weak_s.textView.font.lineHeight;
-        attributes[NSBaselineOffsetAttributeName] = @(0);
-        action();
+    [self test:@"baseLineOffset" tap:^(UIButton *button, NSDictionary *userInfo) {
+        ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
+            configuration.title = @"baseLineOffset";
+            [configuration addTextFieldWithHandler:^(UITextField *textField) {
+                textField.text = [@(baseLineOffset) stringValue];
+            }];
+            [configuration addConfirmHandler:^(UIAlertController *alert) {
+                baseLineOffset = alert.textFields.firstObject.text.integerValue;
+                action();
+            }];
+        });
     }];
     
     [self observe:UITextViewTextDidChangeNotification block:^(NSNotification *notification) {

@@ -67,7 +67,6 @@ static NSNumber *backgroundTaskIdentifier = nil;
     }
     
     NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
-    
     [center addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     [center addObserver:self selector:@selector(didBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [center addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
