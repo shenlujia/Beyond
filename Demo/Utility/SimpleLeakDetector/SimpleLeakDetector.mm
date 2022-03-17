@@ -11,6 +11,7 @@
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "SimpleLeakDetectorMRC.h"
 #import "SSHeapEnumerator.h"
+#import "SSEasy.h"
 
 @interface SimpleLeakDetector ()
 
@@ -82,48 +83,6 @@
     return ret;
 }
 
-+ (NSArray *)retainedObjectsWithObject:(id)object
-{
-    if ([object isKindOfClass:[NSArray class]]) {
-        return (NSArray *)object;
-    }
-
-    if ([object isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dictionary = (NSDictionary *)object;
-        NSMutableArray *ret = [NSMutableArray arrayWithArray:dictionary.allKeys];
-        [ret addObjectsFromArray:dictionary.allValues];
-        return ret;
-    }
-
-    if ([object isKindOfClass:[NSHashTable class]]) {
-        NSHashTable *table = (NSHashTable *)object;
-        return table.pointerFunctions.usesStrongWriteBarrier ? table.allObjects : @[];
-    }
-
-    if ([object isKindOfClass:[NSMapTable class]]) {
-        NSMapTable *table = (NSMapTable *)object;
-        NSDictionary *dictionary = table.keyPointerFunctions.usesStrongWriteBarrier ? table.dictionaryRepresentation : @{};
-        return [self retainedObjectsWithObject:dictionary];
-    }
-
-    if ([object isKindOfClass:[NSSet class]]) {
-        return ((NSSet *)object).allObjects;
-    }
-
-    FBObjectGraphConfiguration *configuration = [[FBObjectGraphConfiguration alloc] init];
-    FBObjectiveCObject *wrapper = [[FBObjectiveCObject alloc] initWithObject:object configuration:configuration];
-    NSSet *allRetainedObjects = [wrapper allRetainedObjects];
-
-    NSMutableArray *ret = [NSMutableArray array];
-    for (FBObjectiveCObject *temp in allRetainedObjects.allObjects) {
-        if (temp.object) {
-            [ret addObject:temp.object];
-        }
-    }
-
-    return ret;
-}
-
 + (NSArray *)ownersOfObject:(id)object
 {
     NSMutableArray *ret = [NSMutableArray array];
@@ -134,7 +93,7 @@
             [SimpleLeakDetectorMRC enableDelayDealloc];
             if ([SimpleLeakDetectorMRC isPointerValidWithClassName:class_getName(c) pointer:pointer]) {
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
-                NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
+                NSArray *retained = ss_memory_retainedObjects(temp);
                 for (id one in retained) {
                     if ([SimpleLeakDetector p_object:one conformTo:object]) {
                         [ret addObject:temp];
@@ -157,7 +116,7 @@
             [SimpleLeakDetectorMRC enableDelayDealloc];
             if ([SimpleLeakDetectorMRC isPointerValidWithClassName:class_getName(c) pointer:pointer]) {
                 NSObject *temp = (__bridge NSObject *)((void *)pointer);
-                NSArray *retained = [SimpleLeakDetector retainedObjectsWithObject:temp];
+                NSArray *retained = ss_memory_retainedObjects(temp);
                 for (id one in retained) {
                     if ([SimpleLeakDetector p_object:one conformTo:object]) {
                         ret = temp;

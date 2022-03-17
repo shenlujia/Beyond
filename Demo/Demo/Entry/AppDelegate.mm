@@ -11,6 +11,7 @@
 #import <FLEX/FLEX.h>
 #import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "MacroHeader.h"
+#import "SSEasyFixBeyond.h"
 
 static NSNumber *backgroundTaskIdentifier = nil;
 
@@ -39,12 +40,7 @@ static NSNumber *backgroundTaskIdentifier = nil;
 {
     [Bugly startWithAppId:@"ca58095700"];
 
-    NSString *name = nil;
-    name = @"ViewController";
-    name = @"DEBUGPanelController";
-    name = @"SSFoundationController";
-    name = @"UIKitController";
-
+    NSString *name = beyond_entryClassName();
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:c];

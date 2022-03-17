@@ -57,6 +57,8 @@
 		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
+		5E25C52327DEE45E0043691F /* FLEXHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25C52227DEE45E0043691F /* FLEXHook.m */; };
+		5E30631027E3551200DAFCBD /* SSEasyMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E30630E27E3551200DAFCBD /* SSEasyMemory.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
 		5E386A4C2743D4D900DFBE1A /* SSEasyFixBeyond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4B2743D4D900DFBE1A /* SSEasyFixBeyond.m */; };
 		5E386A4F2743D61200DFBE1A /* MessageSendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4E2743D61200DFBE1A /* MessageSendController.m */; };
@@ -216,6 +218,10 @@
 		5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewCell.m; sourceTree = "<group>"; };
 		5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewController.h; sourceTree = "<group>"; };
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
+		5E25C52127DEE45E0043691F /* FLEXHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXHook.h; sourceTree = "<group>"; };
+		5E25C52227DEE45E0043691F /* FLEXHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLEXHook.m; sourceTree = "<group>"; };
+		5E30630E27E3551200DAFCBD /* SSEasyMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyMemory.m; sourceTree = "<group>"; };
+		5E30630F27E3551200DAFCBD /* SSEasyMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyMemory.h; sourceTree = "<group>"; };
 		5E347B7626B4F8E3003F4355 /* DEBUGPanelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEBUGPanelController.h; sourceTree = "<group>"; };
 		5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEBUGPanelController.m; sourceTree = "<group>"; };
 		5E386A4A2743D4D900DFBE1A /* SSEasyFixBeyond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyFixBeyond.h; sourceTree = "<group>"; };
@@ -659,6 +665,15 @@
 			path = HorizontalCollectionView;
 			sourceTree = "<group>";
 		};
+		5E25C52027DEE4450043691F /* _FLEX */ = {
+			isa = PBXGroup;
+			children = (
+				5E25C52127DEE45E0043691F /* FLEXHook.h */,
+				5E25C52227DEE45E0043691F /* FLEXHook.m */,
+			);
+			path = _FLEX;
+			sourceTree = "<group>";
+		};
 		5E386A492743D4D900DFBE1A /* SSEasyFixBeyond */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +802,8 @@
 				5EB4598A27D30DD300E7C99A /* SSEasyHook.m */,
 				5EB4598F27D30DD300E7C99A /* SSEasyLog.h */,
 				5EB4598927D30DD300E7C99A /* SSEasyLog.m */,
+				5E30630F27E3551200DAFCBD /* SSEasyMemory.h */,
+				5E30630E27E3551200DAFCBD /* SSEasyMemory.m */,
 			);
 			path = _Foundation;
 			sourceTree = "<group>";
@@ -819,6 +836,7 @@
 		5EEE20A02775C77E007F7A29 /* SSEasyBase */ = {
 			isa = PBXGroup;
 			children = (
+				5E25C52027DEE4450043691F /* _FLEX */,
 				5EB4598527D30DD300E7C99A /* _Foundation */,
 				5EB4599227D30DD300E7C99A /* _UIKit */,
 				5EB4599A27D30DD300E7C99A /* SSEasy.h */,
@@ -1032,6 +1050,7 @@
 				574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */,
 				5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */,
 				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
+				5E25C52327DEE45E0043691F /* FLEXHook.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
@@ -1048,6 +1067,7 @@
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
 				5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
+				5E30631027E3551200DAFCBD /* SSEasyMemory.m in Sources */,
 				5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,

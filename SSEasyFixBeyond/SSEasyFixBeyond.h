@@ -3,3 +3,5 @@
 //
 
 #import <Foundation/Foundation.h>
+
+FOUNDATION_EXTERN NSString * beyond_entryClassName(void);

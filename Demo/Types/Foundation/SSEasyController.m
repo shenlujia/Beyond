@@ -8,6 +8,7 @@
 
 #import "SSEasyController.h"
 #import "SSEasy.h"
+#import <pthread.h>
 
 typedef struct SSTestStructInfo_t {
     const char* filename;
@@ -97,6 +98,43 @@ typedef struct SSTestStructInfo_t {
 
 @end
 
+@class MemoryLeak_test1Class, MemoryLeak_test2Class, MemoryLeak_test3Class;
+@interface MemoryLeak_test1Class : NSObject
+
+@property (nonatomic, strong) MemoryLeak_test1Class *a;
+@property (nonatomic, strong) MemoryLeak_test2Class *b;
+@property (nonatomic, strong) MemoryLeak_test3Class *c;
+
+@end
+
+@implementation MemoryLeak_test1Class
+
+@end
+
+@interface MemoryLeak_test2Class : NSObject
+
+@property (nonatomic, strong) MemoryLeak_test1Class *d;
+@property (nonatomic, strong) MemoryLeak_test2Class *e;
+@property (nonatomic, strong) MemoryLeak_test3Class *f;
+
+@end
+
+@implementation MemoryLeak_test2Class
+
+@end
+
+@interface MemoryLeak_test3Class : NSObject
+
+@property (nonatomic, strong) id g;
+@property (nonatomic, strong) id h;
+@property (nonatomic, strong) id i;
+
+@end
+
+@implementation MemoryLeak_test3Class
+
+@end
+
 @implementation SSEasyController
 
 + (void)initialize
@@ -123,6 +161,20 @@ typedef struct SSTestStructInfo_t {
     [super viewDidLoad];
     
     __weak SSEasyController *host = self;
+    
+    [self test:@"FLEXLiveObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
+        UIViewController *c = [[NSClassFromString(@"FLEXLiveObjectsController") alloc] init];
+        [host.navigationController pushViewController:c animated:YES];
+    }];
+    
+    [self test:@"制造内存泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
+        MemoryLeak_test1Class *test1 = [[MemoryLeak_test1Class alloc] init];
+        test1.b = [[MemoryLeak_test2Class alloc] init];
+        test1.c = [[MemoryLeak_test3Class alloc] init];
+        test1.b.e = [[MemoryLeak_test2Class alloc] init];
+        test1.b.f = [[MemoryLeak_test3Class alloc] init];
+        test1.b.f.h = test1;
+    }];
     
     [self test:@"easy alert" tap:^(UIButton *button, NSDictionary *userInfo) {
         ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {

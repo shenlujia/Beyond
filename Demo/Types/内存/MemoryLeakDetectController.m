@@ -13,6 +13,7 @@
 #import "SimpleLeakDetectorMRC.h"
 #import "MacroHeader.h"
 #import "SSLiveObjectsViewController.h"
+#import "SSEasy.h"
 
 @interface TestMemoryLeakDetectObjInternal : NSObject
 
@@ -163,7 +164,7 @@
 - (void)test_retainedObjectsWithObject
 {
     TestMemoryLeakDetectObj *obj = [TestMemoryLeakDetectObj create];
-    NSArray *retainedObjects = [SimpleLeakDetector retainedObjectsWithObject:obj];
+    NSArray *retainedObjects = ss_memory_retainedObjects(obj);
     NSLog(@"%@", retainedObjects);
 }
 
