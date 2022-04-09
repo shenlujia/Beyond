@@ -195,8 +195,6 @@
 
     [FBAssociationManager hook];
     [SimpleLeakDetectorMRC run];
-
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(p_timerCallback) userInfo:nil repeats:YES];
 }
 
 + (BOOL)p_object:(NSObject *)object conformTo:(id)to
@@ -216,25 +214,6 @@
     }
 
     return NO;
-}
-
-- (void)p_timerCallback
-{
-    __unused Class c = NSClassFromString(@"ACCImageAlbumEditComponent");
-//                NSMutableArray *objects = [NSMutableArray array];
-//                for (id temp in [SimpleLeakDetector allLiveObjects]) {
-//                    if ([temp isKindOfClass:c]) {
-//                        [objects addObject:temp];
-//                    }
-//                }
-//
-//    SSLeakDetectorObject *object = [[SSLeakDetectorObject alloc] init];
-//    [record updateWithDictionary:[SimpleLeakDetector allDetectedLiveObjects]];
-    
-    id any =nil;
-    if (any) {
-        NSLog(@"");
-    }
 }
 
 @end

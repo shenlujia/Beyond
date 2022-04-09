@@ -28,6 +28,8 @@ typedef struct SSTestStructInfo_t {
 
 @interface SwizzleTest : NSObject
 
+@property (nonatomic, copy) NSString *name;
+
 @end
 
 @implementation SwizzleTest
@@ -88,7 +90,6 @@ typedef struct SSTestStructInfo_t {
     return 0;
 }
 
-
 - (NSString *)test_replace_then_call_original_with_s:(SSTestStructInfo)s text:(NSString *)text
 {
     NSString *ret = [NSString stringWithFormat:@"old %@,%@", @(s.line), text];
@@ -96,14 +97,19 @@ typedef struct SSTestStructInfo_t {
     return ret;
 }
 
+- (NSString *)test_update_obj:(SwizzleTest *)other
+{
+    return [NSString stringWithFormat:@"other: %@", other.name];
+}
+
 @end
 
 @class MemoryLeak_test1Class, MemoryLeak_test2Class, MemoryLeak_test3Class;
 @interface MemoryLeak_test1Class : NSObject
 
-@property (nonatomic, strong) MemoryLeak_test1Class *a;
-@property (nonatomic, strong) MemoryLeak_test2Class *b;
-@property (nonatomic, strong) MemoryLeak_test3Class *c;
+@property (nonatomic, strong) MemoryLeak_test1Class *test1_1;
+@property (nonatomic, strong) MemoryLeak_test2Class *test1_2;
+@property (nonatomic, strong) MemoryLeak_test3Class *test1_3;
 
 @end
 
@@ -113,9 +119,9 @@ typedef struct SSTestStructInfo_t {
 
 @interface MemoryLeak_test2Class : NSObject
 
-@property (nonatomic, strong) MemoryLeak_test1Class *d;
-@property (nonatomic, strong) MemoryLeak_test2Class *e;
-@property (nonatomic, strong) MemoryLeak_test3Class *f;
+@property (nonatomic, strong) MemoryLeak_test1Class *test2_1;
+@property (nonatomic, strong) MemoryLeak_test2Class *test2_2;
+@property (nonatomic, strong) MemoryLeak_test3Class *test2_3;
 
 @end
 
@@ -125,9 +131,9 @@ typedef struct SSTestStructInfo_t {
 
 @interface MemoryLeak_test3Class : NSObject
 
-@property (nonatomic, strong) id g;
-@property (nonatomic, strong) id h;
-@property (nonatomic, strong) id i;
+@property (nonatomic, strong) id test3_1;
+@property (nonatomic, strong) id test3_2;
+@property (nonatomic, strong) id test3_3;
 
 @end
 
@@ -169,11 +175,17 @@ typedef struct SSTestStructInfo_t {
     
     [self test:@"制造内存泄漏" tap:^(UIButton *button, NSDictionary *userInfo) {
         MemoryLeak_test1Class *test1 = [[MemoryLeak_test1Class alloc] init];
-        test1.b = [[MemoryLeak_test2Class alloc] init];
-        test1.c = [[MemoryLeak_test3Class alloc] init];
-        test1.b.e = [[MemoryLeak_test2Class alloc] init];
-        test1.b.f = [[MemoryLeak_test3Class alloc] init];
-        test1.b.f.h = test1;
+        test1.test1_2 = [[MemoryLeak_test2Class alloc] init];
+        test1.test1_3 = [[MemoryLeak_test3Class alloc] init];
+        test1.test1_2.test2_2 = [[MemoryLeak_test2Class alloc] init];
+        test1.test1_2.test2_3 = [[MemoryLeak_test3Class alloc] init];
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObject:@[test1]];
+        [array addObject:@[test1]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        dictionary[@"test_a"] = array;
+        dictionary[@"test_b"] = array;
+        test1.test1_2.test2_3.test3_1 = dictionary;
     }];
     
     [self test:@"easy alert" tap:^(UIButton *button, NSDictionary *userInfo) {
