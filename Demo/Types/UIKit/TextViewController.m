@@ -45,6 +45,7 @@
         view.backgroundColor = UIColor.lightGrayColor;
         view.font = [UIFont systemFontOfSize:25];
         view.textColor = UIColor.redColor;
+        
         view.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         view.textContainerInset = UIEdgeInsetsZero; // 重要!!!
         view.textContainer.lineFragmentPadding = 0; // 重要!!!

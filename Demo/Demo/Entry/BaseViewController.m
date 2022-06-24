@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import <Masonry/Masonry.h>
 #import "SSEasy.h"
+
+#define kSpaceY 10
 
 UIEdgeInsets app_safeAreaInsets()
 {
@@ -114,14 +117,46 @@ UIEdgeInsets app_safeAreaInsets()
     [super viewDidLoad];
     self.createDate = [NSDate date];
     self.view.backgroundColor = UIColor.groupTableViewBackgroundColor;
+    
+    _textInputView = ({
+        UITextField *view = [[UITextField alloc] init];
+        [self.view addSubview:view];
+        view.textAlignment = NSTextAlignmentLeft;
+        view.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+        view.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        view.autocorrectionType = UITextAutocorrectionTypeNo;
+        view.spellCheckingType = UITextSpellCheckingTypeNo;
+        view.keyboardType = UIKeyboardTypeDefault;
+        view.keyboardAppearance = UIKeyboardAppearanceDefault;
+        view.returnKeyType = UIReturnKeyDefault;
+        view.enablesReturnKeyAutomatically = YES;
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.inset(10);
+            make.top.equalTo(view.superview);
+            make.height.mas_equalTo(0);
+        }];
+        
+        view;
+    });
 
     self.scrollView = [[ScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.scrollView];
-    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.scrollView.superview);
+        make.top.equalTo(self.textInputView.mas_bottom);
+    }];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap3Action)];
-    tap.numberOfTapsRequired = 3;
-    [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap3Action)];
+    tap3.numberOfTapsRequired = 3;
+    [self.view addGestureRecognizer:tap3];
+    
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap1Action)];
+    tap1.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tap1];
+    
+    [tap1 requireGestureRecognizerToFail:tap3];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -172,6 +207,16 @@ UIEdgeInsets app_safeAreaInsets()
     self.navigationItem.rightBarButtonItems = rightBarButtonItems;
 }
 
+- (void)activateInputView
+{
+    [self.textInputView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(54);
+    }];
+    [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textInputView.mas_bottom).offset(-kSpaceY);
+    }];
+}
+
 - (void)observe:(NSString *)name block:(void (^)(NSNotification *notification))block
 {
     if (!name || !block) {
@@ -209,13 +254,10 @@ UIEdgeInsets app_safeAreaInsets()
 {
     Class clazz = NSClassFromString(c);
     if (!clazz) {
-        NSString *temp = [NSString stringWithFormat:@"%@Controller", c];
+        NSString *temp = [NSString stringWithFormat:@"SS%@", c];
         clazz = NSClassFromString(temp);
-        if (!clazz) {
-            NSString *temp = [NSString stringWithFormat:@"SS%@Controller", c];
-            clazz = NSClassFromString(temp);
-        }
     }
+    NSParameterAssert(clazz);
     if (!clazz) {
         return;
     }
@@ -286,11 +328,18 @@ UIEdgeInsets app_safeAreaInsets()
 
 - (void)tap3Action
 {
+    ss_easy_log(@"%s", _cmd);
     if (self.navigationController.viewControllers.count > 1) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)tap1Action
+{
+    ss_easy_log(@"%s", _cmd);
+    [self.textInputView resignFirstResponder];
 }
 
 - (void)reloadData
@@ -303,7 +352,7 @@ UIEdgeInsets app_safeAreaInsets()
     for (EntryDataModel *model in self.models) {
         [model.button removeFromSuperview];
     }
-    const CGFloat spaceY = 10;
+    const CGFloat spaceY = kSpaceY;
     for (NSInteger idx = 0; idx < self.models.count; ++idx) {
         EntryDataModel *model = self.models[idx];
         [self.scrollView addSubview:model.button];

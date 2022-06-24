@@ -221,6 +221,8 @@ static void *s_leakObj = NULL;
 
     [self test_c:@"MemoryLeakDetect"];
     
+    [self test_c:@"MapTableLeakController"];
+    
     [self test:@"Profile Leaks 能检测泄漏 1" tap:^(UIButton *button, NSDictionary *userInfo) {
         int size = 1024 * 1024;
         void *p = malloc(size);

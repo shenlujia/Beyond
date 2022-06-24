@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak typeof (self) host = self;
     
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [documentPath stringByAppendingPathComponent:@"file_manager_test"];
@@ -69,7 +70,7 @@
     
     [self test:@"列举文件夹下所有文件" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSArray *prints = all_simple_contents();
-        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"]];
+        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"] inContainer:host];
     }];
     
     [self test:@"拷贝文件夹 测试是否全部被拷贝" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -85,7 +86,7 @@
                 [prints removeObject:s];
             }
         }
-        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"]];
+        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"] inContainer:host];
     }];
     
     [self test:@"检测路径中带b" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -95,7 +96,7 @@
                 [prints removeObject:s];
             }
         }
-        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"]];
+        [SSDEBUGTextViewController showText:[prints componentsJoinedByString:@"\n"] inContainer:nil];
     }];
     
     [self test:@"trim自定义对象" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -104,7 +105,8 @@
         NSDictionary *c = @{@"a":b,@"1":b,@"c":@"d"};
         NSMutableArray *result = [NSMutableArray array];
         [FileManagerController p_trimObject:c draftID:@"a" prefix:nil result:result];
-        [SSDEBUGTextViewController showJSONObject:result];
+        NSString *text = [SSDEBUGTextViewController textWithJSONObject:result];
+        [SSDEBUGTextViewController showText:text inContainer:host];
     }];
 }
 

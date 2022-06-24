@@ -91,25 +91,27 @@
         }];
     }];
     
+    [self test_c:@"RotateAnimeController"];
+    
     [self test_c:@"KeyboardController"];
     
     [self test_c:@"TextViewController"];
     
     [self test_c:@"TopWithBottomAnimationController"];
     
-    [self test_c:@"Corner"];
+    [self test_c:@"CornerController"];
     
-    [self test_c:@"HorizontalCollectionView"];
+    [self test_c:@"HorizontalCollectionViewController"];
 
     [self test_c:@"TableViewController"];
 
-    [self test_c:@"Lottie"];
+    [self test_c:@"LottieController"];
 
-    [self test_c:@"Gesture"];
+    [self test_c:@"GestureController"];
     
-    [self test_c:@"Appearance"];
+    [self test_c:@"AppearanceController"];
     
-    [self test_c:@"Control"];
+    [self test_c:@"ControlController"];
 }
 
 @end

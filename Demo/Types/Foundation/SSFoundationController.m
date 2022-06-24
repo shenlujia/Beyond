@@ -140,11 +140,11 @@
     
     [self testRegularExpression];
 
-    [self test_c:@"FileManager"];
+    [self test_c:@"FileManagerController"];
     
     [self test_c:@"SSEasyController"];
     
-    [self test_c:@"MessageSend"];
+    [self test_c:@"MessageSendController"];
     
     [self test:@"NSLog崩溃" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSString *text0 = nil;

@@ -158,7 +158,11 @@
     view.autocapitalizationType = UITextAutocapitalizationTypeNone;
     view.autocorrectionType = UITextAutocorrectionTypeNo;
     view.spellCheckingType = UITextSpellCheckingTypeNo;
+    view.keyboardType = UIKeyboardTypeDefault;
+    view.keyboardAppearance = UIKeyboardAppearanceDefault;
+    view.returnKeyType = UIReturnKeyDefault;
     view.enablesReturnKeyAutomatically = YES;
+    
     view.delegate = self;
 
     if (@available(iOS 11.0, *)) {

@@ -19,35 +19,35 @@
 {
     [super viewDidLoad];
 
-    [self test_c:@"Foundation"];
+    [self test_c:@"FoundationController"];
 
-    [self test_c:@"UselessClassCheck"];
+    [self test_c:@"UselessClassCheckController"];
 
-    [self test_c:@"Photo"];
+    [self test_c:@"PhotoController"];
 
-    [self test_c:@"AVKit"];
+    [self test_c:@"AVKitController"];
     
-    [self test_c:@"CallStack"];
+    [self test_c:@"CallStackController"];
     
-    [self test_c:@"Fishhook"];
+    [self test_c:@"FishhookController"];
     
-    [self test_c:@"UIKit"];
+    [self test_c:@"UIKitController"];
     
-    [self test_c:@"Timer"];
+    [self test_c:@"TimerController"];
     
-    [self test_c:@"RunLoop"];
+    [self test_c:@"RunLoopController"];
     
-    [self test_c:@"KVC"];
+    [self test_c:@"KVCController"];
     
-    [self test_c:@"Thread"];
+    [self test_c:@"ThreadController"];
     
-    [self test_c:@"Memory"];
+    [self test_c:@"MemoryController"];
     
-    [self test_c:@"Safety"];
+    [self test_c:@"SafetyController"];
     
-    [self test_c:@"Ivar"];
+    [self test_c:@"IvarController"];
     
-    [self test_c:@"Animation"];
+    [self test_c:@"AnimationController"];
     
     [self test_c:@"KVOController"];
     

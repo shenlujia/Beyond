@@ -57,6 +57,7 @@
 		5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFEF259D6FE1004E4A66 /* HorizontalCollectionViewController.m */; };
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
+		5E0D9B33285310B10021497B /* RotateAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D9B31285310B10021497B /* RotateAnimeController.m */; };
 		5E25C52327DEE45E0043691F /* FLEXHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25C52227DEE45E0043691F /* FLEXHook.m */; };
 		5E30631027E3551200DAFCBD /* SSEasyMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E30630E27E3551200DAFCBD /* SSEasyMemory.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
@@ -97,6 +98,7 @@
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
 		5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */; };
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
+		5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F52AC286530110017B05F /* MapTableLeakController.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
 		5EB4599B27D30DD300E7C99A /* SSEasyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4598727D30DD300E7C99A /* SSEasyException.m */; };
@@ -219,6 +221,8 @@
 		5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewCell.m; sourceTree = "<group>"; };
 		5E07DFF1259D6FE1004E4A66 /* HorizontalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalCollectionViewController.h; sourceTree = "<group>"; };
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
+		5E0D9B31285310B10021497B /* RotateAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateAnimeController.m; sourceTree = "<group>"; };
+		5E0D9B32285310B10021497B /* RotateAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateAnimeController.h; sourceTree = "<group>"; };
 		5E25C52127DEE45E0043691F /* FLEXHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXHook.h; sourceTree = "<group>"; };
 		5E25C52227DEE45E0043691F /* FLEXHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLEXHook.m; sourceTree = "<group>"; };
 		5E30630E27E3551200DAFCBD /* SSEasyMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyMemory.m; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 		5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerHandler.m; sourceTree = "<group>"; };
 		5E7BCC862665D79C00F90FE6 /* DeviceAuthority.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceAuthority.h; sourceTree = "<group>"; };
 		5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceAuthority.m; sourceTree = "<group>"; };
+		5E8F52AB286530110017B05F /* MapTableLeakController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapTableLeakController.h; sourceTree = "<group>"; };
+		5E8F52AC286530110017B05F /* MapTableLeakController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableLeakController.m; sourceTree = "<group>"; };
 		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
@@ -352,6 +358,7 @@
 		5707304A24D2BD7C00A9883A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5E0D9B30285310B10021497B /* RotateAnime */,
 				5707304B24D2BD7C00A9883A /* AppearanceController.h */,
 				5707304D24D2BD7C00A9883A /* AppearanceController.m */,
 				5707304C24D2BD7C00A9883A /* ControlController.h */,
@@ -399,6 +406,8 @@
 				5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */,
 				5E7207B925ED29B800BD9F59 /* MemoryLeakDetectController.h */,
 				5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */,
+				5E8F52AB286530110017B05F /* MapTableLeakController.h */,
+				5E8F52AC286530110017B05F /* MapTableLeakController.m */,
 			);
 			path = "内存";
 			sourceTree = "<group>";
@@ -667,6 +676,15 @@
 				5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */,
 			);
 			path = HorizontalCollectionView;
+			sourceTree = "<group>";
+		};
+		5E0D9B30285310B10021497B /* RotateAnime */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D9B32285310B10021497B /* RotateAnimeController.h */,
+				5E0D9B31285310B10021497B /* RotateAnimeController.m */,
+			);
+			path = RotateAnime;
 			sourceTree = "<group>";
 		};
 		5E25C52027DEE4450043691F /* _FLEX */ = {
@@ -1054,6 +1072,7 @@
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,
 				5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */,
+				5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */,
 				574CA37024F666A20018D47B /* InspectiveCarm64.c in Sources */,
 				5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */,
 				5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */,
@@ -1062,6 +1081,7 @@
 				5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57E89A7124FD13AA005F2A6C /* KKThreadMonitor.m in Sources */,
+				5E0D9B33285310B10021497B /* RotateAnimeController.m in Sources */,
 				5EB459A127D30DD300E7C99A /* SSEasyAlert.m in Sources */,
 				57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */,
 				5EB4599C27D30DD300E7C99A /* SSEasyLog.m in Sources */,
@@ -1254,7 +1274,7 @@
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = _liujingbin_Wildcard_QESJFTWXZW;
+				PROVISIONING_PROFILE_SPECIFIER = "Cosign iOS Wildcard (DHDXQDVNYC)";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -1291,7 +1311,7 @@
 				OTHER_CFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = _liujingbin_Wildcard_QESJFTWXZW;
+				PROVISIONING_PROFILE_SPECIFIER = "Cosign iOS Wildcard (DHDXQDVNYC)";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};

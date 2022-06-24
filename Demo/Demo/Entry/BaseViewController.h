@@ -32,7 +32,11 @@ typedef void (^ActionBlock)(UIButton *button, NSDictionary *userInfo);
 
 @interface BaseViewController : UIViewController
 
+@property (nonatomic, strong, readonly) UITextField *textInputView;
+
 - (void)add_navi_right_item:(NSString *)title tap:(ActionBlock)tap;
+
+- (void)activateInputView;
 
 - (void)observe:(NSString *)name block:(void (^)(NSNotification *notification))block;
 

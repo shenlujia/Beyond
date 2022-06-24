@@ -115,7 +115,7 @@
     }];
 
     [self test:@"DEBUGTextView xxx" tap:^(UIButton *button, NSDictionary *userInfo) {
-        [SSDEBUGTextViewController showText:@"xxx"];
+        [SSDEBUGTextViewController showText:@"xxx" inContainer:weak_s];
     }];
 
     [self test:@"DEBUGTextView JSON" tap:^(UIButton *button, NSDictionary *userInfo) {
@@ -128,7 +128,8 @@
         NSDictionary *g = @{@"ggggggggggg1":[f copy], @"g2":[e copy]};
         NSDictionary *h = @{@"hhhhhhhhhhh1":[g copy], @"h2":[f copy], @"b":@"b1", @"a":@"a1"};
 
-        [SSDEBUGTextViewController showJSONObject:h];
+        NSString *text = [SSDEBUGTextViewController textWithJSONObject:h];
+        [SSDEBUGTextViewController showText:text inContainer:weak_s];
     }];
 }
 
