@@ -5,14 +5,25 @@
 
 #import "SSEasyFixBeyond.h"
 #import <fishhook/fishhook.h>
+#import "_Foundation.h"
+
+@implementation FBRetainCycleDetector (SSEasyFixBeyond)
+
+- (NSSet<NSArray<FBObjectiveCGraphElement *> *> *)findRetainCyclesWithMaxCycleLength:(NSUInteger)maxCycleLength maxTraversedNodeNumber:(NSUInteger)maxTraversedNodeNumber maxCycleNum:(NSUInteger)maxCycleNum
+{
+    return [self findRetainCyclesWithMaxCycleLength:maxCycleLength];
+}
+
+@end
 
 NSString * beyond_entryClassName(void)
 {
     NSString *name = nil;
     name = @"ViewController";
-    name = @"DEBUGPanelController";
-    name = @"SSFoundationController";
+//    name = @"DEBUGPanelController";
+//    name = @"SSFoundationController";
 //    name = @"UIKitController";
+//    name = @"MapTableLeakController";
     return name;
 }
 

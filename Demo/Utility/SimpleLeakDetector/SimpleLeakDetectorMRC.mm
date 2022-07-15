@@ -7,13 +7,13 @@
 //
 
 #import "SimpleLeakDetectorMRC.h"
-#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import <map>
 #import <set>
 #import <vector>
 #import <pthread.h>
 #import <objc/runtime.h>
 #import <malloc/malloc.h>
+#import "_Foundation.h"
 
 using namespace std;
 

@@ -8,7 +8,7 @@
 
 #import "SimpleLeakDetector.h"
 #import <objc/runtime.h>
-#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
+#import "MacroHeader.h"
 #import "SimpleLeakDetectorMRC.h"
 #import "SSHeapEnumerator.h"
 #import "SSEasy.h"

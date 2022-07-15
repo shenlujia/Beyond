@@ -168,6 +168,8 @@ typedef struct SSTestStructInfo_t {
     
     __weak SSEasyController *host = self;
     
+    fprintf(stderr, "log invisble");
+    
     [self test:@"FLEXLiveObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[NSClassFromString(@"FLEXLiveObjectsController") alloc] init];
         [host.navigationController pushViewController:c animated:YES];

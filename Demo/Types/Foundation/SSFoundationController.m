@@ -12,6 +12,7 @@
 #import "MacroHeader.h"
 #import "SSEasy.h"
 #import <KVOController/KVOController.h>
+#import "StrictForegroundProtector.h"
 
 @interface TestColor : UIColor
 
@@ -139,6 +140,14 @@
     [super viewDidLoad];
     
     [self testRegularExpression];
+    
+    [self test:@"五秒后调用 需要保证在前台 所以可能会在回到前台时调用" tap:^(UIButton *button, NSDictionary *userInfo) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [StrictForegroundProtector handleAction:^{
+                ss_easy_log(@"确保必定是前台");
+            }];
+        });
+    }];
 
     [self test_c:@"FileManagerController"];
     

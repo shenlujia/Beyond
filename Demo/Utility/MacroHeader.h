@@ -9,9 +9,7 @@
 #ifndef MacroHeader_h
 #define MacroHeader_h
 
-
 #import <Foundation/Foundation.h>
-
 
 #define MAIN_THREAD_SAFE_SYNC(action) \
 do { \
