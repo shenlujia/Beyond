@@ -115,6 +115,7 @@
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 		5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED3D35B276225B300BF9F9C /* KeyboardController.m */; };
+		5EDF91012876AAF40092B1B4 /* StrictForegroundProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */; };
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
@@ -315,6 +316,8 @@
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
 		5ED3D35A276225B300BF9F9C /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
 		5ED3D35B276225B300BF9F9C /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
+		5EDF90FF2876AAF40092B1B4 /* StrictForegroundProtector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrictForegroundProtector.h; sourceTree = "<group>"; };
+		5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrictForegroundProtector.m; sourceTree = "<group>"; };
 		5EE37116269E8B330080BDB2 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		5EE37117269E8B330080BDB2 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		5EF0245D25CAA9AE00EDB1EE /* objc_class_detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_class_detail.h; sourceTree = "<group>"; };
@@ -904,6 +907,8 @@
 				5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */,
 				5E386A4D2743D61200DFBE1A /* MessageSendController.h */,
 				5E386A4E2743D61200DFBE1A /* MessageSendController.m */,
+				5EDF90FF2876AAF40092B1B4 /* StrictForegroundProtector.h */,
+				5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1096,6 +1101,7 @@
 				5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				5E30631027E3551200DAFCBD /* SSEasyMemory.m in Sources */,
+				5EDF91012876AAF40092B1B4 /* StrictForegroundProtector.m in Sources */,
 				5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,

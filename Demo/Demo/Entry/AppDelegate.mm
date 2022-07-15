@@ -7,11 +7,17 @@
 //
 
 #import "AppDelegate.h"
-#import <Bugly/Bugly.h>
-#import <FLEX/FLEX.h>
-#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
 #import "MacroHeader.h"
 #import "SSEasyFixBeyond.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+#pragma clang diagnostic ignored "-Wunused-command-line-argument"
+#pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
+#import <Bugly/Bugly.h>
+#import <FLEX/FLEX.h>
+#pragma clang diagnostic pop
 
 static NSNumber *backgroundTaskIdentifier = nil;
 
@@ -39,7 +45,8 @@ static NSNumber *backgroundTaskIdentifier = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Bugly startWithAppId:@"ca58095700"];
-
+    [BuglyLog initLogger:BuglyLogLevelError consolePrint:NO];
+    
     NSString *name = beyond_entryClassName();
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     UIViewController *c = [[NSClassFromString(name) alloc] init];
