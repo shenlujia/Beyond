@@ -169,6 +169,10 @@ typedef struct SSTestStructInfo_t {
     __weak SSEasyController *host = self;
     
     fprintf(stderr, "log invisble");
+    ss_easy_log(@"ss_easy_log");
+    ss_easy_log(@"ss_easy_log %@ %@ %@", @"test", @(1), @"2");
+    NSLog(@"NSLog");
+    NSLog(@"NSLog %@", @(123));
     
     [self test:@"FLEXLiveObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[NSClassFromString(@"FLEXLiveObjectsController") alloc] init];
