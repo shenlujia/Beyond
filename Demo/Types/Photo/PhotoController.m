@@ -24,16 +24,24 @@
 {
     [super viewDidLoad];
 
-    [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
-        NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
-        if (@available(iOS 14, *)) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
-            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
-            NSLog(@"authorizationStatusForAccessLevel %@", @(status));
-#endif
-        }
-        NSLog(@"requestPhotoAuthorization %@", @(status));
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
+//            NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
+//            if (@available(iOS 14, *)) {
+//    #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
+//                PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+//                NSLog(@"authorizationStatusForAccessLevel %@", @(status));
+//    #endif
+//            }
+//            NSLog(@"requestPhotoAuthorization %@", @(status));
+//        }];
+      
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            
+        }];
+    });
 
     WEAKSELF
     
