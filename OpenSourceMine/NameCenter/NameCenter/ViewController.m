@@ -125,11 +125,19 @@ static NSString *kOldFileKey = @"!README.txt";
     }
     [self p_addValue:text];
     [self p_synchronize];
+    [self p_appendLog:@"记录成功"];
+}
+
+- (IBAction)checkDuplicateAction:(NSButton *)button
+{
+    [self p_appendLog:@"\n检测开始"];
+    
+    [self p_appendLog:@"检测结束"];
 }
 
 - (IBAction)scanAction:(NSButton *)button
 {
-    [self p_appendLog:@""];
+    [self p_appendLog:@"\n扫描开始"];
     if (![self p_checkPath]) {
         return;
     }
@@ -145,15 +153,14 @@ static NSString *kOldFileKey = @"!README.txt";
         NSError *error = nil;
         NSString *content = [NSString stringWithContentsOfFile:oldPath encoding:NSUTF8StringEncoding error:&error];
         [self p_appendLog:error.description];
-        if (content.length) {
-            NSArray *components = [content componentsSeparatedByString:@"\n"];
-            for (NSString *component in components) {
-                [self p_addValue:component];
-            }
+        NSArray *components = [content componentsSeparatedByString:@"\n"];
+        for (NSString *component in components) {
+            [self p_addValue:component];
         }
     }
     
     [self p_synchronize];
+    [self p_appendLog:@"扫描结束"];
 }
 
 - (IBAction)clearAction:(NSButton *)button
