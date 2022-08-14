@@ -10,6 +10,7 @@
 static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
 static NSString *kTargetFileKey = @"names";
+static NSString *kOldFileKey = @"!README.txt";
 
 @interface ViewController ()
 
@@ -30,9 +31,18 @@ static NSString *kTargetFileKey = @"names";
     self.nameField.editable = YES;
     self.textView.editable = NO;
     
+    // 设置目录
     [self p_setupPath];
-    [self p_checkPath];
+    // 校验目录
+    BOOL OK = [self p_checkPath];
+    // 读取缓存的配置
     [self p_setupValues];
+    if (OK) {
+        // 修复文件名
+        [self fixFiles];
+        // 进入时默认扫描一次
+        [self scanAction:nil];
+    }
 }
 
 #pragma mark - action
@@ -71,8 +81,39 @@ static NSString *kTargetFileKey = @"names";
     }];
 }
 
-- (IBAction)saveAction:(NSButton *)button
+- (IBAction)checkNameAction:(NSButton *)button
 {
+    [self p_appendLog:@""];
+    if (![self p_checkPath]) {
+        return;
+    }
+    
+    NSString *text = self.nameField.stringValue;
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (text.length == 0) {
+        [self p_appendLog:@"请输入文件名"];
+        return;
+    }
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSString *value in self.values) {
+        if ([value.lowercaseString containsString:text.lowercaseString]) {
+            [items addObject:value];
+        }
+    }
+    [items sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
+        return [a compare:b];
+    }];
+    if (items.count) {
+        [self p_appendLog:[items componentsJoinedByString:@"\n"]];
+    } else {
+        [self p_appendLog:[NSString stringWithFormat:@"未检测到 %@", text]];
+    }
+}
+
+- (IBAction)saveNameAction:(NSButton *)button
+{
+    [self p_appendLog:@""];
     if (![self p_checkPath]) {
         return;
     }
@@ -82,23 +123,36 @@ static NSString *kTargetFileKey = @"names";
         [self p_appendLog:@"请输入文件名"];
         return;
     }
-    [self.values addObject:text];
+    [self p_addValue:text];
     [self p_synchronize];
 }
 
 - (IBAction)scanAction:(NSButton *)button
 {
+    [self p_appendLog:@""];
     if (![self p_checkPath]) {
         return;
     }
-    NSString *path = self.scanFolderField.stringValue;
-    NSArray *contents = [self contentsAtPath:path];
+    NSString *folder = self.scanFolderField.stringValue;
+    NSArray *contents = [self contentsAtPath:folder];
     for (NSString *content in contents) {
-        NSString *name = [content stringByReplacingOccurrencesOfString:path withString:@""];
-        if (name.length) {
-            [self.values addObject:name];
+        NSString *name = [content stringByReplacingOccurrencesOfString:folder withString:@""];
+        [self p_addValue:name];
+    }
+    
+    NSString *oldPath = [folder stringByAppendingPathComponent:kOldFileKey];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:oldPath]) {
+        NSError *error = nil;
+        NSString *content = [NSString stringWithContentsOfFile:oldPath encoding:NSUTF8StringEncoding error:&error];
+        [self p_appendLog:error.description];
+        if (content.length) {
+            NSArray *components = [content componentsSeparatedByString:@"\n"];
+            for (NSString *component in components) {
+                [self p_addValue:component];
+            }
         }
     }
+    
     [self p_synchronize];
 }
 
@@ -146,6 +200,7 @@ static NSString *kTargetFileKey = @"names";
     if (self.values.count) {
         [values setByAddingObjectsFromSet:self.values];
     }
+    self.values = values;
     
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
@@ -153,21 +208,42 @@ static NSString *kTargetFileKey = @"names";
         if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
             NSError *error = nil;
             NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-            if (error) {
-                [self p_appendLog:error.description];
-            }
-            if (content.length) {
-                NSArray *components = [content componentsSeparatedByString:@"\n"];
-                [values addObjectsFromArray:components];
-            }
-            if (content.length) {
-                [self p_appendLog:content];
+            [self p_appendLog:error.description];
+            NSArray *components = [content componentsSeparatedByString:@"\n"];
+            for (NSString *component in components) {
+                [self p_addValue:component];
             }
         }
     }
-    self.values = values;
-    if (values.count == 0) {
+    
+    if (self.values.count == 0) {
         [self p_appendLog:@"本地无缓存"];
+    }
+}
+
+- (void)fixFiles
+{
+    NSString *folder = self.scanFolderField.stringValue;
+    if (folder.length == 0) {
+        return;
+    }
+    
+    NSFileManager *manager = NSFileManager.defaultManager;
+    NSError *error = nil;
+    NSArray *contents = [self contentsAtPath:folder];
+    for (NSString *path in contents) {
+        NSString *name = path.lastPathComponent;
+        NSString *toName = [self p_fixName:name];
+        if (![name isEqualToString:toName]) {
+            [self p_appendLog:[NSString stringWithFormat:@"文件重命名 %@ -> %@", name, toName]];
+            NSString *toPath = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:toName];
+            if ([manager fileExistsAtPath:toPath]) {
+                [self p_appendLog:[NSString stringWithFormat:@"文件重命名失败 目标目录已存在 %@", toPath]];
+            } else {
+                [manager moveItemAtPath:path toPath:toPath error:&error];
+                [self p_appendLog:error.description];
+            }
+        }
     }
 }
 
@@ -183,9 +259,7 @@ static NSString *kTargetFileKey = @"names";
         NSString *text = [array componentsJoinedByString:@"\n"];
         NSError *error = nil;
         [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        if (error) {
-            [self p_appendLog:error.description];
-        }
+        [self p_appendLog:error.description];
     }
 }
 
@@ -241,17 +315,70 @@ static NSString *kTargetFileKey = @"names";
     }
     
     for (NSString *item in [paths copy]) {
-        if ([item hasSuffix:@"!README.txt"]) {
+        if ([item hasSuffix:kOldFileKey]) {
             continue;
         }
         if ([item.pathExtension isEqualToString:@"mp4"]) {
-            
             [ret addObject:item];
         } else {
             [self p_appendLog:[NSString stringWithFormat:@"非法文件: %@", item]];
         }
     }
     return ret;
+}
+
+- (void)p_addValue:(NSString *)value
+{
+    value = [self p_fixName:value];
+    if (value.length) {
+        [self.values addObject:value];
+    }
+}
+
+// 统一修复 FC2PPV-XXXXXX
+// fc2ppv-XXXXXX fc2-ppv-XXXXXX fc2-ppv_XXXXXX FC2-ppv_XXXXXX
+- (NSString *)p_fixName:(NSString *)name
+{
+    if (name.length == 0) {
+        return name;
+    }
+    
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *lowercase = name.lowercaseString;
+    if (![lowercase hasPrefix:@"fc2"]) {
+        return name;
+    }
+    
+    NSString *fc2ppv = @"fc2ppv";
+    NSString *toName = name;
+    if ([lowercase hasPrefix:@"fc2-ppv"] ||
+        [lowercase hasPrefix:@"fc2_ppv"]) {
+        toName = [toName stringByReplacingCharactersInRange:NSMakeRange(0, 7) withString:fc2ppv];
+    } else if ([lowercase hasPrefix:fc2ppv]) {
+        toName = [toName stringByReplacingCharactersInRange:NSMakeRange(0, fc2ppv.length) withString:fc2ppv];
+    }
+    
+    if ([toName hasPrefix:fc2ppv] && toName.length > fc2ppv.length) {
+        NSRange range = NSMakeRange(fc2ppv.length, 1);
+        NSString *seperator = [toName substringWithRange:range];
+        if ([seperator isEqualToString:@"-"]) {
+            // 正确
+        } else if ([seperator isEqualToString:@"_"] ||
+                   [seperator isEqualToString:@" "]) {
+            toName = [toName stringByReplacingCharactersInRange:range withString:@"-"];
+        } else {
+            [self p_appendLog:[NSString stringWithFormat:@"%@ 异常错误: %@", NSStringFromSelector(_cmd), name]];
+            return name;
+        }
+    }
+    
+    NSString *fc2ppv_ = @"fc2ppv-";
+    if ([toName hasPrefix:fc2ppv_]) {
+        NSRange range = NSMakeRange(0, fc2ppv_.length);
+        toName = [toName stringByReplacingCharactersInRange:range withString:@"FC2PPV-"];
+    }
+    
+    return toName;
 }
 
 @end

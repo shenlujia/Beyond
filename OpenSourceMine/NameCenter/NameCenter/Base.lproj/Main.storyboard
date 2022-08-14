@@ -814,11 +814,21 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="saveAction:" target="XfG-lQ-9wD" id="RlU-qT-QR3"/>
+                                            <action selector="saveNameAction:" target="XfG-lQ-9wD" id="pyT-N0-cyh"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Cf-fs-NhI">
+                                        <rect key="frame" x="261" y="8" width="101" height="32"/>
+                                        <buttonCell key="cell" type="push" title="检测文件名" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C0G-xn-GPu">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="checkNameAction:" target="XfG-lQ-9wD" id="MkN-UY-D5e"/>
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IpN-mh-wGf">
-                                        <rect key="frame" x="0.0" y="15" width="355" height="21"/>
+                                        <rect key="frame" x="0.0" y="15" width="258" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="rA8-TK-0B7">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -838,6 +848,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="mdj-Ue-7AD" firstAttribute="centerY" secondItem="A6J-pV-Eka" secondAttribute="centerY" id="8id-Za-2YO"/>
+                                    <constraint firstItem="8Cf-fs-NhI" firstAttribute="centerY" secondItem="A6J-pV-Eka" secondAttribute="centerY" id="Eve-1C-oj7"/>
                                     <constraint firstItem="bJ0-1f-EKM" firstAttribute="centerY" secondItem="A6J-pV-Eka" secondAttribute="centerY" id="I6x-Ht-PSw"/>
                                     <constraint firstAttribute="trailing" secondItem="bJ0-1f-EKM" secondAttribute="trailing" id="JbV-21-SF2"/>
                                     <constraint firstAttribute="height" constant="50" id="KCs-kM-TI1"/>
@@ -845,8 +856,9 @@
                                     <constraint firstItem="Gzr-tZ-7nk" firstAttribute="centerY" secondItem="A6J-pV-Eka" secondAttribute="centerY" id="RxJ-EK-V3A"/>
                                     <constraint firstItem="bJ0-1f-EKM" firstAttribute="leading" secondItem="Gzr-tZ-7nk" secondAttribute="trailing" constant="10" id="YHE-0v-hVt"/>
                                     <constraint firstItem="mdj-Ue-7AD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A6J-pV-Eka" secondAttribute="leading" constant="20" symbolic="YES" id="e6r-p5-O0i"/>
-                                    <constraint firstItem="mdj-Ue-7AD" firstAttribute="leading" secondItem="IpN-mh-wGf" secondAttribute="trailing" constant="10" id="h8t-Rl-W2Z"/>
+                                    <constraint firstItem="mdj-Ue-7AD" firstAttribute="leading" secondItem="8Cf-fs-NhI" secondAttribute="trailing" constant="10" id="h1i-R7-5KW"/>
                                     <constraint firstItem="IpN-mh-wGf" firstAttribute="centerY" secondItem="A6J-pV-Eka" secondAttribute="centerY" id="nly-DH-Axm"/>
+                                    <constraint firstItem="8Cf-fs-NhI" firstAttribute="leading" secondItem="IpN-mh-wGf" secondAttribute="trailing" constant="10" id="uak-DQ-PBR"/>
                                     <constraint firstItem="Gzr-tZ-7nk" firstAttribute="leading" secondItem="mdj-Ue-7AD" secondAttribute="trailing" constant="10" id="yvw-t6-ORd"/>
                                 </constraints>
                             </customView>
