@@ -91,7 +91,14 @@ static NSString *kTargetFileKey = @"names";
     if (![self p_checkPath]) {
         return;
     }
-    
+    NSString *path = self.scanFolderField.stringValue;
+    NSArray *contents = [self contentsAtPath:path];
+    for (NSString *content in contents) {
+        NSString *name = [content stringByReplacingOccurrencesOfString:path withString:@""];
+        if (name.length) {
+            [self.values addObject:name];
+        }
+    }
     [self p_synchronize];
 }
 
@@ -153,9 +160,15 @@ static NSString *kTargetFileKey = @"names";
                 NSArray *components = [content componentsSeparatedByString:@"\n"];
                 [values addObjectsFromArray:components];
             }
+            if (content.length) {
+                [self p_appendLog:content];
+            }
         }
     }
     self.values = values;
+    if (values.count == 0) {
+        [self p_appendLog:@"本地无缓存"];
+    }
 }
 
 - (void)p_synchronize
@@ -165,7 +178,7 @@ static NSString *kTargetFileKey = @"names";
         NSString *path = [folder stringByAppendingPathComponent:kTargetFileKey];
         NSArray *array = self.values.allObjects;
         array = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-            return [b compare:a];
+            return [a compare:b];
         }];
         NSString *text = [array componentsJoinedByString:@"\n"];
         NSError *error = nil;
@@ -189,6 +202,56 @@ static NSString *kTargetFileKey = @"names";
     }
     
     self.textView.string = [text stringByAppendingFormat:@"\n%@", full];
+}
+
+- (NSArray *)contentsAtPath:(NSString *)path
+{
+    NSMutableArray *ret = [NSMutableArray array];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (path.length == 0) {
+        [self p_appendLog:@"目录为空"];
+        return ret;
+    }
+    
+    NSError *error = nil;
+    NSArray *contents = [manager contentsOfDirectoryAtPath:path error:&error];
+    if (error) {
+        [self p_appendLog:error.description];
+        return ret;
+    }
+    
+    NSMutableArray *paths = [NSMutableArray array];
+    for (NSString *name in contents) {
+        if ([name isEqualToString:@".DS_Store"]) {
+            continue;
+        }
+        NSString *item = [path stringByAppendingPathComponent:name];
+        BOOL isDirectory = NO;
+        if (![manager fileExistsAtPath:item isDirectory:&isDirectory]) {
+            continue;
+        }
+        if (isDirectory) {
+            NSArray *items = [self contentsAtPath:item];
+            if (items.count) {
+                [paths addObjectsFromArray:items];
+            }
+        } else {
+            [paths addObject:item];
+        }
+    }
+    
+    for (NSString *item in [paths copy]) {
+        if ([item hasSuffix:@"!README.txt"]) {
+            continue;
+        }
+        if ([item.pathExtension isEqualToString:@"mp4"]) {
+            
+            [ret addObject:item];
+        } else {
+            [self p_appendLog:[NSString stringWithFormat:@"非法文件: %@", item]];
+        }
+    }
+    return ret;
 }
 
 @end
