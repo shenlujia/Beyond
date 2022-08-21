@@ -325,7 +325,12 @@ static NSString *kOldFileKey = @"!README.txt";
         if ([item hasSuffix:kOldFileKey]) {
             continue;
         }
-        if ([item.pathExtension isEqualToString:@"mp4"]) {
+        if ([item.pathExtension isEqualToString:@"mp4"] ||
+            [item.pathExtension isEqualToString:@"mov"] ||
+            [item.pathExtension isEqualToString:@"wmv"]) {
+            [ret addObject:item];
+        } else if ([item.pathExtension isEqualToString:@"jpg"] ||
+                   [item.pathExtension isEqualToString:@"jpeg"]) {
             [ret addObject:item];
         } else {
             [self p_appendLog:[NSString stringWithFormat:@"非法文件: %@", item]];
