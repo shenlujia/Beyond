@@ -181,7 +181,6 @@
 		571B37262477F36B001B4C6E /* LC0714.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0714.mm; sourceTree = "<group>"; };
 		571B37282477F913001B4C6E /* LC0718.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LC0718.mm; sourceTree = "<group>"; };
 		571F4C5823059F4500EF9E4D /* DSPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		571F4C6323059F4700EF9E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571F4C6423059F4700EF9E4D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		571F4C6D23059FA800EF9E4D /* Class001-020.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "Class001-020.mm"; sourceTree = "<group>"; };
 		571F4C702305A56500EF9E4D /* Class001-020.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Class001-020.h"; sourceTree = "<group>"; };
@@ -397,7 +396,6 @@
 		571F4C5A23059F4500EF9E4D /* DSPro */ = {
 			isa = PBXGroup;
 			children = (
-				571F4C6323059F4700EF9E4D /* Info.plist */,
 				571F4C6423059F4700EF9E4D /* main.mm */,
 				57F59C8A24767F570029A954 /* prefix_header.pch */,
 			);
@@ -1058,7 +1056,7 @@
 		571F4C6A23059F4700EF9E4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DSPro/DSPro.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1079,7 +1077,7 @@
 		571F4C6B23059F4700EF9E4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DSPro/DSPro.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;

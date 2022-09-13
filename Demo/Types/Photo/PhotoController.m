@@ -12,7 +12,7 @@
 #import "ImagePickerHandler.h"
 #import "DeviceAuthority.h"
 
-@interface PhotoController ()
+@interface PhotoController () <PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong) ImagePickerHandler *handler;
 
@@ -23,6 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
@@ -36,11 +38,11 @@
 //            NSLog(@"requestPhotoAuthorization %@", @(status));
 //        }];
       
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            
-        }];
+//        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//
+//        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//
+//        }];
     });
 
     WEAKSELF
@@ -92,6 +94,12 @@
         }
     }
     return ret;
+}
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance
+{
+//    PHObjectChangeDetails *details = changeInstance changeDetailsForObject:<#(nonnull PHObject *)#>
+    NSLog(@"%@", changeInstance);
 }
 
 @end
