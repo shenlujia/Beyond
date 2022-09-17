@@ -201,14 +201,25 @@ static NSString *kOldFileKey = @"!README.txt";
     
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
-        NSString *path = [folder stringByAppendingPathComponent:kTargetOriFileKey];
-        if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
+        NSString *oriPath = [folder stringByAppendingPathComponent:kTargetOriFileKey];
+        if ([NSFileManager.defaultManager fileExistsAtPath:oriPath]) {
             NSError *error = nil;
-            NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+            NSString *content = [NSString stringWithContentsOfFile:oriPath encoding:NSUTF8StringEncoding error:&error];
             [self p_appendLog:error.description];
             NSArray *components = [content componentsSeparatedByString:@"\n"];
             for (NSString *component in components) {
                 [self p_addValue:component];
+            }
+        }
+        NSString *enPath = [folder stringByAppendingPathComponent:kTargetEnFileKey];
+        if ([NSFileManager.defaultManager fileExistsAtPath:enPath]) {
+            NSError *error = nil;
+            NSString *content = [NSString stringWithContentsOfFile:enPath encoding:NSUTF8StringEncoding error:&error];
+            [self p_appendLog:error.description];
+            NSArray *components = [content componentsSeparatedByString:@"\n"];
+            for (NSString *component in components) {
+                NSString *text = [SSCrypto AES_de:component key:[self p_key]];
+                [self p_addValue:text];
             }
         }
     }
@@ -248,15 +259,34 @@ static NSString *kOldFileKey = @"!README.txt";
 {
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
-        NSString *path = [folder stringByAppendingPathComponent:kTargetOriFileKey];
         NSArray *array = self.values.allObjects;
         array = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
             return [a compare:b];
         }];
-        NSString *text = [array componentsJoinedByString:@"\n"];
-        NSError *error = nil;
-        [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        [self p_appendLog:error.description];
+        
+        {
+            NSString *path = [folder stringByAppendingPathComponent:kTargetOriFileKey];
+            NSString *text = [array componentsJoinedByString:@"\n"];
+            NSError *error = nil;
+            [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            [self p_appendLog:error.description];
+        }
+        {
+            NSMutableArray *enArray = [NSMutableArray array];
+            for (NSString *name in array) {
+                NSString *en = [SSCrypto AES_en:name key:[self p_key]];
+                if (en.length) {
+                    [enArray addObject:en];
+                }
+            }
+            NSParameterAssert(enArray.count == array.count);
+            
+            NSString *path = [folder stringByAppendingPathComponent:kTargetEnFileKey];
+            NSString *text = [enArray componentsJoinedByString:@"\n"];
+            NSError *error = nil;
+            [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            [self p_appendLog:error.description];
+        }
     }
 }
 
