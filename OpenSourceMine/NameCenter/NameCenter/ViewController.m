@@ -10,7 +10,8 @@
 
 static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
-static NSString *kTargetFileKey = @"names";
+static NSString *kTargetOriFileKey = @"names_ori.txt";
+static NSString *kTargetEnFileKey = @"names_en.txt";
 static NSString *kOldFileKey = @"!README.txt";
 
 @interface ViewController ()
@@ -200,7 +201,7 @@ static NSString *kOldFileKey = @"!README.txt";
     
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
-        NSString *path = [folder stringByAppendingPathComponent:kTargetFileKey];
+        NSString *path = [folder stringByAppendingPathComponent:kTargetOriFileKey];
         if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
             NSError *error = nil;
             NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
@@ -247,7 +248,7 @@ static NSString *kOldFileKey = @"!README.txt";
 {
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
-        NSString *path = [folder stringByAppendingPathComponent:kTargetFileKey];
+        NSString *path = [folder stringByAppendingPathComponent:kTargetOriFileKey];
         NSArray *array = self.values.allObjects;
         array = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
             return [a compare:b];
