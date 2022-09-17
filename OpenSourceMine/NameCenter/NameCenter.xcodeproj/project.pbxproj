@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E5CBD6E28D5F74400946AF8 /* SSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CBD6D28D5F74400946AF8 /* SSCrypto.m */; };
 		5EC3932C28A8B4090016B1E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3932B28A8B4090016B1E9 /* AppDelegate.m */; };
 		5EC3932F28A8B4090016B1E9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3932E28A8B4090016B1E9 /* ViewController.m */; };
 		5EC3933128A8B40D0016B1E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3933028A8B40D0016B1E9 /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E5CBD6C28D5F74400946AF8 /* SSCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSCrypto.h; sourceTree = "<group>"; };
+		5E5CBD6D28D5F74400946AF8 /* SSCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSCrypto.m; sourceTree = "<group>"; };
 		5EC3932728A8B4090016B1E9 /* NameCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NameCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3932A28A8B4090016B1E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EC3932B28A8B4090016B1E9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 				5EC3933228A8B40D0016B1E9 /* Main.storyboard */,
 				5EC3933528A8B40D0016B1E9 /* main.m */,
 				5EC3933728A8B40D0016B1E9 /* NameCenter.entitlements */,
+				5E5CBD6C28D5F74400946AF8 /* SSCrypto.h */,
+				5E5CBD6D28D5F74400946AF8 /* SSCrypto.m */,
 			);
 			path = NameCenter;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5CBD6E28D5F74400946AF8 /* SSCrypto.m in Sources */,
 				5EC3932F28A8B4090016B1E9 /* ViewController.m in Sources */,
 				5EC3933628A8B40D0016B1E9 /* main.m in Sources */,
 				5EC3932C28A8B4090016B1E9 /* AppDelegate.m in Sources */,

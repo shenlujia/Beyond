@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "SSCrypto.h"
 
 static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
@@ -28,6 +29,18 @@ static NSString *kOldFileKey = @"!README.txt";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    __weak ViewController *weak_s = self;
+    [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyUp handler:^NSEvent *(NSEvent *event) {
+        NSString *name = weak_s.nameField.stringValue;
+        if ([event.characters isEqualToString:@"\r"]) {
+            if (name.length) {
+                [weak_s p_checkName:name];
+            }
+        }
+        return event;
+    }];
+    
     self.nameField.editable = YES;
     self.textView.editable = NO;
     
@@ -37,6 +50,7 @@ static NSString *kOldFileKey = @"!README.txt";
     BOOL OK = [self p_checkPath];
     // 读取缓存的配置
     [self p_setupValues];
+    
     if (OK) {
         // 修复文件名
         [self fixFiles];
@@ -83,32 +97,7 @@ static NSString *kOldFileKey = @"!README.txt";
 
 - (IBAction)checkNameAction:(NSButton *)button
 {
-    [self p_appendLog:@""];
-    if (![self p_checkPath]) {
-        return;
-    }
-    
-    NSString *text = self.nameField.stringValue;
-    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (text.length == 0) {
-        [self p_appendLog:@"请输入文件名"];
-        return;
-    }
-    
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSString *value in self.values) {
-        if ([value.lowercaseString containsString:text.lowercaseString]) {
-            [items addObject:value];
-        }
-    }
-    [items sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-        return [a compare:b];
-    }];
-    if (items.count) {
-        [self p_appendLog:[items componentsJoinedByString:@"\n"]];
-    } else {
-        [self p_appendLog:[NSString stringWithFormat:@"未检测到 %@", text]];
-    }
+    [self p_checkName:self.nameField.stringValue];
 }
 
 - (IBAction)saveNameAction:(NSButton *)button
@@ -168,7 +157,7 @@ static NSString *kOldFileKey = @"!README.txt";
     self.textView.string = @"";
 }
 
-#pragma private
+#pragma mark private
 
 - (BOOL)p_checkPath
 {
@@ -285,6 +274,35 @@ static NSString *kOldFileKey = @"!README.txt";
     self.textView.string = [text stringByAppendingFormat:@"\n%@", full];
 }
 
+- (void)p_checkName:(NSString *)text
+{
+    [self p_appendLog:@""];
+    if (![self p_checkPath]) {
+        return;
+    }
+    
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (text.length == 0) {
+        [self p_appendLog:@"请输入文件名"];
+        return;
+    }
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSString *value in self.values) {
+        if ([value.lowercaseString containsString:text.lowercaseString]) {
+            [items addObject:value];
+        }
+    }
+    [items sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
+        return [a compare:b];
+    }];
+    if (items.count) {
+        [self p_appendLog:[items componentsJoinedByString:@"\n"]];
+    } else {
+        [self p_appendLog:[NSString stringWithFormat:@"未检测到 %@", text]];
+    }
+}
+
 - (NSArray *)contentsAtPath:(NSString *)path
 {
     NSMutableArray *ret = [NSMutableArray array];
@@ -391,6 +409,11 @@ static NSString *kOldFileKey = @"!README.txt";
     }
     
     return toName;
+}
+
+- (NSString *)p_key
+{
+    return [NSString stringWithFormat:@"%@_%@_%@", @"test", @"name", @"center"];
 }
 
 @end
