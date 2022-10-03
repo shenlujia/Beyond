@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "SSCrypto.h"
+#import "FindMe.h"
 
 static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
@@ -318,15 +319,7 @@ static NSString *kOldFileKey = @"!README.txt";
         return;
     }
     
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSString *value in self.values) {
-        if ([value.lowercaseString containsString:text.lowercaseString]) {
-            [items addObject:value];
-        }
-    }
-    [items sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-        return [a compare:b];
-    }];
+    NSArray *items = [FindMe find:text from:self.values.allObjects];
     if (items.count) {
         [self p_appendLog:[items componentsJoinedByString:@"\n"]];
     } else {
@@ -396,8 +389,7 @@ static NSString *kOldFileKey = @"!README.txt";
     }
 }
 
-// 统一修复 FC2PPV-XXXXXX
-// fc2ppv-XXXXXX fc2-ppv-XXXXXX fc2-ppv_XXXXXX FC2-ppv_XXXXXX
+// 修复 FC2PPV-XXXXXX: fc2ppv-XXXXXX fc2-ppv-XXXXXX fc2-ppv_XXXXXX FC2-ppv_XXXXXX
 - (NSString *)p_fixName:(NSString *)name
 {
     if (name.length == 0) {
