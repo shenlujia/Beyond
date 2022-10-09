@@ -25,7 +25,6 @@
 		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
-		57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CD6F7724BBF97A00F9856F /* BlockNotCallChecker.m */; };
 		57CD89BA24BC04EC00F9856F /* Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CD89B924BC04EC00F9856F /* Temp.m */; };
 		57CDBA8524B48E0800F9856F /* KVCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDBA8424B48E0800F9856F /* KVCController.m */; };
 		57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDE89024B5626B00F9856F /* RunLoopController.m */; };
@@ -158,8 +157,6 @@
 		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
 		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
 		5774CB1E2441789F00C7A59E /* ExerciseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseController.m; sourceTree = "<group>"; };
-		57CD6F7624BBF97A00F9856F /* BlockNotCallChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockNotCallChecker.h; sourceTree = "<group>"; };
-		57CD6F7724BBF97A00F9856F /* BlockNotCallChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockNotCallChecker.m; sourceTree = "<group>"; };
 		57CD89B824BC04EC00F9856F /* Temp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Temp.h; sourceTree = "<group>"; };
 		57CD89B924BC04EC00F9856F /* Temp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Temp.m; sourceTree = "<group>"; };
 		57CDBA8324B48E0800F9856F /* KVCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCController.h; sourceTree = "<group>"; };
@@ -453,8 +450,6 @@
 			children = (
 				5774B18C243FFEA900C7A59E /* BlockController.h */,
 				5774B18D243FFEA900C7A59E /* BlockController.m */,
-				57CD6F7624BBF97A00F9856F /* BlockNotCallChecker.h */,
-				57CD6F7724BBF97A00F9856F /* BlockNotCallChecker.m */,
 			);
 			path = Block;
 			sourceTree = "<group>";
@@ -1057,7 +1052,6 @@
 				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
-				57CD6F7824BBF97A00F9856F /* BlockNotCallChecker.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5E69C45726F0DED6005B93AB /* NSFileManager+SS.m in Sources */,
 				5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */,
@@ -1271,7 +1265,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1307,7 +1301,7 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

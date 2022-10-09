@@ -8,7 +8,6 @@
 
 #import "BlockController.h"
 #import "MacroHeader.h"
-#import "BlockNotCallChecker.h"
 #import "SSEasy.h"
 
 static int p_static_int = 5;
@@ -88,77 +87,6 @@ static void (^s_block_obj_1)(void) = ^(){
         PRINT_BLANK_LINE
         NSLog(@"%@", ^{NSLog(@"%@", @(a));});
     }];
-    
-    [self test:@"block同步是否被调用" set:nil action:@selector(block_sync_called_or_not)];
-    
-    [self test:@"block异步是否被调用" set:nil action:@selector(block_async_called_or_not)];
-}
-
-- (void)block_sync_called_or_not
-{
-    PRINT_BLANK_LINE
-    {
-        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block1"];
-        void (^block)(void) = ^{
-            NSLog(@"sync block1 done");
-            [checker didCall];
-        };
-        [self block_sync_called_test:block];
-    }
-    {
-        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block2"];
-        void (^block)(void) = ^{
-            NSLog(@"sync block2 done");
-            [checker didCall];
-        };
-        [self block_sync_called_not_test:block];
-    }
-}
-
-- (void)block_sync_called_test:(void (^)(void))block
-{
-    block();
-}
-
-- (void)block_sync_called_not_test:(void (^)(void))block
-{
-    
-}
-
-- (void)block_async_called_or_not
-{
-    PRINT_BLANK_LINE
-    {
-        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block3"];
-        void (^block)(void) = ^{
-            NSLog(@"async block3 done");
-            [checker didCall];
-        };
-        [self block_async_called_test:block];
-    }
-    {
-        BlockNotCallChecker *checker = [[BlockNotCallChecker alloc] initWithName:@"block4"];
-        void (^block)(void) = ^{
-            NSLog(@"async block4 done");
-            [checker didCall];
-        };
-        [self block_async_called_not_test:block];
-    }
-}
-
-- (void)block_async_called_test:(void (^)(void))block
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __unused void (^b)(void) = block;
-        b();
-    });
-}
-
-- (void)block_async_called_not_test:(void (^)(void))block
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __unused void (^b)(void) = block;
-    });
 }
 
 @end

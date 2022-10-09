@@ -141,12 +141,30 @@ typedef struct SSTestStructInfo_t {
 
 @end
 
+void test_wrong_log(void)
+{
+    PRINT_BLANK_LINE
+    NSLog(@"====== start");
+    NSLog(@" %s 世界1", "你好");
+    NSLog(@"%s 世界2", "你好");
+    printf("%s 世界3\n", "你好");
+    NSLog(@"%s世界4", "你好");
+    printf("%s世界5\n", "你好");
+    NSLog(@"%s", "你好5");
+    printf("%s", "你好6\n");
+    NSLog(@"你好7");
+    printf("你好8\n");
+    NSLog(@"====== end");
+}
+
 @implementation SSEasyController
 
 + (void)initialize
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        test_wrong_log();
+        
         ss_easy_install();
         
         ss_method_ignore(@"SwizzleTest", @"cls_void");
@@ -159,6 +177,8 @@ typedef struct SSTestStructInfo_t {
         ss_method_ignore(@"SwizzleTest", @"obj_void_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_id_f:d:rect:obj:");
         ss_method_ignore(@"SwizzleTest", @"obj_f_f:d:rect:obj:");
+        
+        test_wrong_log();
     });
 }
 

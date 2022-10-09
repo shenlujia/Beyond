@@ -35,6 +35,7 @@
     
     NSString *p_string = [self convertString:string];
     NSString *p_local = [self convertString:local];
+    p_local = [p_local stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSArray *strings = [p_string componentsSeparatedByString:@" "];
     for (NSString *temp in strings) {
