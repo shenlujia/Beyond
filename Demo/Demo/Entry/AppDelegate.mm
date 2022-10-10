@@ -19,7 +19,8 @@
 #import <FLEX/FLEX.h>
 #pragma clang diagnostic pop
 
-static NSNumber *backgroundTaskIdentifier = nil;
+static NSNumber *m_backgroundTaskIdentifier = nil;
+static NSTimer *m_timer = nil;
 
 @interface AppDelegate ()
 
@@ -92,12 +93,20 @@ static NSNumber *backgroundTaskIdentifier = nil;
 {
     NSLog(@"didBecomeActive");
     [self p_endBackgroundTask];
+    
+    [m_timer invalidate];
 }
 
 - (void)didEnterBackground
 {
     NSLog(@"didEnterBackground");
     [self p_startBackgroundTask];
+    
+    CGFloat now = [[NSDate date] timeIntervalSince1970];
+    [m_timer invalidate];
+    m_timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"background action, duration = %.2f", [[NSDate date] timeIntervalSince1970] - now);
+    }];
 }
 
 - (void)willTerminate
@@ -108,9 +117,9 @@ static NSNumber *backgroundTaskIdentifier = nil;
 - (void)p_endBackgroundTask
 {
     MAIN_THREAD_SAFE_SYNC(^{
-        if (backgroundTaskIdentifier) {
-            UIBackgroundTaskIdentifier identifier = backgroundTaskIdentifier.unsignedIntegerValue;
-            backgroundTaskIdentifier = nil;
+        if (m_backgroundTaskIdentifier) {
+            UIBackgroundTaskIdentifier identifier = m_backgroundTaskIdentifier.unsignedIntegerValue;
+            m_backgroundTaskIdentifier = nil;
             [UIApplication.sharedApplication endBackgroundTask:identifier];
         }
     });
@@ -121,31 +130,12 @@ static NSNumber *backgroundTaskIdentifier = nil;
     [self p_endBackgroundTask];
         
     UIApplication *application = UIApplication.sharedApplication;
+    CGFloat now = [[NSDate date] timeIntervalSince1970];
     UIBackgroundTaskIdentifier identifier = [application beginBackgroundTaskWithName:@"HTBackgroundTask" expirationHandler:^{
+        NSLog(@"BackgroundTask[duration=%.2f] expired", [[NSDate date] timeIntervalSince1970] - now);
         [self p_endBackgroundTask];
     }];
-    backgroundTaskIdentifier = @(identifier);
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // 强制后台运行约 180 - 10 秒钟
-        do {
-            __block NSTimeInterval timeRemaining = -1;
-            MAIN_THREAD_SAFE_SYNC(^{
-                if (backgroundTaskIdentifier) {
-                    timeRemaining = UIApplication.sharedApplication.backgroundTimeRemaining;
-                    NSLog(@"backgroundTimeRemaining %.2f", timeRemaining);
-                }
-            });
-            if (timeRemaining < 10) {
-                break;
-            }
-            [NSThread sleepForTimeInterval:1];
-        } while (YES);
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self p_endBackgroundTask];
-        });
-    });
+    m_backgroundTaskIdentifier = @(identifier);
 }
 
 @end

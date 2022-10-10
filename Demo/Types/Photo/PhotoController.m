@@ -24,26 +24,26 @@
 {
     [super viewDidLoad];
     
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
-//            NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
-//            if (@available(iOS 14, *)) {
-//    #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
-//                PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
-//                NSLog(@"authorizationStatusForAccessLevel %@", @(status));
-//    #endif
-//            }
-//            NSLog(@"requestPhotoAuthorization %@", @(status));
-//        }];
-      
-//        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 //
-//        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////        [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
+////            NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
+////            if (@available(iOS 14, *)) {
+////    #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
+////                PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+////                NSLog(@"authorizationStatusForAccessLevel %@", @(status));
+////    #endif
+////            }
+////            NSLog(@"requestPhotoAuthorization %@", @(status));
+////        }];
 //
-//        }];
-    });
+////        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+////
+////        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+////
+////        }];
+//    });
 
     WEAKSELF
     
@@ -80,6 +80,39 @@
         };
         [self.handler present];
     }];
+    
+    ss_easy_log(@"PHAuthorizationStatus = %@", @([PHPhotoLibrary authorizationStatus]));
+    
+    [self test:@"申请老接口权限" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            [weak_s p_logAuthorizationStatus:status];
+        }];
+    }];
+    
+    [self test:@"申请读写权限" tap:^(UIButton *button, NSDictionary *userInfo) {
+        if (@available(iOS 14, *)) {
+            [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+                [weak_s p_logAuthorizationStatus:status];
+            }];
+        }
+    }];
+    
+    [self test:@"申请只写权限" tap:^(UIButton *button, NSDictionary *userInfo) {
+        if (@available(iOS 14, *)) {
+            [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelAddOnly handler:^(PHAuthorizationStatus status) {
+                [weak_s p_logAuthorizationStatus:status];
+            }];
+        }
+    }];
+}
+
+- (void)p_logAuthorizationStatus:(PHAuthorizationStatus)status
+{
+    if (@available(iOS 14, *)) {
+        PHAuthorizationStatus readwrite = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+        PHAuthorizationStatus add = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelAddOnly];
+        ss_easy_log(@"current = %@, readwrite = %@, add = %@", @(status), @(readwrite), @(add));
+    }
 }
 
 - (NSDictionary *)exifInData:(NSData *)data

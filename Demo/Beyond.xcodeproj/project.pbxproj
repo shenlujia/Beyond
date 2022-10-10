@@ -110,6 +110,7 @@
 		5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599527D30DD300E7C99A /* SSDEBUGTextViewController.m */; };
 		5EB459A327D30DD300E7C99A /* SSEasyPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4599627D30DD300E7C99A /* SSEasyPanel.m */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
+		5EC5B74C28F2718F00E3B448 /* PhotoPrivacyChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
@@ -307,6 +308,8 @@
 		5EB4599A27D30DD300E7C99A /* SSEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasy.h; sourceTree = "<group>"; };
 		5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopWithBottomAnimationController.h; sourceTree = "<group>"; };
 		5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopWithBottomAnimationController.m; sourceTree = "<group>"; };
+		5EC5B74A28F2718F00E3B448 /* PhotoPrivacyChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPrivacyChecker.h; sourceTree = "<group>"; };
+		5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPrivacyChecker.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
 		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
@@ -807,6 +810,8 @@
 				5E7BCC7E26650DA500F90FE6 /* PhotoController.m */,
 				5E7BCC82266514AA00F90FE6 /* ImagePickerHandler.h */,
 				5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */,
+				5EC5B74A28F2718F00E3B448 /* PhotoPrivacyChecker.h */,
+				5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -1078,6 +1083,7 @@
 				5E25C52327DEE45E0043691F /* FLEXHook.m in Sources */,
 				574C80AB24F36D560018D47B /* DontLikeCommon.m in Sources */,
 				5EB459A227D30DD300E7C99A /* SSDEBUGTextViewController.m in Sources */,
+				5EC5B74C28F2718F00E3B448 /* PhotoPrivacyChecker.m in Sources */,
 				572339372447F92C009DD534 /* GCDController.m in Sources */,
 				57E89A7124FD13AA005F2A6C /* KKThreadMonitor.m in Sources */,
 				5E0D9B33285310B10021497B /* RotateAnimeController.m in Sources */,
