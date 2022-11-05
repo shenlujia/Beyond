@@ -3,7 +3,6 @@ platform:ios,'10.0'
 
 target 'Beyond' do
 
-  pod 'Bugly'
   pod 'FBRetainCycleDetector'
   pod 'fishhook'
   pod 'FLEX'
