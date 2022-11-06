@@ -13,7 +13,7 @@ static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
 static NSString *kTargetOriFileKey = @"names_ori.txt";
 static NSString *kTargetEnFileKey = @"names_en.txt";
-static NSString *kOldFileKey = @"!README.txt";
+static NSString *kOldFileKey = @"!!README.txt";
 
 @interface ViewController ()
 
