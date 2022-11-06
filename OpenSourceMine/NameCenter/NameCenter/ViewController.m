@@ -52,6 +52,8 @@ static NSString *kOldFileKey = @"!README.txt";
     BOOL OK = [self p_checkPath];
     // 读取缓存的配置
     [self p_setupValues];
+    // 如果本地有文件 清理空路径
+    [self p_clearEmptyPathIfFileExists];
     
     if (OK) {
         // 修复文件名
@@ -228,6 +230,34 @@ static NSString *kOldFileKey = @"!README.txt";
     if (self.values.count == 0) {
         [self p_appendLog:@"本地无缓存"];
     }
+}
+
+- (void)p_clearEmptyPathIfFileExists
+{
+    NSString *folder = self.scanFolderField.stringValue;
+    if (folder.length == 0) {
+        return;
+    }
+    
+    NSMutableDictionary *yes = [NSMutableDictionary dictionary];
+    NSMutableDictionary *no = [NSMutableDictionary dictionary];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    for (NSString *value in self.values.allObjects) {
+        NSString *path = [folder stringByAppendingPathComponent:value];
+        NSString *name = value.lastPathComponent;
+        if ([manager fileExistsAtPath:path]) {
+            yes[name] = value;
+        } else {
+            no[name] = value;
+        }
+    }
+    
+    [no enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+        if (yes[key]) {
+            [self.values removeObject:obj];
+            [self p_appendLog:[NSString stringWithFormat:@"清除无效值: %@", obj]];
+        }
+    }];
 }
 
 - (void)fixFiles
