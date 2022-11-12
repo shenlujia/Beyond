@@ -25,25 +25,6 @@
     [super viewDidLoad];
     
 //    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////        [DeviceAuthority requestPhotoAuthorization:^(PHAuthorizationStatus status) {
-////            NSLog(@"authorizationStatus %@", @([PHPhotoLibrary authorizationStatus]));
-////            if (@available(iOS 14, *)) {
-////    #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_13_0
-////                PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
-////                NSLog(@"authorizationStatusForAccessLevel %@", @(status));
-////    #endif
-////            }
-////            NSLog(@"requestPhotoAuthorization %@", @(status));
-////        }];
-//
-////        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-////
-////        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-////
-////        }];
-//    });
 
     WEAKSELF
     
@@ -77,6 +58,87 @@
                     NSLog(@"original exif: %@", [self exifInData:imageData]);
                 }
             }];
+        };
+        [self.handler present];
+    }];
+    
+    [self test:@"选图 读取metadata" tap:^(UIButton *button, NSDictionary *userInfo) {
+        STRONGSELF
+        self.handler = [[ImagePickerHandler alloc] init];
+        self.handler.assetBlock = ^(PHAsset *asset) {
+            STRONGSELF
+            NSData *data = [self.handler dataFromAsset:asset];
+            CIImage *image = [CIImage imageWithData:data];
+            NSDictionary *properties = [image properties];
+            NSLog(@"exif: %@", properties[(NSString *)kCGImagePropertyExifDictionary]);
+        };
+        [self.handler present];
+    }];
+    
+    [self test:@"选图 修改metadata 写入相册" tap:^(UIButton *button, NSDictionary *userInfo) {
+        STRONGSELF
+        self.handler = [[ImagePickerHandler alloc] init];
+        self.handler.assetBlock = ^(PHAsset *asset) {
+            STRONGSELF
+            UIImage *image = [self.handler imageFromAsset:asset];
+            NSData *data = [self p_image:image setUserComment:[self p_UUIDString]];
+            
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                PHAssetCreationRequest *req = [PHAssetCreationRequest creationRequestForAsset];
+                [req addResourceWithType:PHAssetResourceTypePhoto data:data options:nil];
+            } completionHandler:^(BOOL success, NSError *error) {
+                if (error) {
+                    NSLog(@"error = %@", success, error);
+                } else {
+                    NSLog(@"success");
+                }
+            }];
+        };
+        [self.handler present];
+    }];
+    
+    [self test:@"选图 修改metadata 写入本地" tap:^(UIButton *button, NSDictionary *userInfo) {
+        STRONGSELF
+        self.handler = [[ImagePickerHandler alloc] init];
+        self.handler.assetBlock = ^(PHAsset *asset) {
+            STRONGSELF
+            UIImage *image = [self.handler imageFromAsset:asset];
+            NSString *name = [[NSUUID UUID] UUIDString];
+            NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
+            NSData *data = [self p_image:image setUserComment:[self p_UUIDString]];
+            [data writeToFile:path atomically:YES];
+            
+            NSDictionary *exif1 = nil;
+            // CIImage
+            {
+                CIImage *image = [CIImage imageWithData:data];
+                NSDictionary *properties = [image properties];
+                exif1 = properties[(NSString *)kCGImagePropertyExifDictionary];
+            }
+            
+            // data
+            NSDictionary *exif2 = nil;
+            {
+                CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+                CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
+                exif2 = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary);
+                CFRelease(imageInfo);
+                CFRelease(imageSource);
+            }
+            
+            // file
+            NSDictionary *exif3 = nil;
+            {
+                NSURL *URL = [NSURL fileURLWithPath:path];
+                CGImageSourceRef imageSource = CGImageSourceCreateWithURL((CFURLRef)URL, NULL);
+                CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL);
+                exif3 = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary);
+                CFRelease(imageInfo);
+                CFRelease(imageSource);
+            }
+            PRINT_BLANK_LINE
+            NSLog(@"exif: %@", exif3);
+            NSParameterAssert([exif1 isEqual:exif2] && [exif2 isEqual:exif3]);
         };
         [self.handler present];
     }];
@@ -133,6 +195,45 @@
 {
 //    PHObjectChangeDetails *details = changeInstance changeDetailsForObject:<#(nonnull PHObject *)#>
     NSLog(@"%@", changeInstance);
+}
+
+- (NSData *)p_image:(UIImage *)image setUserComment:(NSString *)comment
+{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    CGImageSourceRef sourceRef = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
+    CFStringRef UTI = CGImageSourceGetType(sourceRef);
+    
+    NSMutableData *destData = [NSMutableData data];
+    CGImageDestinationRef destinationRef = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)destData, UTI, 1, NULL);
+    
+    CFDictionaryRef propertiesRef = CGImageSourceCopyPropertiesAtIndex(sourceRef, 0, NULL);
+    NSDictionary *imageInfo = (__bridge NSDictionary *)propertiesRef;
+    
+    NSMutableDictionary *metaData = [imageInfo mutableCopy];
+    NSMutableDictionary *exif = [[metaData objectForKey:(NSString *)kCGImagePropertyExifDictionary] mutableCopy];
+    if (!exif) {
+        exif = [NSMutableDictionary dictionary];
+    }
+    exif[(NSString *)kCGImagePropertyExifUserComment] = comment;
+
+    metaData[(NSString *)kCGImagePropertyExifDictionary] = exif;
+    
+    CGImageDestinationAddImageFromSource(destinationRef, sourceRef, 0, (__bridge CFDictionaryRef)metaData);
+    BOOL success = NO;
+    success = CGImageDestinationFinalize(destinationRef);
+    
+    CFRelease(propertiesRef);
+    CFRelease(destinationRef);
+    CFRelease(sourceRef);
+    
+    return destData;
+}
+
+- (NSString *)p_UUIDString
+{
+    static NSInteger index = 0;
+    NSString *text = [[NSUUID UUID] UUIDString];
+    return [NSString stringWithFormat:@"%@: %@", @(++index), text];
 }
 
 @end

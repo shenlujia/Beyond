@@ -15,7 +15,7 @@
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
 #pragma clang diagnostic ignored "-Wunused-command-line-argument"
 #pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
-#import <Bugly/Bugly.h>
+//#import <Bugly/Bugly.h>
 #import <FLEX/FLEX.h>
 #pragma clang diagnostic pop
 
@@ -45,8 +45,8 @@ static NSTimer *m_timer = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Bugly startWithAppId:@"ca58095700"];
-    [BuglyLog initLogger:BuglyLogLevelError consolePrint:NO];
+//    [Bugly startWithAppId:@"ca58095700"];
+//    [BuglyLog initLogger:BuglyLogLevelError consolePrint:NO];
     
     NSString *name = beyond_entryClassName();
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

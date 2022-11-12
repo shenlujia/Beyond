@@ -26,6 +26,19 @@
     
     WEAKSELF
     
+    [weak_s test:@"sync卡死" tap:^(UIButton *button, NSDictionary *userInfo) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"log 1");
+            dispatch_queue_t happy_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            NSLog(@"log 2");
+            dispatch_sync(happy_queue, ^{
+                NSLog(@"log 3");
+                [weak_s test_sync_deadlock];
+                NSLog(@"log 4");
+            });
+        });
+    }];
+    
     [weak_s test:@"主线程不一定执行主队列 主队列不一定在主线程" tap:^(UIButton *button, NSDictionary *userInfo) {
         static int key = 0;
         CFStringRef context = CFSTR("main");
@@ -350,6 +363,18 @@
 - (void)p_test_performSelector3
 {
     NSLog(@"3");
+}
+
+- (void)test_sync_deadlock
+{
+    NSLog(@"func 0");
+    if (dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == dispatch_queue_get_label(dispatch_get_main_queue())) {
+        NSLog(@"func 1");
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"func 2");
+        });
+    }
 }
 
 @end
