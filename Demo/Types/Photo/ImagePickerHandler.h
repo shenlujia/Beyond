@@ -17,6 +17,10 @@
 
 - (void)present;
 
+- (UIImage *)imageFromAsset:(PHAsset *)asset;
+
+- (NSData *)dataFromAsset:(PHAsset *)asset;
+
 - (void)requestImageForAsset:(PHAsset *)asset handler:(void (^)(UIImage *image, NSDictionary *info))handler;
 
 - (void)requestImageDataForAsset:(PHAsset *)asset handler:(void (^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info))handler;

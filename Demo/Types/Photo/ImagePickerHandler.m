@@ -60,7 +60,7 @@
     options.networkAccessAllowed = YES;
 
     PHImageManager *manager = [PHImageManager defaultManager];
-    [manager requestImageForAsset:asset targetSize:CGSizeMake(1080, 1080) contentMode:PHImageContentModeAspectFill options:options resultHandler:handler];
+    [manager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:handler];
 }
 
 - (void)requestImageDataForAsset:(PHAsset *)asset handler:(void (^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info))handler
@@ -97,6 +97,41 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIImage *)imageFromAsset:(PHAsset *)asset
+{
+    if (!asset) {
+        return nil;
+    }
+    
+    __block UIImage *ret = nil;
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = YES;
+
+    PHImageManager *manager = [PHImageManager defaultManager];
+    [manager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        ret = result;
+    }];
+    return ret;
+}
+
+- (NSData *)dataFromAsset:(PHAsset *)asset
+{
+    if (!asset) {
+        return nil;
+    }
+    
+    __block NSData *ret = nil;
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = YES;
+    options.version = PHImageRequestOptionsVersionOriginal;
+
+    PHImageManager *manager = [PHImageManager defaultManager];
+    [manager requestImageDataForAsset:asset options:options resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+        ret = imageData;
+    }];
+    return ret;
 }
 
 @end
