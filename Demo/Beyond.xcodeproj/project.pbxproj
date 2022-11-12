@@ -103,6 +103,8 @@
 		5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */; };
 		5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */; };
 		5E74CB6926F9DA0D00A619A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */; };
+		5E7A9D8E2919213D006CC15E /* UIImage+SSExif.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9D8D2919213D006CC15E /* UIImage+SSExif.m */; };
+		5E7A9D9129192225006CC15E /* ExifContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9D9029192225006CC15E /* ExifContainer.m */; };
 		5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC7E26650DA500F90FE6 /* PhotoController.m */; };
 		5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */; };
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
@@ -294,6 +296,10 @@
 		5E7207B925ED29B800BD9F59 /* MemoryLeakDetectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryLeakDetectController.h; sourceTree = "<group>"; };
 		5E7207BA25ED29B800BD9F59 /* MemoryLeakDetectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryLeakDetectController.m; sourceTree = "<group>"; };
 		5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5E7A9D8C2919213D006CC15E /* UIImage+SSExif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+SSExif.h"; sourceTree = "<group>"; };
+		5E7A9D8D2919213D006CC15E /* UIImage+SSExif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SSExif.m"; sourceTree = "<group>"; };
+		5E7A9D8F29192225006CC15E /* ExifContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExifContainer.h; sourceTree = "<group>"; };
+		5E7A9D9029192225006CC15E /* ExifContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExifContainer.m; sourceTree = "<group>"; };
 		5E7BCC7D26650DA500F90FE6 /* PhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoController.h; sourceTree = "<group>"; };
 		5E7BCC7E26650DA500F90FE6 /* PhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoController.m; sourceTree = "<group>"; };
 		5E7BCC82266514AA00F90FE6 /* ImagePickerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePickerHandler.h; sourceTree = "<group>"; };
@@ -853,12 +859,16 @@
 		5E7BCC7C26650D8F00F90FE6 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				5E7BCC7D26650DA500F90FE6 /* PhotoController.h */,
-				5E7BCC7E26650DA500F90FE6 /* PhotoController.m */,
 				5E7BCC82266514AA00F90FE6 /* ImagePickerHandler.h */,
 				5E7BCC83266514AA00F90FE6 /* ImagePickerHandler.m */,
+				5E7BCC7D26650DA500F90FE6 /* PhotoController.h */,
+				5E7BCC7E26650DA500F90FE6 /* PhotoController.m */,
 				5EC5B74A28F2718F00E3B448 /* PhotoPrivacyChecker.h */,
 				5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */,
+				5E7A9D8C2919213D006CC15E /* UIImage+SSExif.h */,
+				5E7A9D8D2919213D006CC15E /* UIImage+SSExif.m */,
+				5E7A9D8F29192225006CC15E /* ExifContainer.h */,
+				5E7A9D9029192225006CC15E /* ExifContainer.m */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -1054,6 +1064,7 @@
 				5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */,
 				5E5FE90B29157CC500951971 /* SSEasy.m in Sources */,
 				5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */,
+				5E7A9D8E2919213D006CC15E /* UIImage+SSExif.m in Sources */,
 				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				5E5FE90229157CC500951971 /* SSEasyAlert.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
@@ -1093,6 +1104,7 @@
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
+				5E7A9D9129192225006CC15E /* ExifContainer.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
