@@ -272,7 +272,7 @@ static NSString *kOldFileKey = @"!!README.txt";
     NSArray *contents = [self contentsAtPath:folder];
     for (NSString *path in contents) {
         NSString *name = path.lastPathComponent;
-        NSString *toName = [self p_fixName:name];
+        NSString *toName = [self p_fixFC2:name];
         if (![name isEqualToString:toName]) {
             [self p_appendLog:[NSString stringWithFormat:@"文件重命名 %@ -> %@", name, toName]];
             NSString *toPath = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:toName];
@@ -413,14 +413,29 @@ static NSString *kOldFileKey = @"!!README.txt";
 
 - (void)p_addValue:(NSString *)value
 {
-    value = [self p_fixName:value];
+    value = [self p_fixFC2:value];
+    value = [self p_fixTemp:value];
     if (value.length) {
         [self.values addObject:value];
     }
 }
 
+// 去除临时前缀 !Temp !temp
+- (NSString *)p_fixTemp:(NSString *)name
+{
+    NSArray *components = [name componentsSeparatedByString:@"/"];
+    if (components.count == 2) {
+        NSString *text = components.firstObject;
+        text = text.lowercaseString;
+        if ([text isEqualToString:@"!temp"]) {
+            return components.lastObject;
+        }
+    }
+    return name;
+}
+
 // 修复 FC2PPV-XXXXXX: fc2ppv-XXXXXX fc2-ppv-XXXXXX fc2-ppv_XXXXXX FC2-ppv_XXXXXX
-- (NSString *)p_fixName:(NSString *)name
+- (NSString *)p_fixFC2:(NSString *)name
 {
     if (name.length == 0) {
         return name;
