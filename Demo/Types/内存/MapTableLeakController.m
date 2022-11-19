@@ -7,6 +7,7 @@
 //
 
 #import "MapTableLeakController.h"
+#import "NSObject+SSJSON.h"
 
 @interface SSTableTestObj : NSObject
 
@@ -17,6 +18,11 @@
 @end
 
 @implementation SSTableTestObj
+
+- (void)dealloc
+{
+    printf("[%s] ~dealloc\n", _name.UTF8String);
+}
 
 + (instancetype)createWithName:(NSString *)name
 {
@@ -53,9 +59,9 @@
     });
 }
 
-- (void)dealloc
+- (NSString *)description
 {
-    printf("[%s] ~dealloc\n", _name.UTF8String);
+    return [NSString stringWithFormat:@"<TestObject:%p>", self];
 }
 
 @end
@@ -78,6 +84,17 @@ static void test_mapTable(void)
         if (setter) {
             setter(obj);
         }
+        
+        __unused NSObject *slice = [[NSClassFromString(@"NSSlice") alloc] init];
+        __unused id slice_1 = [slice ss_keyValues];
+        
+       __unused NSValue *kk = [obj.mapTable valueForKey:@"keys"];
+       __unused NSValue *vv = [obj.mapTable valueForKey:@"values"];
+        
+        __unused id kkk = [obj.mapTable ss_keyValues];
+        
+//        __unused id mm = [kk valueForKey:@"items"];
+        
         [obj printInfo];
     };
     
@@ -91,15 +108,15 @@ static void test_mapTable(void)
 //        [obj.mapTable setObject:obj forKey:@"text"];
 //    });
 //
-    test(^(SSTableTestObj *obj) {
-        obj.mapTable = [NSMapTable weakToStrongObjectsMapTable];
-        [obj.mapTable setObject:obj forKey:[[NSObject alloc] init]];
-    });
-    
 //    test(^(SSTableTestObj *obj) {
 //        obj.mapTable = [NSMapTable weakToStrongObjectsMapTable];
-//        [obj.mapTable setObject:obj forKey:[SSTableTestObj createWithName:@"weakKey1"]];
+//        [obj.mapTable setObject:obj forKey:[[NSObject alloc] init]];
 //    });
+    
+    test(^(SSTableTestObj *obj) {
+        obj.mapTable = [NSMapTable weakToStrongObjectsMapTable];
+        [obj.mapTable setObject:obj forKey:[SSTableTestObj createWithName:@"weakKey1"]];
+    });
     
 //    test(^(SSTableTestObj *obj) {
 //        obj.mapTable = [NSMapTable weakToStrongObjectsMapTable];
