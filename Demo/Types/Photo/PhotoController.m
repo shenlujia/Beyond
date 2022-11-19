@@ -11,6 +11,7 @@
 #import "SSEasy.h"
 #import "ImagePickerHandler.h"
 #import "DeviceAuthority.h"
+#import "PhotoPrivacyChecker.h"
 
 @interface PhotoController () <PHPhotoLibraryChangeObserver>
 
@@ -27,6 +28,10 @@
 //    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
     WEAKSELF
+    
+    [self test:@"隐私校验" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [PhotoPrivacyChecker test];
+    }];
     
     [self test:@"选图" tap:^(UIButton *button, NSDictionary *userInfo) {
         STRONGSELF

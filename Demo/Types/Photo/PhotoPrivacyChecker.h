@@ -10,6 +10,6 @@
 
 @interface PhotoPrivacyChecker : NSObject
 
-+ (void)install;
++ (void)test;
 
 @end
