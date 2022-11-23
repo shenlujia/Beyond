@@ -424,18 +424,12 @@ static NSString *kOldFileKey = @"!!README.txt";
 // 去除临时前缀 !Temp !temp
 - (NSString *)p_fixTemp:(NSString *)name
 {
-    NSArray *components = [name componentsSeparatedByString:@"/"];
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSString *s in components) {
-        if (s.length) {
-            [array addObject:s];
-        }
-    }
-    if (array.count == 2) {
-        NSString *text = array.firstObject;
+    NSArray *components = [self p_pathComponentsWithString:name];
+    if (components.count == 2) {
+        NSString *text = components.firstObject;
         text = text.lowercaseString;
         if ([text isEqualToString:@"!temp"]) {
-            return array.lastObject;
+            return components.lastObject;
         }
     }
     return name;
@@ -484,6 +478,18 @@ static NSString *kOldFileKey = @"!!README.txt";
     }
     
     return toName;
+}
+
+- (NSArray *)p_pathComponentsWithString:(NSString *)string
+{
+    NSArray *components = [string componentsSeparatedByString:@"/"];
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *s in components) {
+        if (s.length) {
+            [array addObject:s];
+        }
+    }
+    return array;
 }
 
 - (NSString *)p_key
