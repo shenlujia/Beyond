@@ -425,11 +425,17 @@ static NSString *kOldFileKey = @"!!README.txt";
 - (NSString *)p_fixTemp:(NSString *)name
 {
     NSArray *components = [name componentsSeparatedByString:@"/"];
-    if (components.count == 2) {
-        NSString *text = components.firstObject;
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *s in components) {
+        if (s.length) {
+            [array addObject:s];
+        }
+    }
+    if (array.count == 2) {
+        NSString *text = array.firstObject;
         text = text.lowercaseString;
         if ([text isEqualToString:@"!temp"]) {
-            return components.lastObject;
+            return array.lastObject;
         }
     }
     return name;
