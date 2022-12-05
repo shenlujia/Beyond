@@ -397,13 +397,14 @@ static NSString *kOldFileKey = @"!!README.txt";
         if ([item hasSuffix:kOldFileKey]) {
             continue;
         }
-        if ([item.pathExtension isEqualToString:@"mp4"] ||
-            [item.pathExtension isEqualToString:@"mov"] ||
-            [item.pathExtension isEqualToString:@"wmv"] ||
-            [item.pathExtension isEqualToString:@"ts"]) {
+        NSString *pathExtension = item.pathExtension.lowercaseString;
+        if ([pathExtension isEqualToString:@"mp4"] ||
+            [pathExtension isEqualToString:@"mov"] ||
+            [pathExtension isEqualToString:@"wmv"] ||
+            [pathExtension isEqualToString:@"ts"]) {
             [ret addObject:item];
-        } else if ([item.pathExtension isEqualToString:@"jpg"] ||
-                   [item.pathExtension isEqualToString:@"jpeg"]) {
+        } else if ([pathExtension isEqualToString:@"jpg"] ||
+                   [pathExtension isEqualToString:@"jpeg"]) {
             [ret addObject:item];
         } else {
             [self p_appendLog:[NSString stringWithFormat:@"非法文件: %@", item]];
@@ -416,6 +417,7 @@ static NSString *kOldFileKey = @"!!README.txt";
 {
     value = [self p_fixFC2:value];
     value = [self p_fixTemp:value];
+    value = [self p_fixAnime:value];
     if (value.length) {
         [self.values addObject:value];
     }
@@ -430,6 +432,55 @@ static NSString *kOldFileKey = @"!!README.txt";
         text = text.lowercaseString;
         if ([text isEqualToString:@"!temp"]) {
             return components.lastObject;
+        }
+    }
+    return name;
+}
+
+// ANIME优化
+// /!ANIME/[桜都字幕组]2017年年度合集/[桜都字幕组]2017年10月合集 V2/[桜都字幕组][720P Hi10P][BOOTLEG]abc.mp4
+// /!ANIME/[桜都字幕组]2017年年度合集/10/[BOOTLEG]abc.mp4
+- (NSString *)p_fixAnime:(NSString *)name
+{
+    NSString *separator = @"!ANIME/";
+    NSArray *components = [name componentsSeparatedByString:separator];
+    if (components.count == 2) {
+        NSString *prefix = components.firstObject;
+        NSString *suffix = components.lastObject;
+        NSArray *array = [suffix componentsSeparatedByString:@"/"];
+        if (array.count == 3) {
+            NSString *a = array[0];
+            NSString *b = ({
+                NSString *text = array[1];
+                NSString *tail = [self p_validSubWithValue:text separator:@"年" head:NO];
+                if (tail.length) {
+                    NSString *head = [self p_validSubWithValue:tail separator:@"月" head:YES];
+                    if (head.length) {
+                        text = head;
+                    }
+                }
+                text;
+            });
+            NSString *c = ({
+                NSString *text = array[2];
+                NSArray *kinds = @[@"[480P]", @"[720P]", @"[720P Hi10P]"];
+                for (NSString *s in kinds) {
+                    if ([text containsString:s]) {
+                        NSString *temp = [text componentsSeparatedByString:s].lastObject;
+                        if (temp.length) {
+                            text = temp;
+                            break;
+                        }
+                    }
+                }
+                text;
+            });
+            NSString *ret = [@[a, b, c] componentsJoinedByString:@"/"];
+            ret = [@[prefix, ret] componentsJoinedByString:separator];
+            if ([ret.pathExtension.lowercaseString isEqualToString:@"mp4"]) {
+                ret = [ret stringByDeletingPathExtension];
+            }
+            return ret;
         }
     }
     return name;
@@ -495,6 +546,23 @@ static NSString *kOldFileKey = @"!!README.txt";
 - (NSString *)p_key
 {
     return [NSString stringWithFormat:@"%@_%@_%@", @"test", @"name", @"center"];
+}
+
+- (NSString *)p_validSubWithValue:(NSString *)text separator:(NSString *)separator head:(BOOL)head
+{
+    if (text.length == 0 || separator.length == 0) {
+        return nil;
+    }
+    NSArray *components = [text componentsSeparatedByString:separator];
+    if (components.count != 2) {
+        return nil;
+    }
+    NSString *s0 = components.firstObject;
+    NSString *s1 = components.lastObject;
+    if (s0.length == 0 || s1.length == 0) {
+        return nil;
+    }
+    return head ? s0 : s1;
 }
 
 @end
