@@ -469,17 +469,26 @@ static NSString *kOldFileKey = @"!!README.txt";
                         NSString *temp = [text componentsSeparatedByString:s].lastObject;
                         if (temp.length) {
                             text = temp;
+                            if ([text.pathExtension.lowercaseString isEqualToString:@"mp4"]) {
+                                text = [text stringByDeletingPathExtension];
+                            }
                             break;
                         }
                     }
                 }
                 text;
             });
+            NSString *year = ({
+                NSString *tail = [self p_validSubWithValue:a separator:@"字幕组]" head:NO];
+                [self p_validSubWithValue:tail separator:@"年年度" head:YES];
+            });
+            
             NSString *ret = [@[a, b, c] componentsJoinedByString:@"/"];
-            ret = [@[prefix, ret] componentsJoinedByString:separator];
-            if ([ret.pathExtension.lowercaseString isEqualToString:@"mp4"]) {
-                ret = [ret stringByDeletingPathExtension];
+            if (year.length) {
+                NSString *temp = [NSString stringWithFormat:@"%@  [%@%02ld]", c, year, b.integerValue];
+                ret = [@[a, temp] componentsJoinedByString:@"/"];
             }
+            ret = [@[prefix, ret] componentsJoinedByString:separator];
             return ret;
         }
     }
