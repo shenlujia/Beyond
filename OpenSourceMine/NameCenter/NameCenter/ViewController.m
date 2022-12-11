@@ -442,6 +442,17 @@ static NSString *kOldFileKey = @"!!README.txt";
 // /!ANIME/[桜都字幕组]2017年年度合集/10/[BOOTLEG]abc.mp4
 - (NSString *)p_fixAnime:(NSString *)name
 {
+    if (![name hasPrefix:@"/!ANIME"]) {
+        return name;
+    }
+    
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    name = [name stringByReplacingOccurrencesOfString:@"(waifu2x)" withString:@""];
+    name = [name stringByReplacingOccurrencesOfString:@"_v2 " withString:@" "];
+    name = [name stringByReplacingOccurrencesOfString:@"   [" withString:@"  ["];
+    name = [name stringByReplacingOccurrencesOfString:@"_  [" withString:@"  ["];
+    name = [name stringByReplacingOccurrencesOfString:@" petit]" withString:@"]"];
+    
     NSString *separator = @"!ANIME/";
     NSArray *components = [name componentsSeparatedByString:separator];
     if (components.count == 2) {
