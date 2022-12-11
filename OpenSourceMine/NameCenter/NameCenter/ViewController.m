@@ -452,6 +452,17 @@ static NSString *kOldFileKey = @"!!README.txt";
     name = [name stringByReplacingOccurrencesOfString:@"   [" withString:@"  ["];
     name = [name stringByReplacingOccurrencesOfString:@"_  [" withString:@"  ["];
     name = [name stringByReplacingOccurrencesOfString:@" petit]" withString:@"]"];
+    name = [name stringByReplacingOccurrencesOfString:@".mp4" withString:@""];
+    name = [name stringByReplacingOccurrencesOfString:@".MP4" withString:@""];
+    name = [name stringByReplacingOccurrencesOfString:@"！ ヌ" withString:@"！ヌ"];
+    name = [name stringByReplacingOccurrencesOfString:@"]]" withString:@"]"];
+    name = [name stringByReplacingOccurrencesOfString:@"-petit]" withString:@"]"];
+    name = [name stringByReplacingOccurrencesOfString:@"] コ" withString:@"]コ"];
+    name = [name stringByReplacingOccurrencesOfString:@"/ [" withString:@"/["];
+    name = [name stringByReplacingOccurrencesOfString:@"ー・ジ" withString:@"ー·ジ"];
+    name = [name stringByReplacingOccurrencesOfString:@"[70P]" withString:@"[720P]"];
+    name = [name stringByReplacingOccurrencesOfString:@"] 自" withString:@"]自"];
+    name = [name stringByReplacingOccurrencesOfString:@"ガ" withString:@"ガ"]; // 这两个字符不一样
     
     NSString *separator = @"!ANIME/";
     NSArray *components = [name componentsSeparatedByString:separator];
