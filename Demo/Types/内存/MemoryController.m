@@ -217,9 +217,9 @@ static void *s_leakObj = NULL;
     
     [self test:nil tap:nil];
 
-    [self test_c:@"MemoryDetect"];
+    [self test_c:@"MemoryDetectController"];
 
-    [self test_c:@"MemoryLeakDetect"];
+    [self test_c:@"MemoryLeakDetectController"];
     
     [self test_c:@"MapTableLeakController"];
     
