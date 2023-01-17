@@ -376,11 +376,11 @@ static void add_image_callback(const struct mach_header *mhp, intptr_t slide)
         printf("\n");
         @autoreleasepool {
             NSLog(@"performSelector init");
-            SEL selctor = @selector(init);
+            SEL selector = @selector(init);
             Father *obj = [Father alloc];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [obj performSelector:selctor];
+            [obj performSelector:selector];
 #pragma clang diagnostic pop
         }
         printf("\n");
@@ -395,7 +395,7 @@ static void add_image_callback(const struct mach_header *mhp, intptr_t slide)
             [Father performSelector:@selector(newObject)];
             __unused Father *temp = [Father performSelector:@selector(newObject)];
             [Father performSelector:@selector(newObject) withObject:nil afterDelay:0];
-            [Father performSelector:@selector(newObject) withObject:nil afterDelay:1];
+            [Father performSelector:@selector(newObject) withObject:nil afterDelay:0.1];
             
             SEL selector = @selector(newObject);
             NSMethodSignature *signature = [Father methodSignatureForSelector:selector];
