@@ -193,6 +193,7 @@ void test_wrong_log(void)
     ss_easy_log(@"ss_easy_log %@ %@ %@", @"test", @(1), @"2");
     NSLog(@"NSLog");
     NSLog(@"NSLog %@", @(123));
+    printf("printf %s %d %s", "test222", 1222, "2222");
     
     [self test:@"FLEXLiveObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[NSClassFromString(@"FLEXLiveObjectsController") alloc] init];
