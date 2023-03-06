@@ -109,6 +109,8 @@
 		5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F52AC286530110017B05F /* MapTableLeakController.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
+		5EB8208A29AF33FC007A62EA /* SSAssetImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */; };
+		5EB8208C29AF39FA007A62EA /* test_getframeerror.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
 		5EC5B74C28F2718F00E3B448 /* PhotoPrivacyChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
@@ -306,6 +308,9 @@
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
+		5EB8208829AF33FC007A62EA /* SSAssetImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAssetImageGenerator.h; sourceTree = "<group>"; };
+		5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAssetImageGenerator.m; sourceTree = "<group>"; };
+		5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_getframeerror.mp4; sourceTree = "<group>"; };
 		5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopWithBottomAnimationController.h; sourceTree = "<group>"; };
 		5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopWithBottomAnimationController.m; sourceTree = "<group>"; };
 		5EC5B74A28F2718F00E3B448 /* PhotoPrivacyChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPrivacyChecker.h; sourceTree = "<group>"; };
@@ -866,10 +871,13 @@
 		5ECAF9512580A79000984E77 /* AVKit */ = {
 			isa = PBXGroup;
 			children = (
+				5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */,
 				5ECAF95E2580B41D00984E77 /* test_avkit1.mov */,
 				5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */,
 				5ECAF9522580A79000984E77 /* AVKitController.h */,
 				5ECAF9532580A79000984E77 /* AVKitController.m */,
+				5EB8208829AF33FC007A62EA /* SSAssetImageGenerator.h */,
+				5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */,
 			);
 			path = AVKit;
 			sourceTree = "<group>";
@@ -999,6 +1007,7 @@
 				5E5BA97025AEA32B0082AA9D /* img_9.png in Resources */,
 				5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */,
 				5E5BA98125AEB2170082AA9D /* cover_title_light.json in Resources */,
+				5EB8208C29AF39FA007A62EA /* test_getframeerror.mp4 in Resources */,
 				5E5BA96925AEA32B0082AA9D /* img_2.png in Resources */,
 				5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */,
 				57FD50A8243DA263002E481E /* Assets.xcassets in Resources */,
@@ -1111,6 +1120,7 @@
 				5E7207BB25ED29B800BD9F59 /* MemoryLeakDetectController.m in Sources */,
 				5E5FE90C29157CC500951971 /* FLEXHook.m in Sources */,
 				5E07DFF3259D6FE1004E4A66 /* HorizontalCollectionViewController.m in Sources */,
+				5EB8208A29AF33FC007A62EA /* SSAssetImageGenerator.m in Sources */,
 				574144602489CA8900BFCAC1 /* SafetyController.m in Sources */,
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
