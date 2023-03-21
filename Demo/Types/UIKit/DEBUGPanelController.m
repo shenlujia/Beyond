@@ -34,6 +34,9 @@
     WEAKSELF
     UIView *view = weak_s.view;
     const CGSize size = view.bounds.size;
+    [self test:@"dismiss" tap:^(UIButton *button, NSDictionary *userInfo) {
+        [weak_s.panel dismiss];
+    }];
     [self test:@"左上 空" tap:^(UIButton *button, NSDictionary *userInfo) {
         weak_s.panel = [weak_s createEmptyPanel];
         [weak_s.panel showInView:view center:CGPointMake(0, 0)];
@@ -144,8 +147,10 @@
     SSEasyPanel *panel = [[SSEasyPanel alloc] init];
     for (NSInteger idx = 1; idx <= 20; ++idx) {
         NSString *title = @(idx).stringValue;
-        [panel test:title action:^(SSEasyPanel *panel) {
-            NSLog(title);
+        [panel test:^(SSDEBUGPanelItem *item) {
+            [item.button setTitle:title forState:UIControlStateNormal];
+        } action:^(SSDEBUGPanelItem *item) {
+            ss_easy_log_text(title);
         }];
     }
     return panel;
