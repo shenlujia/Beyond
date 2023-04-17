@@ -145,7 +145,7 @@
 - (SSEasyPanel *)createNormalPanel
 {
     SSEasyPanel *panel = [[SSEasyPanel alloc] init];
-    for (NSInteger idx = 1; idx <= 20; ++idx) {
+    for (NSInteger idx = 1; idx <= 25; ++idx) {
         NSString *title = @(idx).stringValue;
         [panel test:^(SSDEBUGPanelItem *item) {
             [item.button setTitle:title forState:UIControlStateNormal];
