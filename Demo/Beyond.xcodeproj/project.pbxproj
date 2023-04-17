@@ -110,11 +110,9 @@
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
 		5EB8208A29AF33FC007A62EA /* SSAssetImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */; };
-		5EB8208C29AF39FA007A62EA /* test_getframeerror.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
 		5EC5B74C28F2718F00E3B448 /* PhotoPrivacyChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */; };
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
-		5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95E2580B41D00984E77 /* test_avkit1.mov */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 		5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED3D35B276225B300BF9F9C /* KeyboardController.m */; };
 		5EDF91012876AAF40092B1B4 /* StrictForegroundProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */; };
@@ -124,6 +122,7 @@
 		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */; };
 		5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */; };
 		5EFAF94B2786FA8500861A44 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAF94A2786FA8500861A44 /* TextViewController.m */; };
+		5EFE46EB29D2DFB4007E43C0 /* export_part_error_without_tolerance.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5EFE46EA29D2DFB4007E43C0 /* export_part_error_without_tolerance.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -310,14 +309,12 @@
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
 		5EB8208829AF33FC007A62EA /* SSAssetImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAssetImageGenerator.h; sourceTree = "<group>"; };
 		5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAssetImageGenerator.m; sourceTree = "<group>"; };
-		5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_getframeerror.mp4; sourceTree = "<group>"; };
 		5EC0C3992750E08000B4DE43 /* TopWithBottomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopWithBottomAnimationController.h; sourceTree = "<group>"; };
 		5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopWithBottomAnimationController.m; sourceTree = "<group>"; };
 		5EC5B74A28F2718F00E3B448 /* PhotoPrivacyChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPrivacyChecker.h; sourceTree = "<group>"; };
 		5EC5B74B28F2718F00E3B448 /* PhotoPrivacyChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPrivacyChecker.m; sourceTree = "<group>"; };
 		5ECAF9522580A79000984E77 /* AVKitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVKitController.h; sourceTree = "<group>"; };
 		5ECAF9532580A79000984E77 /* AVKitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVKitController.m; sourceTree = "<group>"; };
-		5ECAF95E2580B41D00984E77 /* test_avkit1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test_avkit1.mov; sourceTree = "<group>"; };
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
 		5ED3D35A276225B300BF9F9C /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
 		5ED3D35B276225B300BF9F9C /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
@@ -336,6 +333,7 @@
 		5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DEBUGLog.m"; sourceTree = "<group>"; };
 		5EFAF9492786FA8500861A44 /* TextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
 		5EFAF94A2786FA8500861A44 /* TextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		5EFE46EA29D2DFB4007E43C0 /* export_part_error_without_tolerance.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = export_part_error_without_tolerance.mov; sourceTree = "<group>"; };
 		A50D3CB3F1CD7E7C066E4EBA /* Pods-Beyond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.release.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -871,8 +869,7 @@
 		5ECAF9512580A79000984E77 /* AVKit */ = {
 			isa = PBXGroup;
 			children = (
-				5EB8208B29AF39FA007A62EA /* test_getframeerror.mp4 */,
-				5ECAF95E2580B41D00984E77 /* test_avkit1.mov */,
+				5EFE46EA29D2DFB4007E43C0 /* export_part_error_without_tolerance.mov */,
 				5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */,
 				5ECAF9522580A79000984E77 /* AVKitController.h */,
 				5ECAF9532580A79000984E77 /* AVKitController.m */,
@@ -995,6 +992,7 @@
 				5E5BA97925AEA32B0082AA9D /* draft_migrate_connection.json in Resources */,
 				5E5BA96F25AEA32B0082AA9D /* img_8.png in Resources */,
 				57FB88A2249EDD3C0093433B /* memory_test_1.jpg in Resources */,
+				5EFE46EB29D2DFB4007E43C0 /* export_part_error_without_tolerance.mov in Resources */,
 				5E5BA96725AEA32B0082AA9D /* img_1.png in Resources */,
 				5E5BA97125AEA32B0082AA9D /* moments_plus_guide.json in Resources */,
 				5E74CB6926F9DA0D00A619A6 /* LaunchScreen.storyboard in Resources */,
@@ -1007,9 +1005,7 @@
 				5E5BA97025AEA32B0082AA9D /* img_9.png in Resources */,
 				5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */,
 				5E5BA98125AEB2170082AA9D /* cover_title_light.json in Resources */,
-				5EB8208C29AF39FA007A62EA /* test_getframeerror.mp4 in Resources */,
 				5E5BA96925AEA32B0082AA9D /* img_2.png in Resources */,
-				5ECAF9602580B41D00984E77 /* test_avkit1.mov in Resources */,
 				57FD50A8243DA263002E481E /* Assets.xcassets in Resources */,
 				5E5BA96825AEA32B0082AA9D /* img_0.png in Resources */,
 				5E5BA96A25AEA32B0082AA9D /* img_3.png in Resources */,

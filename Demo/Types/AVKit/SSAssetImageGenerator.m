@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SSAssetImageGenerator.h"
+#import "SSEasy.h"
+
+#define NSLog ss_easy_log
 
 @implementation AVAsset (SS)
 
