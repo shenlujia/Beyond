@@ -79,6 +79,8 @@
     [manager requestImageDataForAsset:asset options:options resultHandler:handler];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -93,6 +95,7 @@
         }
     }
 }
+#pragma clang diagnostic pop
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {

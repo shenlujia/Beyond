@@ -134,12 +134,42 @@
 
 @implementation SSFoundationController
 
+- (BOOL)defined
+{
+    BOOL defined = YES;
+    return defined;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wuninitialized"
+- (BOOL)undefined
+{
+    BOOL undefined;
+    return undefined; // Variable 'undefined' is uninitialized when used here
+}
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wformat-extra-args"
+//#pragma clang diagnostic ignored "-Wformat-insufficient-args"
 - (void)viewDidLoad
 {
     WEAKSELF
     [super viewDidLoad];
     
     [self testRegularExpression];
+    
+    [self test:@"基础类型必须初始化 否则会异常 模拟器可能无法复现" tap:^(UIButton *button, NSDictionary *userInfo) {
+        for (NSInteger i = 0; i < 10000; i++) {
+            BOOL defined = [weak_s defined];
+            BOOL undefined = [weak_s undefined];
+            NSAssert(defined, @"defined = true");
+            if (undefined) {
+                ss_easy_log(@"undefined = YES ?");
+                NSAssert(undefined == NO, @"undefined = YES ?"); // 如果认为 BOOL 未经初始化一定是 NO 的话，那这个 Assert 就永远不会中
+            }
+        }
+    }];
     
     [self test:@"五秒后调用 需要保证在前台 所以可能会在回到前台时调用" tap:^(UIButton *button, NSDictionary *userInfo) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -291,6 +321,7 @@
 //        NSLog(@"fetchAssetsWithOptions %@", @(result.count));
     }];
 }
+#pragma clang diagnostic pop
 
 - (void)testRegularExpression
 {

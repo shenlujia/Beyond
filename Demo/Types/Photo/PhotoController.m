@@ -93,7 +93,7 @@
                 [req addResourceWithType:PHAssetResourceTypePhoto data:data options:nil];
             } completionHandler:^(BOOL success, NSError *error) {
                 if (error) {
-                    NSLog(@"error = %@", success, error);
+                    NSLog(@"error = %@", error);
                 } else {
                     NSLog(@"success");
                 }
