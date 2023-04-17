@@ -155,7 +155,12 @@ void test_wrong_log(void)
     NSLog(@"你好7");
     printf("你好8\n");
     NSLog(@"====== end");
+    PRINT_BLANK_LINE
 }
+
+@interface SSEasyController ()
+
+@end
 
 @implementation SSEasyController
 
@@ -186,6 +191,11 @@ void test_wrong_log(void)
 {
     [super viewDidLoad];
     
+    
+    NSLog(@"");
+    
+    test_wrong_log();
+    
     __weak SSEasyController *host = self;
     
     fprintf(stderr, "log invisble");
@@ -193,7 +203,45 @@ void test_wrong_log(void)
     ss_easy_log(@"ss_easy_log %@ %@ %@", @"test", @(1), @"2");
     NSLog(@"NSLog");
     NSLog(@"NSLog %@", @(123));
-    printf("printf %s %d %s", "test222", 1222, "2222");
+    printf("printf %s %d %s \n", "test222", 1222, "2222");
+        
+    [self test:@"分享" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSString *text = @"12345";
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        NSString *path = [documentPath stringByAppendingPathComponent:@"share.txt"];
+        [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        
+        NSArray *activityItems = @[[NSURL fileURLWithPath:path]];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        //__weak typeof(self) weakself = self;
+        activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+    //      if (activityType == nil && activityError == nil && completed == NO) {
+    //          //关闭了分享弹框，给h5回调失败
+    //       }else if (activityType != nil && completed) {
+    //               // 分享成功，给h5回调
+    //
+    //      }else if (activityType != nil && activityError != nil) {
+    //               // 操作失败，给h5回调;
+    //      }else if (activityType != nil && completed == NO) {
+    //               // 操作失败，给h5回调
+    //               // 备忘录取消操作
+    //      }else {
+    //          //给h5回调
+    //       }
+            //上面判断是写的失败详细内容，若需求不需要这么详细，直接下面这段代码就可以
+    //        if (activityType != nil && completed) {
+    //            //分享成功，给h5回调成功
+    //            [YNETAlertView showStatus:@"分享成功"];
+    //        }else{
+    //            //给h5回调失败
+    //            [YNETAlertView showStatus:@"分享失败"];
+    //        }
+        };
+            
+        [host presentViewController:activityVC animated:YES completion:^{
+            
+        }];
+    }];
     
     [self test:@"FLEXLiveObjects" tap:^(UIButton *button, NSDictionary *userInfo) {
         UIViewController *c = [[NSClassFromString(@"FLEXLiveObjectsController") alloc] init];
