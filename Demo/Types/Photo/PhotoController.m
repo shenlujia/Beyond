@@ -16,6 +16,7 @@
 @interface PhotoController () <PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong) ImagePickerHandler *handler;
+@property (nonatomic, strong) PHAsset *lastSelectedAsset;
 
 @end
 
@@ -33,11 +34,31 @@
         [PhotoPrivacyChecker test];
     }];
     
+    [self test:@"读最后选中的图" tap:^(UIButton *button, NSDictionary *userInfo) {
+        STRONGSELF
+        [self.handler requestImageForAsset:self.lastSelectedAsset handler:^(UIImage *image, NSDictionary *info) {
+            STRONGSELF
+            if (image) {
+                PRINT_BLANK_LINE
+                NSLog(@"info: %@", info);
+                NSLog(@"size: (%.2f, %.2f)", image.size.width, image.size.height);
+                PRINT_BLANK_LINE
+                NSData *data1 = UIImageJPEGRepresentation(image, 0.3);
+                NSLog(@"UIImageJPEGRepresentation 会丢失 exif: %@", [self exifInData:data1]);
+
+                PRINT_BLANK_LINE
+                NSData *data2 = UIImagePNGRepresentation(image);
+                NSLog(@"UIImagePNGRepresentation 会丢失 exif: %@", [self exifInData:data2]);
+            }
+        }];
+    }];
+    
     [self test:@"选图" tap:^(UIButton *button, NSDictionary *userInfo) {
         STRONGSELF
         self.handler = [[ImagePickerHandler alloc] init];
         self.handler.assetBlock = ^(PHAsset *asset) {
             STRONGSELF
+            self.lastSelectedAsset = asset;
             // option.synchronous = YES，回调才只走一次
             NSLog(@"requestImageForAsset start");
             [self.handler requestImageForAsset:asset handler:^(UIImage *image, NSDictionary *info) {
