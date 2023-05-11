@@ -417,7 +417,6 @@ static NSString *kOldFileKey = @"!!README.txt";
 {
     value = [self p_fixFC2:value];
     value = [self p_fixTemp:value];
-    value = [self p_fixAnime:value];
     if (value.length) {
         [self.values addObject:value];
     }
@@ -432,86 +431,6 @@ static NSString *kOldFileKey = @"!!README.txt";
         text = text.lowercaseString;
         if ([text isEqualToString:@"!temp"]) {
             return components.lastObject;
-        }
-    }
-    return name;
-}
-
-// ANIME优化
-// /!ANIME/[桜都字幕组]2017年年度合集/[桜都字幕组]2017年10月合集 V2/[桜都字幕组][720P Hi10P][BOOTLEG]abc.mp4
-// /!ANIME/[桜都字幕组]2017年年度合集/10/[BOOTLEG]abc.mp4
-- (NSString *)p_fixAnime:(NSString *)name
-{
-    if (![name hasPrefix:@"/!ANIME"]) {
-        return name;
-    }
-    
-    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    name = [name stringByReplacingOccurrencesOfString:@"(waifu2x)" withString:@""];
-    name = [name stringByReplacingOccurrencesOfString:@"_v2 " withString:@" "];
-    name = [name stringByReplacingOccurrencesOfString:@"   [" withString:@"  ["];
-    name = [name stringByReplacingOccurrencesOfString:@"_  [" withString:@"  ["];
-    name = [name stringByReplacingOccurrencesOfString:@" petit]" withString:@"]"];
-    name = [name stringByReplacingOccurrencesOfString:@".mp4" withString:@""];
-    name = [name stringByReplacingOccurrencesOfString:@".MP4" withString:@""];
-    name = [name stringByReplacingOccurrencesOfString:@"！ ヌ" withString:@"！ヌ"];
-    name = [name stringByReplacingOccurrencesOfString:@"]]" withString:@"]"];
-    name = [name stringByReplacingOccurrencesOfString:@"-petit]" withString:@"]"];
-    name = [name stringByReplacingOccurrencesOfString:@"] コ" withString:@"]コ"];
-    name = [name stringByReplacingOccurrencesOfString:@"/ [" withString:@"/["];
-    name = [name stringByReplacingOccurrencesOfString:@"ー・ジ" withString:@"ー·ジ"];
-    name = [name stringByReplacingOccurrencesOfString:@"[70P]" withString:@"[720P]"];
-    name = [name stringByReplacingOccurrencesOfString:@"] 自" withString:@"]自"];
-    name = [name stringByReplacingOccurrencesOfString:@"ガ" withString:@"ガ"]; // 这两个字符不一样
-    
-    NSString *separator = @"!ANIME/";
-    NSArray *components = [name componentsSeparatedByString:separator];
-    if (components.count == 2) {
-        NSString *prefix = components.firstObject;
-        NSString *suffix = components.lastObject;
-        NSArray *array = [suffix componentsSeparatedByString:@"/"];
-        if (array.count == 3) {
-            NSString *a = array[0];
-            NSString *b = ({
-                NSString *text = array[1];
-                NSString *tail = [self p_validSubWithValue:text separator:@"年" head:NO];
-                if (tail.length) {
-                    NSString *head = [self p_validSubWithValue:tail separator:@"月" head:YES];
-                    if (head.length) {
-                        text = head;
-                    }
-                }
-                text;
-            });
-            NSString *c = ({
-                NSString *text = array[2];
-                NSArray *kinds = @[@"[480P]", @"[720P]", @"[720P Hi10P]"];
-                for (NSString *s in kinds) {
-                    if ([text containsString:s]) {
-                        NSString *temp = [text componentsSeparatedByString:s].lastObject;
-                        if (temp.length) {
-                            text = temp;
-                            if ([text.pathExtension.lowercaseString isEqualToString:@"mp4"]) {
-                                text = [text stringByDeletingPathExtension];
-                            }
-                            break;
-                        }
-                    }
-                }
-                text;
-            });
-            NSString *year = ({
-                NSString *tail = [self p_validSubWithValue:a separator:@"字幕组]" head:NO];
-                [self p_validSubWithValue:tail separator:@"年年度" head:YES];
-            });
-            
-            NSString *ret = [@[a, b, c] componentsJoinedByString:@"/"];
-            if (year.length) {
-                NSString *temp = [NSString stringWithFormat:@"%@  [%@%02ld]", c, year, b.integerValue];
-                ret = [@[a, temp] componentsJoinedByString:@"/"];
-            }
-            ret = [@[prefix, ret] componentsJoinedByString:separator];
-            return ret;
         }
     }
     return name;

@@ -98,6 +98,7 @@
 		5E61389325EE3DB800127B6E /* SSHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61389225EE3DB800127B6E /* SSHeapEnumerator.m */; };
 		5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E613F9E25EF574400127B6E /* SSLeakDetectorObject.m */; };
 		5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61549525F08F0900127B6E /* SSLiveObjectsViewController.m */; };
+		5E6903C329FB9F8600192751 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6903C229FB9F8600192751 /* CoreMotion.framework */; };
 		5E69C45726F0DED6005B93AB /* NSFileManager+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E69C45626F0DED6005B93AB /* NSFileManager+SS.m */; };
 		5E69C45A26F1BE39005B93AB /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E69C45926F1BE39005B93AB /* FileManagerController.m */; };
 		5E7207B525ED282C00BD9F59 /* SimpleLeakDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E7207B425ED282C00BD9F59 /* SimpleLeakDetector.mm */; };
@@ -286,6 +287,7 @@
 		5E613F9E25EF574400127B6E /* SSLeakDetectorObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLeakDetectorObject.m; sourceTree = "<group>"; };
 		5E61549425F08F0900127B6E /* SSLiveObjectsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSLiveObjectsViewController.h; sourceTree = "<group>"; };
 		5E61549525F08F0900127B6E /* SSLiveObjectsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLiveObjectsViewController.m; sourceTree = "<group>"; };
+		5E6903C229FB9F8600192751 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5E69C45526F0DED6005B93AB /* NSFileManager+SS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+SS.h"; sourceTree = "<group>"; };
 		5E69C45626F0DED6005B93AB /* NSFileManager+SS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+SS.m"; sourceTree = "<group>"; };
 		5E69C45826F1BE38005B93AB /* FileManagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManagerController.h; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6903C329FB9F8600192751 /* CoreMotion.framework in Frameworks */,
 				5E4A6433277B1C63004CA91E /* CoreMedia.framework in Frameworks */,
 				5E4A6431277B1C46004CA91E /* Photos.framework in Frameworks */,
 				5E4A642F277B1C2E004CA91E /* AVFoundation.framework in Frameworks */,
@@ -921,6 +924,7 @@
 		D4EA06309F64FDB43730C4A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E6903C229FB9F8600192751 /* CoreMotion.framework */,
 				5E4A6432277B1C63004CA91E /* CoreMedia.framework */,
 				5E4A6430277B1C46004CA91E /* Photos.framework */,
 				5E4A642E277B1C2E004CA91E /* AVFoundation.framework */,
