@@ -23,10 +23,18 @@
 		5E2DF49A2ACDBE4100CCF750 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF48F2ACDBE4100CCF750 /* MASConstraint.m */; };
 		5E2DF49B2ACDBE4100CCF750 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4912ACDBE4100CCF750 /* MASViewConstraint.m */; };
 		5E2DF49C2ACDBE4100CCF750 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4922ACDBE4100CCF750 /* MASViewAttribute.m */; };
+		5E2DF4AE2ACDC0ED00CCF750 /* SSMathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF49E2ACDC0ED00CCF750 /* SSMathUtil.m */; };
+		5E2DF4AF2ACDC0ED00CCF750 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4A02ACDC0ED00CCF750 /* MathExercisesGenerator.m */; };
+		5E2DF4B02ACDC0ED00CCF750 /* SSMathNumberDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4A12ACDC0ED00CCF750 /* SSMathNumberDescription.m */; };
+		5E2DF4B12ACDC0ED00CCF750 /* SSMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4A22ACDC0ED00CCF750 /* SSMathProblem.m */; };
+		5E2DF4B22ACDC0ED00CCF750 /* SSMathNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4A52ACDC0ED00CCF750 /* SSMathNumber.m */; };
+		5E2DF4B32ACDC0ED00CCF750 /* MathExercisesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AA2ACDC0ED00CCF750 /* MathExercisesController.m */; };
+		5E2DF4B42ACDC0ED00CCF750 /* SSMathNumberSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AB2ACDC0ED00CCF750 /* SSMathNumberSign.m */; };
+		5E2DF4B52ACDC0ED00CCF750 /* SSMathConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AC2ACDC0ED00CCF750 /* SSMathConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		57F89494246E453B007AEFC6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57F89494246E453B007AEFC6 /* MathBest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathBest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F894A3246E453B007AEFC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57F894A6246E453B007AEFC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57F894A8246E453B007AEFC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +70,22 @@
 		5E2DF4902ACDBE4100CCF750 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		5E2DF4912ACDBE4100CCF750 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		5E2DF4922ACDBE4100CCF750 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		5E2DF49E2ACDC0ED00CCF750 /* SSMathUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathUtil.m; sourceTree = "<group>"; };
+		5E2DF49F2ACDC0ED00CCF750 /* MathExercisesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathExercisesController.h; sourceTree = "<group>"; };
+		5E2DF4A02ACDC0ED00CCF750 /* MathExercisesGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathExercisesGenerator.m; sourceTree = "<group>"; };
+		5E2DF4A12ACDC0ED00CCF750 /* SSMathNumberDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathNumberDescription.m; sourceTree = "<group>"; };
+		5E2DF4A22ACDC0ED00CCF750 /* SSMathProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathProblem.m; sourceTree = "<group>"; };
+		5E2DF4A32ACDC0ED00CCF750 /* SSMathConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathConfiguration.h; sourceTree = "<group>"; };
+		5E2DF4A42ACDC0ED00CCF750 /* SSMathNumberSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathNumberSign.h; sourceTree = "<group>"; };
+		5E2DF4A52ACDC0ED00CCF750 /* SSMathNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathNumber.m; sourceTree = "<group>"; };
+		5E2DF4A62ACDC0ED00CCF750 /* SSMathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathUtil.h; sourceTree = "<group>"; };
+		5E2DF4A72ACDC0ED00CCF750 /* SSMathProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathProblem.h; sourceTree = "<group>"; };
+		5E2DF4A82ACDC0ED00CCF750 /* SSMathNumberDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathNumberDescription.h; sourceTree = "<group>"; };
+		5E2DF4A92ACDC0ED00CCF750 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
+		5E2DF4AA2ACDC0ED00CCF750 /* MathExercisesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathExercisesController.m; sourceTree = "<group>"; };
+		5E2DF4AB2ACDC0ED00CCF750 /* SSMathNumberSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathNumberSign.m; sourceTree = "<group>"; };
+		5E2DF4AC2ACDC0ED00CCF750 /* SSMathConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathConfiguration.m; sourceTree = "<group>"; };
+		5E2DF4AD2ACDC0ED00CCF750 /* SSMathNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathNumber.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				5E2DF4792ACDBE4100CCF750 /* Masonry */,
-				57F89496246E453B007AEFC6 /* Demo */,
+				57F89496246E453B007AEFC6 /* MathBest */,
+				5E2DF49D2ACDC0ED00CCF750 /* Business */,
 				57F89495246E453B007AEFC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,12 +112,12 @@
 		57F89495246E453B007AEFC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57F89494246E453B007AEFC6 /* Demo.app */,
+				57F89494246E453B007AEFC6 /* MathBest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57F89496246E453B007AEFC6 /* Demo */ = {
+		57F89496246E453B007AEFC6 /* MathBest */ = {
 			isa = PBXGroup;
 			children = (
 				57F894B0246E4567007AEFC6 /* Entry */,
@@ -100,7 +125,7 @@
 				57F894A5246E453B007AEFC6 /* LaunchScreen.storyboard */,
 				57F894A8246E453B007AEFC6 /* Info.plist */,
 			);
-			path = Demo;
+			path = MathBest;
 			sourceTree = "<group>";
 		};
 		57F894B0246E4567007AEFC6 /* Entry */ = {
@@ -149,12 +174,35 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		5E2DF49D2ACDC0ED00CCF750 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				5E2DF49F2ACDC0ED00CCF750 /* MathExercisesController.h */,
+				5E2DF4AA2ACDC0ED00CCF750 /* MathExercisesController.m */,
+				5E2DF4A92ACDC0ED00CCF750 /* MathExercisesGenerator.h */,
+				5E2DF4A02ACDC0ED00CCF750 /* MathExercisesGenerator.m */,
+				5E2DF4A32ACDC0ED00CCF750 /* SSMathConfiguration.h */,
+				5E2DF4AC2ACDC0ED00CCF750 /* SSMathConfiguration.m */,
+				5E2DF4AD2ACDC0ED00CCF750 /* SSMathNumber.h */,
+				5E2DF4A52ACDC0ED00CCF750 /* SSMathNumber.m */,
+				5E2DF4A82ACDC0ED00CCF750 /* SSMathNumberDescription.h */,
+				5E2DF4A12ACDC0ED00CCF750 /* SSMathNumberDescription.m */,
+				5E2DF4A42ACDC0ED00CCF750 /* SSMathNumberSign.h */,
+				5E2DF4AB2ACDC0ED00CCF750 /* SSMathNumberSign.m */,
+				5E2DF4A72ACDC0ED00CCF750 /* SSMathProblem.h */,
+				5E2DF4A22ACDC0ED00CCF750 /* SSMathProblem.m */,
+				5E2DF4A62ACDC0ED00CCF750 /* SSMathUtil.h */,
+				5E2DF49E2ACDC0ED00CCF750 /* SSMathUtil.m */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57F89493246E453B007AEFC6 /* Demo */ = {
+		57F89493246E453B007AEFC6 /* MathBest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57F894AD246E453B007AEFC6 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildConfigurationList = 57F894AD246E453B007AEFC6 /* Build configuration list for PBXNativeTarget "MathBest" */;
 			buildPhases = (
 				57F89490246E453B007AEFC6 /* Sources */,
 				57F89491246E453B007AEFC6 /* Frameworks */,
@@ -164,9 +212,9 @@
 			);
 			dependencies = (
 			);
-			name = Demo;
-			productName = Demo;
-			productReference = 57F89494246E453B007AEFC6 /* Demo.app */;
+			name = MathBest;
+			productName = MathBest;
+			productReference = 57F89494246E453B007AEFC6 /* MathBest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +231,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57F8948F246E453B007AEFC6 /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 57F8948F246E453B007AEFC6 /* Build configuration list for PBXProject "MathBest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -196,7 +244,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57F89493246E453B007AEFC6 /* Demo */,
+				57F89493246E453B007AEFC6 /* MathBest */,
 			);
 		};
 /* End PBXProject section */
@@ -222,16 +270,24 @@
 				5E2DF49C2ACDBE4100CCF750 /* MASViewAttribute.m in Sources */,
 				57F894BB246E4567007AEFC6 /* AppDelegate.m in Sources */,
 				57F894B9246E4567007AEFC6 /* ViewController.m in Sources */,
+				5E2DF4B52ACDC0ED00CCF750 /* SSMathConfiguration.m in Sources */,
 				5E2DF4982ACDBE4100CCF750 /* NSArray+MASAdditions.m in Sources */,
 				5E2DF4942ACDBE4100CCF750 /* ViewController+MASAdditions.m in Sources */,
 				5E2DF4952ACDBE4100CCF750 /* MASCompositeConstraint.m in Sources */,
 				57F894BA246E4567007AEFC6 /* main.m in Sources */,
+				5E2DF4B02ACDC0ED00CCF750 /* SSMathNumberDescription.m in Sources */,
+				5E2DF4AE2ACDC0ED00CCF750 /* SSMathUtil.m in Sources */,
+				5E2DF4B42ACDC0ED00CCF750 /* SSMathNumberSign.m in Sources */,
 				5E2DF4992ACDBE4100CCF750 /* View+MASAdditions.m in Sources */,
 				5E2DF4962ACDBE4100CCF750 /* MASConstraintMaker.m in Sources */,
 				5E2DF49A2ACDBE4100CCF750 /* MASConstraint.m in Sources */,
+				5E2DF4B32ACDC0ED00CCF750 /* MathExercisesController.m in Sources */,
+				5E2DF4B12ACDC0ED00CCF750 /* SSMathProblem.m in Sources */,
 				5E2DF4932ACDBE4100CCF750 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				5E2DF4972ACDBE4100CCF750 /* MASLayoutConstraint.m in Sources */,
 				57F894B8246E4567007AEFC6 /* BaseViewController.m in Sources */,
+				5E2DF4B22ACDC0ED00CCF750 /* SSMathNumber.m in Sources */,
+				5E2DF4AF2ACDC0ED00CCF750 /* MathExercisesGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,13 +422,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65X29JT9JK;
-				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_FILE = MathBest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.mathbest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -386,13 +442,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65X29JT9JK;
-				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_FILE = MathBest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.mathbest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -402,7 +458,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57F8948F246E453B007AEFC6 /* Build configuration list for PBXProject "Demo" */ = {
+		57F8948F246E453B007AEFC6 /* Build configuration list for PBXProject "MathBest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57F894AB246E453B007AEFC6 /* Debug */,
@@ -411,7 +467,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57F894AD246E453B007AEFC6 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		57F894AD246E453B007AEFC6 /* Build configuration list for PBXNativeTarget "MathBest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57F894AE246E453B007AEFC6 /* Debug */,
