@@ -1,0 +1,15 @@
+
+platform:ios,'10.0'
+
+target 'Beyond' do
+
+  pod 'FBRetainCycleDetector'
+  pod 'fishhook'
+  pod 'FLEX'
+  pod 'lottie-ios', '2.5.3'
+  pod 'Mantle'
+  pod 'Masonry'
+  pod 'KVOController'
+
+end
+
