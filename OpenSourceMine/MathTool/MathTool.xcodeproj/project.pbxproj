@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		53D328C22F16CF730A51016D /* Pods-Beyond.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beyond.debug.xcconfig"; path = "Target Support Files/Pods-Beyond/Pods-Beyond.debug.xcconfig"; sourceTree = "<group>"; };
-		57FD5098243DA25F002E481E /* Beyond.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beyond.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57FD5098243DA25F002E481E /* MathTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FD50A7243DA263002E481E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FD50AC243DA263002E481E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57FD50B5243DA3EF002E481E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		57FD5099243DA25F002E481E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57FD5098243DA25F002E481E /* Beyond.app */,
+				57FD5098243DA25F002E481E /* MathTool.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,9 +250,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57FD5097243DA25F002E481E /* Beyond */ = {
+		57FD5097243DA25F002E481E /* MathTool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Beyond" */;
+			buildConfigurationList = 57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "MathTool" */;
 			buildPhases = (
 				CE1495E1B93DB872CDE84F4D /* [CP] Check Pods Manifest.lock */,
 				57FD5094243DA25F002E481E /* Sources */,
@@ -263,9 +263,9 @@
 			);
 			dependencies = (
 			);
-			name = Beyond;
+			name = MathTool;
 			productName = Demo;
-			productReference = 57FD5098243DA25F002E481E /* Beyond.app */;
+			productReference = 57FD5098243DA25F002E481E /* MathTool.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -282,7 +282,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Beyond" */;
+			buildConfigurationList = 57FD5093243DA25F002E481E /* Build configuration list for PBXProject "MathTool" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -295,7 +295,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57FD5097243DA25F002E481E /* Beyond */,
+				57FD5097243DA25F002E481E /* MathTool */,
 			);
 		};
 /* End PBXProject section */
@@ -508,6 +508,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,7 +547,7 @@
 					"-framework",
 					"\"WebKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo.beyond;
+				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.tool.math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -576,6 +577,7 @@
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -615,7 +617,7 @@
 					"-framework",
 					"\"WebKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo.beyond;
+				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.tool.math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -626,7 +628,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57FD5093243DA25F002E481E /* Build configuration list for PBXProject "Beyond" */ = {
+		57FD5093243DA25F002E481E /* Build configuration list for PBXProject "MathTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57FD50AF243DA263002E481E /* Debug */,
@@ -635,7 +637,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "Beyond" */ = {
+		57FD50B1243DA263002E481E /* Build configuration list for PBXNativeTarget "MathTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57FD50B2243DA263002E481E /* Debug */,
