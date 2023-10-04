@@ -25,7 +25,6 @@
 		5756D9C92463B38500CA3991 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756D9C82463B38500CA3991 /* AnimationController.m */; };
 		5774B18E243FFEA900C7A59E /* BlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774B18D243FFEA900C7A59E /* BlockController.m */; };
 		5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774CB1E2441789F00C7A59E /* ExerciseController.m */; };
-		57CD89BA24BC04EC00F9856F /* Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CD89B924BC04EC00F9856F /* Temp.m */; };
 		57CDBA8524B48E0800F9856F /* KVCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDBA8424B48E0800F9856F /* KVCController.m */; };
 		57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDE89024B5626B00F9856F /* RunLoopController.m */; };
 		57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CDF41C24B56A3E00F9856F /* TimerController.m */; };
@@ -168,8 +167,6 @@
 		5774B18D243FFEA900C7A59E /* BlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockController.m; sourceTree = "<group>"; };
 		5774CB1D2441789F00C7A59E /* ExerciseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseController.h; sourceTree = "<group>"; };
 		5774CB1E2441789F00C7A59E /* ExerciseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseController.m; sourceTree = "<group>"; };
-		57CD89B824BC04EC00F9856F /* Temp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Temp.h; sourceTree = "<group>"; };
-		57CD89B924BC04EC00F9856F /* Temp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Temp.m; sourceTree = "<group>"; };
 		57CDBA8324B48E0800F9856F /* KVCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCController.h; sourceTree = "<group>"; };
 		57CDBA8424B48E0800F9856F /* KVCController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCController.m; sourceTree = "<group>"; };
 		57CDE88F24B5626B00F9856F /* RunLoopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopController.h; sourceTree = "<group>"; };
@@ -628,8 +625,6 @@
 				57FD50C4243DA7CB002E481E /* BaseViewController.m */,
 				5E74CB6826F9DA0D00A619A6 /* LaunchScreen.storyboard */,
 				57FD50B7243DA3EF002E481E /* main.m */,
-				57CD89B824BC04EC00F9856F /* Temp.h */,
-				57CD89B924BC04EC00F9856F /* Temp.m */,
 				57FD50B9243DA3EF002E481E /* ViewController.h */,
 				57FD50B6243DA3EF002E481E /* ViewController.m */,
 			);
@@ -1154,7 +1149,6 @@
 				57FD50BC243DA3F0002E481E /* AppDelegate.mm in Sources */,
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
-				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
 				5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,

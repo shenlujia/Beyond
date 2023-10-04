@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     
-    [self test_c:@"AnimationController"];
+    [self test_c:@"ViewController"];
 }
 
 @end
