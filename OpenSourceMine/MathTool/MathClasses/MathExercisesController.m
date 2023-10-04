@@ -10,7 +10,6 @@
 #import "SSMathConfiguration.h"
 #import "SSEasyAlert.h"
 #import "SSEasy.h"
-#import "UISwitch+SSUIKit.h"
 #import "MathExercisesGenerator.h"
 
 @interface MathExercisesController ()

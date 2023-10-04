@@ -112,7 +112,6 @@
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
 		5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F52AC286530110017B05F /* MapTableLeakController.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
-		5EAFF4342ACD33500089BB59 /* UISwitch+SSUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */; };
 		5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */; };
 		5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */; };
 		5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF43C2ACD3D5B0089BB59 /* SSMathProblem.m */; };
@@ -322,8 +321,6 @@
 		5E8F52AC286530110017B05F /* MapTableLeakController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableLeakController.m; sourceTree = "<group>"; };
 		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
-		5EAFF4322ACD33500089BB59 /* UISwitch+SSUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+SSUIKit.h"; sourceTree = "<group>"; };
-		5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+SSUIKit.m"; sourceTree = "<group>"; };
 		5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
 		5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesGenerator.m; sourceTree = "<group>"; };
 		5EAFF4382ACD3D220089BB59 /* SSMathNumberDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathNumberDescription.h; sourceTree = "<group>"; };
@@ -854,8 +851,6 @@
 				5E5FE8E729157CC500951971 /* SSEasyAlert.m */,
 				5E5FE8EC29157CC500951971 /* SSEasyPanel.h */,
 				5E5FE8E929157CC500951971 /* SSEasyPanel.m */,
-				5EAFF4322ACD33500089BB59 /* UISwitch+SSUIKit.h */,
-				5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */,
 			);
 			path = _UIKit;
 			sourceTree = "<group>";
@@ -1117,7 +1112,6 @@
 				5E5FE90B29157CC500951971 /* SSEasy.m in Sources */,
 				5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */,
 				5E02FC8A2ACD173600689D88 /* MathExercisesController.m in Sources */,
-				5EAFF4342ACD33500089BB59 /* UISwitch+SSUIKit.m in Sources */,
 				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				5E5FE90229157CC500951971 /* SSEasyAlert.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,

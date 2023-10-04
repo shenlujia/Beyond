@@ -14,15 +14,30 @@
 #import <KVOController/KVOController.h>
 #import "StrictForegroundProtector.h"
 
-@interface TestColor : UIColor
+@protocol TestWeakPropertyProtocol <NSObject>
+
+@property (nonatomic, weak) id testWeakPropertyFromProtocol;
+
+@end
+
+@interface TestColor : UIColor <TestWeakPropertyProtocol>
+
+@property (nonatomic, weak) NSString *testWeakPropertyFromProtocol;
 
 @end
 
 @implementation TestColor
 
+@synthesize testWeakPropertyFromProtocol = _testWeakPropertyFromProtocol;
+
+- (void)dealloc
+{
+    ss_easy_log(@"~TestColor");
+}
+
 @end
 
-@interface SSFoundationDEBUGLogStruct : NSObject
+@interface SSFoundationDEBUGLogStruct : NSObject <TestWeakPropertyProtocol>
 
 @property (nonatomic, assign) CGPoint point;
 @property (nonatomic, assign) CGRect rect;
@@ -31,6 +46,13 @@
 @end
 
 @implementation SSFoundationDEBUGLogStruct
+
+@synthesize testWeakPropertyFromProtocol;
+
+- (void)dealloc
+{
+    ss_easy_log(@"~SSFoundationDEBUGLogStruct");
+}
 
 - (instancetype)init
 {
@@ -157,7 +179,31 @@
     WEAKSELF
     [super viewDidLoad];
     
+    {
+        TestColor *a = [[TestColor alloc] init];
+        SSFoundationDEBUGLogStruct *b = [[SSFoundationDEBUGLogStruct alloc] init];
+        a.testWeakPropertyFromProtocol = b;
+        b.testWeakPropertyFromProtocol = a;
+    }
+    
     [self testRegularExpression];
+    
+    [self test:@"arc4random_uniform" tap:^(UIButton *button, NSDictionary *userInfo) {
+        int count = 0;
+        for (NSInteger i = 0; i < 100; i++) {
+            int value = arc4random_uniform(10);
+            if (value >= 1) {
+                count++;
+            }
+            NSLog(@"value=%@", @(value));
+        }
+        CGFloat f1 = round(1.0);
+        CGFloat f2 = round(0.9);
+        CGFloat f3 = round(1.1);
+        CGFloat f4 = round(1.49);
+        CGFloat f5 = round(1.5);
+        NSLog(@"total=%@", @(count));
+    }];
     
     [self test:@"基础类型必须初始化 否则会异常 模拟器可能无法复现" tap:^(UIButton *button, NSDictionary *userInfo) {
         for (NSInteger i = 0; i < 10000; i++) {
@@ -307,6 +353,15 @@
     [self test:@"NSException" tap:^(UIButton *button, NSDictionary *userInfo) {
         NSArray *array = @[@(1), @(2), @(3)];
         [array objectAtIndex:10];
+    }];
+    
+    [self test:@"NSException后替换标题" tap:^(UIButton *button, NSDictionary *userInfo) {
+        @try {
+            NSArray *array = @[@(1), @(2), @(3)];
+            [array objectAtIndex:10];
+        } @catch (NSException *e) {
+            [button setTitle:@"test" forState:UIControlStateNormal];
+        }
     }];
 
     [self test:@"fetchAssets" tap:^(UIButton *button, NSDictionary *userInfo) {

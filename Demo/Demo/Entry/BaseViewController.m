@@ -297,7 +297,7 @@ UIEdgeInsets app_safeAreaInsets()
     [self.models addObject:model];
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+    button.frame = CGRectMake(0, 0, self.view.bounds.size.width, 100);
     button.backgroundColor = UIColor.whiteColor;
     [button setTitle:model.title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
