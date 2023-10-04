@@ -9,7 +9,6 @@
 #import "MathExercisesController.h"
 #import "SSMathConfiguration.h"
 #import "SSEasyAlert.h"
-#import "SSEasy.h"
 #import "MathExercisesGenerator.h"
 
 @interface MathExercisesController ()
@@ -105,7 +104,7 @@
 - (void)shareAction
 {
     NSString *text = [MathExercisesGenerator generate];
-    ss_easy_log(text);
+    NSLog(@"%@", text);
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [documentPath stringByAppendingPathComponent:@"题目.txt"];
     [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];

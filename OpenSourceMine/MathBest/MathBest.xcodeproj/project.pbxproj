@@ -31,6 +31,8 @@
 		5E2DF4B32ACDC0ED00CCF750 /* MathExercisesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AA2ACDC0ED00CCF750 /* MathExercisesController.m */; };
 		5E2DF4B42ACDC0ED00CCF750 /* SSMathNumberSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AB2ACDC0ED00CCF750 /* SSMathNumberSign.m */; };
 		5E2DF4B52ACDC0ED00CCF750 /* SSMathConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4AC2ACDC0ED00CCF750 /* SSMathConfiguration.m */; };
+		5E2DF4CF2ACDC15300CCF750 /* SSEasyAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4BA2ACDC15300CCF750 /* SSEasyAlert.m */; };
+		5E2DF4D12ACDC15300CCF750 /* SSEasyPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4BC2ACDC15300CCF750 /* SSEasyPanel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,10 @@
 		5E2DF4AB2ACDC0ED00CCF750 /* SSMathNumberSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathNumberSign.m; sourceTree = "<group>"; };
 		5E2DF4AC2ACDC0ED00CCF750 /* SSMathConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMathConfiguration.m; sourceTree = "<group>"; };
 		5E2DF4AD2ACDC0ED00CCF750 /* SSMathNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMathNumber.h; sourceTree = "<group>"; };
+		5E2DF4BA2ACDC15300CCF750 /* SSEasyAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyAlert.m; sourceTree = "<group>"; };
+		5E2DF4BC2ACDC15300CCF750 /* SSEasyPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEasyPanel.m; sourceTree = "<group>"; };
+		5E2DF4BD2ACDC15300CCF750 /* SSEasyAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyAlert.h; sourceTree = "<group>"; };
+		5E2DF4BF2ACDC15300CCF750 /* SSEasyPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyPanel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 		57F8948B246E453B007AEFC6 = {
 			isa = PBXGroup;
 			children = (
+				5E2DF4B62ACDC15300CCF750 /* SSEasyBase */,
 				5E2DF4792ACDBE4100CCF750 /* Masonry */,
 				57F89496246E453B007AEFC6 /* MathBest */,
 				5E2DF49D2ACDC0ED00CCF750 /* Business */,
@@ -197,6 +204,25 @@
 			path = Business;
 			sourceTree = "<group>";
 		};
+		5E2DF4B62ACDC15300CCF750 /* SSEasyBase */ = {
+			isa = PBXGroup;
+			children = (
+				5E2DF4B82ACDC15300CCF750 /* _UIKit */,
+			);
+			path = SSEasyBase;
+			sourceTree = "<group>";
+		};
+		5E2DF4B82ACDC15300CCF750 /* _UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5E2DF4BD2ACDC15300CCF750 /* SSEasyAlert.h */,
+				5E2DF4BA2ACDC15300CCF750 /* SSEasyAlert.m */,
+				5E2DF4BF2ACDC15300CCF750 /* SSEasyPanel.h */,
+				5E2DF4BC2ACDC15300CCF750 /* SSEasyPanel.m */,
+			);
+			path = _UIKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -266,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E2DF4D12ACDC15300CCF750 /* SSEasyPanel.m in Sources */,
 				5E2DF49B2ACDBE4100CCF750 /* MASViewConstraint.m in Sources */,
 				5E2DF49C2ACDBE4100CCF750 /* MASViewAttribute.m in Sources */,
 				57F894BB246E4567007AEFC6 /* AppDelegate.m in Sources */,
@@ -287,6 +314,7 @@
 				5E2DF4972ACDBE4100CCF750 /* MASLayoutConstraint.m in Sources */,
 				57F894B8246E4567007AEFC6 /* BaseViewController.m in Sources */,
 				5E2DF4B22ACDC0ED00CCF750 /* SSMathNumber.m in Sources */,
+				5E2DF4CF2ACDC15300CCF750 /* SSEasyAlert.m in Sources */,
 				5E2DF4AF2ACDC0ED00CCF750 /* MathExercisesGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
