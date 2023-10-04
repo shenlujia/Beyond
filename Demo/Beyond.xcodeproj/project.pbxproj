@@ -113,6 +113,10 @@
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
 		5EAFF4342ACD33500089BB59 /* UISwitch+SSUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */; };
 		5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */; };
+		5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */; };
+		5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF43C2ACD3D5B0089BB59 /* SSMathProblem.m */; };
+		5EAFF4402ACD47AA0089BB59 /* SSMathNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF43F2ACD47AA0089BB59 /* SSMathNumber.m */; };
+		5EAFF4432ACD4B420089BB59 /* SSMathNumberSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4422ACD4B420089BB59 /* SSMathNumberSign.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
 		5EB8208A29AF33FC007A62EA /* SSAssetImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
@@ -319,6 +323,14 @@
 		5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+SSUIKit.m"; sourceTree = "<group>"; };
 		5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
 		5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesGenerator.m; sourceTree = "<group>"; };
+		5EAFF4382ACD3D220089BB59 /* SSMathNumberDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathNumberDescription.h; sourceTree = "<group>"; };
+		5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathNumberDescription.m; sourceTree = "<group>"; };
+		5EAFF43B2ACD3D5B0089BB59 /* SSMathProblem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathProblem.h; sourceTree = "<group>"; };
+		5EAFF43C2ACD3D5B0089BB59 /* SSMathProblem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathProblem.m; sourceTree = "<group>"; };
+		5EAFF43E2ACD47AA0089BB59 /* SSMathNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathNumber.h; sourceTree = "<group>"; };
+		5EAFF43F2ACD47AA0089BB59 /* SSMathNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathNumber.m; sourceTree = "<group>"; };
+		5EAFF4412ACD4B420089BB59 /* SSMathNumberSign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathNumberSign.h; sourceTree = "<group>"; };
+		5EAFF4422ACD4B420089BB59 /* SSMathNumberSign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathNumberSign.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
 		5EB8208829AF33FC007A62EA /* SSAssetImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAssetImageGenerator.h; sourceTree = "<group>"; };
@@ -694,6 +706,14 @@
 				5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */,
 				5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */,
 				5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */,
+				5EAFF4382ACD3D220089BB59 /* SSMathNumberDescription.h */,
+				5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */,
+				5EAFF43B2ACD3D5B0089BB59 /* SSMathProblem.h */,
+				5EAFF43C2ACD3D5B0089BB59 /* SSMathProblem.m */,
+				5EAFF43E2ACD47AA0089BB59 /* SSMathNumber.h */,
+				5EAFF43F2ACD47AA0089BB59 /* SSMathNumber.m */,
+				5EAFF4412ACD4B420089BB59 /* SSMathNumberSign.h */,
+				5EAFF4422ACD4B420089BB59 /* SSMathNumberSign.m */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -1114,6 +1134,8 @@
 				5E5FE90A29157CC500951971 /* NSObject+SSJSON.m in Sources */,
 				57F271252487D482004BB2C0 /* IvarController.mm in Sources */,
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
+				5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */,
+				5EAFF4432ACD4B420089BB59 /* SSMathNumberSign.m in Sources */,
 				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
 				5ECAF9542580A79000984E77 /* AVKitController.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
@@ -1134,6 +1156,7 @@
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				57CD89BA24BC04EC00F9856F /* Temp.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
+				5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
 				5E5FE90429157CC500951971 /* SSEasyPanel.m in Sources */,
@@ -1156,6 +1179,7 @@
 				57FB9F9C24A083140093433B /* ThreadPipeController.m in Sources */,
 				57FD50BA243DA3F0002E481E /* ViewController.m in Sources */,
 				5707304F24D2BD7D00A9883A /* AppearanceController.m in Sources */,
+				5EAFF4402ACD47AA0089BB59 /* SSMathNumber.m in Sources */,
 				5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */,
 				5756D9C92463B38500CA3991 /* AnimationController.m in Sources */,
 				57FBB68E24A0A41E0093433B /* ThreadPortController.m in Sources */,

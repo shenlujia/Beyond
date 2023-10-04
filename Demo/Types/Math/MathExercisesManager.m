@@ -41,7 +41,7 @@
         if (object.integerValue <= 50) {
             object = @"50";
         }
-    } else if (feature == SSMathNumberOfLines) {
+    } else if (feature == SSMathNumberDescriptionOfLines) {
         if (object.integerValue <= 20) {
             object = @"20";
         }
@@ -73,6 +73,16 @@
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
     return [NSString stringWithFormat:@"%@_%@", version, @(feature)];
+}
+
+- (NSInteger)integerForFeature:(SSMathFeature)feature
+{
+    return [[self objectForFeature:feature] integerValue];
+}
+
+- (BOOL)boolForFeature:(SSMathFeature)feature
+{
+    return [[self objectForFeature:feature] boolValue];
 }
 
 @end

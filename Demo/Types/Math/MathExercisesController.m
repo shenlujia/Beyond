@@ -30,7 +30,7 @@
         [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"math_init"];
         
         [manager setObject:@"80" forFeature:SSMathLineLength];
-        [manager setObject:@"46" forFeature:SSMathNumberOfLines];
+        [manager setObject:@"46" forFeature:SSMathNumberDescriptionOfLines];
         [manager setObject:@"3" forFeature:SSMathExercisesCountInLine];
         [manager setObject:@"0" forFeature:SSMathExercisesStart];
         [manager setObject:@"10" forFeature:SSMathExercisesPadding];
@@ -38,24 +38,24 @@
         [manager setObject:@"0" forFeature:SSMathEnableCarry];
         [manager setObject:@"0" forFeature:SSMathEnableNegative];
         
-        [manager setObject:@"1" forFeature:SSMathNumber1EnableDigit1];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription1EnableDigit1];
         
-        [manager setObject:@"1" forFeature:SSMathNumber2EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumber2EnablePlus];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription2EnableDigit1];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription2EnablePlus];
         
-        [manager setObject:@"0" forFeature:SSMathNumber3Enable];
-        [manager setObject:@"1" forFeature:SSMathNumber3EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumber3EnablePlus];
+        [manager setObject:@"0" forFeature:SSMathNumberDescription3Enable];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription3EnableDigit1];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription3EnablePlus];
         
-        [manager setObject:@"0" forFeature:SSMathNumber4Enable];
-        [manager setObject:@"1" forFeature:SSMathNumber4EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumber4EnablePlus];
+        [manager setObject:@"0" forFeature:SSMathNumberDescription4Enable];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription4EnableDigit1];
+        [manager setObject:@"1" forFeature:SSMathNumberDescription4EnablePlus];
     }
     
     self.title = @"习题";
     
     [self p_test_input:@"单行长度" feature:SSMathLineLength];
-    [self p_test_input:@"行数" feature:SSMathNumberOfLines];
+    [self p_test_input:@"行数" feature:SSMathNumberDescriptionOfLines];
     [self p_test_input:@"每行题目数" feature:SSMathExercisesCountInLine];
     [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
     [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
@@ -63,29 +63,29 @@
     [self p_test_switch:@"启用进位" feature:SSMathEnableCarry];
     [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
     
-    [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumber1EnableDigit1];
-    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumber1EnableDigit2];
-    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumber1EnableDigit3];
+    [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumberDescription1EnableDigit1];
+    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumberDescription1EnableDigit2];
+    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumberDescription1EnableDigit3];
     
-    [self p_test_switch:@"数字2 启用一位数" feature:SSMathNumber2EnableDigit1];
-    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumber2EnableDigit2];
-    [self p_test_switch:@"数字2 启用三位数" feature:SSMathNumber2EnableDigit3];
-    [self p_test_switch:@"数字2 启用加法" feature:SSMathNumber2EnablePlus];
-    [self p_test_switch:@"数字2 启用减法" feature:SSMathNumber2EnableMinus];
+    [self p_test_switch:@"数字2 启用一位数" feature:SSMathNumberDescription2EnableDigit1];
+    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumberDescription2EnableDigit2];
+    [self p_test_switch:@"数字2 启用三位数" feature:SSMathNumberDescription2EnableDigit3];
+    [self p_test_switch:@"数字2 启用加法" feature:SSMathNumberDescription2EnablePlus];
+    [self p_test_switch:@"数字2 启用减法" feature:SSMathNumberDescription2EnableMinus];
     
-    [self p_test_switch:@"开启数字3" feature:SSMathNumber3Enable];
-    [self p_test_switch:@"数字3 启用一位数" feature:SSMathNumber3EnableDigit1];
-    [self p_test_switch:@"数字3 启用二位数" feature:SSMathNumber3EnableDigit2];
-    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumber3EnableDigit3];
-    [self p_test_switch:@"数字3 启用加法" feature:SSMathNumber3EnablePlus];
-    [self p_test_switch:@"数字3 启用减法" feature:SSMathNumber3EnableMinus];
+    [self p_test_switch:@"开启数字3" feature:SSMathNumberDescription3Enable];
+    [self p_test_switch:@"数字3 启用一位数" feature:SSMathNumberDescription3EnableDigit1];
+    [self p_test_switch:@"数字3 启用二位数" feature:SSMathNumberDescription3EnableDigit2];
+    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumberDescription3EnableDigit3];
+    [self p_test_switch:@"数字3 启用加法" feature:SSMathNumberDescription3EnablePlus];
+    [self p_test_switch:@"数字3 启用减法" feature:SSMathNumberDescription3EnableMinus];
     
-    [self p_test_switch:@"开启数字4" feature:SSMathNumber4Enable];
-    [self p_test_switch:@"数字4 启用一位数" feature:SSMathNumber4EnableDigit1];
-    [self p_test_switch:@"数字4 启用二位数" feature:SSMathNumber4EnableDigit2];
-    [self p_test_switch:@"数字4 启用三位数" feature:SSMathNumber4EnableDigit3];
-    [self p_test_switch:@"数字4 启用加法" feature:SSMathNumber4EnablePlus];
-    [self p_test_switch:@"数字4 启用减法" feature:SSMathNumber4EnableMinus];
+    [self p_test_switch:@"开启数字4" feature:SSMathNumberDescription4Enable];
+    [self p_test_switch:@"数字4 启用一位数" feature:SSMathNumberDescription4EnableDigit1];
+    [self p_test_switch:@"数字4 启用二位数" feature:SSMathNumberDescription4EnableDigit2];
+    [self p_test_switch:@"数字4 启用三位数" feature:SSMathNumberDescription4EnableDigit3];
+    [self p_test_switch:@"数字4 启用加法" feature:SSMathNumberDescription4EnablePlus];
+    [self p_test_switch:@"数字4 启用减法" feature:SSMathNumberDescription4EnableMinus];
 }
 
 #pragma mark - action
