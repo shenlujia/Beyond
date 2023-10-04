@@ -44,7 +44,7 @@
     number2.minus = [manager boolForFeature:SSMathNumberDescription2EnableMinus];
     
     SSMathNumberDescription *number3 = [[SSMathNumberDescription alloc] init];
-//    number3.enabled = [manager boolForFeature:SSMathNumberDescription3Enable];
+    number3.enabled = [manager boolForFeature:SSMathNumberDescription3Enable];
     number3.digit1 = [manager boolForFeature:SSMathNumberDescription3EnableDigit1];
     number3.digit2 = [manager boolForFeature:SSMathNumberDescription3EnableDigit2];
     number3.digit3 = [manager boolForFeature:SSMathNumberDescription3EnableDigit3];
@@ -52,7 +52,7 @@
     number3.minus = [manager boolForFeature:SSMathNumberDescription3EnableMinus];
     
     SSMathNumberDescription *number4 = [[SSMathNumberDescription alloc] init];
-//    number4.enabled = [manager boolForFeature:SSMathNumberDescription4Enable];
+    number4.enabled = [manager boolForFeature:SSMathNumberDescription4Enable];
     number4.digit1 = [manager boolForFeature:SSMathNumberDescription4EnableDigit1];
     number4.digit2 = [manager boolForFeature:SSMathNumberDescription4EnableDigit2];
     number4.digit3 = [manager boolForFeature:SSMathNumberDescription4EnableDigit3];
@@ -60,7 +60,6 @@
     number4.minus = [manager boolForFeature:SSMathNumberDescription4EnableMinus];
     
     NSArray *descriptions = @[number1, number2, number3, number4];
-    
     
     NSInteger maxLength = [manager integerForFeature:SSMathLineLength];
     NSMutableString *result = [self p_generateEmptyString:maxLength];
@@ -76,7 +75,7 @@
         for (id<SSMathProblem> one in problems) {
             [anwsers addObject:one.answer];
         }
-        NSString *text = [anwsers componentsJoinedByString:@" "];
+        NSString *text = [anwsers componentsJoinedByString:@"  "];
         if (text.length > result.length) {
             text = [text substringWithRange:NSMakeRange(0, result.length)];
         }

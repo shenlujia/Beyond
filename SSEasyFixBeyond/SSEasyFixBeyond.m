@@ -20,6 +20,7 @@ NSString * beyond_entryClassName(void)
 {
     NSString *name = nil;
     name = @"ViewController";
+    name = @"MathExercisesController";
 //    name = @"DEBUGPanelController";
 //    name = @"SSFoundationController";
 //    name = @"UIKitController";
