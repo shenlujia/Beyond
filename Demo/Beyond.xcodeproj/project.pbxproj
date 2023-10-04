@@ -50,7 +50,7 @@
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
 		5E02FC8A2ACD173600689D88 /* MathExercisesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02FC892ACD173600689D88 /* MathExercisesController.m */; };
-		5E02FC8D2ACD174A00689D88 /* MathExercisesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */; };
+		5E02FC8D2ACD174A00689D88 /* SSMathConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02FC8C2ACD174A00689D88 /* SSMathConfiguration.m */; };
 		5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */; };
 		5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */; };
@@ -219,8 +219,8 @@
 		59F5031BF8E1941A154D07BF /* libPods-Beyond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beyond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E02FC882ACD173600689D88 /* MathExercisesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesController.h; sourceTree = "<group>"; };
 		5E02FC892ACD173600689D88 /* MathExercisesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesController.m; sourceTree = "<group>"; };
-		5E02FC8B2ACD174A00689D88 /* MathExercisesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesManager.h; sourceTree = "<group>"; };
-		5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesManager.m; sourceTree = "<group>"; };
+		5E02FC8B2ACD174A00689D88 /* SSMathConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathConfiguration.h; sourceTree = "<group>"; };
+		5E02FC8C2ACD174A00689D88 /* SSMathConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathConfiguration.m; sourceTree = "<group>"; };
 		5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainThreadSetterChecker.h; sourceTree = "<group>"; };
 		5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainThreadSetterChecker.mm; sourceTree = "<group>"; };
 		5E04F98325CC33AB00FE80F2 /* MemoryNonARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryNonARC.h; sourceTree = "<group>"; };
@@ -705,8 +705,8 @@
 			children = (
 				5E02FC882ACD173600689D88 /* MathExercisesController.h */,
 				5E02FC892ACD173600689D88 /* MathExercisesController.m */,
-				5E02FC8B2ACD174A00689D88 /* MathExercisesManager.h */,
-				5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */,
+				5E02FC8B2ACD174A00689D88 /* SSMathConfiguration.h */,
+				5E02FC8C2ACD174A00689D88 /* SSMathConfiguration.m */,
 				5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */,
 				5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */,
 				5EAFF4382ACD3D220089BB59 /* SSMathNumberDescription.h */,
@@ -1193,7 +1193,7 @@
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
 				5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */,
 				574CA37424F666B90018D47B /* FishhookController.m in Sources */,
-				5E02FC8D2ACD174A00689D88 /* MathExercisesManager.m in Sources */,
+				5E02FC8D2ACD174A00689D88 /* SSMathConfiguration.m in Sources */,
 				5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */,
 				5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */,
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,

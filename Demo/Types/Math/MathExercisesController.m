@@ -7,7 +7,7 @@
 //
 
 #import "MathExercisesController.h"
-#import "MathExercisesManager.h"
+#import "SSMathConfiguration.h"
 #import "SSEasyAlert.h"
 #import "UISwitch+SSUIKit.h"
 #import "MathExercisesGenerator.h"
@@ -25,32 +25,32 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
     self.navigationItem.rightBarButtonItem = item;
     
-    MathExercisesManager *manager = [MathExercisesManager manager];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
     if ([NSUserDefaults.standardUserDefaults boolForKey:@"math_init"] == NO) {
         [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"math_init"];
         
-        [manager setObject:@"80" forFeature:SSMathLineLength];
-        [manager setObject:@"46" forFeature:SSMathNumberDescriptionOfLines];
-        [manager setObject:@"3" forFeature:SSMathExercisesCountInLine];
-        [manager setObject:@"0" forFeature:SSMathExercisesStart];
-        [manager setObject:@"10" forFeature:SSMathExercisesPadding];
+        [configuration setObject:@"80" forFeature:SSMathLineLength];
+        [configuration setObject:@"46" forFeature:SSMathNumberDescriptionOfLines];
+        [configuration setObject:@"3" forFeature:SSMathExercisesCountInLine];
+        [configuration setObject:@"0" forFeature:SSMathExercisesStart];
+        [configuration setObject:@"10" forFeature:SSMathExercisesPadding];
         
-        [manager setObject:@"0" forFeature:SSMathEnableCarry10];
-        [manager setObject:@"0" forFeature:SSMathEnableCarry20];
-        [manager setObject:@"0" forFeature:SSMathEnableNegative];
+        [configuration setObject:@"0" forFeature:SSMathEnableCarry10];
+        [configuration setObject:@"0" forFeature:SSMathEnableCarry20];
+        [configuration setObject:@"0" forFeature:SSMathEnableNegative];
         
-        [manager setObject:@"1" forFeature:SSMathNumberDescription1EnableDigit1];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription1EnableDigit1];
         
-        [manager setObject:@"1" forFeature:SSMathNumberDescription2EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumberDescription2EnablePlus];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription2EnableDigit1];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription2EnablePlus];
         
-        [manager setObject:@"0" forFeature:SSMathNumberDescription3Enable];
-        [manager setObject:@"1" forFeature:SSMathNumberDescription3EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumberDescription3EnablePlus];
+        [configuration setObject:@"0" forFeature:SSMathNumberDescription3Enable];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription3EnableDigit1];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription3EnablePlus];
         
-        [manager setObject:@"0" forFeature:SSMathNumberDescription4Enable];
-        [manager setObject:@"1" forFeature:SSMathNumberDescription4EnableDigit1];
-        [manager setObject:@"1" forFeature:SSMathNumberDescription4EnablePlus];
+        [configuration setObject:@"0" forFeature:SSMathNumberDescription4Enable];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription4EnableDigit1];
+        [configuration setObject:@"1" forFeature:SSMathNumberDescription4EnablePlus];
     }
     
     self.title = @"习题";
@@ -95,7 +95,7 @@
 - (void)switchAction:(UISwitch *)s
 {
     NSString *value  = s.on ? @"1" : @"0";
-    [[MathExercisesManager manager] setObject:value forFeature:s.tag];
+    [[SSMathConfiguration shared] setObject:value forFeature:s.tag];
 }
 
 - (void)shareAction
@@ -120,20 +120,20 @@
 
 - (void)p_test_input:(NSString *)title feature:(SSMathFeature)feature
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
+    SSMathConfiguration *mathConfiguration = [SSMathConfiguration shared];
     [self test:@"" set:^(UIButton *button, NSDictionary *userInfo) {
-        NSString *value = [manager objectForFeature:feature];
+        NSString *value = [mathConfiguration objectForFeature:feature];
         [button setTitle:[NSString stringWithFormat:@"%@: %@", title, value] forState:UIControlStateNormal];
     } tap:^(UIButton *button, NSDictionary *userInfo) {
         ss_easy_alert(^(SSEasyAlertConfiguration *configuration) {
             configuration.title = title;
             [configuration addTextFieldWithHandler:^(UITextField *textField) {
-                textField.placeholder = [manager objectForFeature:feature];
+                textField.placeholder = [mathConfiguration objectForFeature:feature];
             }];
             [configuration addAction:@"确定" handler:^(UIAlertController *alert) {
                 NSString *text = alert.textFields.firstObject.text;
-                [manager setObject:text forFeature:feature];
-                NSString *value = [manager objectForFeature:feature];
+                [mathConfiguration setObject:text forFeature:feature];
+                NSString *value = [mathConfiguration objectForFeature:feature];
                 [button setTitle:[NSString stringWithFormat:@"%@: %@", title, value] forState:UIControlStateNormal];
             }];
         });
@@ -142,7 +142,7 @@
 
 - (void)p_test_switch:(NSString *)title feature:(SSMathFeature)feature
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
     [self test:@"" set:^(UIButton *button, NSDictionary *userInfo) {
         UILabel *label = [[UILabel alloc] initWithFrame:button.bounds];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -161,8 +161,7 @@
         });
         [button addSubview:s];
         s.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        NSString *value = [manager objectForFeature:feature];
-        s.on = value.boolValue;
+        s.on = [configuration boolForFeature:feature];
         s.tag = feature;
         [s addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
     } tap:^(UIButton *button, NSDictionary *userInfo) {

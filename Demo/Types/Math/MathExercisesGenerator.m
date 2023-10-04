@@ -7,7 +7,7 @@
 //
 
 #import "MathExercisesGenerator.h"
-#import "MathExercisesManager.h"
+#import "SSMathConfiguration.h"
 #import "SSMathNumberDescription.h"
 #import "SSMathProblem.h"
 #import "SSMathNumber.h"
@@ -17,10 +17,10 @@
 
 + (NSString *)generate
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
-    NSString *count = [manager objectForFeature:SSMathNumberDescriptionOfLines];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
+    NSInteger count = [configuration integerForFeature:SSMathNumberDescriptionOfLines];
     NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger idx = 0; idx < count.integerValue; ++idx) {
+    for (NSInteger idx = 0; idx < count; ++idx) {
         [array addObject:[self generateLine]];
     }
     return [array componentsJoinedByString:@"\n"];
@@ -28,45 +28,45 @@
 
 + (NSString *)generateLine
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
     
     SSMathNumberDescription *number1 = [[SSMathNumberDescription alloc] init];
     number1.enabled = YES;
-    number1.digit1 = [manager boolForFeature:SSMathNumberDescription1EnableDigit1];
-    number1.digit2 = [manager boolForFeature:SSMathNumberDescription1EnableDigit2];
-    number1.digit3 = [manager boolForFeature:SSMathNumberDescription1EnableDigit3];
+    number1.digit1 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit1];
+    number1.digit2 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit2];
+    number1.digit3 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit3];
     
     SSMathNumberDescription *number2 = [[SSMathNumberDescription alloc] init];
     number2.enabled = YES;
-    number2.digit1 = [manager boolForFeature:SSMathNumberDescription2EnableDigit1];
-    number2.digit2 = [manager boolForFeature:SSMathNumberDescription2EnableDigit2];
-    number2.digit3 = [manager boolForFeature:SSMathNumberDescription2EnableDigit3];
-    number2.plus = [manager boolForFeature:SSMathNumberDescription2EnablePlus];
-    number2.minus = [manager boolForFeature:SSMathNumberDescription2EnableMinus];
+    number2.digit1 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit1];
+    number2.digit2 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit2];
+    number2.digit3 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit3];
+    number2.plus = [configuration boolForFeature:SSMathNumberDescription2EnablePlus];
+    number2.minus = [configuration boolForFeature:SSMathNumberDescription2EnableMinus];
     
     SSMathNumberDescription *number3 = [[SSMathNumberDescription alloc] init];
-    number3.enabled = [manager boolForFeature:SSMathNumberDescription3Enable];
-    number3.digit1 = [manager boolForFeature:SSMathNumberDescription3EnableDigit1];
-    number3.digit2 = [manager boolForFeature:SSMathNumberDescription3EnableDigit2];
-    number3.digit3 = [manager boolForFeature:SSMathNumberDescription3EnableDigit3];
-    number3.plus = [manager boolForFeature:SSMathNumberDescription3EnablePlus];
-    number3.minus = [manager boolForFeature:SSMathNumberDescription3EnableMinus];
+    number3.enabled = [configuration boolForFeature:SSMathNumberDescription3Enable];
+    number3.digit1 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit1];
+    number3.digit2 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit2];
+    number3.digit3 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit3];
+    number3.plus = [configuration boolForFeature:SSMathNumberDescription3EnablePlus];
+    number3.minus = [configuration boolForFeature:SSMathNumberDescription3EnableMinus];
     
     SSMathNumberDescription *number4 = [[SSMathNumberDescription alloc] init];
-    number4.enabled = [manager boolForFeature:SSMathNumberDescription4Enable];
-    number4.digit1 = [manager boolForFeature:SSMathNumberDescription4EnableDigit1];
-    number4.digit2 = [manager boolForFeature:SSMathNumberDescription4EnableDigit2];
-    number4.digit3 = [manager boolForFeature:SSMathNumberDescription4EnableDigit3];
-    number4.plus = [manager boolForFeature:SSMathNumberDescription4EnablePlus];
-    number4.minus = [manager boolForFeature:SSMathNumberDescription4EnableMinus];
+    number4.enabled = [configuration boolForFeature:SSMathNumberDescription4Enable];
+    number4.digit1 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit1];
+    number4.digit2 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit2];
+    number4.digit3 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit3];
+    number4.plus = [configuration boolForFeature:SSMathNumberDescription4EnablePlus];
+    number4.minus = [configuration boolForFeature:SSMathNumberDescription4EnableMinus];
     
     NSArray *descriptions = @[number1, number2, number3, number4];
     
-    NSInteger maxLength = [manager integerForFeature:SSMathLineLength];
+    NSInteger maxLength = [configuration integerForFeature:SSMathLineLength];
     NSMutableString *result = [self p_generateEmptyString:maxLength];
     
     NSMutableArray<id<SSMathProblem>> *problems = [NSMutableArray array];
-    for (NSInteger idx = 0; idx < [[manager objectForFeature:SSMathExercisesCountInLine] integerValue]; ++idx) {
+    for (NSInteger idx = 0; idx < [configuration integerForFeature:SSMathExercisesCountInLine]; ++idx) {
         [problems addObject:[self generateProblem:descriptions]];
     }
     
@@ -87,8 +87,8 @@
     
     // 写入题目
     {
-        NSInteger startX = [manager integerForFeature:SSMathExercisesStart];
-        NSInteger padding = [manager integerForFeature:SSMathExercisesPadding];
+        NSInteger startX = [configuration integerForFeature:SSMathExercisesStart];
+        NSInteger padding = [configuration integerForFeature:SSMathExercisesPadding];
         for (NSInteger idx = 0; idx < problems.count; ++idx) {
             id<SSMathProblem> one = problems[idx];
             NSString *text = one.string;
@@ -105,8 +105,8 @@
 
 + (id<SSMathProblem>)generateProblem:(NSArray<id<SSMathNumberDescription>> *)descriptions
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
-    const BOOL carryEnabled = [manager boolForFeature:SSMathEnableCarry10] || [manager boolForFeature:SSMathEnableCarry20];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
+    const BOOL carryEnabled = [configuration boolForFeature:SSMathEnableCarry10] || [configuration boolForFeature:SSMathEnableCarry20];
     
     NSArray *numbers = nil;
     while (YES) {
@@ -152,9 +152,9 @@
 
 + (BOOL)tryToGenerateCarryNumbers:(NSArray<id<SSMathNumberDescription>> *)descriptions result:(NSMutableArray<SSMathNumber *> *)result
 {
-    MathExercisesManager *manager = [MathExercisesManager manager];
-    const BOOL carry20Enabled = [manager boolForFeature:SSMathEnableCarry20];
-    const BOOL negativeEnabled = [manager boolForFeature:SSMathEnableNegative];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
+    const BOOL carry20Enabled = [configuration boolForFeature:SSMathEnableCarry20];
+    const BOOL negativeEnabled = [configuration boolForFeature:SSMathEnableNegative];
     const SSMathNumberSign sign = arc4random_uniform(2) == 0 ? SSMathNumberSignPlus : SSMathNumberSignMinus;
     
     SSMathNumber *number0 = [[SSMathNumber alloc] init];
@@ -227,7 +227,7 @@
         
     // 后面的数
     SSMathNumber *last = result.lastObject;
-    MathExercisesManager *manager = [MathExercisesManager manager];
+    SSMathConfiguration *configuration = [SSMathConfiguration shared];
     
     switch (current.sign) {
         case SSMathNumberSignPlus: {
@@ -240,7 +240,7 @@
         }
     }
     
-    if (![manager boolForFeature:SSMathEnableNegative]) {
+    if (![configuration boolForFeature:SSMathEnableNegative]) {
         if (current.currentResult < 0) {
             return NO;
         }
