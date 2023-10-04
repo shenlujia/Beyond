@@ -60,7 +60,7 @@
     [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
     [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
     
-    [self p_test_switch:@"启用进位" feature:SSMathEnableCarry];
+    [self p_test_switch:@"开启进位 开启后固定为两个数字进位加减法" feature:SSMathEnableCarry];
     [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
     
     [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumberDescription1EnableDigit1];

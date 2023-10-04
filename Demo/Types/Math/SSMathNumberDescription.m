@@ -7,6 +7,7 @@
 //
 
 #import "SSMathNumberDescription.h"
+#import "SSMathUtil.h"
 
 @implementation SSMathNumberDescription
 
@@ -43,9 +44,9 @@
 - (NSInteger)suggestedValue
 {
     NSInteger value = 0;
-    uint32_t max = pow(10, [self suggestedLength]);
+    NSInteger length = [self suggestedLength];
     while (YES) {
-        NSInteger temp = arc4random_uniform(max);
+        NSInteger temp = [SSMathUtil randomValueWithLength:length];
         NSInteger count = log(temp) / log(10) + 1;
         if ((count == 1 && self.digit1) ||
             (count == 2 && self.digit2) ||

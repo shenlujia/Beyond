@@ -11,6 +11,7 @@
 #import "SSMathNumberDescription.h"
 #import "SSMathProblem.h"
 #import "SSMathNumber.h"
+#import "SSMathUtil.h"
 
 @implementation MathExercisesGenerator
 
@@ -79,8 +80,7 @@
         if (text.length > result.length) {
             text = [text substringWithRange:NSMakeRange(0, result.length)];
         }
-        NSRange range = NSMakeRange(result.length - text.length, text.length);
-        [result replaceCharactersInRange:range withString:text];
+        [self p_tryToCoverEnd:result newText:text];
         
         maxLength -= text.length;
     }
@@ -105,10 +105,18 @@
 
 + (id<SSMathProblem>)generateProblem:(NSArray<id<SSMathNumberDescription>> *)descriptions
 {
+    MathExercisesManager *manager = [MathExercisesManager manager];
+    const BOOL carryEnabled = [manager boolForFeature:SSMathEnableCarry];
+    
     NSArray *numbers = nil;
     while (YES) {
         NSMutableArray *array = [NSMutableArray array];
-        BOOL ret = [self tryToGenerateNumbers:descriptions result:array];
+        BOOL ret = NO;
+        if (carryEnabled) {
+            ret = [self tryToGenerateCarryNumbers:descriptions result:array];
+        } else {
+            ret = [self tryToGenerateNumbers:descriptions result:array];
+        }
         if (ret) {
             numbers = array;
             break;
@@ -134,6 +142,39 @@
     ret.answer = [@(lastNumber.currentResult) stringValue];
     
     return ret;
+}
+
++ (BOOL)tryToGenerateCarryNumbers:(NSArray<id<SSMathNumberDescription>> *)descriptions result:(NSMutableArray<SSMathNumber *> *)result
+{
+    const SSMathNumberSign sign = arc4random_uniform(2) == 0 ? SSMathNumberSignPlus : SSMathNumberSignMinus;
+    
+    SSMathNumber *number0 = [[SSMathNumber alloc] init];
+    number0.stringLength = 2;
+    number0.value = ({
+        NSInteger random = [SSMathUtil randomValueWithMax:10];
+        sign == SSMathNumberSignPlus ? random : random + 10;
+    });
+    number0.currentResult = number0.value;
+    
+    SSMathNumber *number1 = [[SSMathNumber alloc] init];
+    number1.stringLength = 1;
+    number1.value = [SSMathUtil randomValueWithMax:10];
+    number1.sign = sign;
+    number1.currentResult = sign == SSMathNumberSignPlus ? number0.currentResult + number1.value : number0.currentResult - number1.value;
+    
+    if (sign == SSMathNumberSignPlus) {
+        if (number1.currentResult < 10) {
+            return NO;
+        }
+    } else if (sign == SSMathNumberSignMinus) {
+        if (number1.currentResult >= 10) {
+            return NO;
+        }
+    }
+    
+    [result addObject:number0];
+    [result addObject:number1];
+    return YES;
 }
 
 + (BOOL)tryToGenerateNumbers:(NSArray<id<SSMathNumberDescription>> *)descriptions result:(NSMutableArray<SSMathNumber *> *)result
@@ -172,10 +213,6 @@
             current.currentResult = last.currentResult - current.value;
             break;
         }
-    }
-    
-    if (![manager boolForFeature:SSMathEnableCarry]) {
-        // 进位暂未实现
     }
     
     if (![manager boolForFeature:SSMathEnableNegative]) {

@@ -59,6 +59,7 @@
 		5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF0259D6FE1004E4A66 /* HorizontalCollectionViewCell.m */; };
 		5E07DFF5259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */; };
 		5E0D9B33285310B10021497B /* RotateAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D9B31285310B10021497B /* RotateAnimeController.m */; };
+		5E2DF4342ACD7D4700CCF750 /* SSMathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DF4332ACD7D4700CCF750 /* SSMathUtil.m */; };
 		5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */; };
 		5E386A4C2743D4D900DFBE1A /* SSEasyFixBeyond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4B2743D4D900DFBE1A /* SSEasyFixBeyond.m */; };
 		5E386A4F2743D61200DFBE1A /* MessageSendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E386A4E2743D61200DFBE1A /* MessageSendController.m */; };
@@ -236,6 +237,8 @@
 		5E07DFF2259D6FE1004E4A66 /* HorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
 		5E0D9B31285310B10021497B /* RotateAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateAnimeController.m; sourceTree = "<group>"; };
 		5E0D9B32285310B10021497B /* RotateAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateAnimeController.h; sourceTree = "<group>"; };
+		5E2DF4322ACD7D4700CCF750 /* SSMathUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathUtil.h; sourceTree = "<group>"; };
+		5E2DF4332ACD7D4700CCF750 /* SSMathUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMathUtil.m; sourceTree = "<group>"; };
 		5E347B7626B4F8E3003F4355 /* DEBUGPanelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEBUGPanelController.h; sourceTree = "<group>"; };
 		5E347B7726B4F8E3003F4355 /* DEBUGPanelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEBUGPanelController.m; sourceTree = "<group>"; };
 		5E386A4A2743D4D900DFBE1A /* SSEasyFixBeyond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEasyFixBeyond.h; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 				5EAFF43F2ACD47AA0089BB59 /* SSMathNumber.m */,
 				5EAFF4412ACD4B420089BB59 /* SSMathNumberSign.h */,
 				5EAFF4422ACD4B420089BB59 /* SSMathNumberSign.m */,
+				5E2DF4322ACD7D4700CCF750 /* SSMathUtil.h */,
+				5E2DF4332ACD7D4700CCF750 /* SSMathUtil.m */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -1138,6 +1143,7 @@
 				5EAFF4432ACD4B420089BB59 /* SSMathNumberSign.m in Sources */,
 				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
 				5ECAF9542580A79000984E77 /* AVKitController.m in Sources */,
+				5E2DF4342ACD7D4700CCF750 /* SSMathUtil.m in Sources */,
 				57CDE89124B5626B00F9856F /* RunLoopController.m in Sources */,
 				57F8943A246E3A6B007AEFC6 /* NSObject+MethodSwizzle.m in Sources */,
 				5707305324D2BD9500A9883A /* UIKitController.m in Sources */,

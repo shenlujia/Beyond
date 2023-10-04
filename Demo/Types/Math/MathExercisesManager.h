@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, SSMathFeature) {
     SSMathExercisesStart = 3, // 题目开始位置
     SSMathExercisesPadding = 4, // 题目间隔
     
-    SSMathEnableCarry = 100, // 开启进位
+    SSMathEnableCarry = 100, // 开启进位 开启后固定为两个数字进位加减法
     SSMathEnableNegative = 101, // 开启负数
     
     SSMathNumberDescription1EnableDigit1 = 1001, // 数字1 启用一位数
