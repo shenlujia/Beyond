@@ -106,7 +106,7 @@
 + (id<SSMathProblem>)generateProblem:(NSArray<id<SSMathNumberDescription>> *)descriptions
 {
     MathExercisesManager *manager = [MathExercisesManager manager];
-    const BOOL carryEnabled = [manager boolForFeature:SSMathEnableCarry];
+    const BOOL carryEnabled = [manager boolForFeature:SSMathEnableCarry10] || [manager boolForFeature:SSMathEnableCarry20];
     
     NSArray *numbers = nil;
     while (YES) {
@@ -139,35 +139,60 @@
     
     SSMathProblem *ret = [[SSMathProblem alloc] init];
     ret.string = text;
-    ret.answer = [@(lastNumber.currentResult) stringValue];
+    if (carryEnabled && lastNumber.currentResult > 0) {
+        NSMutableString *text = [NSMutableString stringWithString:@"  "];
+        [self p_tryToCoverEnd:text newText:@(lastNumber.currentResult).stringValue];
+        ret.answer = text;
+    } else {
+        ret.answer = [@(lastNumber.currentResult) stringValue];
+    }
     
     return ret;
 }
 
 + (BOOL)tryToGenerateCarryNumbers:(NSArray<id<SSMathNumberDescription>> *)descriptions result:(NSMutableArray<SSMathNumber *> *)result
 {
+    MathExercisesManager *manager = [MathExercisesManager manager];
+    const BOOL carry20Enabled = [manager boolForFeature:SSMathEnableCarry20];
+    const BOOL negativeEnabled = [manager boolForFeature:SSMathEnableNegative];
     const SSMathNumberSign sign = arc4random_uniform(2) == 0 ? SSMathNumberSignPlus : SSMathNumberSignMinus;
     
     SSMathNumber *number0 = [[SSMathNumber alloc] init];
     number0.stringLength = 2;
     number0.value = ({
-        NSInteger random = [SSMathUtil randomValueWithMax:10];
-        sign == SSMathNumberSignPlus ? random : random + 10;
+        NSInteger max = 0;
+        if (carry20Enabled) {
+            max = sign == SSMathNumberSignPlus ? 20 : 40;
+        } else {
+            max = sign == SSMathNumberSignPlus ? 10 : 20;
+        }
+        [SSMathUtil randomValueWithMax:max];
     });
     number0.currentResult = number0.value;
     
     SSMathNumber *number1 = [[SSMathNumber alloc] init];
-    number1.stringLength = 1;
-    number1.value = [SSMathUtil randomValueWithMax:10];
+    number1.stringLength = carry20Enabled ? 2 : 1;
+    number1.value = ({
+        NSInteger max = 10;
+        if (carry20Enabled) {
+            max = 20;
+        }
+        [SSMathUtil randomValueWithMax:max];
+    });
     number1.sign = sign;
     number1.currentResult = sign == SSMathNumberSignPlus ? number0.currentResult + number1.value : number0.currentResult - number1.value;
     
     if (sign == SSMathNumberSignPlus) {
-        if (number1.currentResult < 10) {
+        NSInteger value = (number0.value % 10) + (number1.value % 10);
+        if (value < 10) {
             return NO;
         }
-    } else if (sign == SSMathNumberSignMinus) {
-        if (number1.currentResult >= 10) {
+    } else {
+        if ((number0.value < number1.value) && !negativeEnabled) {
+            return NO;
+        }
+        NSInteger value = (number0.value % 10) - (number1.value % 10);
+        if (value >= 0) {
             return NO;
         }
     }

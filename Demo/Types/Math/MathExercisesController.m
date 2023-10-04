@@ -35,7 +35,8 @@
         [manager setObject:@"0" forFeature:SSMathExercisesStart];
         [manager setObject:@"10" forFeature:SSMathExercisesPadding];
         
-        [manager setObject:@"0" forFeature:SSMathEnableCarry];
+        [manager setObject:@"0" forFeature:SSMathEnableCarry10];
+        [manager setObject:@"0" forFeature:SSMathEnableCarry20];
         [manager setObject:@"0" forFeature:SSMathEnableNegative];
         
         [manager setObject:@"1" forFeature:SSMathNumberDescription1EnableDigit1];
@@ -60,7 +61,8 @@
     [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
     [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
     
-    [self p_test_switch:@"开启进位 开启后固定为两个数字进位加减法" feature:SSMathEnableCarry];
+    [self p_test_switch:@"特殊模式 固定(0~10)两个数字进位退位加减法" feature:SSMathEnableCarry10];
+    [self p_test_switch:@"特殊模式 固定(0~20)两个数字进位退位加减法" feature:SSMathEnableCarry20];
     [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
     
     [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumberDescription1EnableDigit1];
@@ -141,14 +143,21 @@
 - (void)p_test_switch:(NSString *)title feature:(SSMathFeature)feature
 {
     MathExercisesManager *manager = [MathExercisesManager manager];
-    [self test:title set:^(UIButton *button, NSDictionary *userInfo) {
+    [self test:@"" set:^(UIButton *button, NSDictionary *userInfo) {
+        UILabel *label = [[UILabel alloc] initWithFrame:button.bounds];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        label.text = [NSString stringWithFormat:@"    %@", title];
+        label.textColor = [button titleColorForState:UIControlStateNormal];
+        label.font = button.titleLabel.font;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.backgroundColor = UIColor.clearColor;
+        [button addSubview:label];
+        
         UISwitch *s = [[UISwitch alloc] init];
         s.frame = ({
             CGSize maxSize = button.bounds.size;
             CGSize size = s.frame.size;
-//            size.width = MAX(size.width, 51);
-//            size.height = MAX(size.height, 31);
-            CGRectMake(maxSize.width - size.width - 35, (maxSize.height - size.height) / 2, size.width, size.height);
+            CGRectMake(maxSize.width - size.width - 30, (maxSize.height - size.height) / 2, size.width, size.height);
         });
         [button addSubview:s];
         s.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
