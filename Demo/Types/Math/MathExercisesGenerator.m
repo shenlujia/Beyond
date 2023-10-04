@@ -30,37 +30,35 @@
 {
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
     
-    SSMathNumberDescription *number1 = [[SSMathNumberDescription alloc] init];
-    number1.enabled = YES;
-    number1.digit1 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit1];
-    number1.digit2 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit2];
-    number1.digit3 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit3];
+    SSMathNumberDescription *description1 = [[SSMathNumberDescription alloc] init];
+    description1.digit1 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit1];
+    description1.digit2 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit2];
+    description1.digit3 = [configuration boolForFeature:SSMathNumberDescription1EnableDigit3];
+    [description1 repair];
     
-    SSMathNumberDescription *number2 = [[SSMathNumberDescription alloc] init];
-    number2.enabled = YES;
-    number2.digit1 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit1];
-    number2.digit2 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit2];
-    number2.digit3 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit3];
-    number2.plus = [configuration boolForFeature:SSMathNumberDescription2EnablePlus];
-    number2.minus = [configuration boolForFeature:SSMathNumberDescription2EnableMinus];
+    SSMathNumberDescription *description2 = [[SSMathNumberDescription alloc] init];
+    description2.digit1 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit1];
+    description2.digit2 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit2];
+    description2.digit3 = [configuration boolForFeature:SSMathNumberDescription2EnableDigit3];
+    description2.plus = [configuration boolForFeature:SSMathNumberDescription2EnablePlus];
+    description2.minus = [configuration boolForFeature:SSMathNumberDescription2EnableMinus];
+    [description2 repair];
     
-    SSMathNumberDescription *number3 = [[SSMathNumberDescription alloc] init];
-    number3.enabled = [configuration boolForFeature:SSMathNumberDescription3Enable];
-    number3.digit1 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit1];
-    number3.digit2 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit2];
-    number3.digit3 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit3];
-    number3.plus = [configuration boolForFeature:SSMathNumberDescription3EnablePlus];
-    number3.minus = [configuration boolForFeature:SSMathNumberDescription3EnableMinus];
+    SSMathNumberDescription *description3 = [[SSMathNumberDescription alloc] init];
+    description3.digit1 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit1];
+    description3.digit2 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit2];
+    description3.digit3 = [configuration boolForFeature:SSMathNumberDescription3EnableDigit3];
+    description3.plus = [configuration boolForFeature:SSMathNumberDescription3EnablePlus];
+    description3.minus = [configuration boolForFeature:SSMathNumberDescription3EnableMinus];
     
-    SSMathNumberDescription *number4 = [[SSMathNumberDescription alloc] init];
-    number4.enabled = [configuration boolForFeature:SSMathNumberDescription4Enable];
-    number4.digit1 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit1];
-    number4.digit2 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit2];
-    number4.digit3 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit3];
-    number4.plus = [configuration boolForFeature:SSMathNumberDescription4EnablePlus];
-    number4.minus = [configuration boolForFeature:SSMathNumberDescription4EnableMinus];
+    SSMathNumberDescription *description4 = [[SSMathNumberDescription alloc] init];
+    description4.digit1 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit1];
+    description4.digit2 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit2];
+    description4.digit3 = [configuration boolForFeature:SSMathNumberDescription4EnableDigit3];
+    description4.plus = [configuration boolForFeature:SSMathNumberDescription4EnablePlus];
+    description4.minus = [configuration boolForFeature:SSMathNumberDescription4EnableMinus];
     
-    NSArray *descriptions = @[number1, number2, number3, number4];
+    NSArray *descriptions = @[description1, description2, description3, description4];
     
     NSInteger maxLength = [configuration integerForFeature:SSMathLineLength];
     NSMutableString *result = [self p_generateEmptyString:maxLength];
@@ -107,6 +105,7 @@
 {
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
     const BOOL carryEnabled = [configuration boolForFeature:SSMathEnableCarry10] || [configuration boolForFeature:SSMathEnableCarry20];
+    const BOOL carryMoreThanOnce = [configuration boolForFeature:SSMathCarryMoreThanOnce];
     
     NSArray *numbers = nil;
     while (YES) {
@@ -116,6 +115,18 @@
             ret = [self tryToGenerateCarryNumbers:descriptions result:array];
         } else {
             ret = [self tryToGenerateNumbers:descriptions result:array];
+            if (ret && carryMoreThanOnce) {
+                BOOL didCarry = NO;
+                for (SSMathNumber *number in array) {
+                    if (number.didCarry) {
+                        didCarry = YES;
+                        break;
+                    }
+                }
+                if (!didCarry) {
+                    ret = NO;
+                }
+            }
         }
         if (ret) {
             numbers = array;
@@ -168,7 +179,8 @@
         }
         [SSMathUtil randomValueWithMax:max];
     });
-    number0.currentResult = number0.value;
+    number0.sign = SSMathNumberSignPlus;
+    [number0 updateWithLastValue:0];
     
     SSMathNumber *number1 = [[SSMathNumber alloc] init];
     number1.stringLength = carry20Enabled ? 2 : 1;
@@ -180,21 +192,14 @@
         [SSMathUtil randomValueWithMax:max];
     });
     number1.sign = sign;
-    number1.currentResult = sign == SSMathNumberSignPlus ? number0.currentResult + number1.value : number0.currentResult - number1.value;
+    [number1 updateWithLastValue:number0.currentResult];
     
-    if (sign == SSMathNumberSignPlus) {
-        NSInteger value = (number0.value % 10) + (number1.value % 10);
-        if (value < 10) {
-            return NO;
-        }
-    } else {
-        if ((number0.value < number1.value) && !negativeEnabled) {
-            return NO;
-        }
-        NSInteger value = (number0.value % 10) - (number1.value % 10);
-        if (value >= 0) {
-            return NO;
-        }
+    if (!number1.didCarry) {
+        return NO;
+    }
+    
+    if (number1.currentResult < 0 && !negativeEnabled) {
+        return NO;
     }
     
     [result addObject:number0];
@@ -209,7 +214,7 @@
     }
     
     id<SSMathNumberDescription> description = descriptions[result.count];
-    if (!description.enabled) {
+    if (![description enabled]) {
         return YES;
     }
     
@@ -220,27 +225,18 @@
     
     // 第一个数
     if (result.count == 0) {
-        current.currentResult = current.value;
+        [current updateWithLastValue:0];
         [result addObject:current];
         return [self tryToGenerateNumbers:descriptions result:result];
     }
         
     // 后面的数
     SSMathNumber *last = result.lastObject;
+    [current updateWithLastValue:last.currentResult];
+    
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
-    
-    switch (current.sign) {
-        case SSMathNumberSignPlus: {
-            current.currentResult = last.currentResult + current.value;
-            break;
-        }
-        case SSMathNumberSignMinus: {
-            current.currentResult = last.currentResult - current.value;
-            break;
-        }
-    }
-    
-    if (![configuration boolForFeature:SSMathEnableNegative]) {
+    const BOOL negativeEnabled = [configuration boolForFeature:SSMathEnableNegative];
+    if (!negativeEnabled) {
         if (current.currentResult < 0) {
             return NO;
         }

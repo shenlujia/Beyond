@@ -10,6 +10,22 @@
 
 @implementation SSMathNumber
 
+- (void)updateWithLastValue:(NSInteger)lastValue
+{
+    switch (self.sign) {
+        case SSMathNumberSignPlus: {
+            _currentResult = lastValue + self.value;
+            _didCarry = ((lastValue % 10) + (self.value % 10)) >= 10;
+            break;
+        }
+        case SSMathNumberSignMinus: {
+            _currentResult = lastValue - self.value;
+            _didCarry = ((lastValue % 10) - (self.value % 10)) < 0;
+            break;
+        }
+    }
+}
+
 - (NSString *)signText
 {
     NSString *text = @"?";

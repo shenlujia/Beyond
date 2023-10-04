@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, SSMathFeature) {
     SSMathEnableCarry20 = 101, // 特殊模式 固定(0~20)两个数字进位加减法
     
     SSMathEnableNegative = 201, // 开启负数
+    SSMathCarryMoreThanOnce = 202, // 至少有一次进位或退位
     
     SSMathNumberDescription1EnableDigit1 = 1001, // 数字1 启用一位数
     SSMathNumberDescription1EnableDigit2 = 1002, // 数字1 启用二位数
@@ -30,14 +31,12 @@ typedef NS_ENUM(NSInteger, SSMathFeature) {
     SSMathNumberDescription2EnablePlus = 2100, // 数字2 启用加法
     SSMathNumberDescription2EnableMinus = 2101, // 数字2 启用减法
     
-    SSMathNumberDescription3Enable = 3000, // 启用数字3
     SSMathNumberDescription3EnableDigit1 = 3001, // 数字3 启用一位数
     SSMathNumberDescription3EnableDigit2 = 3002, // 数字3 启用二位数
     SSMathNumberDescription3EnableDigit3 = 3003, // 数字3 启用三位数
     SSMathNumberDescription3EnablePlus = 3100, // 数字3 启用加法
     SSMathNumberDescription3EnableMinus = 3101, // 数字3 启用减法
     
-    SSMathNumberDescription4Enable = 4000, // 启用数字4
     SSMathNumberDescription4EnableDigit1 = 4001, // 数字4 启用一位数
     SSMathNumberDescription4EnableDigit2 = 4002, // 数字4 启用二位数
     SSMathNumberDescription4EnableDigit3 = 4003, // 数字4 启用三位数

@@ -11,11 +11,20 @@
 
 @implementation SSMathNumberDescription
 
+- (void)repair
+{
+    if (!self.digit1 && !self.digit2 && !self.digit3) {
+        self.digit1 = YES;
+    }
+}
+
+- (BOOL)enabled
+{
+    return self.digit1 || self.digit2 || self.digit3;
+}
+
 - (NSInteger)suggestedLength
 {
-    if (!self.enabled) {
-        return 0;
-    }
     if (self.digit3) {
         return 3;
     }

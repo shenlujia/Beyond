@@ -12,7 +12,6 @@
 
 + (NSInteger)randomValueWithLength:(NSInteger)length
 {
-    NSInteger value = 0;
     NSInteger max = pow(10, MAX(length, 1));
     return [self randomValueWithMax:max];
 }

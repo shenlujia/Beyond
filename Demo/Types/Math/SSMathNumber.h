@@ -16,7 +16,10 @@
 @property (nonatomic, assign) NSInteger value;
 @property (nonatomic, assign) SSMathNumberSign sign;
 
-@property (nonatomic, assign) NSInteger currentResult;
+@property (nonatomic, assign, readonly) NSInteger currentResult;
+@property (nonatomic, assign, readonly) BOOL didCarry;
+
+- (void)updateWithLastValue:(NSInteger)lastValue;
 
 - (NSString *)signText;
 

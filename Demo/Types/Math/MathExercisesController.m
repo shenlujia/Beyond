@@ -9,6 +9,7 @@
 #import "MathExercisesController.h"
 #import "SSMathConfiguration.h"
 #import "SSEasyAlert.h"
+#import "SSEasy.h"
 #import "UISwitch+SSUIKit.h"
 #import "MathExercisesGenerator.h"
 
@@ -22,7 +23,7 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"随机生成" style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)];
     self.navigationItem.rightBarButtonItem = item;
     
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
@@ -43,51 +44,55 @@
         
         [configuration setObject:@"1" forFeature:SSMathNumberDescription2EnableDigit1];
         [configuration setObject:@"1" forFeature:SSMathNumberDescription2EnablePlus];
-        
-        [configuration setObject:@"0" forFeature:SSMathNumberDescription3Enable];
-        [configuration setObject:@"1" forFeature:SSMathNumberDescription3EnableDigit1];
-        [configuration setObject:@"1" forFeature:SSMathNumberDescription3EnablePlus];
-        
-        [configuration setObject:@"0" forFeature:SSMathNumberDescription4Enable];
-        [configuration setObject:@"1" forFeature:SSMathNumberDescription4EnableDigit1];
-        [configuration setObject:@"1" forFeature:SSMathNumberDescription4EnablePlus];
     }
     
     self.title = @"习题";
     
-    [self p_test_input:@"单行长度" feature:SSMathLineLength];
-    [self p_test_input:@"行数" feature:SSMathNumberDescriptionOfLines];
-    [self p_test_input:@"每行题目数" feature:SSMathExercisesCountInLine];
-    [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
-    [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
+    {
+        [self p_test_hint:@"基础参数"];
+        
+        [self p_test_input:@"单行长度" feature:SSMathLineLength];
+        [self p_test_input:@"行数" feature:SSMathNumberDescriptionOfLines];
+        [self p_test_input:@"每行题目数" feature:SSMathExercisesCountInLine];
+        [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
+        [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
+        
+        [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
+        [self p_test_switch:@"至少有一次进位或退位" feature:SSMathCarryMoreThanOnce];
+    }
     
-    [self p_test_switch:@"特殊模式 固定(0~10)两个数字进位退位加减法" feature:SSMathEnableCarry10];
-    [self p_test_switch:@"特殊模式 固定(0~20)两个数字进位退位加减法" feature:SSMathEnableCarry20];
-    [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
+    {
+        [self p_test_hint:@"特殊模式"];
+        
+        [self p_test_switch:@"特殊模式 固定(0~10)两个数字进位退位加减法" feature:SSMathEnableCarry10];
+        [self p_test_switch:@"特殊模式 固定(0~20)两个数字进位退位加减法" feature:SSMathEnableCarry20];
+    }
     
-    [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumberDescription1EnableDigit1];
-    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumberDescription1EnableDigit2];
-    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumberDescription1EnableDigit3];
-    
-    [self p_test_switch:@"数字2 启用一位数" feature:SSMathNumberDescription2EnableDigit1];
-    [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumberDescription2EnableDigit2];
-    [self p_test_switch:@"数字2 启用三位数" feature:SSMathNumberDescription2EnableDigit3];
-    [self p_test_switch:@"数字2 启用加法" feature:SSMathNumberDescription2EnablePlus];
-    [self p_test_switch:@"数字2 启用减法" feature:SSMathNumberDescription2EnableMinus];
-    
-    [self p_test_switch:@"开启数字3" feature:SSMathNumberDescription3Enable];
-    [self p_test_switch:@"数字3 启用一位数" feature:SSMathNumberDescription3EnableDigit1];
-    [self p_test_switch:@"数字3 启用二位数" feature:SSMathNumberDescription3EnableDigit2];
-    [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumberDescription3EnableDigit3];
-    [self p_test_switch:@"数字3 启用加法" feature:SSMathNumberDescription3EnablePlus];
-    [self p_test_switch:@"数字3 启用减法" feature:SSMathNumberDescription3EnableMinus];
-    
-    [self p_test_switch:@"开启数字4" feature:SSMathNumberDescription4Enable];
-    [self p_test_switch:@"数字4 启用一位数" feature:SSMathNumberDescription4EnableDigit1];
-    [self p_test_switch:@"数字4 启用二位数" feature:SSMathNumberDescription4EnableDigit2];
-    [self p_test_switch:@"数字4 启用三位数" feature:SSMathNumberDescription4EnableDigit3];
-    [self p_test_switch:@"数字4 启用加法" feature:SSMathNumberDescription4EnablePlus];
-    [self p_test_switch:@"数字4 启用减法" feature:SSMathNumberDescription4EnableMinus];
+    {
+        [self p_test_hint:@"数字参数 特殊模式打开时此处设置无效"];
+        
+        [self p_test_switch:@"数字1 启用一位数" feature:SSMathNumberDescription1EnableDigit1];
+        [self p_test_switch:@"数字1 启用二位数" feature:SSMathNumberDescription1EnableDigit2];
+        [self p_test_switch:@"数字1 启用三位数" feature:SSMathNumberDescription1EnableDigit3];
+        
+        [self p_test_switch:@"数字2 启用一位数" feature:SSMathNumberDescription2EnableDigit1];
+        [self p_test_switch:@"数字2 启用二位数" feature:SSMathNumberDescription2EnableDigit2];
+        [self p_test_switch:@"数字2 启用三位数" feature:SSMathNumberDescription2EnableDigit3];
+        [self p_test_switch:@"数字2 启用加法" feature:SSMathNumberDescription2EnablePlus];
+        [self p_test_switch:@"数字2 启用减法" feature:SSMathNumberDescription2EnableMinus];
+        
+        [self p_test_switch:@"数字3 启用一位数" feature:SSMathNumberDescription3EnableDigit1];
+        [self p_test_switch:@"数字3 启用二位数" feature:SSMathNumberDescription3EnableDigit2];
+        [self p_test_switch:@"数字3 启用三位数" feature:SSMathNumberDescription3EnableDigit3];
+        [self p_test_switch:@"数字3 启用加法" feature:SSMathNumberDescription3EnablePlus];
+        [self p_test_switch:@"数字3 启用减法" feature:SSMathNumberDescription3EnableMinus];
+        
+        [self p_test_switch:@"数字4 启用一位数" feature:SSMathNumberDescription4EnableDigit1];
+        [self p_test_switch:@"数字4 启用二位数" feature:SSMathNumberDescription4EnableDigit2];
+        [self p_test_switch:@"数字4 启用三位数" feature:SSMathNumberDescription4EnableDigit3];
+        [self p_test_switch:@"数字4 启用加法" feature:SSMathNumberDescription4EnablePlus];
+        [self p_test_switch:@"数字4 启用减法" feature:SSMathNumberDescription4EnableMinus];
+    }
 }
 
 #pragma mark - action
@@ -101,6 +106,7 @@
 - (void)shareAction
 {
     NSString *text = [MathExercisesGenerator generate];
+    ss_easy_log(text);
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [documentPath stringByAppendingPathComponent:@"share.txt"];
     [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
@@ -117,6 +123,15 @@
 }
 
 #pragma mark - private
+
+- (void)p_test_hint:(NSString *)title
+{
+    [self test:title set:^(UIButton *button, NSDictionary *userInfo) {
+        button.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.1];
+    } tap:^(UIButton *button, NSDictionary *userInfo) {
+        
+    }];
+}
 
 - (void)p_test_input:(NSString *)title feature:(SSMathFeature)feature
 {
@@ -143,6 +158,7 @@
 - (void)p_test_switch:(NSString *)title feature:(SSMathFeature)feature
 {
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
+    __block UISwitch *blockSwitch = nil;
     [self test:@"" set:^(UIButton *button, NSDictionary *userInfo) {
         UILabel *label = [[UILabel alloc] initWithFrame:button.bounds];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -164,8 +180,13 @@
         s.on = [configuration boolForFeature:feature];
         s.tag = feature;
         [s addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        blockSwitch = s;
     } tap:^(UIButton *button, NSDictionary *userInfo) {
-        
+        if (blockSwitch) {
+            [blockSwitch setOn:!blockSwitch.on animated:YES];
+            NSString *value = blockSwitch.on ? @"1" : @"0";
+            [[SSMathConfiguration shared] setObject:value forFeature:blockSwitch.tag];
+        }
     }];
 }
 
