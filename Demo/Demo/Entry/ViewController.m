@@ -18,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self test_c:@"MathExercisesController"];
 
     [self test_c:@"FoundationController"];
 

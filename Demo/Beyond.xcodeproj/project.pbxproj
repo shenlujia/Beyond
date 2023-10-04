@@ -49,6 +49,8 @@
 		57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C4243DA7CB002E481E /* BaseViewController.m */; };
 		57FD50C8243DB174002E481E /* AssociatedObjectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57FD50C7243DB174002E481E /* AssociatedObjectController.mm */; };
 		57FDA341249700B6009D5997 /* ThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDA340249700B6009D5997 /* ThreadController.m */; };
+		5E02FC8A2ACD173600689D88 /* MathExercisesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02FC892ACD173600689D88 /* MathExercisesController.m */; };
+		5E02FC8D2ACD174A00689D88 /* MathExercisesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */; };
 		5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */; };
 		5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98425CC33AB00FE80F2 /* MemoryNonARC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5E04F98B25CC36FE00FE80F2 /* MemoryDetectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E04F98A25CC36FE00FE80F2 /* MemoryDetectController.m */; };
@@ -109,6 +111,8 @@
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
 		5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F52AC286530110017B05F /* MapTableLeakController.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
+		5EAFF4342ACD33500089BB59 /* UISwitch+SSUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */; };
+		5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */; };
 		5EB07C2F26F4F3C900949030 /* SSEasyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB07C2E26F4F3C900949030 /* SSEasyController.m */; };
 		5EB8208A29AF33FC007A62EA /* SSAssetImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8208929AF33FC007A62EA /* SSAssetImageGenerator.m */; };
 		5EC0C39B2750E08000B4DE43 /* TopWithBottomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0C39A2750E08000B4DE43 /* TopWithBottomAnimationController.m */; };
@@ -208,6 +212,10 @@
 		57FDA33F249700B6009D5997 /* ThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
 		57FDA340249700B6009D5997 /* ThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadController.m; sourceTree = "<group>"; };
 		59F5031BF8E1941A154D07BF /* libPods-Beyond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Beyond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E02FC882ACD173600689D88 /* MathExercisesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesController.h; sourceTree = "<group>"; };
+		5E02FC892ACD173600689D88 /* MathExercisesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesController.m; sourceTree = "<group>"; };
+		5E02FC8B2ACD174A00689D88 /* MathExercisesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesManager.h; sourceTree = "<group>"; };
+		5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesManager.m; sourceTree = "<group>"; };
 		5E04003A25D021C300FE80F2 /* MainThreadSetterChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainThreadSetterChecker.h; sourceTree = "<group>"; };
 		5E04003B25D021C300FE80F2 /* MainThreadSetterChecker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainThreadSetterChecker.mm; sourceTree = "<group>"; };
 		5E04F98325CC33AB00FE80F2 /* MemoryNonARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryNonARC.h; sourceTree = "<group>"; };
@@ -307,6 +315,10 @@
 		5E8F52AC286530110017B05F /* MapTableLeakController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableLeakController.m; sourceTree = "<group>"; };
 		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
+		5EAFF4322ACD33500089BB59 /* UISwitch+SSUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+SSUIKit.h"; sourceTree = "<group>"; };
+		5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+SSUIKit.m"; sourceTree = "<group>"; };
+		5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
+		5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesGenerator.m; sourceTree = "<group>"; };
 		5EB07C2D26F4F3C900949030 /* SSEasyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSEasyController.h; sourceTree = "<group>"; };
 		5EB07C2E26F4F3C900949030 /* SSEasyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSEasyController.m; sourceTree = "<group>"; };
 		5EB8208829AF33FC007A62EA /* SSAssetImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAssetImageGenerator.h; sourceTree = "<group>"; };
@@ -615,6 +627,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5E02FC872ACD171900689D88 /* Math */,
 				5E7BCC7C26650D8F00F90FE6 /* Photo */,
 				5EF7C3622601AA9800E3CF0E /* Foundation */,
 				5EF0245B25CAA9AE00EDB1EE /* 无用类检测 */,
@@ -670,6 +683,19 @@
 				57FBB68D24A0A41E0093433B /* ThreadPortController.m */,
 			);
 			path = "线程";
+			sourceTree = "<group>";
+		};
+		5E02FC872ACD171900689D88 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				5E02FC882ACD173600689D88 /* MathExercisesController.h */,
+				5E02FC892ACD173600689D88 /* MathExercisesController.m */,
+				5E02FC8B2ACD174A00689D88 /* MathExercisesManager.h */,
+				5E02FC8C2ACD174A00689D88 /* MathExercisesManager.m */,
+				5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */,
+				5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */,
+			);
+			path = Math;
 			sourceTree = "<group>";
 		};
 		5E07DFEC259D6FE1004E4A66 /* HorizontalCollectionView */ = {
@@ -803,6 +829,8 @@
 				5E5FE8E729157CC500951971 /* SSEasyAlert.m */,
 				5E5FE8EC29157CC500951971 /* SSEasyPanel.h */,
 				5E5FE8E929157CC500951971 /* SSEasyPanel.m */,
+				5EAFF4322ACD33500089BB59 /* UISwitch+SSUIKit.h */,
+				5EAFF4332ACD33500089BB59 /* UISwitch+SSUIKit.m */,
 			);
 			path = _UIKit;
 			sourceTree = "<group>";
@@ -1063,10 +1091,13 @@
 				5E7BCC7F26650DA500F90FE6 /* PhotoController.m in Sources */,
 				5E5FE90B29157CC500951971 /* SSEasy.m in Sources */,
 				5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */,
+				5E02FC8A2ACD173600689D88 /* MathExercisesController.m in Sources */,
+				5EAFF4342ACD33500089BB59 /* UISwitch+SSUIKit.m in Sources */,
 				5E04F98525CC33AB00FE80F2 /* MemoryNonARC.m in Sources */,
 				5E5FE90229157CC500951971 /* SSEasyAlert.m in Sources */,
 				57FB88A0249E5D380093433B /* NSObject+Dealloc.m in Sources */,
 				57FD50C5243DA7CB002E481E /* BaseViewController.m in Sources */,
+				5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */,
 				574CA37B24F679670018D47B /* KKCallStackSymbol.c in Sources */,
 				5E69C45726F0DED6005B93AB /* NSFileManager+SS.m in Sources */,
 				5E61549625F08F0900127B6E /* SSLiveObjectsViewController.m in Sources */,
@@ -1132,6 +1163,7 @@
 				57FDA341249700B6009D5997 /* ThreadController.m in Sources */,
 				5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */,
 				574CA37424F666B90018D47B /* FishhookController.m in Sources */,
+				5E02FC8D2ACD174A00689D88 /* MathExercisesManager.m in Sources */,
 				5E613F9F25EF574400127B6E /* SSLeakDetectorObject.m in Sources */,
 				5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */,
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,

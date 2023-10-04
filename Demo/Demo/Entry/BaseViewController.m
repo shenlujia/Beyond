@@ -297,6 +297,7 @@ UIEdgeInsets app_safeAreaInsets()
     [self.models addObject:model];
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
     button.backgroundColor = UIColor.whiteColor;
     [button setTitle:model.title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
@@ -304,15 +305,15 @@ UIEdgeInsets app_safeAreaInsets()
     button.titleLabel.numberOfLines = 0;
     model.button = button;
 
+    if (model.set) {
+        model.set(button, nil);
+    }
+    
     if (model.action) {
         [button addTarget:self action:model.action forControlEvents:UIControlEventTouchUpInside];
     }
     if (model.tap) {
         [button addTarget:self action:@selector(p_base_buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-
-    if (model.set) {
-        model.set(button, nil);
     }
 }
 
