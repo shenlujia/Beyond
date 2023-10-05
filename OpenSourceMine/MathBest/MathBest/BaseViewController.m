@@ -115,7 +115,7 @@ UIEdgeInsets app_safeAreaInsets()
 {
     [super viewDidLoad];
     self.createDate = [NSDate date];
-    self.view.backgroundColor = UIColor.groupTableViewBackgroundColor;
+    self.view.backgroundColor = UIColor.systemGroupedBackgroundColor;
     
     _textInputView = ({
         UITextField *view = [[UITextField alloc] init];

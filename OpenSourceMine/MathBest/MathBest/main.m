@@ -2,18 +2,15 @@
 //  main.m
 //  Demo
 //
-//  Created by SLJ on 2020/4/8.
-//  Copyright © 2020 SLJ. All rights reserved.
+//  Created by ZZZ on 2023/10/5.
 //
 
-#import "AppDelegate.h"
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-int main(int argc, char *argv[])
-{
-    NSString *appDelegateClassName;
-    @autoreleasepool
-    {
+int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
+    @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
