@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5E25B9F42ACE49CB00425BA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25B9F32ACE49CB00425BA4 /* AppDelegate.m */; };
-		5E25B9FD2ACE49CB00425BA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E25B9FB2ACE49CB00425BA4 /* Main.storyboard */; };
 		5E25B9FF2ACE49CD00425BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E25B9FE2ACE49CD00425BA4 /* Assets.xcassets */; };
 		5E25BA022ACE49CD00425BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E25BA002ACE49CD00425BA4 /* LaunchScreen.storyboard */; };
 		5E25BA052ACE49CD00425BA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25BA042ACE49CD00425BA4 /* main.m */; };
@@ -39,7 +38,6 @@
 		5E25B9EF2ACE49CB00425BA4 /* MathBest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathBest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E25B9F22ACE49CB00425BA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E25B9F32ACE49CB00425BA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5E25B9FC2ACE49CB00425BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E25B9FE2ACE49CD00425BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E25BA012ACE49CD00425BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E25BA032ACE49CD00425BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				5E25BA032ACE49CD00425BA4 /* Info.plist */,
 				5E25BA002ACE49CD00425BA4 /* LaunchScreen.storyboard */,
 				5E25BA042ACE49CD00425BA4 /* main.m */,
-				5E25B9FB2ACE49CB00425BA4 /* Main.storyboard */,
 			);
 			path = MathBest;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 			files = (
 				5E25BA022ACE49CD00425BA4 /* LaunchScreen.storyboard in Resources */,
 				5E25B9FF2ACE49CD00425BA4 /* Assets.xcassets in Resources */,
-				5E25B9FD2ACE49CB00425BA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,14 +308,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5E25B9FB2ACE49CB00425BA4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E25B9FC2ACE49CB00425BA4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5E25BA002ACE49CD00425BA4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -454,7 +442,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,7 +470,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
