@@ -453,6 +453,7 @@
 				DEVELOPMENT_TEAM = 65X29JT9JK;
 				INFOPLIST_FILE = MathBest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -476,6 +477,7 @@
 				DEVELOPMENT_TEAM = 65X29JT9JK;
 				INFOPLIST_FILE = MathBest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "数学小能手";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

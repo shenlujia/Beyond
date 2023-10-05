@@ -177,6 +177,7 @@
         s.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
         s.on = [configuration boolForFeature:feature];
         s.tag = feature;
+        s.onTintColor = [UIColor.greenColor colorWithAlphaComponent:0.25];
         [s addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
         blockSwitch = s;
     } tap:^(UIButton *button, NSDictionary *userInfo) {
