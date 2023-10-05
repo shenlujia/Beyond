@@ -2,8 +2,7 @@
 //  AppDelegate.h
 //  Demo
 //
-//  Created by SLJ on 2020/4/8.
-//  Copyright © 2020 SLJ. All rights reserved.
+//  Created by ZZZ on 2023/10/5.
 //
 
 #import <UIKit/UIKit.h>
