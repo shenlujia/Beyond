@@ -70,9 +70,7 @@
 
 - (NSString *)keyForFeature:(SSMathFeature)feature
 {
-    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-    NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
-    return [NSString stringWithFormat:@"%@_%@", version, @(feature)];
+    return [NSString stringWithFormat:@"math_key_%@", @(feature)];
 }
 
 - (NSInteger)integerForFeature:(SSMathFeature)feature
