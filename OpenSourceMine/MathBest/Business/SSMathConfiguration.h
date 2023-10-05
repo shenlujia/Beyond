@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, SSMathFeature) {
     SSMathExercisesCountInLine = 2, // 每行题目数
     SSMathExercisesStart = 3, // 题目开始位置
     SSMathExercisesPadding = 4, // 题目间隔
+    SSMathAnswersPadding = 5, // 答案间隔
     
     SSMathEnableCarry10 = 100, // 快捷模式 固定(0~10)两个数字进位加减法
     SSMathEnableCarry20 = 101, // 快捷模式 固定(0~20)两个数字进位加减法

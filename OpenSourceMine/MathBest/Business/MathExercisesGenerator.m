@@ -74,7 +74,8 @@
         for (id<SSMathProblem> one in problems) {
             [anwsers addObject:one.answer];
         }
-        NSString *text = [anwsers componentsJoinedByString:@"  "];
+        NSString *join = [configuration objectForFeature:SSMathAnswersPadding];
+        NSString *text = [anwsers componentsJoinedByString:join];
         if (text.length > result.length) {
             text = [text substringWithRange:NSMakeRange(0, result.length)];
         }

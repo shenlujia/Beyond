@@ -23,6 +23,7 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"随机生成" style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)];
     self.navigationItem.rightBarButtonItem = item;
+    item.tintColor = [UIColor.darkGrayColor colorWithAlphaComponent:1];
     
     SSMathConfiguration *configuration = [SSMathConfiguration shared];
     if ([NSUserDefaults.standardUserDefaults boolForKey:@"math_init"] == NO) {
@@ -33,6 +34,7 @@
         [configuration setObject:@"3" forFeature:SSMathExercisesCountInLine];
         [configuration setObject:@"0" forFeature:SSMathExercisesStart];
         [configuration setObject:@"10" forFeature:SSMathExercisesPadding];
+        [configuration setObject:@" " forFeature:SSMathAnswersPadding];
         
         [configuration setObject:@"0" forFeature:SSMathEnableCarry10];
         [configuration setObject:@"0" forFeature:SSMathEnableCarry20];
@@ -54,6 +56,7 @@
         [self p_test_input:@"每行题目数" feature:SSMathExercisesCountInLine];
         [self p_test_input:@"题目开始位置" feature:SSMathExercisesStart];
         [self p_test_input:@"题目间隔" feature:SSMathExercisesPadding];
+        [self p_test_input:@"答案间隔" feature:SSMathAnswersPadding];
         
         [self p_test_switch:@"启用负数" feature:SSMathEnableNegative];
         [self p_test_switch:@"至少有一次进位或退位" feature:SSMathCarryMoreThanOnce];

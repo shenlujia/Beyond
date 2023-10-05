@@ -63,6 +63,16 @@
         } else if (object.integerValue >= 30) {
             object = @"30";
         }
+    } else if (feature == SSMathAnswersPadding) {
+        object = [object stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
+        object = [object stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
+        object = [object stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+        if (object.length == 0) {
+            object = @" ";
+        }
+        if (object.length >= 10) {
+            object = [object substringToIndex:10];
+        }
     }
     
     return object;
