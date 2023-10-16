@@ -32,7 +32,7 @@ typedef struct ThreadCallStack_ {
 
 static pthread_key_t threadKey;
 
-static inline ThreadCallStack * getThreadCallStack() {
+static inline ThreadCallStack * getThreadCallStack(void) {
     ThreadCallStack *cs = (ThreadCallStack *)pthread_getspecific(threadKey);
     if (cs == NULL) {
         cs = (ThreadCallStack *)malloc(sizeof(ThreadCallStack));
@@ -63,7 +63,7 @@ static inline void pushCallRecord(id obj, SEL _cmd ,uintptr_t lr, const char * c
     strncpy(newRecord->classname,classname,namelen);
 }
 
-static inline CallRecord * popCallRecord() {
+static inline CallRecord * popCallRecord(void) {
     ThreadCallStack *cs = (ThreadCallStack *)pthread_getspecific(threadKey);
     return &cs->stack[cs->index--];
 }
@@ -75,7 +75,7 @@ void before_objc_msgSend(id self, SEL _cmd, uintptr_t lr) {
     printf("pre msg send : %s %s\n",classname, sel_getName(_cmd));
 }
 
-uintptr_t after_objc_msgSend() {
+uintptr_t after_objc_msgSend(void) {
     CallRecord *record = popCallRecord();
     printf("post msg send : %s %s\n",record->classname,sel_getName(record->_cmd));
     
@@ -127,7 +127,7 @@ __asm volatile ("ldp x8, lr, [sp], #16\n");
 #define ret() __asm volatile ("ret\n");
 
 __attribute__((__naked__))
-static void hook_Objc_msgSend() {
+static void hook_Objc_msgSend(void) {
     // Save parameters.
     save()
     

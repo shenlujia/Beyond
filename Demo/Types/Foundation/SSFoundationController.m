@@ -182,7 +182,7 @@
     {
         TestColor *a = [[TestColor alloc] init];
         SSFoundationDEBUGLogStruct *b = [[SSFoundationDEBUGLogStruct alloc] init];
-        a.testWeakPropertyFromProtocol = b;
+        a.testWeakPropertyFromProtocol = (id)b;
         b.testWeakPropertyFromProtocol = a;
     }
     

@@ -11,7 +11,7 @@
 
 #define kSpaceY 10
 
-UIEdgeInsets app_safeAreaInsets()
+UIEdgeInsets app_safeAreaInsets(void)
 {
     UIEdgeInsets insets = UIEdgeInsetsZero;
     if (@available(iOS 11.0, *)) {
@@ -88,7 +88,7 @@ UIEdgeInsets app_safeAreaInsets()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) BOOL shouldLayout;
 @property (nonatomic, strong) NSMutableArray *naviItems;
-@property (nonatomic, strong) NSMutableArray *models;
+@property (nonatomic, strong) NSMutableArray<EntryDataModel *> *models;
 
 @property (nonatomic, strong) NSDate *createDate;
 @property (nonatomic, strong) NSMutableDictionary *observeMapping;

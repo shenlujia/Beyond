@@ -102,7 +102,7 @@
 
 @end
 
-static UIColor * kRandomColor()
+static UIColor * kRandomColor(void)
 {
     CGFloat r = (arc4random() % 256) / 255.0;
     CGFloat g = (arc4random() % 256) / 255.0;
