@@ -401,6 +401,7 @@ static NSString *kOldFileKey = @"!!README.txt";
         if ([pathExtension isEqualToString:@"mp4"] ||
             [pathExtension isEqualToString:@"mov"] ||
             [pathExtension isEqualToString:@"wmv"] ||
+            [pathExtension isEqualToString:@"mkv"] ||
             [pathExtension isEqualToString:@"ts"]) {
             [ret addObject:item];
         } else if ([pathExtension isEqualToString:@"jpg"] ||

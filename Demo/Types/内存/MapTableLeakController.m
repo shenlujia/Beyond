@@ -115,7 +115,7 @@ static void test_mapTable(void)
     
     test(^(SSTableTestObj *obj) {
         obj.mapTable = [NSMapTable weakToStrongObjectsMapTable];
-        [obj.mapTable setObject:obj forKey:[SSTableTestObj createWithName:@"weakKey1"]];
+        [obj.mapTable setObject:obj forKey:[SSTableTestObj createWithName:@"test_mapTable_weakToString_object"]];
     });
     
 //    test(^(SSTableTestObj *obj) {
