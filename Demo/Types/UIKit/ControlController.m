@@ -7,6 +7,7 @@
 //
 
 #import "ControlController.h"
+#import "SSPanView.h"
 
 @interface ControlController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    SSPanView *vv = [[SSPanView alloc] initWithFrame:CGRectMake(10, 10, 50, 100)];
+    [self.view addSubview:vv];
+    vv.backgroundColor = UIColor.redColor;
 
     UIControl *c = [[UIControl alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [self.view addSubview:c];
