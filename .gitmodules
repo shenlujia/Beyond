@@ -1,12 +1,6 @@
 [submodule "submodules/fucking-algorithm"]
 	path = submodules/fucking-algorithm
 	url = https://github.com/labuladong/fucking-algorithm
-[submodule "submodules/OOMDetector"]
-	path = submodules/OOMDetector
-	url = https://github.com/Tencent/OOMDetector
-[submodule "submodules/OCEval"]
-	path = submodules/OCEval
-	url = https://github.com/lilidan/OCEval
 [submodule "submodules/Stinger"]
 	path = submodules/Stinger
 	url = https://github.com/eleme/Stinger
