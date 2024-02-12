@@ -10,15 +10,6 @@
 [submodule "submodules/Stinger"]
 	path = submodules/Stinger
 	url = https://github.com/eleme/Stinger
-[submodule "submodules/Lokie"]
-	path = submodules/Lokie
-	url = https://github.com/alibaba/Lokie
-[submodule "submodules/KKMagicHook"]
-	path = submodules/KKMagicHook
-	url = https://github.com/maniackk/KKMagicHook
 [submodule "submodules/iOS-Tips"]
 	path = submodules/iOS-Tips
 	url = https://github.com/awesome-tips/iOS-Tips
-[submodule "submodules/yacd"]
-	path = submodules/yacd
-	url = https://github.com/DerekSelander/yacd
