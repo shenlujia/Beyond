@@ -112,6 +112,7 @@
 		5E7BCC882665D79C00F90FE6 /* DeviceAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BCC872665D79C00F90FE6 /* DeviceAuthority.m */; };
 		5E8F52AD286530110017B05F /* MapTableLeakController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F52AC286530110017B05F /* MapTableLeakController.m */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
+		5EAF10932B9AE4D50038BD6D /* MethodSwizzleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF10922B9AE4D50038BD6D /* MethodSwizzleController.m */; };
 		5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */; };
 		5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */; };
 		5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF43C2ACD3D5B0089BB59 /* SSMathProblem.m */; };
@@ -321,6 +322,8 @@
 		5E8F52AC286530110017B05F /* MapTableLeakController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableLeakController.m; sourceTree = "<group>"; };
 		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
+		5EAF10912B9AE4D50038BD6D /* MethodSwizzleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MethodSwizzleController.h; sourceTree = "<group>"; };
+		5EAF10922B9AE4D50038BD6D /* MethodSwizzleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleController.m; sourceTree = "<group>"; };
 		5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
 		5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathExercisesGenerator.m; sourceTree = "<group>"; };
 		5EAFF4382ACD3D220089BB59 /* SSMathNumberDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSMathNumberDescription.h; sourceTree = "<group>"; };
@@ -637,6 +640,7 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				5EAF10902B9AE4C30038BD6D /* MethodSwizzle */,
 				5E02FC872ACD171900689D88 /* Math */,
 				5E7BCC7C26650D8F00F90FE6 /* Photo */,
 				5EF7C3622601AA9800E3CF0E /* Foundation */,
@@ -917,6 +921,15 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		5EAF10902B9AE4C30038BD6D /* MethodSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				5EAF10912B9AE4D50038BD6D /* MethodSwizzleController.h */,
+				5EAF10922B9AE4D50038BD6D /* MethodSwizzleController.m */,
+			);
+			path = MethodSwizzle;
+			sourceTree = "<group>";
+		};
 		5ECAF9512580A79000984E77 /* AVKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,6 +1176,7 @@
 				5E04003C25D021C300FE80F2 /* MainThreadSetterChecker.mm in Sources */,
 				57418C14248DCF7700BFCAC1 /* MemoryController.m in Sources */,
 				5EDF91012876AAF40092B1B4 /* StrictForegroundProtector.m in Sources */,
+				5EAF10932B9AE4D50038BD6D /* MethodSwizzleController.m in Sources */,
 				5E347B7826B4F8E3003F4355 /* DEBUGPanelController.m in Sources */,
 				57FD50C2243DA46B002E481E /* ControllerLifeCycleController.m in Sources */,
 				5E07DFF4259D6FE1004E4A66 /* HorizontalCollectionViewCell.m in Sources */,

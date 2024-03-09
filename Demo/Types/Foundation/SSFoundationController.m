@@ -224,6 +224,8 @@
             }];
         });
     }];
+    
+    [self test_c:@"MethodSwizzleController"];
 
     [self test_c:@"FileManagerController"];
     
