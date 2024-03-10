@@ -1,1 +1,0 @@
-../../../../../TFAppearance/Classes/private/TFAppearanceManager.h
