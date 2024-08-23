@@ -129,6 +129,9 @@
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
 		5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */; };
+		5EF45CAB2C7825E9003A5822 /* SSDictionaryDiffUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF45CAA2C7825E9003A5822 /* SSDictionaryDiffUtil.m */; };
+		5EF45CB32C782D94003A5822 /* NSArray+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF45CAF2C782D94003A5822 /* NSArray+SS.m */; };
+		5EF45CB42C782D94003A5822 /* NSDictionary+SS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF45CB22C782D94003A5822 /* NSDictionary+SS.m */; };
 		5EF7C3652601AAAF00E3CF0E /* SSFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */; };
 		5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7C39B2601D2B300E3CF0E /* NSObject+DEBUGLog.m */; };
 		5EFAF94B2786FA8500861A44 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAF94A2786FA8500861A44 /* TextViewController.m */; };
@@ -356,6 +359,12 @@
 		5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AWEClassUsageHelper.mm; sourceTree = "<group>"; };
 		5EF0246225CAA9CA00EDB1EE /* UselessClassCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UselessClassCheckController.h; sourceTree = "<group>"; };
 		5EF0246325CAA9CA00EDB1EE /* UselessClassCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UselessClassCheckController.m; sourceTree = "<group>"; };
+		5EF45CA92C7825E9003A5822 /* SSDictionaryDiffUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDictionaryDiffUtil.h; sourceTree = "<group>"; };
+		5EF45CAA2C7825E9003A5822 /* SSDictionaryDiffUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDictionaryDiffUtil.m; sourceTree = "<group>"; };
+		5EF45CAF2C782D94003A5822 /* NSArray+SS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SS.m"; sourceTree = "<group>"; };
+		5EF45CB02C782D94003A5822 /* NSArray+SS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SS.h"; sourceTree = "<group>"; };
+		5EF45CB12C782D94003A5822 /* NSDictionary+SS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SS.h"; sourceTree = "<group>"; };
+		5EF45CB22C782D94003A5822 /* NSDictionary+SS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SS.m"; sourceTree = "<group>"; };
 		5EF7C3632601AAAF00E3CF0E /* SSFoundationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSFoundationController.h; sourceTree = "<group>"; };
 		5EF7C3642601AAAF00E3CF0E /* SSFoundationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSFoundationController.m; sourceTree = "<group>"; };
 		5EF7C39A2601D2B300E3CF0E /* NSObject+DEBUGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DEBUGLog.h"; sourceTree = "<group>"; };
@@ -862,6 +871,10 @@
 		5E5FE8ED29157CC500951971 /* _Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				5EF45CB02C782D94003A5822 /* NSArray+SS.h */,
+				5EF45CAF2C782D94003A5822 /* NSArray+SS.m */,
+				5EF45CB12C782D94003A5822 /* NSDictionary+SS.h */,
+				5EF45CB22C782D94003A5822 /* NSDictionary+SS.m */,
 				5E5FE8EF29157CC500951971 /* _Foundation.h */,
 				5E5FE8F129157CC500951971 /* NSObject+SSJSON.h */,
 				5E5FE8FA29157CC500951971 /* NSObject+SSJSON.m */,
@@ -978,6 +991,8 @@
 				5E386A4E2743D61200DFBE1A /* MessageSendController.m */,
 				5EDF90FF2876AAF40092B1B4 /* StrictForegroundProtector.h */,
 				5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */,
+				5EF45CA92C7825E9003A5822 /* SSDictionaryDiffUtil.h */,
+				5EF45CAA2C7825E9003A5822 /* SSDictionaryDiffUtil.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1149,6 +1164,7 @@
 				5774CB1F2441789F00C7A59E /* ExerciseController.m in Sources */,
 				5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */,
 				5EAFF4432ACD4B420089BB59 /* SSMathNumberSign.m in Sources */,
+				5EF45CAB2C7825E9003A5822 /* SSDictionaryDiffUtil.m in Sources */,
 				574CA37D24F679670018D47B /* KKCallStack.m in Sources */,
 				5ECAF9542580A79000984E77 /* AVKitController.m in Sources */,
 				5E2DF4342ACD7D4700CCF750 /* SSMathUtil.m in Sources */,
@@ -1170,6 +1186,7 @@
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
 				5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */,
+				5EF45CB42C782D94003A5822 /* NSDictionary+SS.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
 				5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */,
 				5E5FE90429157CC500951971 /* SSEasyPanel.m in Sources */,
@@ -1207,6 +1224,7 @@
 				57CDF41D24B56A3E00F9856F /* TimerController.m in Sources */,
 				57CDF42324B56AA100F9856F /* NSTimer+SS.m in Sources */,
 				57CDBA8524B48E0800F9856F /* KVCController.m in Sources */,
+				5EF45CB32C782D94003A5822 /* NSArray+SS.m in Sources */,
 				5E5FE90729157CC500951971 /* SSEasyHook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
