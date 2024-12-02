@@ -13,6 +13,26 @@
 NSInteger g_thread_int = 0;
 static NSInteger s_thread_int = 0;
 
+@interface TestGoObject : NSObject
+
+@property (nonatomic, strong) id object;
+
+@end
+
+@implementation TestGoObject
+
+@end
+
+@interface TestGoObject2 : TestGoObject
+ 
+@property (nonatomic, strong) ThreadController *object;
+
+@end
+
+@implementation TestGoObject2
+
+@end
+
 @interface ThreadController ()
 
 @property (nonatomic, strong) NSThread *thread;
@@ -57,6 +77,37 @@ static NSInteger s_thread_int = 0;
         }];
     }
     [weak_s.thread start];
+    
+    [weak_s test:@"async cost" tap:^(UIButton *button, NSDictionary *userInfo) {
+#define PRINT_COST { CGFloat value1 = CFAbsoluteTimeGetCurrent(); printf("cost: %.2f\n", (value1 - value) * 1000); value = value1; }
+        
+        __block CGFloat value = CFAbsoluteTimeGetCurrent();
+        PRINT_COST
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PRINT_COST
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                PRINT_COST
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    PRINT_COST
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        PRINT_COST
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            PRINT_COST
+                            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                                PRINT_COST
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    PRINT_COST
+                                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                                        PRINT_COST
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    }];
     
     [weak_s test:@"runloop" tap:^(UIButton *button, NSDictionary *userInfo) {
         CFRunLoopPerformBlock(runloop, NSRunLoopCommonModes, ^{

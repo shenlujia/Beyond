@@ -257,6 +257,10 @@ UIEdgeInsets app_safeAreaInsets(void)
         NSString *temp = [NSString stringWithFormat:@"SS%@", c];
         clazz = NSClassFromString(temp);
     }
+    if (!clazz) {
+        NSString *temp = [NSString stringWithFormat:@"%@Controller", c];
+        clazz = NSClassFromString(temp);
+    }
     NSParameterAssert(clazz);
     if (!clazz) {
         return;
