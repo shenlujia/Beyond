@@ -13,6 +13,44 @@
 NSInteger g_thread_int = 0;
 static NSInteger s_thread_int = 0;
 
+@interface TestSelfReleaseItem : NSObject
+
+@end
+
+@implementation TestSelfReleaseItem
+
+- (void)dealloc
+{
+    NSLog(@"dealloc %p", self);
+}
+
+- (void)run
+{
+    {
+        NSLog(@"run begin %p", self);
+    }
+    sleep(2);
+    NSLog(@"run end %@", @"12345");
+}
+
+@end
+
+@interface TestSelfRelease : NSObject
+
+@property (nonatomic, strong) TestSelfReleaseItem *item;
+
+@end
+
+@implementation TestSelfRelease
+
+- (TestSelfReleaseItem *)item
+{
+    _item = [[TestSelfReleaseItem alloc] init];
+    return _item;
+}
+
+@end
+
 @interface TestGoObject : NSObject
 
 @property (nonatomic, strong) id object;
@@ -46,6 +84,19 @@ static NSInteger s_thread_int = 0;
     [super viewDidLoad];
     
     WEAKSELF
+    
+    [self test:@"thread self release" tap:^(UIButton *button, NSDictionary *userInfo) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            TestSelfRelease *obj = [[TestSelfRelease alloc] init];
+            for (NSInteger idx = 0; idx < 10; ++idx) {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    //                [[obj item] run];
+                    TestSelfReleaseItem *item = [obj item];
+                    [item run];
+                });
+            }
+        });
+    }];
     
     [self test:@"KKThreadMonitor" tap:^(UIButton *button, NSDictionary *userInfo) {
         static dispatch_once_t onceToken;
