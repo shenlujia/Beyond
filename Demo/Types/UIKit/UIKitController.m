@@ -112,6 +112,8 @@
     [self test_c:@"AppearanceController"];
     
     [self test_c:@"ControlController"];
+    
+    [self test_c:@"DEBUGSSInputViewController"];
 }
 
 @end

@@ -8,12 +8,14 @@
 
 #import "PhotoController.h"
 #import <Photos/Photos.h>
+#import <PhotosUI/PhotosUI.h>
 #import "SSEasy.h"
 #import "ImagePickerHandler.h"
 #import "DeviceAuthority.h"
 #import "PhotoPrivacyChecker.h"
+#import "AssetViewer.h"
 
-@interface PhotoController () <PHPhotoLibraryChangeObserver>
+@interface PhotoController () <PHPhotoLibraryChangeObserver, PHLivePhotoViewDelegate>
 
 @property (nonatomic, strong) ImagePickerHandler *handler;
 @property (nonatomic, strong) PHAsset *lastSelectedAsset;
@@ -26,9 +28,83 @@
 {
     [super viewDidLoad];
     
+    // 创建并配置PHLivePhotoView
+    PHLivePhotoView *livePhotoView = [[PHLivePhotoView alloc] initWithFrame:CGRectMake(10, 450, (self.view.bounds.size.width - 20) / 3, 100)];
+    livePhotoView.backgroundColor = [UIColor.cyanColor colorWithAlphaComponent:0.5];
+    livePhotoView.delegate = self;
+    livePhotoView.contentMode = UIViewContentModeScaleAspectFill;
+    livePhotoView.clipsToBounds = YES;
+    [self.view addSubview:livePhotoView];
+    
+    {
+        NSString *photoPath = [NSBundle.mainBundle pathForResource:@"IMG_5664-0002" ofType:@"jpg"];
+        NSString *videoPath = [NSBundle.mainBundle pathForResource:@"IMG_5664" ofType:@"mp4"];
+        UIImage *placeholderImage = [UIImage imageWithContentsOfFile:photoPath];
+        
+        NSURL *URL1 = [NSURL fileURLWithPath:photoPath];
+        NSURL *URL2 = [NSURL fileURLWithPath:videoPath];
+        [PHLivePhoto requestLivePhotoWithResourceFileURLs:@[URL1, URL2] placeholderImage:placeholderImage targetSize:CGSizeZero contentMode:PHImageContentModeAspectFill resultHandler:^(PHLivePhoto *livePhoto, NSDictionary *info) {
+            NSLog(@"requestLivePhoto finish: %@ %@", livePhoto, info);
+            if ([info[PHLivePhotoInfoIsDegradedKey] boolValue]) {
+                return;
+            }
+            if (livePhoto) {
+                livePhotoView.livePhoto = livePhoto;
+                [livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleHint];
+            }
+        }];
+        
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            
+            PHAssetCreationRequest *req = [PHAssetCreationRequest creationRequestForAsset];
+            [req addResourceWithType:PHAssetResourceTypePhoto fileURL:URL1 options:nil];
+            [req addResourceWithType:PHAssetResourceTypePairedVideo fileURL:URL2 options:nil];
+
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            
+        }];
+        
+    }
+    
 //    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
     WEAKSELF
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test_photo_heic" ofType:@"jpg"];
+    NSData *jj = [NSData dataWithContentsOfFile:path];
+    
+    uint8_t flag = 0;
+    [jj getBytes:&flag length:1];
+    
+    if (flag == 0x00) {
+        if (jj.length >= 12) {
+            NSString *s = [[NSString alloc] initWithData:[jj subdataWithRange:NSMakeRange(8, 4)] encoding:NSASCIIStringEncoding];
+            printf("");
+        }
+    }
+    
+//    if let str = String(data: self[8...11], encoding: .ascii) {
+//        let HEICBitMaps = Set(["heic", "heis", "heix", "hevc", "hevx"])
+//        if HEICBitMaps.contains(str) {
+//            return .HEIC
+//        }
+//        let HEIFBitMaps = Set(["mif1", "msf1"])
+//        if HEIFBitMaps.contains(str) {
+//            return .HEIF
+//        }
+//    }
+    
+    
+//    ImageFormat fff = [TestSwiftA typeWithData:jj];
+    
+    [self test:@"展示图片视频" tap:^(UIButton *button, NSDictionary *userInfo) {
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObject:[[NSBundle mainBundle] pathForResource:@"IMG_5664-0002" ofType:@"jpg"]];
+        [array addObject:[[NSBundle mainBundle] pathForResource:@"IMG_5665" ofType:@"jpg"]];
+        [array addObject:[[NSBundle mainBundle] pathForResource:@"IMG_5664" ofType:@"mp4"]];
+        [array addObject:[[NSBundle mainBundle] pathForResource:@"IMG_5664" ofType:@"HEIC"]];
+        [AssetViewer showObjects:array inContainer:weak_s];
+    }];
     
     [self test:@"隐私校验" tap:^(UIButton *button, NSDictionary *userInfo) {
         [PhotoPrivacyChecker test];
@@ -56,12 +132,12 @@
     [self test:@"选图" tap:^(UIButton *button, NSDictionary *userInfo) {
         STRONGSELF
         self.handler = [[ImagePickerHandler alloc] init];
-        self.handler.assetBlock = ^(PHAsset *asset) {
+        self.handler.assetBlock = ^(PHAsset *albumAsset) {
             STRONGSELF
-            self.lastSelectedAsset = asset;
+            self.lastSelectedAsset = albumAsset;
             // option.synchronous = YES，回调才只走一次
             NSLog(@"requestImageForAsset start");
-            [self.handler requestImageForAsset:asset handler:^(UIImage *image, NSDictionary *info) {
+            [self.handler requestImageForAsset:albumAsset handler:^(UIImage *image, NSDictionary *info) {
                 STRONGSELF
                 if (image) {
                     PRINT_BLANK_LINE
@@ -77,13 +153,81 @@
                 }
             }];
             NSLog(@"requestImageDataForAsset start");
-            [self.handler requestImageDataForAsset:asset handler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+            [self.handler requestImageDataForAsset:albumAsset handler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
                 STRONGSELF
                 if (imageData) {
                     PRINT_BLANK_LINE
                     NSLog(@"original exif: %@", [self exifInData:imageData]);
                 }
             }];
+            
+            if (albumAsset.mediaSubtypes & PHAssetMediaSubtypePhotoLive) {
+//                PHImageManager *imageManager = [PHImageManager defaultManager];
+//                PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+//                options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+//                options.synchronous = NO;
+//                
+//                [imageManager requestLivePhotoForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
+//                    if (livePhoto) {
+//                        // 在这里可以对获取到的PHLivePhoto进行操作，比如显示在PHLivePhotoView中
+//                        NSLog(@"成功获取到PHLivePhoto");
+//                    } else {
+//                        NSLog(@"获取PHLivePhoto失败");
+//                    }
+//                    
+//                    if (livePhoto) {
+//                        livePhotoView.livePhoto = livePhoto;
+//                        [livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
+//                    }
+//                }];
+                
+                __block NSData *photoData = nil;
+                __block NSString *videoPath = nil;
+                dispatch_group_t group = dispatch_group_create();
+                
+                dispatch_group_enter(group);
+                [self.handler requestImageDataForAsset:albumAsset handler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+                    photoData = imageData;
+                    dispatch_group_leave(group);
+                }];
+                
+                dispatch_group_enter(group);
+                [self.handler requestVideoForAsset:albumAsset handler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+                    AVURLAsset *videoAsset = (AVURLAsset *)asset;
+                    videoPath = videoAsset.URL.path;
+                    dispatch_group_leave(group);
+                }];
+                
+                dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                    if (photoData && videoPath) {
+                        NSString *imageName = [NSString stringWithFormat:@"%@.png", [[NSUUID UUID] UUIDString]];
+                        NSString *imagePath = [NSTemporaryDirectory() stringByAppendingPathComponent:imageName];
+                        [photoData writeToFile:imagePath atomically:YES];
+                        
+                        NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
+                        NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+                        
+                        [PHLivePhoto requestLivePhotoWithResourceFileURLs:@[imageURL, videoURL] placeholderImage:nil targetSize:CGSizeZero contentMode:PHImageContentModeAspectFill resultHandler:^(PHLivePhoto *livePhoto, NSDictionary *info) {
+                            NSLog(@"requestLivePhoto finish: %@ %@", livePhoto, info);
+                            
+                            if (livePhoto) {
+                                livePhotoView.livePhoto = livePhoto;
+                                [livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleHint];
+                            }
+                        }];
+                    }
+                });
+            }
+            
+            
+//            [PHLivePhoto requestLivePhotoWithResourceFileURLs:@[URL1, URL2] placeholderImage:nil targetSize:CGSizeZero contentMode:PHImageContentModeAspectFill resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nonnull info) {
+//                NSLog(@"requestLivePhoto finish: %@ %@", livePhoto, info);
+//                
+//                if (livePhoto) {
+//                    livePhotoView.livePhoto = livePhoto;
+//                    [livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
+//                }
+//            }];
         };
         [self.handler present];
     }];
@@ -193,6 +337,25 @@
         }
     }];
 }
+
+#pragma mark - PHLivePhotoViewDelegate
+
+- (BOOL)livePhotoView:(PHLivePhotoView *)livePhotoView canBeginPlaybackWithStyle:(PHLivePhotoViewPlaybackStyle)playbackStyle
+{
+    return YES;
+}
+
+- (void)livePhotoView:(PHLivePhotoView *)livePhotoView willBeginPlaybackWithStyle:(PHLivePhotoViewPlaybackStyle)playbackStyle
+{
+    
+}
+
+- (void)livePhotoView:(PHLivePhotoView *)livePhotoView didEndPlaybackWithStyle:(PHLivePhotoViewPlaybackStyle)playbackStyle
+{
+    
+}
+
+#pragma mark - Private
 
 - (void)p_logAuthorizationStatus:(PHAuthorizationStatus)status
 {

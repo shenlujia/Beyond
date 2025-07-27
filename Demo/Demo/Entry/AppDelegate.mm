@@ -56,6 +56,20 @@ static NSTimer *m_timer = nil;
     navi.navigationBar.translucent = NO;
     self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];
+    
+
+    __unused NSInteger kk1 = @"a".length; // 1
+
+    __unused NSInteger kk2 = @"💩".length; // 2
+
+    __unused NSInteger kk3 = @"1️⃣".length; // 3
+    
+    __unused NSInteger kk4 = @"12345@678🏍️".length; // 3
+    
+    NSMutableDictionary *params = [@{@"1":@"value1", @"2": @"value2"} mutableCopy];
+    
+    NSMutableDictionary *params2 = [@{@"1":@"value12", @"12": @"value23"} mutableCopy];
+    [params addEntriesFromDictionary:params2];
 
     [navi.navigationBar addGestureRecognizer:({
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];

@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong, readonly) UIImagePickerController *picker;
 
-@property (nonatomic, copy) void (^assetBlock)(PHAsset *asset);
+@property (nonatomic, copy) void (^assetBlock)(PHAsset *albumAsset);
 
 - (void)present;
 
@@ -24,5 +24,7 @@
 - (void)requestImageForAsset:(PHAsset *)asset handler:(void (^)(UIImage *image, NSDictionary *info))handler;
 
 - (void)requestImageDataForAsset:(PHAsset *)asset handler:(void (^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info))handler;
+
+- (void)requestVideoForAsset:(PHAsset *)asset handler:(void (^)(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info))handler;
 
 @end

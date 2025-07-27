@@ -60,7 +60,11 @@
     options.networkAccessAllowed = YES;
 
     PHImageManager *manager = [PHImageManager defaultManager];
-    [manager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:handler];
+    [manager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+        if (handler) {
+            handler(result, info);
+        }
+    }];
 }
 
 - (void)requestImageDataForAsset:(PHAsset *)asset handler:(void (^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info))handler
@@ -76,7 +80,24 @@
     options.networkAccessAllowed = YES;
 
     PHImageManager *manager = [PHImageManager defaultManager];
-    [manager requestImageDataForAsset:asset options:options resultHandler:handler];
+    [manager requestImageDataForAsset:asset options:options resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+        if (handler) {
+            handler(imageData, dataUTI, orientation, info);
+        }
+    }];
+}
+
+- (void)requestVideoForAsset:(PHAsset *)asset handler:(void (^)(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info))handler
+{
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.networkAccessAllowed = YES;
+
+    PHImageManager *manager = [PHImageManager defaultManager];
+    [manager requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+        if (handler) {
+            handler(asset, audioMix, info);
+        }
+    }];
 }
 
 #pragma clang diagnostic push
