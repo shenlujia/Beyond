@@ -214,15 +214,19 @@ static NSString *kOldFileKey = @"!!README.txt";
                 [self p_addValue:component];
             }
         }
-        NSString *enPath = [folder stringByAppendingPathComponent:kTargetEnFileKey];
-        if ([NSFileManager.defaultManager fileExistsAtPath:enPath]) {
-            NSError *error = nil;
-            NSString *content = [NSString stringWithContentsOfFile:enPath encoding:NSUTF8StringEncoding error:&error];
-            [self p_appendLog:error.description];
-            NSArray *components = [content componentsSeparatedByString:@"\n"];
-            for (NSString *component in components) {
-                NSString *text = [SSCrypto AES_de:component key:[self p_key]];
-                [self p_addValue:text];
+        
+        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder error:nil];
+        for (NSString *name in contents) {
+            if ([name containsString:kTargetEnFileKey]) {
+                NSString *enPath = [folder stringByAppendingPathComponent:name];
+                NSError *error = nil;
+                NSString *content = [NSString stringWithContentsOfFile:enPath encoding:NSUTF8StringEncoding error:&error];
+                [self p_appendLog:error.description];
+                NSArray *components = [content componentsSeparatedByString:@"\n"];
+                for (NSString *component in components) {
+                    NSString *text = [SSCrypto AES_de:component key:[self p_key]];
+                    [self p_addValue:text];
+                }
             }
         }
     }
