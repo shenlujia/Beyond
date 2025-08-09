@@ -311,14 +311,42 @@ static NSString *kOldFileKey = @"!!README.txt";
                 }
             }
             NSParameterAssert(enArray.count == array.count);
+            [self p_writeTextArray:enArray];
             
-            NSString *path = [folder stringByAppendingPathComponent:kTargetEnFileKey];
-            NSString *text = [enArray componentsJoinedByString:@"\n"];
-            NSError *error = nil;
-            [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-            [self p_appendLog:error.description];
+//            NSString *path = [folder stringByAppendingPathComponent:kTargetEnFileKey];
+//            NSString *text = [enArray componentsJoinedByString:@"\n"];
+//            NSError *error = nil;
+//            [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//            [self p_appendLog:error.description];
         }
     }
+}
+
+- (void)p_writeTextArray:(NSArray *)array
+{
+    NSString *folder = self.targetFolderField.stringValue;
+    NSMutableDictionary *allItems = [NSMutableDictionary dictionary];
+    for (NSString *text in array) {
+        if (text.length) {
+            NSString *hash = [text substringWithRange:NSMakeRange(0, 1)];
+            NSString *prefix = [NSString stringWithFormat:@"items_%@", @(hash.hash)];
+            NSMutableArray *values = allItems[prefix];
+            if (!values) {
+                values = [NSMutableArray array];
+                allItems[prefix] = values;
+            }
+            [values addObject:text];
+        }
+    }
+    
+    [allItems enumerateKeysAndObjectsUsingBlock:^(NSString *prefix, NSArray *enArray, BOOL *stop) {
+        NSString *name = [NSString stringWithFormat:@"%@_%@", prefix, kTargetEnFileKey];
+        NSString *path = [folder stringByAppendingPathComponent:name];
+        NSString *text = [enArray componentsJoinedByString:@"\n"];
+        NSError *error = nil;
+        [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        [self p_appendLog:error.description];
+    }];
 }
 
 - (void)p_appendLog:(NSString *)text
