@@ -126,7 +126,6 @@
 		5E9D4C132E03E3DB001AAFE1 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D4C122E03E3DB001AAFE1 /* DataExtension.swift */; };
 		5E9D4C152E03E419001AAFE1 /* test_photo_heic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D4C142E03E419001AAFE1 /* test_photo_heic.jpg */; };
 		5EACA251272191E80068F996 /* CornerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACA250272191E80068F996 /* CornerController.m */; };
-		5EAE27ED2E5569500089BC75 /* PullableFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAE27EC2E5569500089BC75 /* PullableFullScreenViewController.m */; };
 		5EAF10932B9AE4D50038BD6D /* MethodSwizzleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF10922B9AE4D50038BD6D /* MethodSwizzleController.m */; };
 		5EAFF4372ACD37390089BB59 /* MathExercisesGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4362ACD37390089BB59 /* MathExercisesGenerator.m */; };
 		5EAFF43A2ACD3D220089BB59 /* SSMathNumberDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFF4392ACD3D220089BB59 /* SSMathNumberDescription.m */; };
@@ -359,8 +358,6 @@
 		5E9D4C142E03E419001AAFE1 /* test_photo_heic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_photo_heic.jpg; sourceTree = "<group>"; };
 		5EACA24F272191E80068F996 /* CornerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornerController.h; sourceTree = "<group>"; };
 		5EACA250272191E80068F996 /* CornerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornerController.m; sourceTree = "<group>"; };
-		5EAE27EB2E5569500089BC75 /* PullableFullScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullableFullScreenViewController.h; sourceTree = "<group>"; };
-		5EAE27EC2E5569500089BC75 /* PullableFullScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullableFullScreenViewController.m; sourceTree = "<group>"; };
 		5EAF10912B9AE4D50038BD6D /* MethodSwizzleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MethodSwizzleController.h; sourceTree = "<group>"; };
 		5EAF10922B9AE4D50038BD6D /* MethodSwizzleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleController.m; sourceTree = "<group>"; };
 		5EAFF4352ACD37390089BB59 /* MathExercisesGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathExercisesGenerator.h; sourceTree = "<group>"; };
@@ -687,7 +684,6 @@
 		57FD50BD243DA447002E481E /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				5EAE27EA2E5569330089BC75 /* PullableFullScreenView */,
 				5EAF10902B9AE4C30038BD6D /* MethodSwizzle */,
 				5E02FC872ACD171900689D88 /* Math */,
 				5E7BCC7C26650D8F00F90FE6 /* Photo */,
@@ -993,15 +989,6 @@
 			path = InputStackView;
 			sourceTree = "<group>";
 		};
-		5EAE27EA2E5569330089BC75 /* PullableFullScreenView */ = {
-			isa = PBXGroup;
-			children = (
-				5EAE27EB2E5569500089BC75 /* PullableFullScreenViewController.h */,
-				5EAE27EC2E5569500089BC75 /* PullableFullScreenViewController.m */,
-			);
-			path = PullableFullScreenView;
-			sourceTree = "<group>";
-		};
 		5EAF10902B9AE4C30038BD6D /* MethodSwizzle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1243,7 +1230,6 @@
 				5E5BA94B25AEA2D60082AA9D /* LottieController.m in Sources */,
 				5E06F6E1256BEB7B00934EEF /* SimpleLeakDetectorMRC.mm in Sources */,
 				57D44F67244D9DF100871A34 /* KVOController.m in Sources */,
-				5EAE27ED2E5569500089BC75 /* PullableFullScreenViewController.m in Sources */,
 				5707305024D2BD7D00A9883A /* ControlController.m in Sources */,
 				5EF0246425CAA9CA00EDB1EE /* UselessClassCheckController.m in Sources */,
 				5E386A4F2743D61200DFBE1A /* MessageSendController.m in Sources */,
