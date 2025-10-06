@@ -11,7 +11,7 @@
 
 static NSString *kScanPathKey = @"kScanPathKey";
 static NSString *kTargetPathKey = @"kTargetPathKey";
-static NSString *kTargetOriFileKey = @"names_ori.txt";
+static NSString *kTargetOriFileKey = @"_names_ori_only_for_test_write.txt";
 static NSString *kTargetEnFileKey = @"names_en.txt";
 static NSString *kOldFileKey = @"!!README.txt";
 
@@ -204,17 +204,6 @@ static NSString *kOldFileKey = @"!!README.txt";
     
     NSString *folder = self.targetFolderField.stringValue;
     if (folder.length) {
-        NSString *oriPath = [folder stringByAppendingPathComponent:kTargetOriFileKey];
-        if ([NSFileManager.defaultManager fileExistsAtPath:oriPath]) {
-            NSError *error = nil;
-            NSString *content = [NSString stringWithContentsOfFile:oriPath encoding:NSUTF8StringEncoding error:&error];
-            [self p_appendLog:error.description];
-            NSArray *components = [content componentsSeparatedByString:@"\n"];
-            for (NSString *component in components) {
-                [self p_addValue:component];
-            }
-        }
-        
         NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder error:nil];
         for (NSString *name in contents) {
             if ([name containsString:kTargetEnFileKey]) {
@@ -316,12 +305,6 @@ static NSString *kOldFileKey = @"!!README.txt";
             }
             NSParameterAssert(enArray.count == array.count);
             [self p_writeTextArray:enArray];
-            
-//            NSString *path = [folder stringByAppendingPathComponent:kTargetEnFileKey];
-//            NSString *text = [enArray componentsJoinedByString:@"\n"];
-//            NSError *error = nil;
-//            [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-//            [self p_appendLog:error.description];
         }
     }
 }
@@ -500,7 +483,7 @@ static NSString *kOldFileKey = @"!!README.txt";
                    [seperator isEqualToString:@" "]) {
             toName = [toName stringByReplacingCharactersInRange:range withString:@"-"];
         } else {
-            [self p_appendLog:[NSString stringWithFormat:@"%@ 异常错误: %@", NSStringFromSelector(_cmd), name]];
+//            [self p_appendLog:[NSString stringWithFormat:@"%@ 异常错误: %@", NSStringFromSelector(_cmd), name]];
             return name;
         }
     }
