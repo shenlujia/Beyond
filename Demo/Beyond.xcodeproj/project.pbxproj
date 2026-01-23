@@ -139,6 +139,7 @@
 		5ECAF9542580A79000984E77 /* AVKitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECAF9532580A79000984E77 /* AVKitController.m */; };
 		5ECAF9612580B41D00984E77 /* test_avkit2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */; };
 		5ED3D35C276225B300BF9F9C /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED3D35B276225B300BF9F9C /* KeyboardController.m */; };
+		5EDC30042E98C421008BCD15 /* HollowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC30032E98C421008BCD15 /* HollowView.m */; };
 		5EDF91012876AAF40092B1B4 /* StrictForegroundProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */; };
 		5EE37118269E8B330080BDB2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE37117269E8B330080BDB2 /* TableViewController.m */; };
 		5EF0246025CAA9AE00EDB1EE /* AWEClassUsageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5EF0245F25CAA9AE00EDB1EE /* AWEClassUsageHelper.mm */; };
@@ -383,6 +384,8 @@
 		5ECAF95F2580B41D00984E77 /* test_avkit2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_avkit2.mp4; sourceTree = "<group>"; };
 		5ED3D35A276225B300BF9F9C /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
 		5ED3D35B276225B300BF9F9C /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
+		5EDC30022E98C421008BCD15 /* HollowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HollowView.h; sourceTree = "<group>"; };
+		5EDC30032E98C421008BCD15 /* HollowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HollowView.m; sourceTree = "<group>"; };
 		5EDF90FF2876AAF40092B1B4 /* StrictForegroundProtector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrictForegroundProtector.h; sourceTree = "<group>"; };
 		5EDF91002876AAF40092B1B4 /* StrictForegroundProtector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrictForegroundProtector.m; sourceTree = "<group>"; };
 		5EE37116269E8B330080BDB2 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 		5707304A24D2BD7C00A9883A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5EDC30012E98C402008BCD15 /* HollowView */,
 				5E959B102DFC173A004B1899 /* InputStackView */,
 				5E0D9B30285310B10021497B /* RotateAnime */,
 				5707304B24D2BD7C00A9883A /* AppearanceController.h */,
@@ -1017,6 +1021,15 @@
 			path = AVKit;
 			sourceTree = "<group>";
 		};
+		5EDC30012E98C402008BCD15 /* HollowView */ = {
+			isa = PBXGroup;
+			children = (
+				5EDC30022E98C421008BCD15 /* HollowView.h */,
+				5EDC30032E98C421008BCD15 /* HollowView.m */,
+			);
+			path = HollowView;
+			sourceTree = "<group>";
+		};
 		5EF0245B25CAA9AE00EDB1EE /* 无用类检测 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,6 +1273,7 @@
 				57FB942D24A0722A0093433B /* SDWebImageDecoder.m in Sources */,
 				5774B18E243FFEA900C7A59E /* BlockController.m in Sources */,
 				5E7BCC84266514AA00F90FE6 /* ImagePickerHandler.m in Sources */,
+				5EDC30042E98C421008BCD15 /* HollowView.m in Sources */,
 				5EAFF43D2ACD3D5B0089BB59 /* SSMathProblem.m in Sources */,
 				5EF45CB42C782D94003A5822 /* NSDictionary+SS.m in Sources */,
 				5EF7C39C2601D2B300E3CF0E /* NSObject+DEBUGLog.m in Sources */,
@@ -1437,7 +1451,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65X29JT9JK;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LD5NSHA8ZF;
 				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1490,7 +1504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo.beyond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Cosign iOS with * (M2NDJGL1OJ)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Cosign iOS with * (C2UYI3KLUX)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Types/Photo/Beyond-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -1515,7 +1529,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65X29JT9JK;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LD5NSHA8ZF;
 				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				ENABLE_TESTABILITY = YES;
@@ -1565,7 +1579,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ss.slj.demo.beyond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Cosign iOS with * (M2NDJGL1OJ)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Cosign iOS with * (C2UYI3KLUX)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Types/Photo/Beyond-Bridging-Header.h";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
