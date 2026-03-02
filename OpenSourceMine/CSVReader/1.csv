@@ -1,0 +1,308 @@
+﻿"ID","ResourceID","特效类型","特效环境","上线时间","上传作者","创建时间","md5","Feature","Requirements","systemList","特效原名","特效名称","icon","资源包","分类","提示文案","提示图片","关键词","标记","音乐","挑战","视频","est","业务参数","发布平台版本","黑白名单","下发机型帧率","机型打分","GPU黑白名单","openGL","渠道号","指定国家/地区","儿童模式","App架构黑名单","ByteBench机型名单"
+144129003,"7551710348923900426	","专辑特效","正式版","2025-10-27 21:57:56 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"理光GRII","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/30a40e02f0d33395249313844ac45113","","","","","","","","","","否","{""background_color"":""#475542"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129004,"7552821331067146761	","专辑特效","正式版","2025-10-27 22:01:26 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"奥林巴斯","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/72ef382917bddc643e58f997da3cab33","","","","","","","","","","否","{""background_color"":""#647645"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129006,"7551711656322011658	","专辑特效","正式版","2025-10-27 21:59:51 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"富士XS10","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/b50864824b3d25391cd464e9316e9f4e","","","","","","","","","","否","{""background_color"":""#536650"",""filterconfig"":"""",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129008,"7555429575086314030	","专辑特效","正式版","2025-10-28 10:51:33 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"Pocket3","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/8c12a544ce7526b0f8736fd42fb3597e","","","","","","","","","","否","{""background_color"":""#326499"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129010,"7552824215196406298	","专辑特效","正式版","2025-10-27 22:03:09 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"港式映画","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/bdba3f79baa84ea2f7722557193dd382","","","","","","","","","","否","{""background_color"":""#486065"",""filterconfig"":"""",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129012,"7463018462554624539	","普通特效","正式版","2025-10-23 15:04:53 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","b59d77a438a284cc78a6b6fb701f009e","[""AmazingFeature""]","texture_blit, face, skin_seg","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,ImageRendererSystem,JSAssetSystem,JSScriptSystem,RenderSystem,ScreenTransformSystem,TransformSystem","DQTest","佳能CCD","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/5f1c766d8634c116746a2ed1d02ffe0c","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/b59d77a438a284cc78a6b6fb701f009e","","","","","","","","","否","{""background_color"":""#96a9b8"",""filterconfig"":""{\""resource\"":\""b59d77a438a284cc78a6b6fb701f009e\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android, HarmonyOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144129014,"7532787935997858313	","普通特效","正式版","2025-10-27 21:54:39 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","c9a9c9fc5d11ce0e4f525e9801eb71ee","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","6s","iP4s","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/0300ecf9680c3daba7e6ebf83cf21784","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/c9a9c9fc5d11ce0e4f525e9801eb71ee","","","","","","","","","否","{""background_color"":""#cdd7e3"",""filterconfig"":""{\""resource\"":\""c9a9c9fc5d11ce0e4f525e9801eb71ee\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android, HarmonyOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144129015,"7552824012120789555	","专辑特效","正式版","2025-10-27 22:03:15 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"柯达5219","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/6b601ce5da2fb014ee63c1f7262c52ac","","","","","","","","","","否","{""background_color"":""#d4d2c5"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129016,"7555429908504121883	","专辑特效","正式版","2025-10-27 22:03:21 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"加州日落","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/5642e0cead882c5dc2b05e2ae15268fd","","","","","","","","","","否","{""background_color"":""#e0c79f"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129017,"7555429760415830578	","专辑特效","正式版","2025-10-27 21:59:30 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"Velvia","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/0e21897758001052988d21030ca07684","","","","","","","","","","否","{""background_color"":""#396d92"",""filterconfig"":"""",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129019,"7540935298247561778	","普通特效","正式版","2025-10-27 21:52:03 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","32c2bffc1fcf04afb4b558c01dd29814","[""AmazingFeature""]","blit","AnimSeqSystem,BehaviorSystem,CameraSystem,EventSystem,JSScriptSystem,MeshRendererSystem,TransformSystem","复古搬运","复古DV","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/ec15d9247c009d0aa5fc06203b1a78b3","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/32c2bffc1fcf04afb4b558c01dd29814","","","","","","","","","否","{""background_color"":""#c4c9d4"",""filterconfig"":""{\""resource\"":\""32c2bffc1fcf04afb4b558c01dd29814\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android, HarmonyOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144129025,"7552824416141316617	","专辑特效","正式版","2025-10-27 22:02:33 GMT+8",14762,"2025-10-10 19:41:48 GMT+8","","[]","","",,"徕卡","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/1e684dbea580f3f6c87bc807194d6c57","","","","","","","","","","否","{""background_color"":""#333036"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+145189620,"7561380588947509810	","专辑特效","正式版","2025-10-27 22:01:34 GMT+8",14762,"2025-10-15 17:38:29 GMT+8","","[]","","",,"odd","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/c7b620a64aac939ae4855f5f4e3cff11","","","","","","","","","","否","{""background_color"":""#252627"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144717360,"7530628157066449434	","普通特效","正式版","2025-10-27 21:57:56 GMT+8",14762,"2025-10-13 14:12:26 GMT+8","96695aa018b338fa0dd221ead2f30546","[""AmazingFeature""]","texture_blit, face, skin_seg","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","zozotest","理光GRII","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/30a40e02f0d33395249313844ac45113","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/96695aa018b338fa0dd221ead2f30546","","","","","","","","","否","{""background_color"":""#475542"",""filterconfig"":""{\""resource\"":\""96695aa018b338fa0dd221ead2f30546\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144730597,"7560601382332404233	","普通特效","正式版","2025-10-27 21:59:51 GMT+8",14762,"2025-10-13 15:15:25 GMT+8","805557245dfb73ee978661c766f062dd","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","富士XS10-LOG","富士XS10","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/b50864824b3d25391cd464e9316e9f4e","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/805557245dfb73ee978661c766f062dd","","","","","","","","","否","{""background_color"":""#536650"",""filterconfig"":""{\""resource\"":\""805557245dfb73ee978661c766f062dd\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144730847,"7560601181840478729	","普通特效","正式版","2025-10-27 21:59:51 GMT+8",14762,"2025-10-13 15:16:35 GMT+8","6b9a53a0401bb432e2fac7e7142de7a6","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","富士XS10-非log","富士XS10","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/b50864824b3d25391cd464e9316e9f4e","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/6b9a53a0401bb432e2fac7e7142de7a6","","","","","","","","","否","{""background_color"":""#536650"",""filterconfig"":""{\""resource\"":\""6b9a53a0401bb432e2fac7e7142de7a6\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144734577,"7560605784946512430	","普通特效","正式版","2025-10-27 21:59:30 GMT+8",14762,"2025-10-13 15:32:14 GMT+8","70a1b3bb80c646fbd7cf3b97f292768e","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,LightSystem,RenderSystem,ShadowMapSystem,TransformSystem","Velvia-非LOG","Velvia","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/0e21897758001052988d21030ca07684","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/70a1b3bb80c646fbd7cf3b97f292768e","","","","","","","","","否","{""background_color"":""#396d92"",""filterconfig"":""{\""resource\"":\""70a1b3bb80c646fbd7cf3b97f292768e\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144734855,"7560605688490103306	","普通特效","正式版","2025-10-27 21:59:30 GMT+8",14762,"2025-10-13 15:33:23 GMT+8","8ee8ac4f720de865ccf8587f0b7c2d46","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,LightSystem,RenderSystem,ShadowMapSystem,TransformSystem","Velvia-LOG","Velvia","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/0e21897758001052988d21030ca07684","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/8ee8ac4f720de865ccf8587f0b7c2d46","","","","","","","","","否","{""background_color"":""#396d92"",""filterconfig"":""{\""resource\"":\""8ee8ac4f720de865ccf8587f0b7c2d46\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144736190,"7560607473816572454	","普通特效","正式版","2025-10-28 10:51:33 GMT+8",14762,"2025-10-13 15:38:56 GMT+8","f8642bc6c706d289605f50f92b976101","[""AmazingFeature""]","blit, face, skin_seg, faceDetect, faceSeg, mouthSeg","BehaviorSystem,CameraSystem,EventSystem,JSScriptSystem,MeshRendererSystem,TransformSystem","pocket3-非log","Pocket3","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/8c12a544ce7526b0f8736fd42fb3597e","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/f8642bc6c706d289605f50f92b976101","","","","","","","","","否","{""background_color"":""#326499"",""filterconfig"":""{\""resource\"":\""f8642bc6c706d289605f50f92b976101\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144736436,"7560607379247600178	","普通特效","正式版","2025-10-28 10:51:33 GMT+8",14762,"2025-10-13 15:39:47 GMT+8","e24184ec30ed0fd15a26c85d1bcf9922","[""AmazingFeature""]","blit, face, skin_seg, faceDetect, faceSeg, mouthSeg","BehaviorSystem,CameraSystem,EventSystem,JSScriptSystem,MeshRendererSystem,TransformSystem","pocket3-log","Pocket3","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/8c12a544ce7526b0f8736fd42fb3597e","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/e24184ec30ed0fd15a26c85d1bcf9922","","","","","","","","","否","{""background_color"":""#326499"",""filterconfig"":""{\""resource\"":\""e24184ec30ed0fd15a26c85d1bcf9922\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144736727,"7560607251421991451	","普通特效","正式版","2025-10-27 22:03:15 GMT+8",14762,"2025-10-13 15:40:58 GMT+8","7d6a628c2c3c5d7300c97999ac065c09","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","柯达5219-log","柯达5219","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/6b601ce5da2fb014ee63c1f7262c52ac","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/7d6a628c2c3c5d7300c97999ac065c09","","","","","","","","","否","{""background_color"":""#d4d2c5"",""filterconfig"":""{\""resource\"":\""7d6a628c2c3c5d7300c97999ac065c09\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144736867,"7560607169112969755	","普通特效","正式版","2025-10-27 22:03:15 GMT+8",14762,"2025-10-13 15:41:40 GMT+8","e31fce08fd937ea1d60d0189ef6df78f","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","柯达5219-非log","柯达5219","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/6b601ce5da2fb014ee63c1f7262c52ac","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/e31fce08fd937ea1d60d0189ef6df78f","","","","","","","","","否","{""background_color"":""#d4d2c5"",""filterconfig"":""{\""resource\"":\""e31fce08fd937ea1d60d0189ef6df78f\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144738413,"7560609661116748326	","普通特效","正式版","2025-10-27 22:03:09 GMT+8",14762,"2025-10-13 15:49:00 GMT+8","76b5a890d97606498ee07b368adf2df2","[""AmazingFeature""]","face, skin_seg, blit, skinseg","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","港式映画-非log","港式映画","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/bdba3f79baa84ea2f7722557193dd382","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/76b5a890d97606498ee07b368adf2df2","","","","","","","","","否","{""background_color"":""#486065"",""filterconfig"":""{\""resource\"":\""76b5a890d97606498ee07b368adf2df2\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144738507,"7560609589943603739	","普通特效","正式版","2025-10-27 22:03:09 GMT+8",14762,"2025-10-13 15:49:30 GMT+8","24642cf34a40b4453fdba8edbb1f0705","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","港式映画-log","港式映画","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/bdba3f79baa84ea2f7722557193dd382","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/24642cf34a40b4453fdba8edbb1f0705","","","","","","","","","否","{""background_color"":""#486065"",""filterconfig"":""{\""resource\"":\""24642cf34a40b4453fdba8edbb1f0705\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144738595,"7560610044262224435	","普通特效","正式版","2025-10-27 22:03:21 GMT+8",14762,"2025-10-13 15:50:02 GMT+8","61102f428c0e7a050ea8ea5fa7243d34","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","加州日落-非log","加州日落","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/5642e0cead882c5dc2b05e2ae15268fd","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/61102f428c0e7a050ea8ea5fa7243d34","","","","","","","","","否","{""background_color"":""#e0c79f"",""filterconfig"":""{\""resource\"":\""61102f428c0e7a050ea8ea5fa7243d34\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144738703,"7560609980223590921	","普通特效","正式版","2025-10-27 22:03:21 GMT+8",14762,"2025-10-13 15:50:30 GMT+8","025e709aeaa499af12bd248d3275e5d7","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","加州日落-log","加州日落","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/5642e0cead882c5dc2b05e2ae15268fd","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/025e709aeaa499af12bd248d3275e5d7","","","","","","","","","否","{""background_color"":""#e0c79f"",""filterconfig"":""{\""resource\"":\""025e709aeaa499af12bd248d3275e5d7\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+144740429,"7560612311023489545	","普通特效","正式版","2025-10-27 21:57:56 GMT+8",14762,"2025-10-13 15:57:34 GMT+8","1f14f52a5d8c84008c598e0af1f3ee6f","[""AmazingFeature""]","texture_blit, face, skin_seg","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","理光GR2-非log","理光GRII","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/30a40e02f0d33395249313844ac45113","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/1f14f52a5d8c84008c598e0af1f3ee6f","","","","","","","","","否","{""background_color"":""#475542"",""filterconfig"":""{\""resource\"":\""1f14f52a5d8c84008c598e0af1f3ee6f\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144741692,"7560613765947855410	","普通特效","正式版","2025-10-27 22:02:33 GMT+8",14762,"2025-10-13 16:03:25 GMT+8","a49ab66dc88647fdd1ea01bb2fa95124","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","徕卡-非log","徕卡","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/1e684dbea580f3f6c87bc807194d6c57","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/a49ab66dc88647fdd1ea01bb2fa95124","","","","","","","","","否","{""background_color"":""#333036"",""filterconfig"":""{\""resource\"":\""a49ab66dc88647fdd1ea01bb2fa95124\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS, Android
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144741792,"7560613691805143598	","普通特效","正式版","2025-10-27 22:02:33 GMT+8",14762,"2025-10-13 16:03:50 GMT+8","1d3d4713818573417b53fb6858465a4e","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","徕卡-log","徕卡","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/1e684dbea580f3f6c87bc807194d6c57","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/1d3d4713818573417b53fb6858465a4e","","","","","","","","","否","{""background_color"":""#333036"",""filterconfig"":""{\""resource\"":\""1d3d4713818573417b53fb6858465a4e\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":80,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144741887,"7560613432941089290	","普通特效","正式版","2025-10-27 22:01:26 GMT+8",14762,"2025-10-13 16:04:16 GMT+8","dbb6bbd70ac56612c5059f8febfaf024","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","奥林巴斯U300-LOG","奥林巴斯","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/72ef382917bddc643e58f997da3cab33","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/dbb6bbd70ac56612c5059f8febfaf024","","","","","","","","","否","{""background_color"":""#647645"",""filterconfig"":""{\""resource\"":\""dbb6bbd70ac56612c5059f8febfaf024\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144742051,"7560613332034523686	","普通特效","正式版","2025-10-27 22:01:26 GMT+8",14762,"2025-10-13 16:05:04 GMT+8","fdd58d73c913fc110b288f28f5f6251a","[""AmazingFeature""]","","AmazingProEditor,AmazingProRuntime,BehaviorSystem,CameraSystem,EffectNodeSystem,EventSystem,GraphSystem,IEJsEntrySystemScript,JSAssetSystem,JSScriptSystem,RenderSystem,TransformSystem","奥林巴斯U300-非LOG","奥林巴斯","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/72ef382917bddc643e58f997da3cab33","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/fdd58d73c913fc110b288f28f5f6251a","","","","","","","","","否","{""background_color"":""#647645"",""filterconfig"":""{\""resource\"":\""fdd58d73c913fc110b288f28f5f6251a\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:Android, iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","3.0 及以上","",,"hide","",""
+144946543,"7560977845481116206	","普通特效","正式版","2025-10-27 22:01:33 GMT+8",14762,"2025-10-14 15:36:38 GMT+8","d116e5718d09b42b078d92bd93bbb6a3","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","odd","odd","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/c7b620a64aac939ae4855f5f4e3cff11","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/d116e5718d09b42b078d92bd93bbb6a3","","","","","","","","","否","{""background_color"":""#252627"",""filterconfig"":""{\""resource\"":\""d116e5718d09b42b078d92bd93bbb6a3\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:Android, iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""
+145190538,"7561382430192439818	","普通特效","正式版","2025-10-27 22:01:34 GMT+8",14762,"2025-10-15 17:46:11 GMT+8","2895a83e0bdec1eda4e19512efd28046","[""AmazingFeature""]","skinseg, face, skin_seg, blit","BehaviorSystem,CameraSystem,EventSystem,MeshRendererSystem,ScriptSystem,TransformSystem","odd log","odd","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/c7b620a64aac939ae4855f5f4e3cff11","https://lf3-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/2895a83e0bdec1eda4e19512efd28046","","","","","","","","","否","{""background_color"":""#252627"",""filterconfig"":""{\""resource\"":\""2895a83e0bdec1eda4e19512efd28046\"",\""items\"":[{\""min\"":0,\""max\"":100,\""value\"":100,\""tag\"":\""Internal_Filter\"",\""name\"":\""Internal_Filter\""}]}"",""unuse_plus_sign_alienation"":true}","
+        发布平台:iOS
+        ios:
+        android:
+        mac:
+        win:
+        web:
+        harmony:
+        ","ios:white:iphone16,1,iphone16,2,iphone17,1,iphone17,2,iphone18,1,iphone18,2
+","Android: 0-9999, IOS: 0-9999","","","","",,"hide","",""

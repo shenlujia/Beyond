@@ -1,0 +1,42 @@
+---
+name: "wechat_html_to_markdown"
+description: "将 html 格式的微信公众号文章转为 markdown。当输入 wechat_html_to_markdown 时，解析 author 标签并将 raw 文件夹中的 html 转为对应名称的 md 文件并放到 output 文件夹中的作者同名文件夹。"
+---
+
+# WeChat HTML to Markdown
+
+## 功能描述
+
+此技能用于将微信公众号文章的 HTML 文件转换为 Markdown 格式。它会：
+
+1. 读取 raw 文件夹中的所有 HTML 文件
+2. 解析 HTML 文件中的 author 标签，临时存储为 `x`
+3. 从 JavaScript 代码中提取 `content_noencode` 部分作为文章正文
+4. 对于特定文章，提取 `img_list_indicator_wrp` 中的图片（只包含 https 开头的图片地址）
+5. 移除作者介绍及其后面的内容，只保留正文
+6. 处理图片和文案格式，使文案显示在图片下方正中间
+7. 将每个 HTML 文件转换为对应的 Markdown 文件
+8. 将转换后的 Markdown 文件保存到 output 文件夹中的 `x` 文件夹（以作者名称命名）
+
+## 调用方式
+
+当用户输入 `wechat_html_to_markdown` 时，此技能会被触发，自动执行转换过程。
+
+## 转换特点
+
+- 支持标题、段落、粗体、斜体等基本格式转换
+- 支持链接和图片的转换
+- 支持列表的转换
+- 从 JavaScript 代码中提取并解码 `content_noencode` 部分
+- 提取并展示 `img_list_indicator_wrp` 中的图片（只包含 https 开头的图片地址）
+- 移除作者介绍及其后面的内容，只保留正文
+- 处理图片后的文案，使其显示在图片下方正中间
+- 移除不必要的脚本和样式
+- 保持文章的基本结构和内容
+- 自动解析作者信息并按作者分类存储
+
+## 示例
+
+1. 将微信公众号文章的 HTML 文件放入 raw 文件夹
+2. 输入 `wechat_html_to_markdown` 命令
+3. 转换后的 Markdown 文件会出现在 output 文件夹中的作者同名文件夹中
