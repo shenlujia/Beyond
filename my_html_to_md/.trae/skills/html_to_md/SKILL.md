@@ -1,6 +1,6 @@
 ---
-name: "wechat_html_to_markdown"
-description: "将 html 格式的微信公众号文章转为 markdown。当输入 wechat_html_to_markdown 时，解析 author 标签并将 raw 文件夹中的 html 转为对应名称的 md 文件并放到 output 文件夹中的作者同名文件夹。"
+name: "html_to_md"
+description: "将 html 格式的微信公众号文章转为 markdown。当输入 html_to_md 时，解析 author 标签并将 raw 文件夹中的 html 转为对应名称的 md 文件并放到 output 文件夹中的作者同名文件夹。"
 ---
 
 # WeChat HTML to Markdown
@@ -20,7 +20,7 @@ description: "将 html 格式的微信公众号文章转为 markdown。当输入
 
 ## 调用方式
 
-当用户输入 `wechat_html_to_markdown` 时，此技能会被触发，自动执行转换过程。
+当用户输入 `html_to_md` 时，此技能会被触发，自动执行转换过程。
 
 ## 转换特点
 
@@ -38,5 +38,5 @@ description: "将 html 格式的微信公众号文章转为 markdown。当输入
 ## 示例
 
 1. 将微信公众号文章的 HTML 文件放入 raw 文件夹
-2. 输入 `wechat_html_to_markdown` 命令
+2. 输入 `html_to_md` 命令
 3. 转换后的 Markdown 文件会出现在 output 文件夹中的作者同名文件夹中
