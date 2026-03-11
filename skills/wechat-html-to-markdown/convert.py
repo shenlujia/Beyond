@@ -31,6 +31,35 @@ def js_decode(s):
     s = s.replace(r'\x0a', '\n')
     return s
 
+def get_rich_media_content(html):
+    """直接从HTML中获取rich_media_content内容"""
+    start_idx = html.find('<div')
+    while start_idx != -1:
+        end_of_tag = html.find('>', start_idx)
+        if end_of_tag == -1:
+            break
+        tag_content = html[start_idx:end_of_tag]
+        if 'rich_media_content' in tag_content:
+            div_count = 1
+            end_idx = end_of_tag + 1
+            while end_idx < len(html) and div_count > 0:
+                if html[end_idx:end_idx+5] == '</div':
+                    div_end = html.find('>', end_idx)
+                    if div_end != -1:
+                        div_count -= 1
+                        end_idx = div_end + 1
+                    else:
+                        end_idx += 1
+                elif html[end_idx:end_idx+4] == '<div':
+                    div_count += 1
+                    end_idx += 1
+                else:
+                    end_idx += 1
+            if div_count == 0:
+                return html[end_of_tag+1:end_idx-6]
+        start_idx = html.find('<div', end_of_tag)
+    return ''
+
 def extract_content_noencode(html_content):
     """从JavaScript中提取content_noencode"""
     match = re.search(r'content_noencode:\s*JsDecode\((.*?)\),', html_content, re.DOTALL)
@@ -73,22 +102,33 @@ def parse_content_to_markdown(content):
     """解析内容为Markdown格式 - 最内层每个<p>作为单独一段"""
     markdown = ''
     
-    # 使用栈解析嵌套的section
-    sections = parse_with_stack(content)
-    
     paragraphs = []
-    for section in sections:
-        if '<p' in section:
-            inner_section_count = section.count('<section')
-            if inner_section_count == 1:
-                # 提取所有p标签，每个作为单独一段
-                p_tags = re.findall(r'<p[^>]*>(.*?)</p>', section, re.DOTALL)
-                
-                for p in p_tags:
-                    clean_text = re.sub(r'<[^>]+>', '', p)
-                    clean_text = clean_text.strip()
-                    if clean_text:
-                        paragraphs.append(clean_text)
+    
+    # 先尝试从section中提取p标签
+    if '<section' in content:
+        sections = parse_with_stack(content)
+        
+        for section in sections:
+            if '<p' in section:
+                inner_section_count = section.count('<section')
+                if inner_section_count == 1:
+                    p_tags = re.findall(r'<p[^>]*>(.*?)</p>', section, re.DOTALL)
+                    
+                    for p in p_tags:
+                        clean_text = re.sub(r'<[^>]+>', '', p)
+                        clean_text = clean_text.strip()
+                        if clean_text:
+                            paragraphs.append(clean_text)
+    
+    # 如果从section中没有找到任何p标签，直接从整个content提取
+    if not paragraphs:
+        p_tags = re.findall(r'<p[^>]*>(.*?)</p>', content, re.DOTALL)
+        
+        for p in p_tags:
+            clean_text = re.sub(r'<[^>]+>', '', p)
+            clean_text = clean_text.strip()
+            if clean_text:
+                paragraphs.append(clean_text)
     
     # 组合Markdown
     for para in paragraphs:
@@ -111,8 +151,10 @@ def process_html_file(file_path):
     # 3. 提取图片
     images = extract_images(html_content)
     
-    # 4. 获取content_noencode
-    content = extract_content_noencode(html_content)
+    # 4. 优先直接从HTML中提取rich_media_content，如果没有则尝试从JavaScript中提取content_noencode
+    content = get_rich_media_content(html_content)
+    if not content:
+        content = extract_content_noencode(html_content)
     
     # 5. 解析内容为Markdown
     markdown_content = parse_content_to_markdown(content)
