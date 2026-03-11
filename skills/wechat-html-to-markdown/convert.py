@@ -153,18 +153,10 @@ def parse_with_stack(content):
     return sections
 
 def parse_inline_elements(text):
-    """解析内联元素：颜色、图片等"""
+    """解析内联元素：颜色、图片、加粗、超链接等"""
     result = text
     
-    # 先处理图片标签
-    # 匹配 <img ... data-src="url" ...>
-    img_pattern = r'<img[^>]*data-src="([^"]+)"[^>]*>'
-    def replace_img(match):
-        url = match.group(1)
-        return f'![图片]({url})'
-    result = re.sub(img_pattern, replace_img, result)
-    
-    # 处理所有span标签，保留带颜色的
+    # 先处理所有span标签，保留带颜色的，用占位符保护起来，同时处理加粗
     # 用循环来处理嵌套的span
     while '<span' in result:
         # 查找最内层的span
@@ -175,6 +167,13 @@ def parse_inline_elements(text):
         span_full = span_match.group(0)
         span_inner = span_match.group(1)
         
+        # 检查是否有font-weight: bold
+        is_bold = re.search(r'style="[^"]*font-weight:\s*bold[^"]*"', span_full) is not None
+        
+        # 如果是加粗，先把内容用**包裹起来
+        if is_bold:
+            span_inner = f'**{span_inner}**'
+        
         # 检查是否有颜色
         color_match = re.search(r'style="[^"]*color:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)[^"]*"', span_full)
         if color_match:
@@ -183,10 +182,29 @@ def parse_inline_elements(text):
             b = color_match.group(3)
             result = result.replace(span_full, f'{{{{COLOR_SPAN:{r},{g},{b}:{span_inner}}}}}')
         else:
-            # 没有颜色，直接替换为内容
+            # 没有颜色，直接替换为内容（可能已经包含加粗）
             result = result.replace(span_full, span_inner)
     
-    # 清理其他标签（除了我们的占位符）
+    # 处理图片标签
+    # 匹配 <img ... data-src="url" ...>
+    img_pattern = r'<img[^>]*data-src="([^"]+)"[^>]*>'
+    def replace_img(match):
+        url = match.group(1)
+        return f'![图片]({url})'
+    result = re.sub(img_pattern, replace_img, result)
+    
+    # 处理加粗标签 <strong> 和 <b>
+    result = re.sub(r'<strong[^>]*>(.*?)</strong>', r'**\1**', result, flags=re.DOTALL)
+    result = re.sub(r'<b[^>]*>(.*?)</b>', r'**\1**', result, flags=re.DOTALL)
+    
+    # 处理超链接标签 <a>
+    def replace_link(match):
+        href = match.group(1)
+        text = match.group(2)
+        return f'[{text}]({href})'
+    result = re.sub(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', replace_link, result, flags=re.DOTALL)
+    
+    # 清理其他标签（只保留我们的占位符）
     # 先把占位符保护起来
     temp_parts = []
     i = 0
@@ -210,10 +228,16 @@ def parse_inline_elements(text):
         # 先尝试匹配完整的占位符
         match = re.search(r'\{\{COLOR_SPAN:(\d+),(\d+),(\d+):([^{}]*?)\}\}', result)
         if match:
-            r = match.group(1)
-            g = match.group(2)
-            b = match.group(3)
+            r = int(match.group(1))
+            g = int(match.group(2))
+            b = int(match.group(3))
             inner = match.group(4)
+            
+            # 检测白色或接近白色的颜色，改成黑色
+            # 如果RGB值都大于240，认为是白色或接近白色
+            if r > 240 and g > 240 and b > 240:
+                r, g, b = 0, 0, 0
+            
             result = result.replace(match.group(0), f'<span style="color: rgb({r},{g},{b})">{inner}</span>')
         else:
             # 如果没有完整匹配，尝试查找并清理不完整的占位符
@@ -240,19 +264,14 @@ def parse_content_to_markdown(content):
             if line:
                 paragraphs.append(line)
     else:
-        # 需要过滤的section class列表
+        # 需要过滤的section class列表和内容关键词
         excluded_classes = ['mp_profile_iframe_wrp', 'channels_iframe_wrp']
+        excluded_keywords = ['--weui-', ':host {', '.wx-root,']
         
-        # 首先找到所有p标签的位置和内容
+        # 同时提取section标签和p标签，然后去重
         p_matches = []
-        for match in re.finditer(r'<p[^>]*>(.*?)</p>', content, re.DOTALL):
-            p_matches.append({
-                'type': 'p',
-                'start': match.start(),
-                'content': match.group(1)
-            })
         
-        # 然后找到所有包含img标签且没有p标签的section的位置和内容
+        # 首先提取section标签的内容
         if '<section' in content:
             sections = parse_with_stack(content)
             
@@ -265,31 +284,51 @@ def parse_content_to_markdown(content):
                         if excluded_class in section:
                             skip = True
                             break
+                    if not skip:
+                        for keyword in excluded_keywords:
+                            if keyword in section:
+                                skip = True
+                                break
                     if skip:
                         continue
                     
-                    # 检查是否有img标签但没有p标签
-                    if '<img' in section and '<p' not in section:
-                        # 找到这个section在content中的位置
+                    # 检查section里面是否有p标签
+                    p_in_section = list(re.finditer(r'<p[^>]*>(.*?)</p>', section, re.DOTALL))
+                    
+                    if p_in_section:
+                        # 如果section里面有p标签，就提取这些p标签
+                        section_start = content.find(section)
+                        for p_match in p_in_section:
+                            p_matches.append({
+                                'type': 'p',
+                                'start': section_start + p_match.start(),
+                                'content': p_match.group(1)
+                            })
+                    else:
+                        # 如果section里面没有p标签，就直接处理整个section
                         pos = content.find(section)
                         if pos != -1:
                             p_matches.append({
-                                'type': 'img_section',
+                                'type': 'section',
                                 'start': pos,
                                 'content': section
                             })
         
+        # 然后提取所有直接在content中的p标签（不是在section中的）
+        for match in re.finditer(r'<p[^>]*>(.*?)</p>', content, re.DOTALL):
+            p_matches.append({
+                'type': 'p',
+                'start': match.start(),
+                'content': match.group(1)
+            })
+        
         # 按start位置排序
         p_matches.sort(key=lambda x: x['start'])
         
-        # 处理每个匹配项
+        # 处理每个匹配项，避免重复
         seen = set()
         for match in p_matches:
-            if match['type'] == 'p':
-                parsed_text = parse_inline_elements(match['content'])
-            else:
-                parsed_text = parse_inline_elements(match['content'])
-            
+            parsed_text = parse_inline_elements(match['content'])
             parsed_text = parsed_text.strip()
             if parsed_text and parsed_text not in seen:
                 seen.add(parsed_text)
@@ -316,10 +355,25 @@ def process_html_file(file_path):
     # 3. 提取图片
     images = extract_images(html_content)
     
-    # 4. 优先直接从HTML中提取rich_media_content，如果没有则尝试从JavaScript中提取content_noencode
-    content = get_rich_media_content(html_content)
-    if not content:
-        content = extract_content_noencode(html_content)
+    # 4. 尝试两种方式提取内容，选择更好的那个
+    content1 = get_rich_media_content(html_content)
+    content2 = extract_content_noencode(html_content)
+    
+    # 统计两种内容中的p标签数量和文本长度
+    def count_content_quality(c):
+        p_count = len(re.findall(r'<p[^>]*>', c))
+        # 粗略估计文本长度（去除HTML标签）
+        text_length = len(re.sub(r'<[^>]+>', '', c))
+        return p_count, text_length
+    
+    p1, t1 = count_content_quality(content1)
+    p2, t2 = count_content_quality(content2)
+    
+    # 选择p标签更多或者文本更长的那个内容
+    if p2 > p1 or t2 > t1 * 2:
+        content = content2
+    else:
+        content = content1
     
     # 5. 解析内容为Markdown
     markdown_content = parse_content_to_markdown(content)
