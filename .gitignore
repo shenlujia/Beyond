@@ -11,4 +11,4 @@ OpenSourceMine/SSCloner/test_to_path_backup
 _names_ori_only_for_test_write.txt
 my_html_to_md/raw
 my_html_to_md/debug_*
-*__pycache__*
+__pycache__
