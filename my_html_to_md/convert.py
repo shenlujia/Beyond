@@ -8,13 +8,67 @@ def extract_author(html_content):
         return meta_author.group(1)
     return '未知作者'
 
+def extract_matching_brackets(text, start_pos):
+    """从start_pos开始找到匹配的方括号对"""
+    stack = []
+    i = start_pos
+    n = len(text)
+    
+    while i < n:
+        if text[i] == '[':
+            stack.append(i)
+        elif text[i] == ']':
+            if stack:
+                start = stack.pop()
+                if not stack:
+                    return text[start:i+1]
+        i += 1
+    return None
+
 def extract_images(html_content):
-    """提取img_list_indicator_wrp中的图片（只包含https开头的图片地址）"""
+    """提取图片列表（支持两种结构：img_list_indicator_wrp和picture_page_info_list）"""
     images = []
-    img_section = re.search(r'<div[^>]*class="[^"]*img_list_indicator_wrp[^"]*"[^>]*>(.*?)</div>', html_content, re.DOTALL)
-    if img_section:
-        img_urls = re.findall(r'data-src="(https[^"]+)"', img_section.group(1))
-        images.extend(img_urls)
+    
+    # 先尝试从picture_page_info_list中提取图片（图片集文章）
+    # 查找所有picture_page_info_list的位置
+    ppil_positions = [m.start() for m in re.finditer(r'picture_page_info_list', html_content)]
+    
+    max_cdn_count = 0
+    best_ppil_content = None
+    
+    for pos in ppil_positions:
+        # 从picture_page_info_list后面找[
+        bracket_start = html_content.find('[', pos)
+        if bracket_start != -1:
+            # 找到匹配的方括号对
+            ppil_content = extract_matching_brackets(html_content, bracket_start)
+            if ppil_content:
+                # 统计这个数组中的cdn_url数量
+                cdn_count = len(re.findall(r'cdn_url', ppil_content))
+                if cdn_count > max_cdn_count:
+                    max_cdn_count = cdn_count
+                    best_ppil_content = ppil_content
+    
+    if best_ppil_content:
+        # 提取所有cdn_url
+        cdn_urls = re.findall(r'cdn_url\s*[:=]\s*(?:JsDecode\([\'"]([^\'"]+)[\'"]\)|[\'"]([^\'"]+)[\'"])', best_ppil_content)
+        for url1, url2 in cdn_urls:
+            url = url1 if url1 else url2
+            if url.startswith('https'):
+                # 解码URL中的HTML实体
+                url = url.replace('\\x26amp;', '&')
+                url = url.replace('&amp;', '&')
+                # 只包含from=appmsg的图片，这些是内容图片
+                if 'from=appmsg' in url:
+                    images.append(url)
+    
+    # 如果没有找到，尝试从img_list_indicator_wrp中提取
+    if not images:
+        img_section = re.search(r'<div[^>]*class="[^"]*img_list_indicator_wrp[^"]*"[^>]*>(.*?)</div>', html_content, re.DOTALL)
+        if img_section:
+            img_urls = re.findall(r'data-src="(https[^"]+)"', img_section.group(1))
+            images.extend(img_urls)
+    
     return images
 
 def js_decode(s):
@@ -172,65 +226,74 @@ def parse_inline_elements(text):
     return result
 
 def parse_content_to_markdown(content):
-    """解析内容为Markdown格式 - 支持图片和颜色，保持原始顺序"""
+    """解析内容为Markdown格式 - 支持图片和颜色，保持原始顺序，同时支持纯文本"""
     markdown = ''
     
     paragraphs = []
     
-    # 需要过滤的section class列表
-    excluded_classes = ['mp_profile_iframe_wrp', 'channels_iframe_wrp']
-    
-    # 首先找到所有p标签的位置和内容
-    p_matches = []
-    for match in re.finditer(r'<p[^>]*>(.*?)</p>', content, re.DOTALL):
-        p_matches.append({
-            'type': 'p',
-            'start': match.start(),
-            'content': match.group(1)
-        })
-    
-    # 然后找到所有包含img标签且没有p标签的section的位置和内容
-    if '<section' in content:
-        sections = parse_with_stack(content)
+    # 检查是否是纯文本（没有HTML标签）
+    if '<' not in content or '>' not in content:
+        # 纯文本，按换行符分割
+        lines = content.split('\n')
+        for line in lines:
+            line = line.strip()
+            if line:
+                paragraphs.append(line)
+    else:
+        # 需要过滤的section class列表
+        excluded_classes = ['mp_profile_iframe_wrp', 'channels_iframe_wrp']
         
-        for section in sections:
-            inner_section_count = section.count('<section')
-            if inner_section_count == 1:
-                # 检查是否是需要排除的section
-                skip = False
-                for excluded_class in excluded_classes:
-                    if excluded_class in section:
-                        skip = True
-                        break
-                if skip:
-                    continue
-                
-                # 检查是否有img标签但没有p标签
-                if '<img' in section and '<p' not in section:
-                    # 找到这个section在content中的位置
-                    pos = content.find(section)
-                    if pos != -1:
-                        p_matches.append({
-                            'type': 'img_section',
-                            'start': pos,
-                            'content': section
-                        })
-    
-    # 按start位置排序
-    p_matches.sort(key=lambda x: x['start'])
-    
-    # 处理每个匹配项
-    seen = set()
-    for match in p_matches:
-        if match['type'] == 'p':
-            parsed_text = parse_inline_elements(match['content'])
-        else:
-            parsed_text = parse_inline_elements(match['content'])
+        # 首先找到所有p标签的位置和内容
+        p_matches = []
+        for match in re.finditer(r'<p[^>]*>(.*?)</p>', content, re.DOTALL):
+            p_matches.append({
+                'type': 'p',
+                'start': match.start(),
+                'content': match.group(1)
+            })
         
-        parsed_text = parsed_text.strip()
-        if parsed_text and parsed_text not in seen:
-            seen.add(parsed_text)
-            paragraphs.append(parsed_text)
+        # 然后找到所有包含img标签且没有p标签的section的位置和内容
+        if '<section' in content:
+            sections = parse_with_stack(content)
+            
+            for section in sections:
+                inner_section_count = section.count('<section')
+                if inner_section_count == 1:
+                    # 检查是否是需要排除的section
+                    skip = False
+                    for excluded_class in excluded_classes:
+                        if excluded_class in section:
+                            skip = True
+                            break
+                    if skip:
+                        continue
+                    
+                    # 检查是否有img标签但没有p标签
+                    if '<img' in section and '<p' not in section:
+                        # 找到这个section在content中的位置
+                        pos = content.find(section)
+                        if pos != -1:
+                            p_matches.append({
+                                'type': 'img_section',
+                                'start': pos,
+                                'content': section
+                            })
+        
+        # 按start位置排序
+        p_matches.sort(key=lambda x: x['start'])
+        
+        # 处理每个匹配项
+        seen = set()
+        for match in p_matches:
+            if match['type'] == 'p':
+                parsed_text = parse_inline_elements(match['content'])
+            else:
+                parsed_text = parse_inline_elements(match['content'])
+            
+            parsed_text = parsed_text.strip()
+            if parsed_text and parsed_text not in seen:
+                seen.add(parsed_text)
+                paragraphs.append(parsed_text)
     
     # 组合Markdown
     for para in paragraphs:
@@ -261,13 +324,17 @@ def process_html_file(file_path):
     # 5. 解析内容为Markdown
     markdown_content = parse_content_to_markdown(content)
     
-    # 6. 组合Markdown
+    # 6. 判断是否是图片集文章（有picture_page_info_list但没有rich_media_content）
+    is_gallery_article = 'picture_page_info_list' in html_content and not get_rich_media_content(html_content)
+    
+    # 7. 组合Markdown
     markdown = f'# {filename}\n\n'
     markdown += f'作者：{author}\n\n'
     
-    # 添加图片
-    for img_url in images:
-        markdown += f'![图片]({img_url})\n\n'
+    # 只有图片集文章才在前面添加图片列表
+    if is_gallery_article:
+        for img_url in images:
+            markdown += f'![图片]({img_url})\n\n'
     
     markdown += markdown_content
     
