@@ -98,37 +98,139 @@ def parse_with_stack(content):
     
     return sections
 
+def parse_inline_elements(text):
+    """解析内联元素：颜色、图片等"""
+    result = text
+    
+    # 先处理图片标签
+    # 匹配 <img ... data-src="url" ...>
+    img_pattern = r'<img[^>]*data-src="([^"]+)"[^>]*>'
+    def replace_img(match):
+        url = match.group(1)
+        return f'![图片]({url})'
+    result = re.sub(img_pattern, replace_img, result)
+    
+    # 处理所有span标签，保留带颜色的
+    # 用循环来处理嵌套的span
+    while '<span' in result:
+        # 查找最内层的span
+        span_match = re.search(r'<span[^>]*>([^<]*)</span>', result)
+        if not span_match:
+            break
+        
+        span_full = span_match.group(0)
+        span_inner = span_match.group(1)
+        
+        # 检查是否有颜色
+        color_match = re.search(r'style="[^"]*color:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)[^"]*"', span_full)
+        if color_match:
+            r = color_match.group(1)
+            g = color_match.group(2)
+            b = color_match.group(3)
+            result = result.replace(span_full, f'{{{{COLOR_SPAN:{r},{g},{b}:{span_inner}}}}}')
+        else:
+            # 没有颜色，直接替换为内容
+            result = result.replace(span_full, span_inner)
+    
+    # 清理其他标签（除了我们的占位符）
+    # 先把占位符保护起来
+    temp_parts = []
+    i = 0
+    while True:
+        start = result.find('{{COLOR_SPAN:', i)
+        if start == -1:
+            temp_parts.append(re.sub(r'<[^>]+>', '', result[i:]))
+            break
+        temp_parts.append(re.sub(r'<[^>]+>', '', result[i:start]))
+        end = result.find('}}', start)
+        if end == -1:
+            temp_parts.append(result[start:])
+            break
+        temp_parts.append(result[start:end+2])
+        i = end + 2
+    result = ''.join(temp_parts)
+    
+    # 把占位符还原成span标签 - 处理所有占位符，包括可能的重复或部分匹配
+    # 使用循环来确保所有占位符都被替换
+    while '{{COLOR_SPAN:' in result:
+        # 先尝试匹配完整的占位符
+        match = re.search(r'\{\{COLOR_SPAN:(\d+),(\d+),(\d+):([^{}]*?)\}\}', result)
+        if match:
+            r = match.group(1)
+            g = match.group(2)
+            b = match.group(3)
+            inner = match.group(4)
+            result = result.replace(match.group(0), f'<span style="color: rgb({r},{g},{b})">{inner}</span>')
+        else:
+            # 如果没有完整匹配，尝试查找并清理不完整的占位符
+            partial_match = re.search(r'\{\{COLOR_SPAN:[^}]*', result)
+            if partial_match:
+                result = result.replace(partial_match.group(0), '')
+            else:
+                break
+    
+    return result
+
 def parse_content_to_markdown(content):
-    """解析内容为Markdown格式 - 最内层每个<p>作为单独一段"""
+    """解析内容为Markdown格式 - 支持图片和颜色，保持原始顺序"""
     markdown = ''
     
     paragraphs = []
     
-    # 先尝试从section中提取p标签
+    # 需要过滤的section class列表
+    excluded_classes = ['mp_profile_iframe_wrp', 'channels_iframe_wrp']
+    
+    # 首先找到所有p标签的位置和内容
+    p_matches = []
+    for match in re.finditer(r'<p[^>]*>(.*?)</p>', content, re.DOTALL):
+        p_matches.append({
+            'type': 'p',
+            'start': match.start(),
+            'content': match.group(1)
+        })
+    
+    # 然后找到所有包含img标签且没有p标签的section的位置和内容
     if '<section' in content:
         sections = parse_with_stack(content)
         
         for section in sections:
-            if '<p' in section:
-                inner_section_count = section.count('<section')
-                if inner_section_count == 1:
-                    p_tags = re.findall(r'<p[^>]*>(.*?)</p>', section, re.DOTALL)
-                    
-                    for p in p_tags:
-                        clean_text = re.sub(r'<[^>]+>', '', p)
-                        clean_text = clean_text.strip()
-                        if clean_text:
-                            paragraphs.append(clean_text)
+            inner_section_count = section.count('<section')
+            if inner_section_count == 1:
+                # 检查是否是需要排除的section
+                skip = False
+                for excluded_class in excluded_classes:
+                    if excluded_class in section:
+                        skip = True
+                        break
+                if skip:
+                    continue
+                
+                # 检查是否有img标签但没有p标签
+                if '<img' in section and '<p' not in section:
+                    # 找到这个section在content中的位置
+                    pos = content.find(section)
+                    if pos != -1:
+                        p_matches.append({
+                            'type': 'img_section',
+                            'start': pos,
+                            'content': section
+                        })
     
-    # 如果从section中没有找到任何p标签，直接从整个content提取
-    if not paragraphs:
-        p_tags = re.findall(r'<p[^>]*>(.*?)</p>', content, re.DOTALL)
+    # 按start位置排序
+    p_matches.sort(key=lambda x: x['start'])
+    
+    # 处理每个匹配项
+    seen = set()
+    for match in p_matches:
+        if match['type'] == 'p':
+            parsed_text = parse_inline_elements(match['content'])
+        else:
+            parsed_text = parse_inline_elements(match['content'])
         
-        for p in p_tags:
-            clean_text = re.sub(r'<[^>]+>', '', p)
-            clean_text = clean_text.strip()
-            if clean_text:
-                paragraphs.append(clean_text)
+        parsed_text = parsed_text.strip()
+        if parsed_text and parsed_text not in seen:
+            seen.add(parsed_text)
+            paragraphs.append(parsed_text)
     
     # 组合Markdown
     for para in paragraphs:
