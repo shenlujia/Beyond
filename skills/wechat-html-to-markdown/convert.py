@@ -152,11 +152,62 @@ def parse_with_stack(content):
     
     return sections
 
+def merge_consecutive_bold_spans(text):
+    """合并连续的加粗span标签"""
+    result = text
+    
+    while True:
+        # 查找第一个加粗span
+        bold_pattern = r'<span[^>]*style="[^"]*font-weight:\s*bold[^"]*"[^>]*>(.*?)</span>'
+        first_match = re.search(bold_pattern, result, re.DOTALL)
+        if not first_match:
+            break
+        
+        first_start = first_match.start()
+        first_end = first_match.end()
+        first_content = first_match.group(1)
+        
+        # 查找后面是否还有连续的加粗span（中间只有其他标签或空白）
+        current_pos = first_end
+        merged_content = first_content
+        found_more = False
+        
+        while True:
+            # 跳过中间的非加粗标签和空白
+            between_match = re.match(r'^(<[^>]*>|\s)*', result[current_pos:])
+            if between_match:
+                between = between_match.group(0)
+                current_pos += len(between)
+            else:
+                break
+            
+            # 检查下一个是否是加粗span
+            next_match = re.match(bold_pattern, result[current_pos:], re.DOTALL)
+            if next_match:
+                found_more = True
+                merged_content += between + next_match.group(1)
+                current_pos += len(next_match.group(0))
+            else:
+                break
+        
+        if found_more:
+            # 合并这些加粗span
+            merged_span = f'<span style="font-weight: bold">{merged_content}</span>'
+            result = result[:first_start] + merged_span + result[current_pos:]
+        else:
+            # 没有找到更多，移动到下一个位置
+            break
+    
+    return result
+
 def parse_inline_elements(text):
     """解析内联元素：颜色、图片、加粗、超链接等"""
     result = text
     
-    # 先处理所有span标签，保留带颜色的，用占位符保护起来，同时处理加粗
+    # 先合并连续的加粗span标签
+    result = merge_consecutive_bold_spans(result)
+    
+    # 处理所有span标签，保留带颜色的，用占位符保护起来，同时处理加粗
     # 用循环来处理嵌套的span
     while '<span' in result:
         # 查找最内层的span
@@ -246,6 +297,45 @@ def parse_inline_elements(text):
                 result = result.replace(partial_match.group(0), '')
             else:
                 break
+    
+    # 最终清理：合并真正连续的加粗标记
+    # 查找所有**的位置
+    while True:
+        bold_positions = []
+        for match in re.finditer(r'\*\*', result):
+            bold_positions.append(match.start())
+        
+        merged = False
+        # 检查是否有可以合并的加粗对
+        for i in range(0, len(bold_positions) - 2, 2):
+            # 当前加粗对的结束位置
+            current_end = bold_positions[i + 1] + 2
+            # 下一个加粗对的开始位置
+            next_start = bold_positions[i + 2]
+            
+            # 检查两个加粗对之间的内容
+            between = result[current_end:next_start]
+            
+            # 检查中间是否只有空白、标点或HTML标签残留
+            # 如果中间没有字母或数字，就合并
+            has_text = False
+            for c in between:
+                if c.isalnum():
+                    has_text = True
+                    break
+            
+            if not has_text:
+                # 合并这两个加粗对
+                first = bold_positions[i]
+                last = bold_positions[i + 3]
+                content = result[first + 2:last]
+                content = content.replace('**', '')
+                result = result[:first] + f'**{content}**' + result[last + 2:]
+                merged = True
+                break
+        
+        if not merged:
+            break
     
     return result
 
