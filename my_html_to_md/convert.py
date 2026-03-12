@@ -220,10 +220,15 @@ def parse_inline_elements(text):
         
         # 检查是否有font-weight: bold
         is_bold = re.search(r'style="[^"]*font-weight:\s*bold[^"]*"', span_full) is not None
+        # 检查是否有font-style: italic
+        is_italic = re.search(r'style="[^"]*font-style:\s*italic[^"]*"', span_full) is not None
         
         # 如果是加粗，先把内容用**包裹起来
         if is_bold:
             span_inner = f'**{span_inner}**'
+        # 如果是斜体，把内容用*包裹起来
+        if is_italic:
+            span_inner = f'*{span_inner}*'
         
         # 检查是否有颜色
         color_match = re.search(r'style="[^"]*color:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)[^"]*"', span_full)
@@ -247,6 +252,10 @@ def parse_inline_elements(text):
     # 处理加粗标签 <strong> 和 <b>
     result = re.sub(r'<strong[^>]*>(.*?)</strong>', r'**\1**', result, flags=re.DOTALL)
     result = re.sub(r'<b[^>]*>(.*?)</b>', r'**\1**', result, flags=re.DOTALL)
+    
+    # 处理斜体标签 <em> 和 <i>
+    result = re.sub(r'<em[^>]*>(.*?)</em>', r'*\1*', result, flags=re.DOTALL)
+    result = re.sub(r'<i[^>]*>(.*?)</i>', r'*\1*', result, flags=re.DOTALL)
     
     # 处理超链接标签 <a>
     def replace_link(match):
