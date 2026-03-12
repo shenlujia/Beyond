@@ -26,6 +26,10 @@ description: "将微信公众号HTML文章转换为Markdown格式。当输入wec
 
 - 支持标题、段落、粗体、斜体等基本格式转换
 - 支持链接和图片的转换
+- 支持彩色文本转换
+- 智能合并连续的加粗标签
+- 双源内容提取（同时支持rich_media_content和content_noencode）
+- 支持多种HTML结构（section标签和p标签）
 
 ## 示例
 
