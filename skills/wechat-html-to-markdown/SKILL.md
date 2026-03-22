@@ -1,11 +1,88 @@
 ---
 name: "wechat_html_to_markdown"
-description: "集成了两个子能力：1) download-html：从URL下载HTML文件到tmp_gen文件夹；2) 将微信公众号HTML文章转换为Markdown格式，解析author标签并将HTML文件转换为对应名称的MD文件，存储到output文件夹中的作者同名文件夹。"
+description: "集成了五个子能力：1) search-account：通过公众号名称查询公众号ID（需要auth-key鉴权）；2) fetch-articles：获取公众号文章列表（需要auth-key鉴权）；3) download-article：下载文章内容（支持HTML/Markdown/Text/JSON格式）；4) download-html：从URL下载HTML文件到tmp_gen文件夹；5) 将微信公众号HTML文章转换为Markdown格式，解析author标签并将HTML文件转换为对应名称的MD文件，存储到docs文件夹中的作者同名文件夹。"
 ---
 
 # WeChat HTML to Markdown
 
-## 子能力一：Download HTML
+## 子能力一：Search Account
+
+### 功能描述
+
+通过公众号名称查询公众号ID，需要从 https://down.mptext.top 获取 auth-key 进行鉴权。
+
+### 特点
+
+- 根据公众号名称或关键字搜索
+- 支持分页查询
+- 返回公众号的 fakeid、别名、简介等信息
+- 使用 urllib 内置库，无需额外依赖
+
+### 调用方式
+
+当用户需要查询公众号ID时，此能力将被调用。
+
+### 示例
+
+1. 用户提供公众号名称如 "12306"
+2. 技能调用 API 搜索公众号
+3. 返回匹配的公众号列表及 fakeid
+
+---
+
+## 子能力二：Fetch Articles
+
+### 功能描述
+
+获取公众号的历史文章列表，需要从 https://down.mptext.top 获取 auth-key 进行鉴权。
+
+### 特点
+
+- 根据公众号 fakeid 获取文章列表
+- 支持分页查询（begin 和 size 参数）
+- 返回文章标题、链接、作者、发布时间等信息
+- 使用 urllib 内置库，无需额外依赖
+
+### 调用方式
+
+当用户需要获取公众号文章列表时，此能力将被调用。
+
+### 示例
+
+1. 用户提供公众号 fakeid（通过 search-account 获取）
+2. 技能调用 API 获取文章列表
+3. 返回文章列表及详细信息
+
+---
+
+## 子能力三：Download Article
+
+### 功能描述
+
+下载微信公众号文章内容，支持 HTML、Markdown、Text、JSON 四种格式。
+**注意：此接口不需要 auth-key**
+
+### 特点
+
+- 支持多种输出格式（html/markdown/text/json）
+- 直接从微信公众号获取文章内容
+- 可以保存到文件或直接输出
+- 使用 urllib 内置库，无需额外依赖
+
+### 调用方式
+
+当用户需要下载微信公众号文章内容时，此能力将被调用。
+
+### 示例
+
+1. 用户提供文章链接
+2. 选择输出格式（默认为 html）
+3. 技能下载文章内容
+4. 可以选择保存到文件或直接显示
+
+---
+
+## 子能力四：Download HTML
 
 ### 功能描述
 
@@ -32,7 +109,7 @@ description: "集成了两个子能力：1) download-html：从URL下载HTML文�
 
 ---
 
-## 子能力二：WeChat HTML to Markdown
+## 子能力五：WeChat HTML to Markdown
 
 ### 功能描述
 
@@ -45,7 +122,7 @@ description: "集成了两个子能力：1) download-html：从URL下载HTML文�
 5. 从 JavaScript 代码中提取 `div class`等于`rich_media_content` 后面的 section 部分内容，记为`content`
 6. 递归解析`content`中的所有实际内容，`<p>`标签内的文本作为一段
 7. 将每个 HTML 文件转换为对应的 Markdown 文件
-8. 将转换后的 Markdown 文件保存到 output 文件夹中的 `x` 文件夹（以作者名称命名）
+8. 将转换后的 Markdown 文件保存到 docs 文件夹中的 `x` 文件夹（以作者名称命名）
 
 ### 调用方式
 
@@ -64,7 +141,76 @@ description: "集成了两个子能力：1) download-html：从URL下载HTML文�
 
 1. 将微信公众号文章的 HTML 文件放入 tmp_gen 或 raw 文件夹
 2. 输入 `wechat_html_to_markdown` 命令
-3. 转换后的 Markdown 文件会出现在 output 文件夹中的作者同名文件夹中
+3. 转换后的 Markdown 文件会出现在 docs 文件夹中的作者同名文件夹中
+
+## 模块架构
+
+代码已拆分为以下原子能力模块：
+
+### 1. wechat_account_finder.py
+- **功能**：通过公众号名称查询公众号ID
+- **主要类和函数**：
+  - `WeChatAccountFinder` - 公众号查询器类
+  - `search_account(keyword, begin, size)` - 搜索公众号
+  - `get_account_list(keyword, begin, size)` - 获取公众号列表
+  - `find_account_by_name(name)` - 根据名称精确查找
+  - `get_fakeid(name)` - 获取公众号fakeid
+  - `search_wechat_account()` - 便捷函数
+  - `get_wechat_account_fakeid()` - 便捷函数
+
+### 2. article_fetcher.py
+- **功能**：获取公众号文章列表
+- **主要类和函数**：
+  - `ArticleFetcher` - 文章列表获取器类
+  - `fetch_articles(fakeid, begin, size)` - 获取文章列表
+  - `get_all_articles(fakeid, max_count)` - 获取所有文章（支持分页）
+  - `fetch_wechat_articles()` - 便捷函数
+  - `get_all_wechat_articles()` - 便捷函数
+
+### 3. article_downloader.py
+- **功能**：下载微信公众号文章内容
+- **主要类和函数**：
+  - `ArticleDownloader` - 文章下载器类
+  - `download(url, format)` - 下载文章内容
+  - `download_html(url)` - 下载HTML格式
+  - `download_markdown(url)` - 下载Markdown格式
+  - `download_text(url)` - 下载纯文本格式
+  - `download_json(url)` - 下载JSON格式
+  - `download_wechat_article()` - 便捷函数
+  - `save_article_to_file()` - 保存文章到文件
+
+### 4. downloader.py
+- **功能**：负责从URL下载HTML文件
+- **主要函数**：
+  - `download_html(url, output_dir)` - 下载HTML文件
+  - `extract_title(html_content)` - 从HTML提取标题
+  - `sanitize_filename(url, html_content)` - 生成安全的文件名
+
+### 5. html_parser.py
+- **功能**：负责解析HTML文件，提取各种元数据和内容
+- **主要函数**：
+  - `extract_author(html_content)` - 提取作者信息
+  - `extract_images(html_content)` - 提取图片列表
+  - `get_rich_media_content(html)` - 提取rich_media_content内容
+  - `extract_content_noencode(html_content)` - 提取content_noencode内容
+  - `parse_with_stack(content)` - 使用栈解析嵌套的section标签
+
+### 6. markdown_converter.py
+- **功能**：负责将HTML内容转换为Markdown格式
+- **主要函数**：
+  - `parse_inline_elements(text)` - 解析内联元素（颜色、图片、加粗、链接等）
+  - `parse_content_to_markdown(content)` - 将内容解析为Markdown格式
+  - `merge_consecutive_bold_spans(text)` - 合并连续的加粗span标签
+
+### 7. main.py
+- **功能**：主入口文件，协调各个模块
+- **主要函数**：
+  - `process_html_file(file_path)` - 处理单个HTML文件
+  - `main_convert()` - 转换功能的主函数
+  - `main_search_account()` - 搜索公众号功能的主函数
+  - `main_fetch_articles()` - 获取文章列表功能的主函数
+  - `main_download_article()` - 下载文章功能的主函数
+  - `main()` - 主函数，根据参数选择功能
 
 ## 开发规范
 
