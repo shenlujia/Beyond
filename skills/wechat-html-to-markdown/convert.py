@@ -1,11 +1,25 @@
 import os
 import re
+import time
+from datetime import datetime
 
 def extract_author(html_content):
-    """从HTML中提取author"""
+    """从HTML中提取author（优先使用nick_name）"""
+    # 1. 优先从nick_name中提取
+    nick_name_match = re.search(r'nick_name:\s*JsDecode\([\'"]([^\'"]+)[\'"]\)', html_content)
+    if nick_name_match:
+        return nick_name_match.group(1)
+    
+    # 2. 尝试直接匹配nick_name: 'xxx'格式
+    nick_name_direct = re.search(r'nick_name:\s*[\'"]([^\'"]+)[\'"]', html_content)
+    if nick_name_direct:
+        return nick_name_direct.group(1)
+    
+    # 3. 如果没有nick_name，从meta标签中提取
     meta_author = re.search(r'<meta name="author" content="([^"]+)"', html_content)
     if meta_author:
         return meta_author.group(1)
+    
     return '未知作者'
 
 def extract_matching_brackets(text, start_pos):
@@ -493,25 +507,37 @@ def process_html_file(file_path):
     
     return author, markdown
 
+def get_timestamp_prefix():
+    """生成时间戳前缀（只到日期）"""
+    return datetime.now().strftime('%Y%m%d')
+
 def main():
+    # 支持从 raw 或 tmp_gen 文件夹读取
     raw_dir = 'raw'
+    tmp_gen_dir = 'tmp_gen'
     output_dir = 'output'
     
-    if not os.path.exists(raw_dir):
-        print(f'错误: 找不到 {raw_dir} 文件夹')
+    # 确定使用哪个目录
+    input_dir = None
+    if os.path.exists(tmp_gen_dir):
+        input_dir = tmp_gen_dir
+    elif os.path.exists(raw_dir):
+        input_dir = raw_dir
+    else:
+        print(f'错误: 找不到 {tmp_gen_dir} 或 {raw_dir} 文件夹')
         return
     
-    # 遍历raw文件夹中的HTML文件
-    html_files = [f for f in os.listdir(raw_dir) if f.endswith('.html')]
+    # 遍历文件夹中的HTML文件
+    html_files = [f for f in os.listdir(input_dir) if f.endswith('.html')]
     
     if not html_files:
-        print(f'错误: {raw_dir} 文件夹中没有HTML文件')
+        print(f'错误: {input_dir} 文件夹中没有HTML文件')
         return
     
     print(f'找到 {len(html_files)} 个HTML文件')
     
     for html_file in html_files:
-        file_path = os.path.join(raw_dir, html_file)
+        file_path = os.path.join(input_dir, html_file)
         print(f'处理: {html_file}')
         
         try:
@@ -521,9 +547,10 @@ def main():
             author_dir = os.path.join(output_dir, author)
             os.makedirs(author_dir, exist_ok=True)
             
-            # 保存Markdown文件
+            # 保存Markdown文件（带时间戳前缀）
             filename = os.path.splitext(html_file)[0]
-            md_file = os.path.join(author_dir, f'{filename}.md')
+            timestamp_prefix = get_timestamp_prefix()
+            md_file = os.path.join(author_dir, f'{timestamp_prefix}_{filename}.md')
             
             with open(md_file, 'w', encoding='utf-8') as f:
                 f.write(markdown)
