@@ -84,23 +84,19 @@ def get_fakeid(name: str) -> Optional[str]:
     return account.get('fakeid') if account else None
 
 
-def add_account(name: str, nickname: str, fakeid: str) -> bool:
+def add_account(name: str, account_info: Dict[str, Any]) -> bool:
     """
     添加或更新公众号信息
     
     Args:
         name: 公众号名称（作为键）
-        nickname: 公众号昵称
-        fakeid: 公众号ID
+        account_info: 公众号完整信息
         
     Returns:
         是否添加成功
     """
     accounts = load_accounts()
-    accounts[name] = {
-        "nickname": nickname,
-        "fakeid": fakeid
-    }
+    accounts[name] = account_info
     return save_accounts(accounts)
 
 
@@ -141,6 +137,10 @@ def print_accounts():
         print(f"  {name}:")
         print(f"    昵称: {info.get('nickname', '')}")
         print(f"    fakeid: {info.get('fakeid', '')}")
+        if info.get('alias'):
+            print(f"    别名: {info.get('alias', '')}")
+        if info.get('signature'):
+            print(f"    简介: {info.get('signature', '')}")
         print()
 
 

@@ -1,6 +1,6 @@
 ---
 name: "wechat_html_to_markdown"
-description: "集成了五个子能力：1) search-account：通过公众号名称查询公众号ID（需要auth-key鉴权）；2) fetch-articles：获取公众号文章列表（需要auth-key鉴权）；3) download-article：下载文章内容（支持HTML/Markdown/Text/JSON格式）；4) download-html：从URL下载HTML文件到tmp_gen文件夹；5) 将微信公众号HTML文章转换为Markdown格式，解析author标签并将HTML文件转换为对应名称的MD文件，存储到docs文件夹中的作者同名文件夹。"
+description: "集成了六个子能力：1) search-account：通过公众号名称查询公众号ID（需要auth-key鉴权）；2) fetch-articles：获取公众号文章列表（需要auth-key鉴权）；3) fetch-all-articles：批量获取公众号所有文章，每次获取十篇，间隔3秒调用一次，将结果合并到docs文件夹中作者对应文件夹中的articles.json（需要auth-key鉴权）；4) download-article：下载文章内容（支持HTML/Markdown/Text/JSON格式）；5) download-html：从URL下载HTML文件到tmp_gen文件夹；6) 将微信公众号HTML文章转换为Markdown格式，解析author标签并将HTML文件转换为对应名称的MD文件，存储到docs文件夹中的作者同名文件夹。"
 ---
 
 # WeChat HTML to Markdown
@@ -55,7 +55,35 @@ description: "集成了五个子能力：1) search-account：通过公众号名�
 
 ---
 
-## 子能力三：Download Article
+## 子能力三：Fetch All Articles
+
+### 功能描述
+
+批量获取公众号的所有文章，每次获取十篇，间隔3秒调用一次，将结果合并保存到docs文件夹中作者对应文件夹的articles.json文件中。需要从 https://down.mptext.top 获取 auth-key 进行鉴权。
+
+### 特点
+
+- 支持从 accounts.json 中读取已保存的公众号 fakeid
+- 可自定义每次获取的文章数量（默认10篇）
+- 可自定义调用间隔（默认3秒）
+- 自动合并所有文章并保存为 JSON 格式
+- 保存到 docs/作者名/articles.json
+- 使用 urllib 内置库，无需额外依赖
+
+### 调用方式
+
+当用户需要批量获取公众号所有文章时，此能力将被调用。
+
+### 示例
+
+1. 用户提供公众号名称如 "晚点LatePost"
+2. 技能从 accounts.json 中获取 fakeid
+3. 批量调用 API 获取所有文章（每次10篇，间隔3秒）
+4. 合并所有文章并保存到 docs/晚点LatePost/articles.json
+
+---
+
+## 子能力四：Download Article
 
 ### 功能描述
 
@@ -109,7 +137,7 @@ description: "集成了五个子能力：1) search-account：通过公众号名�
 
 ---
 
-## 子能力五：WeChat HTML to Markdown
+## 子能力六：WeChat HTML to Markdown
 
 ### 功能描述
 
@@ -164,8 +192,10 @@ description: "集成了五个子能力：1) search-account：通过公众号名�
   - `ArticleFetcher` - 文章列表获取器类
   - `fetch_articles(fakeid, begin, size)` - 获取文章列表
   - `get_all_articles(fakeid, max_count)` - 获取所有文章（支持分页）
+  - `fetch_and_save_all_articles(fakeid, author_name, batch_size, interval, output_dir)` - 批量获取所有文章并保存
   - `fetch_wechat_articles()` - 便捷函数
   - `get_all_wechat_articles()` - 便捷函数
+  - `fetch_and_save_all_wechat_articles()` - 批量获取并保存的便捷函数
 
 ### 3. article_downloader.py
 - **功能**：下载微信公众号文章内容
@@ -209,6 +239,7 @@ description: "集成了五个子能力：1) search-account：通过公众号名�
   - `main_convert()` - 转换功能的主函数
   - `main_search_account()` - 搜索公众号功能的主函数
   - `main_fetch_articles()` - 获取文章列表功能的主函数
+  - `main_fetch_all_articles()` - 批量获取所有文章并保存的主函数
   - `main_download_article()` - 下载文章功能的主函数
   - `main()` - 主函数，根据参数选择功能
 

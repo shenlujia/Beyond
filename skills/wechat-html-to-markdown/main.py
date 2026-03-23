@@ -5,8 +5,9 @@ from downloader import download_html
 from html_parser import extract_author, extract_images, get_rich_media_content, extract_content_noencode
 from markdown_converter import parse_content_to_markdown
 from wechat_account_finder import search_wechat_account
-from article_fetcher import fetch_wechat_articles
+from article_fetcher import fetch_wechat_articles, fetch_and_save_all_wechat_articles
 from article_downloader import download_wechat_article, save_article_to_file
+from accounts import get_fakeid
 
 
 def get_timestamp_prefix():
@@ -109,40 +110,67 @@ def main_convert():
 def main_search_account():
     """搜索公众号功能的主函数"""
     import sys
+    from accounts import add_account
     
     auth_key = None
     keyword = None
+    save = False
     
     if len(sys.argv) > 2:
-        if sys.argv[2] in ['--auth-key', '-k'] and len(sys.argv) > 4:
-            auth_key = sys.argv[3]
-            keyword = sys.argv[4]
-        else:
-            keyword = sys.argv[2]
-    elif len(sys.argv) > 2:
-        keyword = sys.argv[2]
+        i = 2
+        while i < len(sys.argv):
+            arg = sys.argv[i]
+            if arg in ['--auth-key', '-k'] and i + 1 < len(sys.argv):
+                auth_key = sys.argv[i + 1]
+                i += 2
+            elif arg == '--save':
+                save = True
+                i += 1
+            elif not keyword:
+                keyword = arg
+                i += 1
+            else:
+                i += 1
     
     if not keyword:
         print("使用方法:")
-        print("  python3 main.py search <公众号名称>")
-        print("  python3 main.py search --auth-key <auth-key> <公众号名称>")
-        print("  python3 main.py search -k <auth-key> <公众号名称>")
+        print("  python3 main.py search <公众号名称> [--save] [--auth-key <auth-key>]")
+        print("  python3 main.py search -k <auth-key> <公众号名称> --save")
+        print("\n选项:")
+        print("  --save              保存第一个找到的公众号到 accounts.json")
         print("\n说明: auth-key 需要从 https://down.mptext.top 获取")
         return
     
     print(f"搜索公众号: {keyword}")
     if auth_key:
         print("使用提供的 auth-key 进行鉴权")
+    if save:
+        print("将保存第一个找到的公众号")
     
     result = search_wechat_account(keyword, auth_key=auth_key)
     
     if result.get('base_resp', {}).get('ret') == 0:
+        accounts = result.get('list', [])
         print(f"找到 {result.get('total', 0)} 个公众号:")
-        for i, account in enumerate(result.get('list', []), 1):
+        for i, account in enumerate(accounts, 1):
             print(f"\n{i}. {account.get('nickname')}")
             print(f"   fakeid: {account.get('fakeid')}")
             print(f"   别名: {account.get('alias', '')}")
             print(f"   简介: {account.get('signature', '')}")
+        
+        if save and accounts:
+            first_account = accounts[0]
+            nickname = first_account.get('nickname', '')
+            account_info = {
+                'nickname': nickname,
+                'fakeid': first_account.get('fakeid', ''),
+                'alias': first_account.get('alias', ''),
+                'signature': first_account.get('signature', '')
+            }
+            if add_account(nickname, account_info):
+                print(f"\n已保存到 accounts.json: {nickname}")
+            else:
+                print(f"\n保存失败")
     else:
         print(f"查询失败: {result.get('base_resp', {}).get('err_msg', '未知错误')}")
         print("\n提示: 此接口需要 auth-key 鉴权，请访问 https://down.mptext.top 获取")
@@ -253,6 +281,75 @@ def main_download_article():
             print(f"\n下载失败: {result.get('base_resp', {}).get('err_msg', '未知错误')}")
 
 
+def main_fetch_all_articles():
+    """批量获取所有文章并保存的主函数"""
+    import sys
+    
+    auth_key = None
+    author_name = None
+    batch_size = 5
+    interval = 3.0
+    use_accounts = False
+    
+    i = 2
+    while i < len(sys.argv):
+        arg = sys.argv[i]
+        if arg in ['--auth-key', '-k'] and i + 1 < len(sys.argv):
+            auth_key = sys.argv[i + 1]
+            i += 2
+        elif arg in ['--batch', '-b'] and i + 1 < len(sys.argv):
+            batch_size = int(sys.argv[i + 1])
+            i += 2
+        elif arg in ['--interval', '-i'] and i + 1 < len(sys.argv):
+            interval = float(sys.argv[i + 1])
+            i += 2
+        elif arg == '--use-accounts':
+            use_accounts = True
+            i += 1
+        elif not author_name:
+            author_name = arg
+            i += 1
+        else:
+            i += 1
+    
+    if not author_name:
+        print("使用方法:")
+        print("  python3 main.py fetch-all-articles <公众号名称> [选项]")
+        print("\n选项:")
+        print("  --use-accounts        使用 accounts.json 中的 fakeid")
+        print("  --auth-key, -k <key>  鉴权密钥")
+        print("  --batch, -b <num>     每次获取文章数 (默认: 10)")
+        print("  --interval, -i <sec>  调用间隔秒数 (默认: 3.0)")
+        print("\n示例:")
+        print("  python3 main.py fetch-all-articles 晚点LatePost --use-accounts")
+        print("  python3 main.py fetch-all-articles 晚点LatePost --use-accounts --batch 10 --interval 3")
+        print("\n说明:")
+        print("  - 如果不使用 --use-accounts，需要先通过 search 命令获取 fakeid")
+        print("  - 或者先将公众号信息添加到 accounts.json")
+        return
+    
+    fakeid = None
+    if use_accounts:
+        fakeid = get_fakeid(author_name)
+        if not fakeid:
+            print(f"错误: 在 accounts.json 中找不到 '{author_name}' 的 fakeid")
+            print("请先使用 search 命令查询并添加到 accounts.json")
+            return
+        print(f"从 accounts.json 获取 fakeid: {fakeid}")
+    else:
+        print("请提供 fakeid 或使用 --use-accounts")
+        return
+    
+    print()
+    fetch_and_save_all_wechat_articles(
+        fakeid=fakeid,
+        author_name=author_name,
+        batch_size=batch_size,
+        interval=interval,
+        auth_key=auth_key
+    )
+
+
 def main():
     """主函数 - 根据参数选择功能"""
     import sys
@@ -267,6 +364,8 @@ def main():
             main_search_account()
         elif sys.argv[1] == 'fetch-articles':
             main_fetch_articles()
+        elif sys.argv[1] == 'fetch-all-articles':
+            main_fetch_all_articles()
         elif sys.argv[1] == 'download-article':
             main_download_article()
         elif sys.argv[1].startswith(('http://', 'https://')):
@@ -278,9 +377,10 @@ def main():
         print("使用方法:")
         print("  python3 main.py download <URL>                                    - 下载HTML文件")
         print("  python3 main.py convert                                          - 转换HTML为Markdown")
-        print("  python3 main.py search <公众号名称>                             - 搜索公众号")
-        print("  python3 main.py search --auth-key <auth-key> <公众号名称>")
+        print("  python3 main.py search <公众号名称> [--save]                     - 搜索公众号")
+        print("  python3 main.py search --auth-key <auth-key> <公众号名称> --save")
         print("  python3 main.py fetch-articles <fakeid> [begin] [size] [--auth-key <auth-key>]")
+        print("  python3 main.py fetch-all-articles <公众号> --use-accounts [选项] - 批量获取所有文章")
         print("  python3 main.py download-article <url> [format] [--save]       - 下载文章内容")
         print("\n说明: auth-key 需要从 https://down.mptext.top 获取")
 

@@ -6,6 +6,8 @@
 """
 
 import json
+import os
+import time
 import urllib.request
 import urllib.parse
 from typing import Optional, List, Dict, Any
@@ -108,6 +110,133 @@ class ArticleFetcher:
             begin += size
         
         return all_articles
+    
+    def fetch_and_save_all_articles(
+        self, 
+        fakeid: str, 
+        author_name: str,
+        batch_size: int = 5,
+        interval: float = 3.0,
+        output_dir: str = 'docs'
+    ) -> Dict[str, Any]:
+        """
+        批量获取所有文章并保存到作者对应文件夹
+        优化后的获取逻辑：
+        1. 每次只获取5篇
+        2. 每次获取成功后，与本地数据合并
+        3. 将当前的 MAX(总数-1, 0) 作为新的索引
+        
+        Args:
+            fakeid: 公众号ID
+            author_name: 作者/公众号名称
+            batch_size: 每次获取的文章数量（默认5篇）
+            interval: 每次调用间隔（秒）
+            output_dir: 输出根目录
+            
+        Returns:
+            包含所有文章的结果字典
+        """
+        author_dir = os.path.join(output_dir, author_name)
+        os.makedirs(author_dir, exist_ok=True)
+        output_file = os.path.join(author_dir, 'articles.json')
+        
+        existing_articles = []
+        existing_aids = set()
+        
+        if os.path.exists(output_file):
+            print(f'读取本地文件: {output_file}')
+            try:
+                with open(output_file, 'r', encoding='utf-8') as f:
+                    existing_data = json.load(f)
+                    existing_articles = existing_data.get('articles', [])
+                    existing_aids = {a.get('aid') for a in existing_articles if a.get('aid')}
+                    print(f'  已有 {len(existing_articles)} 篇文章')
+            except Exception as e:
+                print(f'  读取失败: {e}')
+        
+        all_articles = existing_articles.copy()
+        batch = 1
+        
+        print()
+        print(f'开始批量获取文章...')
+        print(f'  作者: {author_name}')
+        print(f'  每次获取: {batch_size} 篇')
+        print(f'  调用间隔: {interval} 秒')
+        print()
+        
+        while True:
+            begin = max(len(all_articles) - 1, 0)
+            print(f'第 {batch} 次获取 (begin={begin})...')
+            result = self.fetch_articles(fakeid, begin, batch_size)
+            
+            if result.get('base_resp', {}).get('ret') != 0:
+                print(f'  获取失败: {result.get("base_resp", {}).get("err_msg", "未知错误")}')
+                break
+            
+            articles = result.get('articles', [])
+            if not articles:
+                print('  没有更多文章了')
+                break
+            
+            new_count = 0
+            for article in articles:
+                aid = article.get('aid')
+                if aid and aid not in existing_aids:
+                    all_articles.append(article)
+                    existing_aids.add(aid)
+                    new_count += 1
+            
+            print(f'  获取到 {len(articles)} 篇，新增 {new_count} 篇，总数 {len(all_articles)} 篇')
+            
+            if len(articles) < batch_size:
+                print('  已获取全部文章')
+                break
+            
+            print(f'  等待 {interval} 秒...')
+            time.sleep(interval)
+            batch += 1
+            print()
+        
+        print()
+        print(f'共 {len(all_articles)} 篇文章')
+        
+        print()
+        print('按时间降序排序（最新文章在前）...')
+        all_articles.sort(key=lambda x: x.get('create_time', 0), reverse=True)
+        
+        print()
+        print('校验重复文章...')
+        aid_set = set()
+        duplicate_count = 0
+        unique_articles = []
+        for article in all_articles:
+            aid = article.get('aid')
+            if aid:
+                if aid not in aid_set:
+                    aid_set.add(aid)
+                    unique_articles.append(article)
+                else:
+                    duplicate_count += 1
+            else:
+                unique_articles.append(article)
+        
+        print(f'  发现 {duplicate_count} 篇重复文章')
+        print(f'  去重后共 {len(unique_articles)} 篇文章')
+        
+        article_names = [article.get('title', '') for article in unique_articles]
+        
+        result_data = {
+            'articles': unique_articles,
+            'names': article_names
+        }
+        
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(result_data, f, ensure_ascii=False, indent=2)
+        
+        print()
+        print(f'已保存到: {output_file}')
+        
+        return result_data
 
 
 def fetch_wechat_articles(
@@ -150,6 +279,34 @@ def get_all_wechat_articles(
     """
     fetcher = ArticleFetcher(auth_key)
     return fetcher.get_all_articles(fakeid, max_count)
+
+
+def fetch_and_save_all_wechat_articles(
+    fakeid: str, 
+    author_name: str,
+    batch_size: int = 10,
+    interval: float = 3.0,
+    output_dir: str = 'docs',
+    auth_key: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    便捷函数：批量获取所有文章并保存
+    
+    Args:
+        fakeid: 公众号ID
+        author_name: 作者/公众号名称
+        batch_size: 每次获取的文章数量
+        interval: 每次调用间隔（秒）
+        output_dir: 输出根目录
+        auth_key: 鉴权密钥
+        
+    Returns:
+        包含所有文章的结果字典
+    """
+    fetcher = ArticleFetcher(auth_key)
+    return fetcher.fetch_and_save_all_articles(
+        fakeid, author_name, batch_size, interval, output_dir
+    )
 
 
 if __name__ == '__main__':
