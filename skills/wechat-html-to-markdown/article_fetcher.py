@@ -226,8 +226,8 @@ class ArticleFetcher:
         article_names = [article.get('title', '') for article in unique_articles]
         
         result_data = {
-            'articles': unique_articles,
-            'names': article_names
+            'all_names': article_names,
+            'articles': unique_articles
         }
         
         with open(output_file, 'w', encoding='utf-8') as f:
