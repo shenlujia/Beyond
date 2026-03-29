@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -5,52 +6,91 @@
 """
 
 import random
+import os
+import json
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+skill_root = os.path.dirname(script_dir)
+tmp_files_dir = os.path.join(skill_root, 'tmp_files')
+if not os.path.exists(tmp_files_dir):
+    os.makedirs(tmp_files_dir)
+
+
+def _build_carry_addition_bank():
+    bank = []
+    for a in range(1, 20):
+        for b in range(1, 20):
+            total = a + b
+            if 1 <= total <= 19:
+                a_units = a % 10
+                b_units = b % 10
+                if a_units + b_units >= 10:
+                    question = "%d + %d =" % (a, b)
+                    bank.append((question, total))
+    return bank
+
+
+def _build_borrow_subtraction_bank():
+    bank = []
+    for a in range(10, 20):
+        for b in range(1, 10):
+            total = a - b
+            if 1 <= total <= 18:
+                a_units = a % 10
+                if a_units < b:
+                    question = "%d - %d =" % (a, b)
+                    bank.append((question, total))
+    return bank
+
+
+def _sample_with_probability(bank, check_func, prob=0.3):
+    while True:
+        q, a = random.choice(bank)
+        if check_func(q, a):
+            if random.random() < prob:
+                return q, a
+        else:
+            return q, a
 
 
 def generate_carry_addition():
-    while True:
-        a = random.randint(1, 18)
-        b = random.randint(1, 18)
-        total = a + b
-        if 1 <= total <= 19:
-            a_units = a % 10
-            b_units = b % 10
-            if a_units + b_units >= 10:
-                if total in (10, 11):
-                    if random.random() < 0.3:
-                        return "%d + %d =" % (a, b), total
-                    else:
-                        continue
-                else:
-                    return "%d + %d =" % (a, b), total
+    def check_func(q, a):
+        return a in (10, 11)
+
+    return _sample_with_probability(_carry_add_bank, check_func, 0.3)
 
 
 def generate_borrow_subtraction():
-    while True:
-        a = random.randint(10, 19)
-        b = random.randint(1, 9)
-        total = a - b
-        if 1 <= total <= 18:
-            a_units = a % 10
-            if a_units < b:
-                if b in (1, 2, 3):
-                    if random.random() < 0.3:
-                        return "%d - %d =" % (a, b), total
-                    else:
-                        continue
-                else:
-                    return "%d - %d =" % (a, b), total
+    def check_func(q, a):
+        parts = q.split("-")
+        b_num = int(parts[1].strip().split("=")[0].strip())
+        return b_num in (1, 2, 3)
+
+    return _sample_with_probability(_borrow_sub_bank, check_func, 0.3)
+
+
+def _sample_from_bank(bank, count):
+    bank_len = len(bank)
+    if count <= bank_len:
+        return random.sample(bank, count)
+    else:
+        result = bank.copy()
+        remaining = count - bank_len
+        for _ in range(remaining):
+            result.append(random.choice(bank))
+        return result
 
 
 def generate_20_mixed_add_sub(count=100):
-    questions = []
     half_count = count // 2
+    add_questions = _sample_from_bank(_carry_add_bank, half_count)
+    sub_questions = _sample_from_bank(_borrow_sub_bank, count - half_count)
 
-    for _ in range(half_count):
-        questions.append(generate_carry_addition())
-
-    for _ in range(count - half_count):
-        questions.append(generate_borrow_subtraction())
+    questions = []
+    for q in add_questions:
+        questions.append(q)
+    for q in sub_questions:
+        questions.append(q)
 
     random.shuffle(questions)
     return questions
@@ -227,3 +267,35 @@ def format_questions(questions, show_answers=False):
         else:
             lines.append("%d. %s" % (i, question))
     return "\n".join(lines)
+
+
+def _save_bank_to_file(bank, filename):
+    filepath = os.path.join(tmp_files_dir, filename)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(bank, f, indent=2, ensure_ascii=False)
+
+
+def _load_bank_from_file(filename):
+    filepath = os.path.join(tmp_files_dir, filename)
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return None
+
+
+def _init_banks():
+    add_bank = _load_bank_from_file('carry_add_bank.json')
+    sub_bank = _load_bank_from_file('borrow_sub_bank.json')
+    
+    if add_bank is None:
+        add_bank = _build_carry_addition_bank()
+        _save_bank_to_file(add_bank, 'carry_add_bank.json')
+    
+    if sub_bank is None:
+        sub_bank = _build_borrow_subtraction_bank()
+        _save_bank_to_file(sub_bank, 'borrow_sub_bank.json')
+    
+    return add_bank, sub_bank
+
+
+_carry_add_bank, _borrow_sub_bank = _init_banks()

@@ -29,14 +29,6 @@ try:
     for page_num in range(1, 4):
         questions = generate_20_mixed_add_sub(100)
         
-        title = doc.add_heading('20以内进退位加减法练习 第%d页' % page_num, 0)
-        title.alignment = 1
-        
-        p = doc.add_paragraph()
-        p.add_run('姓名：__________  班级：__________  日期：__________  用时：__________')
-        p.alignment = 1
-        p.add_run('\n\n')
-        
         table = doc.add_table(rows=(len(questions) + 4 - 1) // 4, cols=4)
         table.style = 'Table Grid'
         
