@@ -462,8 +462,8 @@ def batch_download_articles(author_name: str, limit: int = None):
         else:
             suffix = ''
         
-        # HTML 文件名添加 aid 后缀，MD 文件名添加 appmsgid 后缀（如果需要）
-        html_filename = f'{base_filename}_{aid}.html'
+        # HTML 和 MD 文件名都使用同样的规则：重复文章添加 appmsgid 后缀
+        html_filename = f'{base_filename}{suffix}.html'
         md_filename = f'{base_filename}{suffix}.md'
         
         html_file = os.path.join(tmp_files_dir, html_filename)

@@ -1,61 +1,38 @@
 ---
 name: "wechat_html_to_markdown"
-description: "集成了六个子能力：1) search-account：通过公众号名称查询公众号ID（需要auth-key鉴权）；2) fetch-articles：获取公众号文章列表（需要auth-key鉴权）；3) fetch-all-articles：批量获取公众号所有文章，每次获取十篇，间隔3秒调用一次，将结果合并到docs文件夹中作者对应文件夹中的articles.json（需要auth-key鉴权）；4) download-article：下载文章内容（支持HTML/Markdown/Text/JSON格式）；5) download-html：从URL下载HTML文件到tmp_gen文件夹；6) 将微信公众号HTML文章转换为Markdown格式，解析author标签并将HTML文件转换为对应名称的MD文件，存储到docs文件夹中的作者同名文件夹。"
+description: "微信公众号文章下载和转换工具，包含四个子能力：1) 根据公众号名字获取公众号id，并记录到缓存中；2) 获取特定公众号文章列表；3) 下载特定公众号文章到临时文件夹中，以 html 格式；4) 基于子能力2和子能力3，下载特定公众号所有文章到目标文件夹，以 md 格式。"
 ---
 
 # WeChat HTML to Markdown
 
-## 子能力一：Search Account
+## 子能力一：根据公众号名字获取公众号id，并记录到缓存中
 
 ### 功能描述
 
-通过公众号名称查询公众号ID，需要从 https://down.mptext.top 获取 auth-key 进行鉴权。
+通过公众号名称查询公众号ID，需要从 https://down.mptext.top 获取 auth-key 进行鉴权，并将结果保存到 accounts.json 缓存中。
 
 ### 特点
 
 - 根据公众号名称或关键字搜索
 - 支持分页查询
 - 返回公众号的 fakeid、别名、简介等信息
+- 自动将公众号信息保存到 accounts.json 缓存中
 - 使用 urllib 内置库，无需额外依赖
 
 ### 调用方式
 
-当用户需要查询公众号ID时，此能力将被调用。
+当用户需要查询并保存公众号ID时，此能力将被调用。
 
 ### 示例
 
 1. 用户提供公众号名称如 "12306"
 2. 技能调用 API 搜索公众号
-3. 返回匹配的公众号列表及 fakeid
+3. 返回匹配的公众号列表
+4. 将公众号信息保存到 accounts.json 中
 
 ---
 
-## 子能力二：Fetch Articles
-
-### 功能描述
-
-获取公众号的历史文章列表，需要从 https://down.mptext.top 获取 auth-key 进行鉴权。
-
-### 特点
-
-- 根据公众号 fakeid 获取文章列表
-- 支持分页查询（begin 和 size 参数）
-- 返回文章标题、链接、作者、发布时间等信息
-- 使用 urllib 内置库，无需额外依赖
-
-### 调用方式
-
-当用户需要获取公众号文章列表时，此能力将被调用。
-
-### 示例
-
-1. 用户提供公众号 fakeid（通过 search-account 获取）
-2. 技能调用 API 获取文章列表
-3. 返回文章列表及详细信息
-
----
-
-## 子能力三：Fetch All Articles
+## 子能力二：获取特定公众号文章列表
 
 ### 功能描述
 
@@ -89,7 +66,7 @@ description: "集成了六个子能力：1) search-account：通过公众号名�
 
 ### 调用方式
 
-当用户需要批量获取公众号所有文章时，此能力将被调用。
+当用户需要批量获取公众号所有文章列表时，此能力将被调用。
 
 ### 示例
 
@@ -101,93 +78,73 @@ description: "集成了六个子能力：1) search-account：通过公众号名�
 
 ---
 
-## 子能力四：Download Article
+## 子能力三：下载特定公众号文章到临时文件夹中，以 html 格式
 
 ### 功能描述
 
-下载微信公众号文章内容，支持 HTML、Markdown、Text、JSON 四种格式。
+下载微信公众号文章的 HTML 内容，保存到 skill 的 tmp_files 临时文件夹中。
 **注意：此接口不需要 auth-key**
 
 ### 特点
 
-- 支持多种输出格式（html/markdown/text/json）
-- 直接从微信公众号获取文章内容
-- 可以保存到文件或直接输出
+- 直接从微信公众号获取文章 HTML 内容
+- 保存到 skill 的 tmp_files 文件夹
+- 自动使用文章标题作为文件名
+- 提供下载状态反馈
 - 使用 urllib 内置库，无需额外依赖
 
 ### 调用方式
 
-当用户需要下载微信公众号文章内容时，此能力将被调用。
+当用户需要下载微信公众号文章的 HTML 版本时，此能力将被调用。
 
 ### 示例
 
-1. 用户提供文章链接
-2. 选择输出格式（默认为 html）
-3. 技能下载文章内容
-4. 可以选择保存到文件或直接显示
-
----
-
-## 子能力四：Download HTML
-
-### 功能描述
-
-从URL下载HTML文件并保存到tmp_gen文件夹。
-
-### 特点
-
-- 下载HTML内容从任何有效的URL
-- 保存文件到tmp_gen目录
-- 处理常见的URL格式（http, https）
-- 提供下载状态反馈
-- 自动从HTML内容中提取标题作为文件名
-
-### 调用方式
-
-当用户提供URL并要求下载HTML文件时，此能力将被调用。
-
-### 示例
-
-1. 用户提供URL如 "https://example.com/article"
-2. 技能下载HTML内容
-3. 保存到tmp_gen/article.html
+1. 用户提供公众号名称和文章链接
+2. 技能下载文章 HTML 内容
+3. 保存到 tmp_files/YYYYMMDD_标题_aid.html
 4. 提供确认和文件路径
 
 ---
 
-## 子能力六：WeChat HTML to Markdown
+## 子能力四：基于子能力2和子能力3，下载特定公众号所有文章到目标文件夹，以 md 格式
 
 ### 功能描述
 
-此技能用于将微信公众号文章的 HTML 文件转换为 Markdown 格式。它会：
+基于子能力二（获取文章列表）和子能力三（下载 HTML），批量下载特定公众号的所有文章，转换为 Markdown 格式并保存到目标文件夹。
 
-1. 读取 tmp_gen 或 raw 文件夹中的所有 HTML 文件
-2. HTML 文件名去除后缀后的字符串记为 `filename`
-3. 解析 HTML 文件中的 author 标签，临时存储为 `author`
-4. 提取 `img_list_indicator_wrp` 中的图片（只包含 https 开头的图片地址）
-5. 从 JavaScript 代码中提取 `div class`等于`rich_media_content` 后面的 section 部分内容，记为`content`
-6. 递归解析`content`中的所有实际内容，`<p>`标签内的文本作为一段
-7. 将每个 HTML 文件转换为对应的 Markdown 文件
-8. 将转换后的 Markdown 文件保存到 docs 文件夹中的 `x` 文件夹（以作者名称命名）
+### 工作流程
+
+1. **检查文章是否已存在**：首先检查 docs/作者名/ 文件夹中是否已存在对应的 MD 文件
+2. **检查 HTML 是否存在**：如果 MD 不存在，检查 tmp_files/ 中是否有对应的 HTML 文件
+3. **下载 HTML（如果需要）**：如果 HTML 也不存在，从微信公众号下载 HTML 到 tmp_files/
+4. **转换为 Markdown**：读取 HTML 文件，解析内容并转换为 Markdown 格式
+5. **保存结果**：将转换后的 Markdown 文件保存到 docs/作者名/ 文件夹
+
+### 特点
+
+- **智能跳过**：如果 MD 文件已存在，直接跳过
+- **增量转换**：如果 HTML 已存在，直接转换，不用重新下载
+- **重复文章处理**：支持使用 appmsgid 作为后缀处理重复标题的文章
+- **最终格式**：保存为 Markdown 格式，包含标题、作者、原文链接、内容等
+- **输出目录**：保存到 docs/作者名/ 文件夹
+- **临时文件**：HTML 保存到 skill 的 tmp_files/ 文件夹
+
+### 命名规则
+
+- **单篇文章**：`YYYYMMDD_标题.md`
+- **重复文章**：`YYYYMMDD_标题_<appmsgid>.md`（使用 appmsgid 作为后缀）
 
 ### 调用方式
 
-当用户输入 `wechat_html_to_markdown` 时，此技能会被触发，自动执行转换过程。
-
-### 转换特点
-
-- 支持标题、段落、粗体、斜体等基本格式转换
-- 支持链接和图片的转换
-- 支持彩色文本转换
-- 智能合并连续的加粗标签
-- 双源内容提取（同时支持rich_media_content和content_noencode）
-- 支持多种HTML结构（section标签和p标签）
+当用户需要批量下载并转换公众号所有文章为 Markdown 格式时，此能力将被调用。
 
 ### 示例
 
-1. 将微信公众号文章的 HTML 文件放入 tmp_gen 或 raw 文件夹
-2. 输入 `wechat_html_to_markdown` 命令
-3. 转换后的 Markdown 文件会出现在 docs 文件夹中的作者同名文件夹中
+1. 用户提供公众号名称如 "周喆吾"
+2. 技能从 docs/周喆吾/articles.json 读取文章列表
+3. 检查每篇文章是否已存在 MD 文件
+4. 对于缺失的文章，下载 HTML（如果需要）并转换为 Markdown
+5. 将所有 Markdown 文件保存到 docs/周喆吾/ 文件夹
 
 ## 模块架构
 
@@ -249,10 +206,18 @@ description: "集成了六个子能力：1) search-account：通过公众号名�
 
 ## 目录结构
 
+### 项目目录
 - `SKILL.md` - 技能主文档
 - `references/` - 存放其他参考文档（MD 文件）
 - `scripts/` - 存放所有 Python 脚本和配置文件
-- `tmp_files/` - 存放临时文件
+- `tmp_files/` - 存放中间临时文件（如批量获取的文章批次、临时 HTML 等）
+
+### 最终输出目录
+最终处理完成的文件会保存到项目根目录的 `docs/` 文件夹中：
+- `docs/<作者名>/articles.json` - 该作者的所有文章列表
+- `docs/<作者名>/all_names.json` - 该作者的所有文章标题列表
+- `docs/<作者名>/<YYYYMMDD_标题>.md` - 单篇文章的 Markdown 格式
+- `docs/<作者名>/<YYYYMMDD_标题_<appmsgid>>.md` - 重复文章的 Markdown 格式（使用 appmsgid 作为后缀）
 
 ## 开发规范
 
