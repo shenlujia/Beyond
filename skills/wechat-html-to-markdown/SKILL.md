@@ -243,8 +243,17 @@ description: "集成了六个子能力：1) search-account：通过公众号名�
   - `main_download_article()` - 下载文章功能的主函数
   - `main()` - 主函数，根据参数选择功能
 
+## 目录结构
+
+- `SKILL.md` - 技能主文档
+- `references/` - 存放其他参考文档（MD 文件）
+- `scripts/` - 存放所有 Python 脚本和配置文件
+- `tmp_files/` - 存放临时文件
+
 ## 开发规范
 
-### 临时脚本存放位置
+### 文件存放位置
 
-所有临时脚本、测试文件应存放于当前 skill 文件夹下的 `tmp_files` 子文件夹中，不要直接放在工程根目录下。
+- 非 SKILL.md 的其他 md 文件放到 `references/` 文件夹
+- 所有脚本文件放到 `scripts/` 文件夹
+- 中途产生的临时文件放到 `tmp_files/` 文件夹
