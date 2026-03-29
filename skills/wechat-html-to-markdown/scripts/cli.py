@@ -415,11 +415,30 @@ def batch_download_articles(author_name: str, limit: int = None):
     skip_count = 0
     error_count = 0
     
+    # 首先统计所有文章的文件名出现次数
+    filename_occurrences = {}
+    for article in articles:
+        is_deleted = article.get('is_deleted', False)
+        if is_deleted:
+            continue
+        title = article.get('title', '')
+        create_time = article.get('create_time', 0)
+        dt = datetime.fromtimestamp(create_time)
+        date_str = dt.strftime('%Y%m%d')
+        safe_title = ''.join(c for c in title if c.isalnum() or c in (' ', '-', '_') or '\u4e00' <= c <= '\u9fff').rstrip()
+        base_filename = f'{date_str}_{safe_title}'
+        
+        if base_filename in filename_occurrences:
+            filename_occurrences[base_filename] += 1
+        else:
+            filename_occurrences[base_filename] = 1
+    
     for i, article in enumerate(articles):
         title = article.get('title', '')
         link = article.get('link', '')
         create_time = article.get('create_time', 0)
         aid = article.get('aid', '')
+        appmsgid = article.get('appmsgid', '')
         is_deleted = article.get('is_deleted', False)
         
         if is_deleted:
@@ -436,8 +455,16 @@ def batch_download_articles(author_name: str, limit: int = None):
         date_str = dt.strftime('%Y%m%d')
         safe_title = ''.join(c for c in title if c.isalnum() or c in (' ', '-', '_') or '\u4e00' <= c <= '\u9fff').rstrip()
         base_filename = f'{date_str}_{safe_title}'
-        html_filename = f'{base_filename}.html'
-        md_filename = f'{base_filename}.md'
+        
+        # 处理重复文件名：只有当这个文件名出现超过1次时，才添加 appmsgid 后缀
+        if filename_occurrences.get(base_filename, 1) > 1:
+            suffix = f'_{appmsgid}'
+        else:
+            suffix = ''
+        
+        # HTML 文件名添加 aid 后缀，MD 文件名添加 appmsgid 后缀（如果需要）
+        html_filename = f'{base_filename}_{aid}.html'
+        md_filename = f'{base_filename}{suffix}.md'
         
         html_file = os.path.join(tmp_files_dir, html_filename)
         md_file = os.path.join(author_dir, md_filename)
