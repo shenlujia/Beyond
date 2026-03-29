@@ -225,12 +225,28 @@ def parse_content_to_markdown(content):
                 'content': match.group(1)
             })
         
+        for h_level in range(1, 7):
+            tag = f'h{h_level}'
+            prefix = '#' * h_level
+            for match in re.finditer(rf'<{tag}[^>]*>(.*?)</{tag}>', content, re.DOTALL):
+                inner_content = match.group(1)
+                parsed_inner = parse_inline_elements(inner_content)
+                if parsed_inner.strip():
+                    p_matches.append({
+                        'type': tag,
+                        'start': match.start(),
+                        'content': f'{prefix} {parsed_inner.strip()}'
+                    })
+        
         p_matches.sort(key=lambda x: x['start'])
         
         seen = set()
         for match in p_matches:
-            parsed_text = parse_inline_elements(match['content'])
-            parsed_text = parsed_text.strip()
+            if match['type'].startswith('h'):
+                parsed_text = match['content']
+            else:
+                parsed_text = parse_inline_elements(match['content'])
+                parsed_text = parsed_text.strip()
             if parsed_text and parsed_text not in seen:
                 seen.add(parsed_text)
                 paragraphs.append(parsed_text)

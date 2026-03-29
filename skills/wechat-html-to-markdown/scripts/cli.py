@@ -14,7 +14,7 @@ from datetime import datetime
 from api_client import APIClient
 from accounts import load_accounts, get_account, get_fakeid, add_account, save_accounts
 from downloader import download_html
-from html_parser import extract_author, extract_images, get_rich_media_content, extract_content_noencode
+from html_parser import extract_author, extract_images, extract_original_url, get_rich_media_content, extract_content_noencode
 from markdown_converter import parse_content_to_markdown
 
 
@@ -54,6 +54,7 @@ def process_html_file(file_path):
     
     author = extract_author(html_content)
     images = extract_images(html_content)
+    original_url = extract_original_url(html_content)
     
     content1 = get_rich_media_content(html_content)
     content2 = extract_content_noencode(html_content)
@@ -77,6 +78,9 @@ def process_html_file(file_path):
     
     markdown = f'# {filename}\n\n'
     markdown += f'作者：{author}\n\n'
+    
+    if original_url:
+        markdown += f'[原文链接]({original_url})\n\n'
     
     if is_gallery_article:
         for img_url in images:

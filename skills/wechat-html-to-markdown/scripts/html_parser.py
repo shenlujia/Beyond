@@ -1,6 +1,15 @@
 import re
 
 
+def extract_original_url(html_content):
+    """从HTML中提取原文链接"""
+    og_url_match = re.search(r'<meta property="og:url" content="([^"]+)"', html_content)
+    if og_url_match:
+        return og_url_match.group(1)
+    
+    return None
+
+
 def extract_author(html_content):
     """从HTML中提取author（优先使用nick_name）"""
     nick_name_match = re.search(r'nick_name:\s*JsDecode\([\'"]([^\'"]+)[\'"]\)', html_content)
