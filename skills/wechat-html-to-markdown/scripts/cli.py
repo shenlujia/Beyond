@@ -90,7 +90,14 @@ def process_html_file(file_path):
 def convert_html_to_markdown():
     """转换功能的主函数"""
     skill_root = os.path.dirname(os.path.dirname(__file__))
-    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    # 当前脚本在 /Users/zzz/Downloads/Beyond/skills/wechat-html-to-markdown/scripts/...
+    # 向上 4 层到 /Users/zzz/Downloads/Beyond
+    path = os.path.abspath(__file__)
+    for _ in range(4):
+        path = os.path.dirname(path)
+    # 现在 path 是 /Users/zzz/Downloads/Beyond
+    # 加上 ai_workspace 得到 project_root
+    project_root = os.path.join(path, 'ai_workspace')
     raw_dir = os.path.join(skill_root, 'raw')
     tmp_gen_dir = os.path.join(skill_root, 'tmp_files')
     output_dir = os.path.join(project_root, 'docs')
@@ -203,11 +210,12 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     批量获取所有文章 - 优化版本
     
     优化逻辑：
-    1. 第一次调用优先拉取最新文章列表，即索引为0，文章数5
-    2. 接口返回数据，不要直接写到本地缓存，应该先记到数据结构X
-    3. 如果X与本地缓存没有交集，则下次接口调用 索引 = X数量-1
-    4. 如果X与本地缓存有交集，按顺序合并X与本地缓存，最新内容放最上面，下次接口调用 索引 = X数量-1
-    5. 不断重复，直到文章列表下载完成
+    1. 下载列表期间，不要写入目标文件 articles.json，只有完全下载完成后，才写入 articles.json
+    2. 首先读取本地缓存 articles.json 文件中的 articles，变成一个字典 Y_dict，key 是 aid，value 是文章数据
+    3. 索引从0开始，每次下载数=5，下载成功后记为 X，并按照 articles.json 的生成逻辑记录到 skill 文件夹中的 tmp_files 文件夹中，用于数据回溯
+    4. 如果 X 中的数据包含 Y_dict 中的数据，将 Y 合并到 X
+    5. 新的索引 = X中的文章数-1
+    6. 持续下载直至下载完成，此时写入到最终的目录：项目目录中的 articles.json 文件
     """
     fakeid = None
     if use_accounts:
@@ -222,30 +230,44 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     
     client = APIClient(auth_key)
     
-    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-    output_dir = os.path.join(project_root, 'docs')
-    author_dir = os.path.join(output_dir, author_name)
-    os.makedirs(author_dir, exist_ok=True)
-    output_file = os.path.join(author_dir, 'articles.json')
+    # 当前脚本在 /Users/zzz/Downloads/Beyond/skills/wechat-html-to-markdown/scripts/...
+    # 向上 4 层到 /Users/zzz/Downloads/Beyond
+    path = os.path.abspath(__file__)
+    for _ in range(4):
+        path = os.path.dirname(path)
+    # 现在 path 是 /Users/zzz/Downloads/Beyond
+    # 加上 ai_workspace 得到 project_root
+    project_root = os.path.join(path, 'ai_workspace')
+    skill_root = os.path.dirname(os.path.dirname(__file__))
     
-    existing_articles = []
-    existing_aids = set()
+    final_output_dir = os.path.join(project_root, 'docs')
+    final_author_dir = os.path.join(final_output_dir, author_name)
+    os.makedirs(final_author_dir, exist_ok=True)
+    final_output_file = os.path.join(final_author_dir, 'articles.json')
     
-    if os.path.exists(output_file):
-        print(f'读取本地文件: {output_file}')
+    tmp_output_dir = os.path.join(skill_root, 'tmp_files')
+    os.makedirs(tmp_output_dir, exist_ok=True)
+    
+    Y_dict = {}
+    
+    if os.path.exists(final_output_file):
+        print(f'读取本地文件: {final_output_file}')
         try:
-            with open(output_file, 'r', encoding='utf-8') as f:
+            with open(final_output_file, 'r', encoding='utf-8') as f:
                 existing_data = json.load(f)
-                existing_articles = existing_data.get('articles', [])
-                existing_aids = {a.get('aid') for a in existing_articles if a.get('aid')}
-                print(f'  已有 {len(existing_articles)} 篇文章')
+                articles = existing_data.get('articles', [])
+                for article in articles:
+                    aid = article.get('aid')
+                    if aid:
+                        Y_dict[aid] = article
+                print(f'  本地缓存 Y 有 {len(Y_dict)} 篇文章')
         except Exception as e:
             print(f'  读取失败: {e}')
     
-    data_x = []
-    data_x_aids = set()
+    X_dict = {}
     batch = 1
     begin = 0
+    has_merged_Y = False
     
     print()
     print(f'开始批量获取文章...')
@@ -274,31 +296,49 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
         
         print(f'  获取到 {len(articles)} 篇')
         
-        has_intersection = False
         for article in articles:
             aid = article.get('aid')
-            if aid and aid in existing_aids:
-                has_intersection = True
-                break
+            if aid:
+                X_dict[aid] = article
         
-        if has_intersection:
-            print('  检测到与本地缓存有交集，开始合并...')
-        else:
-            print('  未检测到与本地缓存的交集')
+        print(f'  数据结构X当前数量: {len(X_dict)} 篇')
         
-        for article in articles:
-            aid = article.get('aid')
-            if aid and aid not in data_x_aids:
-                data_x.append(article)
-                data_x_aids.add(aid)
+        if not has_merged_Y and Y_dict:
+            has_Y_intersection = False
+            print(f'  检查是否与本地缓存有交集...')
+            for article in articles:
+                aid = article.get('aid')
+                if aid:
+                    print(f'    检查 aid: {aid}')
+                    if aid in Y_dict:
+                        print(f'      ✓ 找到交集！')
+                        has_Y_intersection = True
+                        break
+            
+            if has_Y_intersection:
+                print('  检测到X包含Y中的数据，开始合并Y到X...')
+                for aid, article in Y_dict.items():
+                    if aid not in X_dict:
+                        X_dict[aid] = article
+                has_merged_Y = True
+                print(f'  合并后数据结构X数量: {len(X_dict)} 篇')
+            else:
+                print(f'  未检测到与本地缓存的交集')
         
-        print(f'  数据结构X当前数量: {len(data_x)} 篇')
+        X = list(X_dict.values())
+        tmp_file = os.path.join(tmp_output_dir, f'articles_batch_{batch}.json')
+        tmp_data = {
+            'articles': X
+        }
+        with open(tmp_file, 'w', encoding='utf-8') as f:
+            json.dump(tmp_data, f, ensure_ascii=False, indent=2)
+        print(f'  已保存回溯文件: {tmp_file}')
         
         if len(articles) < batch_size:
             print('  已获取全部文章')
             break
         
-        begin = len(data_x) - 1
+        begin = len(X_dict) - 1
         print(f'  下次调用索引: {begin}')
         print(f'  等待 {interval} 秒...')
         time.sleep(interval)
@@ -306,42 +346,22 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
         print()
     
     print()
-    print('合并数据结构X与本地缓存...')
+    print(f'最终数据结构X共 {len(X_dict)} 篇文章')
     
-    merged_articles = []
-    merged_aids = set()
-    
-    for article in data_x:
-        aid = article.get('aid')
-        if aid and aid not in merged_aids:
-            merged_articles.append(article)
-            merged_aids.add(aid)
-    
-    for article in existing_articles:
-        aid = article.get('aid')
-        if aid and aid not in merged_aids:
-            merged_articles.append(article)
-            merged_aids.add(aid)
-    
-    print()
-    print(f'合并后共 {len(merged_articles)} 篇文章')
-    
+    X = list(X_dict.values())
     print()
     print('按时间降序排序（最新文章在前）...')
-    merged_articles.sort(key=lambda x: x.get('create_time', 0), reverse=True)
-    
-    article_names = [article.get('title', '') for article in merged_articles]
+    X.sort(key=lambda x: x.get('create_time', 0), reverse=True)
     
     result_data = {
-        'all_names': article_names,
-        'articles': merged_articles
+        'articles': X
     }
     
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(final_output_file, 'w', encoding='utf-8') as f:
         json.dump(result_data, f, ensure_ascii=False, indent=2)
     
     print()
-    print(f'已保存到: {output_file}')
+    print(f'已保存到: {final_output_file}')
 
 
 def download_single_article(url: str, format: str = 'html', save: bool = False):
