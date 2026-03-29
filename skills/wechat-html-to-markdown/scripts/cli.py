@@ -362,6 +362,13 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     
     print()
     print(f'已保存到: {final_output_file}')
+    
+    all_names_file = os.path.join(final_author_dir, 'all_names.json')
+    all_names = [article.get('title', '') for article in X]
+    with open(all_names_file, 'w', encoding='utf-8') as f:
+        json.dump(all_names, f, ensure_ascii=False, indent=2)
+    
+    print(f'已保存文章列表到: {all_names_file}')
 
 
 def download_single_article(url: str, format: str = 'html', save: bool = False):
