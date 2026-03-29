@@ -51,7 +51,17 @@ class APIClient:
             
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 data = response.read().decode('utf-8')
-                return json.loads(data)
+                result = json.loads(data)
+                
+                base_resp = result.get('base_resp', {})
+                ret = base_resp.get('ret', 0)
+                err_msg = base_resp.get('err_msg', '')
+                
+                if ret != 0:
+                    if '认证' in err_msg or 'auth' in err_msg.lower() or 'token' in err_msg.lower():
+                        result['base_resp']['is_auth_error'] = True
+                
+                return result
         except Exception as e:
             return {
                 'base_resp': {

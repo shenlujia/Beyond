@@ -18,6 +18,27 @@ from html_parser import extract_author, extract_images, get_rich_media_content, 
 from markdown_converter import parse_content_to_markdown
 
 
+def print_auth_error_help():
+    """打印认证错误帮助信息"""
+    print()
+    print("=" * 60)
+    print("⚠️  认证信息无效或已过期")
+    print("=" * 60)
+    print()
+    print("请按以下步骤获取新的 auth-key:")
+    print()
+    print("1. 访问: https://down.mptext.top")
+    print("2. 注册/登录账号")
+    print("3. 获取新的 auth-key")
+    print("4. 使用 --auth-key 参数重新运行命令")
+    print()
+    print("示例:")
+    print("  python3 cli.py search <公众号名称> --auth-key <新的auth-key> --save")
+    print("  python3 cli.py fetch-all-articles <公众号> --use-accounts --auth-key <新的auth-key>")
+    print("=" * 60)
+    print()
+
+
 def get_timestamp_prefix():
     """生成时间戳前缀（只到日期）"""
     return datetime.now().strftime('%Y%m%d')
@@ -68,9 +89,10 @@ def process_html_file(file_path):
 
 def convert_html_to_markdown():
     """转换功能的主函数"""
-    raw_dir = 'raw'
-    tmp_gen_dir = 'tmp_gen'
-    output_dir = 'docs'
+    skill_root = os.path.dirname(os.path.dirname(__file__))
+    raw_dir = os.path.join(skill_root, 'raw')
+    tmp_gen_dir = os.path.join(skill_root, 'tmp_files')
+    output_dir = os.path.join(skill_root, 'docs')
     
     input_dir = None
     if os.path.exists(tmp_gen_dir):
@@ -120,7 +142,12 @@ def search_accounts(keyword: str, auth_key: str = None, save: bool = False):
     client = APIClient(auth_key)
     result = client.search_account(keyword)
     
-    if result.get('base_resp', {}).get('ret') == 0:
+    base_resp = result.get('base_resp', {})
+    if base_resp.get('is_auth_error', False):
+        print_auth_error_help()
+        return
+    
+    if base_resp.get('ret') == 0:
         accounts_list = result.get('list', [])
         print(f"找到 {result.get('total', 0)} 个公众号:")
         for i, account in enumerate(accounts_list, 1):
@@ -143,7 +170,7 @@ def search_accounts(keyword: str, auth_key: str = None, save: bool = False):
             else:
                 print(f"\n保存失败")
     else:
-        print(f"查询失败: {result.get('base_resp', {}).get('err_msg', '未知错误')}")
+        print(f"查询失败: {base_resp.get('err_msg', '未知错误')}")
 
 
 def fetch_article_list(fakeid: str, begin: int = 0, size: int = 5, auth_key: str = None):
@@ -151,7 +178,12 @@ def fetch_article_list(fakeid: str, begin: int = 0, size: int = 5, auth_key: str
     client = APIClient(auth_key)
     result = client.fetch_articles(fakeid, begin, size)
     
-    if result.get('base_resp', {}).get('ret') == 0:
+    base_resp = result.get('base_resp', {})
+    if base_resp.get('is_auth_error', False):
+        print_auth_error_help()
+        return
+    
+    if base_resp.get('ret') == 0:
         articles = result.get('articles', [])
         print(f"\n找到 {len(articles)} 篇文章:")
         for i, article in enumerate(articles, 1):
@@ -162,11 +194,20 @@ def fetch_article_list(fakeid: str, begin: int = 0, size: int = 5, auth_key: str
             if create_time:
                 print(f"   时间: {datetime.fromtimestamp(create_time)}")
     else:
-        print(f"\n获取失败: {result.get('base_resp', {}).get('err_msg', '未知错误')}")
+        print(f"\n获取失败: {base_resp.get('err_msg', '未知错误')}")
 
 
-def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: str = None, batch_size: int = 10, interval: float = 3.0):
-    """批量获取所有文章"""
+def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: str = None, batch_size: int = 5, interval: float = 3.0):
+    """
+    批量获取所有文章 - 优化版本
+    
+    优化逻辑：
+    1. 第一次调用优先拉取最新文章列表，即索引为0，文章数5
+    2. 接口返回数据，不要直接写到本地缓存，应该先记到数据结构X
+    3. 如果X与本地缓存没有交集，则下次接口调用 索引 = X数量-1
+    4. 如果X与本地缓存有交集，按顺序合并X与本地缓存，最新内容放最上面，下次接口调用 索引 = X数量-1
+    5. 不断重复，直到文章列表下载完成
+    """
     fakeid = None
     if use_accounts:
         fakeid = get_fakeid(author_name)
@@ -180,7 +221,8 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     
     client = APIClient(auth_key)
     
-    output_dir = 'docs'
+    skill_root = os.path.dirname(os.path.dirname(__file__))
+    output_dir = os.path.join(skill_root, 'docs')
     author_dir = os.path.join(output_dir, author_name)
     os.makedirs(author_dir, exist_ok=True)
     output_file = os.path.join(author_dir, 'articles.json')
@@ -199,8 +241,10 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
         except Exception as e:
             print(f'  读取失败: {e}')
     
-    all_articles = existing_articles.copy()
+    data_x = []
+    data_x_aids = set()
     batch = 1
+    begin = 0
     
     print()
     print(f'开始批量获取文章...')
@@ -210,12 +254,16 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     print()
     
     while True:
-        begin = max(len(all_articles) - 1, 0)
         print(f'第 {batch} 次获取 (begin={begin})...')
         result = client.fetch_articles(fakeid, begin, batch_size)
         
-        if result.get('base_resp', {}).get('ret') != 0:
-            print(f'  获取失败: {result.get("base_resp", {}).get("err_msg", "未知错误")}')
+        base_resp = result.get('base_resp', {})
+        if base_resp.get('is_auth_error', False):
+            print_auth_error_help()
+            return
+        
+        if base_resp.get('ret') != 0:
+            print(f'  获取失败: {base_resp.get("err_msg", "未知错误")}')
             break
         
         articles = result.get('articles', [])
@@ -223,37 +271,69 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
             print('  没有更多文章了')
             break
         
-        new_count = 0
+        print(f'  获取到 {len(articles)} 篇')
+        
+        has_intersection = False
         for article in articles:
             aid = article.get('aid')
-            if aid and aid not in existing_aids:
-                all_articles.append(article)
-                existing_aids.add(aid)
-                new_count += 1
+            if aid and aid in existing_aids:
+                has_intersection = True
+                break
         
-        print(f'  获取到 {len(articles)} 篇，新增 {new_count} 篇，总数 {len(all_articles)} 篇')
+        if has_intersection:
+            print('  检测到与本地缓存有交集，开始合并...')
+        else:
+            print('  未检测到与本地缓存的交集')
+        
+        for article in articles:
+            aid = article.get('aid')
+            if aid and aid not in data_x_aids:
+                data_x.append(article)
+                data_x_aids.add(aid)
+        
+        print(f'  数据结构X当前数量: {len(data_x)} 篇')
         
         if len(articles) < batch_size:
             print('  已获取全部文章')
             break
         
+        begin = len(data_x) - 1
+        print(f'  下次调用索引: {begin}')
         print(f'  等待 {interval} 秒...')
         time.sleep(interval)
         batch += 1
         print()
     
     print()
-    print(f'共 {len(all_articles)} 篇文章')
+    print('合并数据结构X与本地缓存...')
+    
+    merged_articles = []
+    merged_aids = set()
+    
+    for article in data_x:
+        aid = article.get('aid')
+        if aid and aid not in merged_aids:
+            merged_articles.append(article)
+            merged_aids.add(aid)
+    
+    for article in existing_articles:
+        aid = article.get('aid')
+        if aid and aid not in merged_aids:
+            merged_articles.append(article)
+            merged_aids.add(aid)
+    
+    print()
+    print(f'合并后共 {len(merged_articles)} 篇文章')
     
     print()
     print('按时间降序排序（最新文章在前）...')
-    all_articles.sort(key=lambda x: x.get('create_time', 0), reverse=True)
+    merged_articles.sort(key=lambda x: x.get('create_time', 0), reverse=True)
     
-    article_names = [article.get('title', '') for article in all_articles]
+    article_names = [article.get('title', '') for article in merged_articles]
     
     result_data = {
         'all_names': article_names,
-        'articles': all_articles
+        'articles': merged_articles
     }
     
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -270,7 +350,8 @@ def download_single_article(url: str, format: str = 'html', save: bool = False):
     
     if result.get('base_resp', {}).get('ret') == 0:
         if save:
-            output_dir = 'tmp_gen'
+            skill_root = os.path.dirname(os.path.dirname(__file__))
+            output_dir = os.path.join(skill_root, 'tmp_files')
             os.makedirs(output_dir, exist_ok=True)
             
             content = result.get('content', '')

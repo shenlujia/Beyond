@@ -10,7 +10,7 @@ import json
 import os
 from typing import Dict, Optional, Any
 
-ACCOUNTS_FILE = os.path.join(os.path.dirname(__file__), 'accounts.json')
+ACCOUNTS_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'references', 'accounts.json')
 
 DEFAULT_ACCOUNTS = {
     "晚点LatePost": {
