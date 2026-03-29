@@ -11,13 +11,13 @@ description: "下载 HTML、解析 HTML 到 JSON 缓存、合并 JSON 为 TXT �
 
 ### 1. 下载 HTML
 - 如果没有额外描述，只下载当前链接
-- 如果加了描述需要下载完整文章或所有页码，则下载所有关联的 HTML
+- 如果加了描述需要下载完整文章、下载全文或所有页码，则下载所有关联的 HTML
 - 支持自动检测总页数
 - 文件命名规则：`{tid}_{page:06d}.html`（如 `7194307_000001.html`）
 - 多页下载时，页面之间有 1 秒等待间隔
 - **Cookie 自动保存**：首次使用时通过 `--cookies` 传入，后续自动从 `tmp_files/cookie.txt` 读取
 - **本地缓存**：如果 HTML 文件已存在，自动跳过下载
-- **参数校验**：多页下载时链接必须包含 `toread` 参数
+- **参数校验**：所有下载链接必须包含 `toread` 参数
 
 ### 2. 解析 HTML
 - 解析 HTML 到 caches 中
@@ -29,6 +29,11 @@ description: "下载 HTML、解析 HTML 到 JSON 缓存、合并 JSON 为 TXT �
 - 将 JSON 合并为文章 TXT
 - 按标题合并，相同标题的文章合并到同一个 TXT
 - 自动去重
+- **最终文件名处理**：
+  - 如果标题包含空格，用第一个空格作为分割符拆为 A 和 B
+  - 且 A 第一个字是 `[`，最后一个字是 `]`
+  - 且 `[]` 中间是四个字
+  - 那么最终的标题应该是 B（例如 `[現代奇幻] 文章名` -> `文章名.txt`、`[現代奇幻] 文章名 更多内容` -> `文章名 更多内容.txt`）
 - TXT 文件名即标题
 
 ## 使用方法
@@ -36,8 +41,8 @@ description: "下载 HTML、解析 HTML 到 JSON 缓存、合并 JSON 为 TXT �
 ### 1. 下载 HTML
 
 ```bash
-# 单文件下载
-python3 scripts/download_html.py --single --url "https://cb.u97kxr.info/htm_data/2603/20/7194178.html"
+# 单文件下载（链接必须包含 toread）
+python3 scripts/download_html.py --single --url "https://cb.u97kxr.info/read.php?tid=7194307&toread=2&page=1"
 
 # 多页下载（自动检测总页数，首次使用需要传入 Cookie）
 python3 scripts/download_html.py --url "https://cb.u97kxr.info/read.php?tid=7194307&toread=2&page={}" --cookies "your_cookies"
@@ -125,6 +130,7 @@ python3 scripts/main.py all --input htmls --cache caches --output output
   - `normalize_text(text)` - 规范化文本
   - `parse_html_to_structured(html)` - 将 HTML 解析为结构化数据
   - `sanitize_filename(title)` - 生成安全的文件名
+  - `get_final_title(title)` - 获取最终标题（处理 `[四个字] 标题` 格式）
 
 ### 3. scripts/main.py
 - **功能**：主入口文件，解析、缓存和合并文章

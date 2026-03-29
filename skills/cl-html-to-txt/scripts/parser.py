@@ -314,8 +314,8 @@ def get_final_title(title: str) -> str:
     获取最终标题，如果符合特定格式则使用 B 部分
     
     规则：
-    - 如果中间包含一个空格且只包含一个
-    - 用空格作为分割符拆为 A 和 B
+    - 如果包含空格
+    - 用第一个空格作为分割符拆为 A 和 B
     - 且 A 第一个字是 [，最后一个字是 ]
     - 且 [] 中间是四个字
     - 那么最终的标题应该是 B
@@ -326,10 +326,10 @@ def get_final_title(title: str) -> str:
     Returns:
         最终标题
     """
-    parts = title.split(' ')
-    if len(parts) == 2:
-        part_a = parts[0]
-        part_b = parts[1]
+    first_space_index = title.find(' ')
+    if first_space_index != -1:
+        part_a = title[:first_space_index]
+        part_b = title[first_space_index + 1:]
         if part_a.startswith('[') and part_a.endswith(']'):
             middle_part = part_a[1:-1]
             if len(middle_part) == 4:

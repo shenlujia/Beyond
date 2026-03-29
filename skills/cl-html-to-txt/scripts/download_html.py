@@ -44,6 +44,11 @@ def extract_filename_from_url(url: str) -> str:
     filename_match = re.search(r'/([^/]+\.html?)$', url, re.IGNORECASE)
     if filename_match:
         return filename_match.group(1)
+    
+    tid_match = re.search(r'[?&]tid=(\d+)', url)
+    if tid_match:
+        return f"{tid_match.group(1)}.html"
+    
     return 'downloaded.html'
 
 
@@ -201,7 +206,7 @@ def main():
     
     args = parser.parse_args()
     
-    if not args.single and 'toread' not in args.url:
+    if 'toread' not in args.url:
         print("错误: 链接必须包含 toread 参数")
         return 1
     
