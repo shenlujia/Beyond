@@ -136,6 +136,8 @@ def parse_inline_elements(text):
         
         merged = False
         for i in range(0, len(bold_positions) - 2, 2):
+            if i + 3 >= len(bold_positions):
+                break
             current_end = bold_positions[i + 1] + 2
             next_start = bold_positions[i + 2]
             

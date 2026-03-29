@@ -375,6 +375,126 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     print(f'已保存文章列表到: {all_names_file}')
 
 
+def batch_download_articles(author_name: str, limit: int = None):
+    """
+    解析 articles.json 并批量下载所有文章
+    1. 如果本地有对应文章，不用下载 HTML 直接解析为 MD
+    2. 如果本地已经有 MD 文档，不用重新生成
+    """
+    skill_root = os.path.dirname(os.path.dirname(__file__))
+    path = os.path.abspath(__file__)
+    for _ in range(4):
+        path = os.path.dirname(path)
+    project_root = os.path.join(path, 'ai_workspace')
+    
+    docs_dir = os.path.join(project_root, 'docs')
+    author_dir = os.path.join(docs_dir, author_name)
+    tmp_files_dir = os.path.join(skill_root, 'tmp_files')
+    
+    if not os.path.exists(author_dir):
+        print(f'错误: 找不到作者文件夹 {author_dir}')
+        return
+    
+    articles_file = os.path.join(author_dir, 'articles.json')
+    if not os.path.exists(articles_file):
+        print(f'错误: 找不到 articles.json 文件 {articles_file}')
+        return
+    
+    with open(articles_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        articles = data.get('articles', [])
+    
+    if limit is not None and limit > 0:
+        articles = articles[:limit]
+        print(f'限制下载前 {limit} 篇文章')
+    
+    print(f'找到 {len(articles)} 篇文章')
+    print()
+    
+    success_count = 0
+    skip_count = 0
+    error_count = 0
+    
+    for i, article in enumerate(articles):
+        title = article.get('title', '')
+        link = article.get('link', '')
+        create_time = article.get('create_time', 0)
+        aid = article.get('aid', '')
+        is_deleted = article.get('is_deleted', False)
+        
+        if is_deleted:
+            print(f'[{i+1}/{len(articles)}] 跳过: 已删除 - {title}')
+            skip_count += 1
+            continue
+        
+        if not link:
+            print(f'[{i+1}/{len(articles)}] 跳过: 没有链接 - {title}')
+            error_count += 1
+            continue
+        
+        dt = datetime.fromtimestamp(create_time)
+        date_str = dt.strftime('%Y%m%d')
+        safe_title = ''.join(c for c in title if c.isalnum() or c in (' ', '-', '_') or '\u4e00' <= c <= '\u9fff').rstrip()
+        base_filename = f'{date_str}_{safe_title}'
+        html_filename = f'{base_filename}.html'
+        md_filename = f'{base_filename}.md'
+        
+        html_file = os.path.join(tmp_files_dir, html_filename)
+        md_file = os.path.join(author_dir, md_filename)
+        
+        if os.path.exists(md_file):
+            print(f'[{i+1}/{len(articles)}] 跳过: MD 已存在 - {title}')
+            skip_count += 1
+            continue
+        
+        if os.path.exists(html_file):
+            print(f'[{i+1}/{len(articles)}] 解析现有 HTML: {title}')
+        else:
+            print(f'[{i+1}/{len(articles)}] 下载: {title}')
+            try:
+                import urllib.request
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+                req = urllib.request.Request(link, headers=headers)
+                
+                with urllib.request.urlopen(req, timeout=30) as response:
+                    html_content = response.read()
+                    with open(html_file, 'wb') as f:
+                        f.write(html_content)
+                print(f'  下载成功')
+                
+                if i < len(articles) - 1:
+                    print(f'  等待 3 秒...')
+                    time.sleep(3)
+            except Exception as e:
+                print(f'  错误: 下载失败 - {e}')
+                import traceback
+                traceback.print_exc()
+                error_count += 1
+                continue
+        
+        try:
+            author, markdown = process_html_file(html_file)
+            with open(md_file, 'w', encoding='utf-8') as f:
+                f.write(markdown)
+            print(f'  成功: {md_file}')
+            success_count += 1
+        except Exception as e:
+            print(f'  错误: 转换失败 - {e}')
+            import traceback
+            traceback.print_exc()
+            error_count += 1
+    
+    print()
+    print('='*60)
+    print(f'完成！')
+    print(f'  成功: {success_count}')
+    print(f'  跳过: {skip_count}')
+    print(f'  失败: {error_count}')
+    print('='*60)
+
+
 def download_single_article(url: str, format: str = 'html', save: bool = False):
     """下载单篇文章"""
     client = APIClient()
@@ -417,6 +537,7 @@ def print_usage():
     print("  python3 cli.py fetch-articles <fakeid> [begin] [size] [--auth-key <auth-key>]")
     print("  python3 cli.py fetch-all-articles <公众号> --use-accounts [选项] - 批量获取所有文章")
     print("  python3 cli.py download-article <url> [format] [--save]       - 下载文章内容")
+    print("  python3 cli.py batch-download <公众号> [--limit <数量>]         - 批量下载所有文章")
     print("\n说明: auth-key 需要从 https://down.mptext.top 获取")
 
 
@@ -532,6 +653,24 @@ def main():
             download_single_article(url, format, save)
         else:
             print("请提供文章URL")
+    elif cmd == 'batch-download':
+        author_name = None
+        limit = None
+        i = 2
+        while i < len(sys.argv):
+            arg = sys.argv[i]
+            if arg == '--limit' and i + 1 < len(sys.argv):
+                limit = int(sys.argv[i + 1])
+                i += 2
+            elif not author_name:
+                author_name = arg
+                i += 1
+            else:
+                i += 1
+        if author_name:
+            batch_download_articles(author_name, limit)
+        else:
+            print("请提供公众号名称")
     elif cmd.startswith(('http://', 'https://')):
         download_html(cmd)
     else:
