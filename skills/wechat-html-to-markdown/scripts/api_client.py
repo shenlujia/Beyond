@@ -9,7 +9,14 @@ import json
 import urllib.request
 import urllib.parse
 from typing import Optional, Dict, Any, List
-from config import DEFAULT_AUTH_KEY, BASE_URL_ACCOUNT, BASE_URL_ARTICLE, BASE_URL_DOWNLOAD
+from config import (
+    DEFAULT_AUTH_KEY,
+    BASE_URL_ACCOUNT,
+    BASE_URL_ARTICLE,
+    BASE_URL_DOWNLOAD,
+    get_stored_auth_key,
+    save_auth_key
+)
 
 
 class APIClient:
@@ -24,7 +31,12 @@ class APIClient:
         Args:
             auth_key: 鉴权密钥，从 https://down.mptext.top 获取
         """
-        self.auth_key = auth_key if auth_key else DEFAULT_AUTH_KEY
+        if auth_key:
+            self.auth_key = auth_key
+            save_auth_key(auth_key)
+        else:
+            self.auth_key = get_stored_auth_key()
+        
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }

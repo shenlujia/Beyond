@@ -90,9 +90,10 @@ def process_html_file(file_path):
 def convert_html_to_markdown():
     """转换功能的主函数"""
     skill_root = os.path.dirname(os.path.dirname(__file__))
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
     raw_dir = os.path.join(skill_root, 'raw')
     tmp_gen_dir = os.path.join(skill_root, 'tmp_files')
-    output_dir = os.path.join(skill_root, 'docs')
+    output_dir = os.path.join(project_root, 'docs')
     
     input_dir = None
     if os.path.exists(tmp_gen_dir):
@@ -221,8 +222,8 @@ def fetch_all_articles(author_name: str, use_accounts: bool = False, auth_key: s
     
     client = APIClient(auth_key)
     
-    skill_root = os.path.dirname(os.path.dirname(__file__))
-    output_dir = os.path.join(skill_root, 'docs')
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    output_dir = os.path.join(project_root, 'docs')
     author_dir = os.path.join(output_dir, author_name)
     os.makedirs(author_dir, exist_ok=True)
     output_file = os.path.join(author_dir, 'articles.json')
