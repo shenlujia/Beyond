@@ -21,7 +21,7 @@
 		5E1B98DB28EA812D009D1B4F /* FindMe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMe.m; sourceTree = "<group>"; };
 		5E5CBD6C28D5F74400946AF8 /* SSCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSCrypto.h; sourceTree = "<group>"; };
 		5E5CBD6D28D5F74400946AF8 /* SSCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSCrypto.m; sourceTree = "<group>"; };
-		5EC3932728A8B4090016B1E9 /* NameCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NameCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EC3932728A8B4090016B1E9 /* TestCrackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCrackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3932A28A8B4090016B1E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EC3932B28A8B4090016B1E9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5EC3932D28A8B4090016B1E9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -29,7 +29,7 @@
 		5EC3933028A8B40D0016B1E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EC3933328A8B40D0016B1E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EC3933528A8B40D0016B1E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5EC3933728A8B40D0016B1E9 /* NameCenter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NameCenter.entitlements; sourceTree = "<group>"; };
+		5EC3933728A8B40D0016B1E9 /* Main.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Main.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		5EC3931E28A8B4090016B1E9 = {
 			isa = PBXGroup;
 			children = (
-				5EC3932928A8B4090016B1E9 /* NameCenter */,
+				5EC3932928A8B4090016B1E9 /* Main */,
 				5EC3932828A8B4090016B1E9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +54,12 @@
 		5EC3932828A8B4090016B1E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3932728A8B4090016B1E9 /* NameCenter.app */,
+				5EC3932728A8B4090016B1E9 /* TestCrackDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5EC3932928A8B4090016B1E9 /* NameCenter */ = {
+		5EC3932928A8B4090016B1E9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				5EC3932A28A8B4090016B1E9 /* AppDelegate.h */,
@@ -69,21 +69,21 @@
 				5E1B98DB28EA812D009D1B4F /* FindMe.m */,
 				5EC3933528A8B40D0016B1E9 /* main.m */,
 				5EC3933228A8B40D0016B1E9 /* Main.storyboard */,
-				5EC3933728A8B40D0016B1E9 /* NameCenter.entitlements */,
+				5EC3933728A8B40D0016B1E9 /* Main.entitlements */,
 				5E5CBD6C28D5F74400946AF8 /* SSCrypto.h */,
 				5E5CBD6D28D5F74400946AF8 /* SSCrypto.m */,
 				5EC3932D28A8B4090016B1E9 /* ViewController.h */,
 				5EC3932E28A8B4090016B1E9 /* ViewController.m */,
 			);
-			path = NameCenter;
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5EC3932628A8B4090016B1E9 /* NameCenter */ = {
+		5EC3932628A8B4090016B1E9 /* TestCrackDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EC3933A28A8B40D0016B1E9 /* Build configuration list for PBXNativeTarget "NameCenter" */;
+			buildConfigurationList = 5EC3933A28A8B40D0016B1E9 /* Build configuration list for PBXNativeTarget "TestCrackDemo" */;
 			buildPhases = (
 				5EC3932328A8B4090016B1E9 /* Sources */,
 				5EC3932428A8B4090016B1E9 /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = NameCenter;
-			productName = NameCenter;
-			productReference = 5EC3932728A8B4090016B1E9 /* NameCenter.app */;
+			name = TestCrackDemo;
+			productName = Main;
+			productReference = 5EC3932728A8B4090016B1E9 /* TestCrackDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5EC3932228A8B4090016B1E9 /* Build configuration list for PBXProject "NameCenter" */;
+			buildConfigurationList = 5EC3932228A8B4090016B1E9 /* Build configuration list for PBXProject "TestCrackDemo" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5EC3932628A8B4090016B1E9 /* NameCenter */,
+				5EC3932628A8B4090016B1E9 /* TestCrackDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -283,7 +283,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NameCenter/NameCenter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Main/Main.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -310,7 +310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NameCenter/NameCenter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Main/Main.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -335,7 +335,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5EC3932228A8B4090016B1E9 /* Build configuration list for PBXProject "NameCenter" */ = {
+		5EC3932228A8B4090016B1E9 /* Build configuration list for PBXProject "TestCrackDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EC3933828A8B40D0016B1E9 /* Debug */,
@@ -344,7 +344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5EC3933A28A8B40D0016B1E9 /* Build configuration list for PBXNativeTarget "NameCenter" */ = {
+		5EC3933A28A8B40D0016B1E9 /* Build configuration list for PBXNativeTarget "TestCrackDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EC3933B28A8B40D0016B1E9 /* Debug */,

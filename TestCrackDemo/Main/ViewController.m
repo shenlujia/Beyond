@@ -23,6 +23,8 @@ static NSString *kOldFileKey = @"!!README.txt";
 @property (nonatomic, weak) IBOutlet NSTextView *textView;
 
 @property (nonatomic, strong) NSMutableSet<NSString *> *values;
+@property (nonatomic, strong) NSTimer *countdownTimer;
+@property (nonatomic, assign) NSInteger countdownValue;
 
 @end
 
@@ -159,6 +161,36 @@ static NSString *kOldFileKey = @"!!README.txt";
 - (IBAction)clearAction:(NSButton *)button
 {
     self.textView.string = @"";
+}
+
+- (IBAction)startCountdownAction:(NSButton *)button
+{
+    [self p_appendLog:@"\n开始倒计时"];
+    
+    // 停止之前的定时器
+    if (self.countdownTimer) {
+        [self.countdownTimer invalidate];
+        self.countdownTimer = nil;
+    }
+    
+    // 初始化倒计时值
+    self.countdownValue = 10000;
+    
+    // 创建新的定时器
+    self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCountdown) userInfo:nil repeats:YES];
+}
+
+- (void)updateCountdown
+{
+    if (self.countdownValue >= 0) {
+        [self p_appendLog:[NSString stringWithFormat:@"%ld", (long)self.countdownValue]];
+        self.countdownValue--;
+    } else {
+        // 倒计时结束
+        [self.countdownTimer invalidate];
+        self.countdownTimer = nil;
+        [self p_appendLog:@"倒计时结束"];
+    }
 }
 
 #pragma mark private

@@ -9,4 +9,6 @@
 
 @interface ViewController : NSViewController
 
+- (IBAction)startCountdownAction:(NSButton *)button;
+
 @end
