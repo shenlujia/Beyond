@@ -165,14 +165,8 @@
         }
     }];
 
-    FBObjectGraphConfiguration *configuration = [[FBObjectGraphConfiguration alloc] init];
-    FBRetainCycleDetector *detector = [[FBRetainCycleDetector alloc] initWithConfiguration:configuration];
-    for (id candidate in candidates) {
-        [detector addCandidate:candidate];
-    }
-    NSSet<NSArray<FBObjectiveCGraphElement *> *> *set = [detector findRetainCyclesWithMaxCycleLength:maxCycleLength];
-
-    return set;
+    // FBRetainCycleDetector 已移除，占位返回空集合
+    return [NSSet set];
 }
 
 #pragma mark - private
@@ -193,7 +187,7 @@
         return;
     }
 
-    [FBAssociationManager hook];
+    // FBAssociationManager 已随 FBRetainCycleDetector 一同移除
     [SimpleLeakDetectorMRC run];
 }
 

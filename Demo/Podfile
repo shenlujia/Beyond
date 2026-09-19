@@ -3,7 +3,6 @@ platform:ios,'15.0'
 
 target 'Beyond' do
 
-  pod 'FBRetainCycleDetector'
   pod 'fishhook'
   pod 'FLEX'
   pod 'lottie-ios', '2.5.3'
@@ -11,5 +10,13 @@ target 'Beyond' do
   pod 'Masonry'
   pod 'KVOController'
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+    end
+  end
 end
 
