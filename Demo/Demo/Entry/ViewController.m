@@ -18,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Beyond Demo";
+    self.view.backgroundColor = UIColor.whiteColor;
     
     [self test_c:@"MathExercisesController"];
 
